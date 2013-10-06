@@ -1120,12 +1120,14 @@
 				GCC_PREFIX_HEADER = ExtremeBeatAnnihilation/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"ExtremeBeatAnnihilation/libs/kazmath/include\"";
 				INFOPLIST_FILE = ExtremeBeatAnnihilation/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1139,12 +1141,14 @@
 				GCC_PREFIX_HEADER = ExtremeBeatAnnihilation/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"ExtremeBeatAnnihilation/libs/kazmath/include\"";
 				INFOPLIST_FILE = ExtremeBeatAnnihilation/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1169,6 +1173,7 @@
 				99C2801217E1275F00060D51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

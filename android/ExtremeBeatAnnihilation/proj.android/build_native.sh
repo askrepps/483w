@@ -35,20 +35,11 @@ echo "please define NDK_ROOT"
 exit 1
 fi
 
-if [ -z "${COCOS2DX_ROOT+aaa}" ];then
-echo "please define COCOS2DX_ROOT"
-exit 1
-fi
-
-if [ -z "${APP_ROOT+aaa}" ];then
-echo "please define APP_ROOT"
-exit 1
-fi
-
-if [ -z "${APP_ANDROID_ROOT+aaa}" ];then
-echo "please define APP_ANDROID_ROOT"
-exit 1
-fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# ... use paths relative to current directory
+COCOS2DX_ROOT="$DIR/../.."
+APP_ROOT="$DIR/.."
+APP_ANDROID_ROOT="$DIR"
 
 echo "NDK_ROOT = $NDK_ROOT"
 echo "COCOS2DX_ROOT = $COCOS2DX_ROOT"

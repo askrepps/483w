@@ -6,12 +6,11 @@
 class HelloWorld : public cocos2d::CCLayer
 {
 public:
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    virtual bool init();  
+    virtual bool init();
 
-    // there's no 'id' in cpp, so we recommand to return the exactly class pointer
+    // there's no 'id' for android cocos2d, so we recommend to returning the exact class pointer
     static cocos2d::CCScene* scene();
-    
+
     // a selector callback
     void menuCloseCallback(CCObject* pSender);
 

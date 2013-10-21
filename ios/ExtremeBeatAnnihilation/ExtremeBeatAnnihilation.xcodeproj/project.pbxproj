@@ -139,7 +139,7 @@
 		99C27FFF17E1275F00060D51 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 99C27FFE17E1275F00060D51 /* vec4.c */; };
 		99C2800417E1275F00060D51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C2800317E1275F00060D51 /* main.m */; };
 		99C2800717E1275F00060D51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C2800617E1275F00060D51 /* AppDelegate.m */; };
-		99C2800A17E1275F00060D51 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C2800917E1275F00060D51 /* HelloWorldLayer.m */; };
+		99C2800A17E1275F00060D51 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C2800917E1275F00060D51 /* MenuLayer.m */; };
 		99C2800D17E1275F00060D51 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C2800C17E1275F00060D51 /* IntroLayer.m */; };
 		C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8241814B3AD00C901FF /* LeftPlayer.m */; };
 		C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8271814B3BE00C901FF /* RightPlayer.m */; };
@@ -423,8 +423,8 @@
 		99C2800317E1275F00060D51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99C2800517E1275F00060D51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		99C2800617E1275F00060D51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		99C2800817E1275F00060D51 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		99C2800917E1275F00060D51 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		99C2800817E1275F00060D51 /* MenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
+		99C2800917E1275F00060D51 /* MenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 		99C2800B17E1275F00060D51 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		99C2800C17E1275F00060D51 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		C262F8231814B3AD00C901FF /* LeftPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftPlayer.h; sourceTree = "<group>"; };
@@ -497,8 +497,8 @@
 				C262F8241814B3AD00C901FF /* LeftPlayer.m */,
 				99C2800517E1275F00060D51 /* AppDelegate.h */,
 				99C2800617E1275F00060D51 /* AppDelegate.m */,
-				99C2800817E1275F00060D51 /* HelloWorldLayer.h */,
-				99C2800917E1275F00060D51 /* HelloWorldLayer.m */,
+				99C2800817E1275F00060D51 /* MenuLayer.h */,
+				99C2800917E1275F00060D51 /* MenuLayer.m */,
 				99C2800B17E1275F00060D51 /* IntroLayer.h */,
 				99C2800C17E1275F00060D51 /* IntroLayer.m */,
 				99C27E7517E1274F00060D51 /* Resources */,
@@ -1072,7 +1072,7 @@
 				99C27FFF17E1275F00060D51 /* vec4.c in Sources */,
 				99C2800417E1275F00060D51 /* main.m in Sources */,
 				99C2800717E1275F00060D51 /* AppDelegate.m in Sources */,
-				99C2800A17E1275F00060D51 /* HelloWorldLayer.m in Sources */,
+				99C2800A17E1275F00060D51 /* MenuLayer.m in Sources */,
 				99C2800D17E1275F00060D51 /* IntroLayer.m in Sources */,
 				C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */,
 				C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */,

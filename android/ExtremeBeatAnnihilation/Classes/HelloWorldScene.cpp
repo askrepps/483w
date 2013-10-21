@@ -4,6 +4,8 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+
+// test comment to see if this works
 CCScene* HelloWorld::scene()
 {
     CCScene*    scene = CCScene::create();        // 'scene' is an autorelease object

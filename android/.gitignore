@@ -1,0 +1,9 @@
+# ignore all build files and project files
+ExtremeBeatAnnihilation/proj.android/.classpath
+ExtremeBeatAnnihilation/proj.android/.project
+ExtremeBeatAnnihilation/proj.android/.settings/
+ExtremeBeatAnnihilation/proj.android/assets/
+ExtremeBeatAnnihilation/proj.android/bin/
+ExtremeBeatAnnihilation/proj.android/gen/
+ExtremeBeatAnnihilation/proj.android/libs/
+ExtremeBeatAnnihilation/proj.android/obj/

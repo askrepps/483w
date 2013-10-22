@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99A6E14B18171D6A00EF7C16 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E14A18171D6A00EF7C16 /* LevelData.m */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
 		99C27E6317E1274F00060D51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6217E1274F00060D51 /* OpenGLES.framework */; };
 		99C27E6517E1274F00060D51 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6417E1274F00060D51 /* OpenAL.framework */; };
@@ -146,6 +147,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99A6E14918171D6A00EF7C16 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
+		99A6E14A18171D6A00EF7C16 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C27E6017E1274F00060D51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		99C27E6217E1274F00060D51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -504,6 +507,8 @@
 				99C27E7517E1274F00060D51 /* Resources */,
 				99C27E8D17E1274F00060D51 /* libs */,
 				99C2800117E1275F00060D51 /* Supporting Files */,
+				99A6E14918171D6A00EF7C16 /* LevelData.h */,
+				99A6E14A18171D6A00EF7C16 /* LevelData.m */,
 			);
 			path = ExtremeBeatAnnihilation;
 			sourceTree = "<group>";
@@ -1076,6 +1081,7 @@
 				99C2800D17E1275F00060D51 /* IntroLayer.m in Sources */,
 				C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */,
 				C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */,
+				99A6E14B18171D6A00EF7C16 /* LevelData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

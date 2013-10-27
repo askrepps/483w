@@ -2,6 +2,7 @@
 
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
+#include "MainGameScene.h"
 
 USING_NS_CC;
 

@@ -6,6 +6,7 @@
 
 USING_NS_CC;
 
+// Android size plz
 AppDelegate::AppDelegate()
 {
 }

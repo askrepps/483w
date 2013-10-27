@@ -44,7 +44,7 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your code below...
-
+    // Test Android branch
     // add a label shows "Extreme Beat Annihilation"
     // create and initialize a label
     CCLabelTTF* pLabel = CCLabelTTF::create("Extreme Beat Annihilation", "Thonburi", 34);

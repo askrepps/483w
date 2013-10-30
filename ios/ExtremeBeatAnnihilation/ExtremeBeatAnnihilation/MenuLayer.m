@@ -74,18 +74,4 @@
 {
     NSLog(@"options pressed");
 }
-
-#pragma mark GameKit delegate
-
-//-(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
-//{
-//	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-//	[[app navController] dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//-(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-//{
-//	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-//	[[app navController] dismissViewControllerAnimated:YES completion:nil];
-//}
 @end

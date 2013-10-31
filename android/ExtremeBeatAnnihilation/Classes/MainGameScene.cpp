@@ -33,7 +33,7 @@ bool MainGame::init()
 
     // add a "close" icon to exit the process. it's an autorelease object
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                                           menu_selector(HelloWorld::menuCloseCallback));
+                                                           menu_selector(MainGame::menuCloseCallback));
     pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
     // create menu, it's an autorelease object

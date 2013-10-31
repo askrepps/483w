@@ -1,9 +1,9 @@
-#ifndef __MAINGAME_SCENE_H__
-#define __MAINGAME_SCENE_H__
+#ifndef __CHARACTER_SELECT_SCENE_H__
+#define __CHARACTER_SELECT_SCENE_H__
 
 #include "cocos2d.h"
 
-class MainGame : public cocos2d::CCLayer
+class CharacterSelect : public cocos2d::CCLayer
 {
 public:
     virtual bool init();
@@ -15,7 +15,7 @@ public:
     void menuCloseCallback(CCObject* pSender);
 
     // implement the "static node()" method manually
-    CREATE_FUNC(MainGame);
+    CREATE_FUNC(CharacterSelect);
 };
 
-#endif // __MAINGAME_SCENE_H__
+#endif // __CHARACTER_SELECT_SCENE_H__

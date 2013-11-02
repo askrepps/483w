@@ -566,12 +566,16 @@
 				99C2800617E1275F00060D51 /* AppDelegate.m */,
 				C2FB1A3018259C0400288C7E /* BackgroundLayer.h */,
 				C2FB1A3118259C0400288C7E /* BackgroundLayer.m */,
+				C28B300A18258B5600B1D4A4 /* CharacterSelectLayer.h */,
+				C28B300B18258B5600B1D4A4 /* CharacterSelectLayer.m */,
 				C2FB1A25182586E100288C7E /* Constants.h */,
 				C2FB1A26182586E100288C7E /* Constants.m */,
 				99C2800B17E1275F00060D51 /* IntroLayer.h */,
 				99C2800C17E1275F00060D51 /* IntroLayer.m */,
 				C262F8231814B3AD00C901FF /* LeftPlayer.h */,
 				C262F8241814B3AD00C901FF /* LeftPlayer.m */,
+				C2FB1A351825AA8600288C7E /* LevelData.h */,
+				C2FB1A361825AABA00288C7E /* LevelData.m */,
 				99C2800817E1275F00060D51 /* MenuLayer.h */,
 				99C2800917E1275F00060D51 /* MenuLayer.m */,
 				C2FB19E91821565000288C7E /* OptionsLayer.h */,
@@ -581,10 +585,6 @@
 				99C27E8D17E1274F00060D51 /* libs */,
 				99C27E7517E1274F00060D51 /* Resources */,
 				99C2800117E1275F00060D51 /* Supporting Files */,
-				C2FB1A351825AA8600288C7E /* LevelData.h */,
-				C2FB1A361825AABA00288C7E /* LevelData.m */,
-				C28B300A18258B5600B1D4A4 /* CharacterSelectLayer.h */,
-				C28B300B18258B5600B1D4A4 /* CharacterSelectLayer.m */,
 			);
 			path = ExtremeBeatAnnihilation;
 			sourceTree = "<group>";

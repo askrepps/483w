@@ -2,7 +2,7 @@
 //  HelloWorldLayer.h
 //  ExtremeBeatAnnihilation
 //
-//  Created by ANDREW STEPHEN KREPPS on 9/11/13.
+//  Created by ROBERT WILLIAM CARRIER on 9/11/13.
 //  Copyright Crash Course Gaming 2013. All rights reserved.
 //
 

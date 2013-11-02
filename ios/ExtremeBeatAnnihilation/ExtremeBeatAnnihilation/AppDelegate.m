@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "Constants.h"
 
 @implementation MyNavigationController
 
@@ -135,6 +136,10 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+    
+    // Load volume preferences
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    [preferences registerDefaults:@{kVolume:@1}];
 	
 	return YES;
 }

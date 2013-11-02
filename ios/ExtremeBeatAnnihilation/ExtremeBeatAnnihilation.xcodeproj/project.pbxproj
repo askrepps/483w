@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		99A6E14B18171D6A00EF7C16 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E14A18171D6A00EF7C16 /* LevelData.m */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
 		99C27E6317E1274F00060D51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6217E1274F00060D51 /* OpenGLES.framework */; };
 		99C27E6517E1274F00060D51 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6417E1274F00060D51 /* OpenAL.framework */; };
@@ -168,14 +167,10 @@
 		C2FB1A2218257BCA00288C7E /* sliderThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1A1C18257BCA00288C7E /* sliderThumb.png */; };
 		C2FB1A2318257BCA00288C7E /* sliderTrack-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1A1D18257BCA00288C7E /* sliderTrack-hd.png */; };
 		C2FB1A2418257BCA00288C7E /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1A1E18257BCA00288C7E /* sliderTrack.png */; };
-		C2FB1A27182586E200288C7E /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A26182586E100288C7E /* Constants.m */; };
-		C2FB1A3218259C0400288C7E /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A3118259C0400288C7E /* BackgroundLayer.m */; };
-		C2FB1A341825A19D00288C7E /* TitleImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1A331825A19D00288C7E /* TitleImage.jpg */; };
+		C2FB1A371825AABA00288C7E /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A361825AABA00288C7E /* LevelData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		99A6E14918171D6A00EF7C16 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
-		99A6E14A18171D6A00EF7C16 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C27E6017E1274F00060D51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		99C27E6217E1274F00060D51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -505,7 +500,8 @@
 		C2FB1A26182586E100288C7E /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		C2FB1A3018259C0400288C7E /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		C2FB1A3118259C0400288C7E /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
-		C2FB1A331825A19D00288C7E /* TitleImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TitleImage.jpg; sourceTree = "<group>"; };
+		C2FB1A351825AA8600288C7E /* LevelData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
+		C2FB1A361825AABA00288C7E /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,8 +572,6 @@
 				99C2800C17E1275F00060D51 /* IntroLayer.m */,
 				C262F8231814B3AD00C901FF /* LeftPlayer.h */,
 				C262F8241814B3AD00C901FF /* LeftPlayer.m */,
-				99A6E14918171D6A00EF7C16 /* LevelData.h */,
-				99A6E14A18171D6A00EF7C16 /* LevelData.m */,
 				99C2800817E1275F00060D51 /* MenuLayer.h */,
 				99C2800917E1275F00060D51 /* MenuLayer.m */,
 				C2FB19E91821565000288C7E /* OptionsLayer.h */,
@@ -587,8 +581,8 @@
 				99C27E8D17E1274F00060D51 /* libs */,
 				99C27E7517E1274F00060D51 /* Resources */,
 				99C2800117E1275F00060D51 /* Supporting Files */,
-				99A6E14918171D6A00EF7C16 /* LevelData.h */,
-				99A6E14A18171D6A00EF7C16 /* LevelData.m */,
+				C2FB1A351825AA8600288C7E /* LevelData.h */,
+				C2FB1A361825AABA00288C7E /* LevelData.m */,
 				C28B300A18258B5600B1D4A4 /* CharacterSelectLayer.h */,
 				C28B300B18258B5600B1D4A4 /* CharacterSelectLayer.m */,
 			);
@@ -1251,7 +1245,6 @@
 				99C2800D17E1275F00060D51 /* IntroLayer.m in Sources */,
 				C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */,
 				C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */,
-				99A6E14B18171D6A00EF7C16 /* LevelData.m in Sources */,
 				C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */,
 				C2FB1A0A1821609400288C7E /* CCControl.m in Sources */,
 				C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */,
@@ -1265,6 +1258,7 @@
 				C2FB1A131821609400288C7E /* CCColourUtils.m in Sources */,
 				C2FB1A141821609400288C7E /* CCScale9Sprite.m in Sources */,
 				C28B300C18258B5600B1D4A4 /* CharacterSelectLayer.m in Sources */,
+				C2FB1A371825AABA00288C7E /* LevelData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

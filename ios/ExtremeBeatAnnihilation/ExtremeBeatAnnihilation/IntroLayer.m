@@ -11,13 +11,11 @@
 #import "IntroLayer.h"
 #import "MenuLayer.h"
 
-
 #pragma mark - IntroLayer
 
-// HelloWorldLayer implementation
 @implementation IntroLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+// Helper class method that creates a Scene with the IntroLayer as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -33,7 +31,6 @@
 	return scene;
 }
 
-// 
 -(id) init
 {
 	if( (self=[super init])) {
@@ -61,6 +58,6 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MenuLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MenuLayer scene]]];
 }
 @end

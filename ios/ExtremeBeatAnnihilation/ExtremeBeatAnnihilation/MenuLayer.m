@@ -2,13 +2,14 @@
 //  HelloWorldLayer.m
 //  ExtremeBeatAnnihilation
 //
-//  Created by ANDREW STEPHEN KREPPS on 9/11/13.
+//  Created by ROBERT WILLIAM CARRIER on 9/11/13.
 //  Copyright Crash Course Gaming 2013. All rights reserved.
 //
 
 // Import the interfaces
 #import "MenuLayer.h"
 #import "AppDelegate.h"
+#import "BackgroundLayer.h"
 #import "OptionsLayer.h"
 
 #pragma mark - MenuLayer
@@ -21,11 +22,13 @@
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-	// 'layer' is an autorelease object.
-	MenuLayer *layer = [MenuLayer node];
+	// 'menu' is an autorelease object.
+    BackgroundLayer *background = [BackgroundLayer node];
+	MenuLayer *menu = [MenuLayer node];
 	
-	// add layer as a child to scene
-	[scene addChild: layer];
+	// add menu as a child to scene
+    [scene addChild:background z:-1];
+	[scene addChild: menu];
 	
 	// return the scene
 	return scene;
@@ -34,18 +37,15 @@
 -(id)init
 {
 	if((self=[super init]))
-    {
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Extreme Beat Annihilation" fontName:@"Marker Felt" fontSize:32];
+    {        
+        CGSize size = [[CCDirector sharedDirector] winSize];
         
-		CGSize size = [[CCDirector sharedDirector] winSize];
-        label.position =  ccp(size.width/2, size.height - 32);
-        [self addChild:label];
+//        // Add background image
+//        CCSprite* background = [CCSprite spriteWithFile:@"TitleImage.jpg"];
+//        background.position = CGPointZero;
+//        [self addChild:background];
 
-//        CCMenuItem *starMenuItem = [CCMenuItemImage
-//                                    itemFromNormalImage:@"ButtonStar.png" selectedImage:@"ButtonStarSel.png"
-//                                    target:self selector:@selector(starButtonTapped:)];
-//        starMenuItem.position = ccp(60, 60);
-
+        // Add buttons for starting the game and accessing options
         CCMenuItemFont *startGame = [CCMenuItemFont itemWithString:@"Start Game" target:self selector:@selector(startPressed:)];
         startGame.position = ccp(size.width/2, size.height/2);
         CCMenuItemFont *options = [CCMenuItemFont itemWithString:@"Options" target:self selector:@selector(optionsPressed:)];
@@ -73,9 +73,8 @@
 
 -(void)optionsPressed:(id)sender
 {
-    NSLog(@"options pressed");
     CCScene *scene = [CCScene node];
     [scene addChild:[OptionsLayer node]];
-    [[CCDirector sharedDirector] replaceScene:scene];//[CCFlipAngularTransition transitionWithDuration:1.2f scene:scene];
+    [[CCDirector sharedDirector] pushScene:scene];
 }
 @end

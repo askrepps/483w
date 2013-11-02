@@ -9,6 +9,7 @@
 // Import the interfaces
 #import "MenuLayer.h"
 #import "AppDelegate.h"
+#import "OptionsLayer.h"
 
 #pragma mark - MenuLayer
 
@@ -73,5 +74,8 @@
 -(void)optionsPressed:(id)sender
 {
     NSLog(@"options pressed");
+    CCScene *scene = [CCScene node];
+    [scene addChild:[OptionsLayer node]];
+    [[CCDirector sharedDirector] replaceScene:scene];//[CCFlipAngularTransition transitionWithDuration:1.2f scene:scene];
 }
 @end

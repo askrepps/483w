@@ -4,6 +4,7 @@
 //#include "HelloWorldScene.h"
 #include "MainGameScene.h"
 #include "OptionsMenuScene.h"
+#include <vector>
 
 USING_NS_CC;
 

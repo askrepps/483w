@@ -18,7 +18,7 @@ CCScene* CharacterSelect::scene()
 }
 
 // on "init" you need to initialize your instance
-bool CharacterSelect::init()
+bool CharacterSelect::init(Cocos2d:CCScene* callingScene)
 {
     // 1. super init first
     if(!CCLayer::init())
@@ -40,10 +40,10 @@ bool CharacterSelect::init()
     this->addChild(pMenu, 1);
 
     // 3. add your code below...
-
+	// Run through the possible  characters and load them
     // add a label shows "Extreme Beat Annihilation"
     // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Extreme Beat Annihilation", "Thonburi", 34);
+    CCLabelTTF* pLabel = CCLabelTTF::create("Select Your Characters", "Thonburi", 34);
 
     // ask director the window size
     CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -54,16 +54,13 @@ bool CharacterSelect::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
-    // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width / 2, size.height / 2) );
-
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
 
     return true;
+}
+
+int CharacterSelect::menuCharacterCallback(CCObject* pSender)
+{
+	return 0;
 }
 
 void CharacterSelect::menuCloseCallback(CCObject* pSender)
@@ -73,4 +70,9 @@ void CharacterSelect::menuCloseCallback(CCObject* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+int CharacterSelect::getNumberOfCharacters(const char* charDirectory)
+{
+	return 0;
 }

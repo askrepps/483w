@@ -4,33 +4,27 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-// test comment to see if this works
-CCScene* MainMenu::scene()
+CCScene* MainMenu::Scene()
 {
-    CCScene*  scene = CCScene::create();      // 'scene' is an autorelease object
-    MainMenu* layer = MainMenu::create();     // 'layer' is an autorelease object
+    CCScene*  scene = CCScene::create();
+    MainMenu* layer = MainMenu::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
 
-    // return the scene
     return scene;
 }
 
 // on "init" you need to initialize your instance
-bool MainMenu::init()
+bool MainMenu::Init()
 {
-    // 1. super init first
     if(!CCLayer::init())
     {
         return false;
     }
 
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the process. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+    // add a "close" icon to exit the process
+    CCMenuItemImage* pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
                                                             menu_selector(MainMenu::menuCloseCallback));
     pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
@@ -39,7 +33,7 @@ bool MainMenu::init()
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
 
-    // 3. add your code below...
+    // add your code below...
 
     // add a label shows "Extreme Beat Annihilation"
     // create and initialize a label
@@ -66,7 +60,8 @@ bool MainMenu::init()
     return true;
 }
 
-void MainMenu::menuCloseCallback(CCObject* pSender)
+// a selector callback
+void MainMenu::MenuCloseCallback(CCObject* pSender)
 {
     CCDirector::sharedDirector()->end();
 

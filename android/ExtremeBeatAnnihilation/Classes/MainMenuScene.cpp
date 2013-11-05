@@ -25,7 +25,7 @@ bool MainMenu::Init()
 
     // add a "close" icon to exit the process
     CCMenuItemImage* pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                                            menu_selector(MainMenu::menuCloseCallback));
+                                                            menu_selector(MainMenu::MenuCloseCallback));
     pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
     // create menu, it's an autorelease object

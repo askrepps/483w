@@ -6,13 +6,9 @@
 class MainMenu : public cocos2d::CCLayer
 {
 public:
-    virtual bool init();
-
-    // there's no 'id' for android cocos2d, so we recommend to returning the exact class pointer
-    static cocos2d::CCScene* scene();
-
-    // a selector callback
-    void menuCloseCallback(CCObject* pSender);
+    virtual bool              Init();
+    static  cocos2d::CCScene* Scene();
+            void              MenuCloseCallback(CCObject* pSender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(MainMenu);

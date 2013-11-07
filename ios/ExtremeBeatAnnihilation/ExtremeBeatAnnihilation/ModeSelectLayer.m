@@ -8,6 +8,7 @@
 
 #import "ModeSelectLayer.h"
 #import "BackgroundLayer.h"
+#import "MenuLayer.h"
 
 @implementation ModeSelectLayer
 
@@ -35,8 +36,10 @@
         single.position = ccp(size.width/2, size.height/2);
         CCMenuItemFont *multi = [CCMenuItemFont itemWithString:@"Multiplayer" target:self selector:@selector(multiPressed:)];
         multi.position = ccp(size.width/2, size.height/2 - 32);
+        CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
+        back.position = ccp(size.width/2, size.height/2 - 64);
         
-        CCMenu *startMenu = [CCMenu menuWithItems:single, multi, nil];
+        CCMenu *startMenu = [CCMenu menuWithItems:single, multi, back, nil];
         startMenu.position = CGPointZero;
         [self addChild:startMenu];
 	}
@@ -57,6 +60,11 @@
 -(void)multiPressed:(id)sender
 {
     
+}
+
+-(void)backPressed:(id)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
 }
 
 @end

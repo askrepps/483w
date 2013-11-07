@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "BackgroundLayer.h"
 #import "OptionsLayer.h"
+#import "ModeSelectLayer.h"
 
 #pragma mark - MenuLayer
 
@@ -39,11 +40,6 @@
 	if((self=[super init]))
     {        
         CGSize size = [[CCDirector sharedDirector] winSize];
-        
-//        // Add background image
-//        CCSprite* background = [CCSprite spriteWithFile:@"TitleImage.jpg"];
-//        background.position = CGPointZero;
-//        [self addChild:background];
 
         // Add buttons for starting the game and accessing options
         CCMenuItemFont *startGame = [CCMenuItemFont itemWithString:@"Start Game" target:self selector:@selector(startPressed:)];
@@ -54,9 +50,7 @@
         CCMenu *startMenu = [CCMenu menuWithItems:startGame, options, nil];
         startMenu.position = CGPointZero;
         [self addChild:startMenu];
-        
-        [[CCDirector sharedDirector] setDisplayStats:NO];
-	}
+    }
     
 	return self;
 }
@@ -68,13 +62,11 @@
 
 -(void)startPressed:(id)sender
 {
-    NSLog(@"start pressed");
+    [[CCDirector sharedDirector] replaceScene:[ModeSelectLayer scene]];
 }
 
 -(void)optionsPressed:(id)sender
 {
-    CCScene *scene = [CCScene node];
-    [scene addChild:[OptionsLayer node]];
-    [[CCDirector sharedDirector] pushScene:scene];
+    [[CCDirector sharedDirector] pushScene:[OptionsLayer scene]];
 }
 @end

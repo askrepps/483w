@@ -15,7 +15,7 @@
 @property float q1Freq;
 @property float medianFreq;
 @property float q3Freq;
-@property NSMutableArray *events;
+@property (retain, nonatomic) NSMutableArray *events;
 
 -(id) initDefault;
 -(id) initWithAudioFile:(NSString *)filepath;

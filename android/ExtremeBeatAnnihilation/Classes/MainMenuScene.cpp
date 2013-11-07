@@ -18,50 +18,45 @@ CCScene* MainMenu::Scene()
 // on "init" you need to initialize your instance
 bool MainMenu::Init()
 {
+    CCSize           size;           // the size of the window
+    CCMenuItemImage* closeItem;      // the icon to click to close the app
+    CCMenu*          menu;           // menu to contain the closeItem
+    CCLabelTTF*      label;          // label to display "Main Menu"
+    CCSprite*        sprite;         // the background splashscreen
+
     if(!CCLayer::init())
     {
         return false;
     }
 
-    // add a "close" icon to exit the process
-    CCMenuItemImage* pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                                            menu_selector(MainMenu::MenuCloseCallback));
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    // get the window size from the director
+    size = CCDirector::sharedDirector()->getWinSize();
 
-    // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition(CCPointZero);
-    this->addChild(pMenu, 1);
+    // add a "close" icon to exit the app
+    closeItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+                                           menu_selector(MainMenu::MenuCloseCallback));
+    closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
-    // add your code below...
+    // create menu to contain closeItem
+    menu = CCMenu::create(closeItem, NULL);
+    menu->setPosition(CCPointZero);
+    this->addChild(menu, 1);
 
-    // add a label shows "Extreme Beat Annihilation"
-    // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Extreme Beat Annihilation", "Thonburi", 34);
+    // add a label that shows "Main Menu" on the center of the screen
+    label = CCLabelTTF::create("Main Menu", "Thonburi", 34);
+    label->setPosition( ccp(size.width / 2, size.height - 20) );
+    this->addChild(label, 1);
 
-    // ask director the window size
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
-
-    // position the label on the center of the screen
-    pLabel->setPosition( ccp(size.width / 2, size.height - 20) );
-
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
-
-    // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width / 2, size.height / 2) );
-
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
+    // add splash screen as a sprite on the center of the screen
+    sprite = CCSprite::create("splashscreen.jpg");
+    sprite->setPosition( ccp(size.width / 2, size.height / 2) );
+    this->addChild(sprite, 0);
 
     return true;
 }
 
 // a selector callback
-void MainMenu::MenuCloseCallback(CCObject* pSender)
+void MainMenu::MenuCloseCallback(CCObject* sender)
 {
     CCDirector::sharedDirector()->end();
 

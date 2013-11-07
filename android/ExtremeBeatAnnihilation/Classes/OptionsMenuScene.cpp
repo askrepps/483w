@@ -1,14 +1,15 @@
-#include "MainGameScene.h"
+#include "OptionsMenuScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+
 // test comment to see if this works
-CCScene* MainGame::scene()
+CCScene* OptionsMenu::scene()
 {
     CCScene*    scene = CCScene::create();        // 'scene' is an autorelease object
-    MainGame* layer = MainGame::create();     // 'layer' is an autorelease object
+    OptionsMenu* layer = OptionsMenu::create();     // 'layer' is an autorelease object
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -18,7 +19,7 @@ CCScene* MainGame::scene()
 }
 
 // on "init" you need to initialize your instance
-bool MainGame::init()
+bool OptionsMenu::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -33,7 +34,7 @@ bool MainGame::init()
 
     // add a "close" icon to exit the process. it's an autorelease object
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                                           menu_selector(MainGame::menuCloseCallback));
+                                                           menu_selector(OptionsMenu::menuCloseCallback));
     pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
     // create menu, it's an autorelease object
@@ -43,10 +44,10 @@ bool MainGame::init()
 
     /////////////////////////////
     // 3. add your code below...
-
+    // Test Android branch
     // add a label shows "Extreme Beat Annihilation"
     // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Extreme Beat Annihilation", "Thonburi", 34);
+    CCLabelTTF* pLabel = CCLabelTTF::create("OPTIONS", "Thonburi", 34);
 
     // ask director the window size
     CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -58,7 +59,7 @@ bool MainGame::init()
     this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+    CCSprite* pSprite = CCSprite::create("splashscreen.jpg");
 
     // position the sprite on the center of the screen
     pSprite->setPosition( ccp(size.width / 2, size.height / 2) );
@@ -69,7 +70,7 @@ bool MainGame::init()
     return true;
 }
 
-void MainGame::menuCloseCallback(CCObject* pSender)
+void OptionsMenu::menuCloseCallback(CCObject* pSender)
 {
     CCDirector::sharedDirector()->end();
 
@@ -77,3 +78,4 @@ void MainGame::menuCloseCallback(CCObject* pSender)
     exit(0);
 #endif
 }
+

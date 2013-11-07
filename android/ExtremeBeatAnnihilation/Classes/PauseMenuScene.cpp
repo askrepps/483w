@@ -1,14 +1,14 @@
-#include "MainGameScene.h"
+#include "PauseMenuScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 
 // test comment to see if this works
-CCScene* MainGame::scene()
+CCScene* PauseMenu::scene()
 {
-    CCScene*    scene = CCScene::create();        // 'scene' is an autorelease object
-    MainGame* layer = MainGame::create();     // 'layer' is an autorelease object
+    CCScene*  scene = CCScene::create();      // 'scene' is an autorelease object
+    PauseMenu* layer = MainMenu::create();     // 'layer' is an autorelease object
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -18,22 +18,20 @@ CCScene* MainGame::scene()
 }
 
 // on "init" you need to initialize your instance
-bool MainGame::init()
+bool PauseMenu::init()
 {
-    //////////////////////////////
     // 1. super init first
     if(!CCLayer::init())
     {
         return false;
     }
 
-    /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
 
     // add a "close" icon to exit the process. it's an autorelease object
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                                           menu_selector(MainGame::menuCloseCallback));
+                                                            menu_selector(PauseMenu::menuCloseCallback));
     pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
     // create menu, it's an autorelease object
@@ -41,7 +39,6 @@ bool MainGame::init()
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
 
-    /////////////////////////////
     // 3. add your code below...
 
     // add a label shows "Extreme Beat Annihilation"
@@ -69,7 +66,7 @@ bool MainGame::init()
     return true;
 }
 
-void MainGame::menuCloseCallback(CCObject* pSender)
+void PauseMenu::menuCloseCallback(CCObject* pSender)
 {
     CCDirector::sharedDirector()->end();
 

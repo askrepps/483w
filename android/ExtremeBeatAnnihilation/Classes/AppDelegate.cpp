@@ -1,9 +1,11 @@
 #include "AppDelegate.h"
 
 #include "cocos2d.h"
-//#include "HelloWorldScene.h"
+
 #include "MainGameScene.h"
 #include "OptionsMenuScene.h"
+#include "MainMenuScene.h"
+
 #include <vector>
 
 USING_NS_CC;
@@ -30,7 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene* pScene = OptionsMenu::Scene();
+    CCScene* pScene = MainMenu::Scene();
 
     // run
     pDirector->runWithScene(pScene);

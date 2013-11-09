@@ -4,7 +4,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* MainMenu::Scene()
+CCScene* MainMenu::scene()
 {
     CCScene*  scene = CCScene::create();
     MainMenu* layer = MainMenu::create();
@@ -16,7 +16,7 @@ CCScene* MainMenu::Scene()
 }
 
 // on "init" you need to initialize your instance
-bool MainMenu::Init()
+bool MainMenu::init()
 {
     CCSize           size;           // the size of the window
     CCMenuItemImage* closeItem;      // the icon to click to close the app

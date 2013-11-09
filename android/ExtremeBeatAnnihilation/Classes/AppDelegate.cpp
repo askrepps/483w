@@ -5,8 +5,8 @@
 #include "MainGameScene.h"
 #include "OptionsMenuScene.h"
 #include "MainMenuScene.h"
+#include "CharacterSelectScene.h"
 
-#include <vector>
 
 USING_NS_CC;
 

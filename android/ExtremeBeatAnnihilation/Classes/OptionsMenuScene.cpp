@@ -23,7 +23,8 @@ bool OptionsMenu::init()
     CCMenuItemImage* closeItem;
     CCMenu*          menu;
     CCLabelTTF*      label;
-    CCSprite*        sprite;
+    CCLabelTTF*      volumelabel;
+    CCLabelTTF*      sfxlabel;
     cocos2d::extension::CCControlSlider* volume;
     cocos2d::extension::CCControlSlider* sfx;
 
@@ -50,18 +51,32 @@ bool OptionsMenu::init()
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
 
-    // add splash screen as a sprite on the center of the screen
-    sprite = CCSprite::create("splashscreen.jpg");
-    sprite->setPosition( ccp(size.width / 2, size.height / 2) );
-    this->addChild(sprite, 0);
+    // add a label that shows "Volume" next to the volume slider bar
+    volumelabel = CCLabelTTF::create("MUSIC", "Thonburi", 34);
+    volumelabel->setPosition( ccp(60, (2*size.height/3) - 20) );
+    this->addChild(volumelabel, 1);
 
-    // adds a slider to the screen
-    volume = cocos2d::extension::CCControlSlider::create("sliderTrack.png", "sliderProgress.png", "sliderThumb.png");
+    // add a label that shows "SFX" next to the sfx slider bar
+    sfxlabel = CCLabelTTF::create("SFX", "Thonburi", 34);
+    sfxlabel->setPosition( ccp(70, (size.height/3) - 20) );
+    this->addChild(sfxlabel, 1);
+
+    // adds volume slider to the screen
+    volume = cocos2d::extension::CCControlSlider::create("sliderTrack-hd.png", "sliderProgress-hd.png", "sliderThumb-hd.png");
     volume->setMinimumValue(0);
     volume->setMaximumValue(100);
     volume->setValue(50);
-    volume->setPosition( ccp(size.width / 2, size.height - 20));
+    volume->setPosition( ccp(size.width / 2, (2*size.height/3) - 20));
     this->addChild(volume, 1);
+
+    // adds sfx slider to the screen
+    sfx = cocos2d::extension::CCControlSlider::create("sliderTrack-hd.png", "sliderProgress-hd.png", "sliderThumb-hd.png");
+    sfx->setMinimumValue(0);
+    sfx->setMaximumValue(100);
+    sfx->setValue(50);
+    sfx->setPosition( ccp(size.width / 2, (size.height/3) - 20));
+    this->addChild(sfx, 1);
+
     return true;
 }
 

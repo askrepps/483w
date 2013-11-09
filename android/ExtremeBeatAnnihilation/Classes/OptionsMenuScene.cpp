@@ -1,76 +1,68 @@
 #include "OptionsMenuScene.h"
 #include "SimpleAudioEngine.h"
 
+
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-
-// test comment to see if this works
-CCScene* OptionsMenu::scene()
+CCScene* OptionsMenu::Scene()
 {
-    CCScene*    scene = CCScene::create();        // 'scene' is an autorelease object
-    OptionsMenu* layer = OptionsMenu::create();     // 'layer' is an autorelease object
+    CCScene*  scene = CCScene::create();
+    OptionsMenu* layer = OptionsMenu::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
 
-    // return the scene
     return scene;
 }
 
 // on "init" you need to initialize your instance
-bool OptionsMenu::init()
+bool OptionsMenu::Init()
 {
-    //////////////////////////////
-    // 1. super init first
+    CCSize           size;
+    CCMenuItemImage* closeItem;
+    CCMenu*          menu;
+    CCLabelTTF*      label;
+    CCSprite*        sprite;
+    CCControlSlider* volume;
+    CCControlSlider* sfx;
+
     if(!CCLayer::init())
     {
         return false;
     }
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+    // get the window size from the director
+    size = CCDirector::sharedDirector()->getWinSize();
 
-    // add a "close" icon to exit the process. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                                           menu_selector(OptionsMenu::menuCloseCallback));
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    // add a "close" icon to exit the process
+    closeItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+                                           menu_selector(OptionsMenu::MenuCloseCallback));
+    closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
-    // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition(CCPointZero);
-    this->addChild(pMenu, 1);
+    // create menu
+    menu = CCMenu::create(closeItem, NULL);
+    menu->setPosition(CCPointZero);
+    this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your code below...
-    // Test Android branch
-    // add a label shows "Extreme Beat Annihilation"
-    // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("OPTIONS", "Thonburi", 34);
+    // add a label that shows "Main Menu" on the center of the screen
+    label = CCLabelTTF::create("OPTIONS", "Thonburi", 34);
+    label->setPosition( ccp(size.width / 2, size.height - 20) );
+    this->addChild(label, 1);
 
-    // ask director the window size
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    // add splash screen as a sprite on the center of the screen
+    sprite = CCSprite::create("splashscreen.jpg");
+    sprite->setPosition( ccp(size.width / 2, size.height / 2) );
+    this->addChild(sprite, 0);
 
-    // position the label on the center of the screen
-    pLabel->setPosition( ccp(size.width / 2, size.height - 20) );
-
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
-
-    // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("splashscreen.jpg");
-
-    // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width / 2, size.height / 2) );
-
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
+    // adds a slider to the screen
+    volume = CCControlSlider::create("sliderTrack.png", "sliderProgress.png", "sliderThumb.png");
 
     return true;
 }
 
-void OptionsMenu::menuCloseCallback(CCObject* pSender)
+// a selector callback
+void OptionsMenu::MenuCloseCallback(CCObject* sender)
 {
     CCDirector::sharedDirector()->end();
 
@@ -78,4 +70,3 @@ void OptionsMenu::menuCloseCallback(CCObject* pSender)
     exit(0);
 #endif
 }
-

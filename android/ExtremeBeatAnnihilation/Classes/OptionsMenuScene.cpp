@@ -1,6 +1,6 @@
 #include "OptionsMenuScene.h"
 #include "SimpleAudioEngine.h"
-
+#include "CCControlSlider.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -24,8 +24,8 @@ bool OptionsMenu::Init()
     CCMenu*          menu;
     CCLabelTTF*      label;
     CCSprite*        sprite;
-    CCControlSlider* volume;
-    CCControlSlider* sfx;
+    cocos2d::extension::CCControlSlider* volume;
+    cocos2d::extension::CCControlSlider* sfx;
 
     if(!CCLayer::init())
     {
@@ -56,7 +56,7 @@ bool OptionsMenu::Init()
     this->addChild(sprite, 0);
 
     // adds a slider to the screen
-    volume = CCControlSlider::create("sliderTrack.png", "sliderProgress.png", "sliderThumb.png");
+    volume = cocos2d::extension::CCControlSlider::create("sliderTrack.png", "sliderProgress.png", "sliderThumb.png");
 
     return true;
 }

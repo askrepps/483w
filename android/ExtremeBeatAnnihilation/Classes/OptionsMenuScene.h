@@ -2,7 +2,7 @@
 #define __OPTIONS_MENU_SCENE_H__
 
 #include "cocos2d.h"
-#include "CCControlSlider.h"
+#include "../extensions/GUI/CCControlExtension/CCControlSlider.h"
 
 class OptionsMenu : public cocos2d::CCLayer
 {

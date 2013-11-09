@@ -95,11 +95,11 @@ void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 	//If we got one character, set the index to the tag, otherwise, we selected character two
 	if(m_numCharacters == 1)
 	{
-		m_selectedCharOne = convert->getTag();
+		global.m_playerOne = convert->getTag();
 	}
 	else if(m_numCharacters == 2)
 	{
-		m_selectedCharTwo = convert->getTag();
+		global.m_playerTwo = convert->getTag();
 	}
 
 	// Will move onto music library scene once we get that inplace

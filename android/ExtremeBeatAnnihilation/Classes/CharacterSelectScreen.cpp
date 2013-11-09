@@ -4,7 +4,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* CharacterSelect::Scene()
+CCScene* CharacterSelect::scene()
 {
     CCScene*  scene = CCScene::create();
     CharacterSelect* layer = CharacterSelect::create();
@@ -16,7 +16,7 @@ CCScene* CharacterSelect::Scene()
 }
 
 // on "init" you need to initialize your instance
-bool CharacterSelect::Init(cocos2d:CCScene* callingScene, bool singlePlayer)
+bool CharacterSelect::init(cocos2d:CCScene* callingScene, bool singlePlayer)
 {
     CCSize           size;
     CCMenuItemImage* closeItem;

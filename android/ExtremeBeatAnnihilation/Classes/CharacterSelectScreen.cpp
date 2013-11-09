@@ -16,11 +16,10 @@ CCScene* CharacterSelect::Scene()
 }
 
 // on "init" you need to initialize your instance
-bool CharacterSelect::Init(cocos2d:CCScene* callingScene)
+bool CharacterSelect::Init(cocos2d:CCScene* callingScene, bool singlePlayer)
 {
     CCSize           size;
     CCMenuItemImage* closeItem;
-    CCMenu*          menu;
     CCLabelTTF*      label;
     CCSprite*        sprite;
 
@@ -28,6 +27,9 @@ bool CharacterSelect::Init(cocos2d:CCScene* callingScene)
     {
         return false;
     }
+
+    // Set whether it is single player or not
+    isSinglePlayer = singlePlayer;
 
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
@@ -38,9 +40,9 @@ bool CharacterSelect::Init(cocos2d:CCScene* callingScene)
     closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
     // create menu
-    menu = CCMenu::create(closeItem, NULL);
-    menu->setPosition(CCPointZero);
-    this->addChild(menu, 1);
+    m_characterMenu = CCMenu::create(closeItem, NULL);
+    m_characterMenu->setPosition(CCPointZero);
+    this->addChild(m_characterMenu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
     label = CCLabelTTF::create("Main Menu", "Thonburi", 34);
@@ -55,15 +57,15 @@ bool CharacterSelect::Init(cocos2d:CCScene* callingScene)
     return true;
 }
 
-void CharacterSelect::LoadCharacters(const char* charDirectory, CCMenu  &menu)
+void CharacterSelect::LoadCharacters(const char* charDirectory)
 {
 	CCMenuItemImage* characterOne;				// Character One for the select screen
 	CCMenuItemImage* characterTwo;				// Character Two for the select screen
 
 
 	// Create the character menu items
-	characterOne = CCMenuItemImage::create("CharacterOne.png", "CharacterOne.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
-	characterOne = CCMenuItemImage::create("CharacterTwo.png", "CharacterTwo.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
+	characterOne = CCMenuItemImage::create("CharacterOne.png", "selectCharacterOne.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
+	characterOne = CCMenuItemImage::create("CharacterTwo.png", "selectCharacterTwo.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
 
 	// Set their positions
 	//characterOne->setPosition( ccp())

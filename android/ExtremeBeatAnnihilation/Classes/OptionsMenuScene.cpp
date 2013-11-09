@@ -57,7 +57,11 @@ bool OptionsMenu::Init()
 
     // adds a slider to the screen
     volume = cocos2d::extension::CCControlSlider::create("sliderTrack.png", "sliderProgress.png", "sliderThumb.png");
-
+    volume->setMinimumValue(0);
+    volume->setMaximumValue(100);
+    volume->setValue(50);
+    volume->setPosition( ccp(size.width / 2, size.height - 20));
+    this->addChild(volume, 1);
     return true;
 }
 

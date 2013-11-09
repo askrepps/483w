@@ -5,7 +5,7 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 
 // test comment to see if this works
-CCScene* MainGame::scene()
+CCScene* MainGame::Scene()
 {
     CCScene*    scene = CCScene::create();        // 'scene' is an autorelease object
     MainGame* layer = MainGame::create();     // 'layer' is an autorelease object

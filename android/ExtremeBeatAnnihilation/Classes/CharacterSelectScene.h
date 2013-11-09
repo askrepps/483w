@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "MainMenuScene.h"
 #include "SimpleAudioEngine.h"
-
+#include "Global.h"
 class CharacterSelect : public cocos2d::CCLayer
 {
 public:
@@ -36,8 +36,7 @@ private:
 	int m_numCharacters;
 	cocos2d::CCMenu* m_characterMenu;
 	bool m_isSinglePlayer;
-	int m_selectedCharOne;
-	int m_selectedCharTwo;
+	Global global;
 };
 
 #endif // __CHARACTER_SELECT_SCENE_H__

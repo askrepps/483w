@@ -1,7 +1,5 @@
 #include "MainMenuScene.h"
-#include "SimpleAudioEngine.h"
-#include "CharacterSelectScene.h"
-#include "OptionsMenuScene.h"
+
 
 using namespace cocos2d;
 using namespace CocosDenshion;

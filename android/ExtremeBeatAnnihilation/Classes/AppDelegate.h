@@ -2,6 +2,12 @@
 #define  _APP_DELEGATE_H_
 
 #include "CCApplication.h"
+#include "cocos2d.h"
+
+#include "MainGameScene.h"
+#include "OptionsMenuScene.h"
+#include "MainMenuScene.h"
+#include "CharacterSelectScene.h"
 
 /**
  * @brief - The cocos2d Application.

@@ -55,12 +55,33 @@ bool CharacterSelect::Init(cocos2d:CCScene* callingScene)
     return true;
 }
 
+void CharacterSelect::LoadCharacters(const char* charDirectory, CCMenu  &menu)
+{
+	CCMenuItemImage* characterOne;				// Character One for the select screen
+	CCMenuItemImage* characterTwo;				// Character Two for the select screen
+
+
+	// Create the character menu items
+	characterOne = CCMenuItemImage::create("CharacterOne.png", "CharacterOne.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
+	characterOne = CCMenuItemImage::create("CharacterTwo.png", "CharacterTwo.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
+
+	// Set their positions
+	//characterOne->setPosition( ccp())
+
+}
+
 // a selector callback
-void MainMenu::MenuCloseCallback(CCObject* sender)
+void CharacterSelect::MenuCloseCallback(CCObject &sender)
 {
     CCDirector::sharedDirector()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+
+void CharacterSelect::CharacterCallBack(CCObject &sender)
+{
+
 }

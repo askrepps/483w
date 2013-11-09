@@ -67,7 +67,6 @@ void CharacterSelect::LoadCharacters(const char* charDirectory, CCMenu  &menu)
 
 	// Set their positions
 	//characterOne->setPosition( ccp())
-
 }
 
 // a selector callback

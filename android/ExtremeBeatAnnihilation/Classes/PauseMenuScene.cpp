@@ -5,7 +5,7 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 
 // test comment to see if this works
-CCScene* PauseMenu::scene()
+CCScene* PauseMenu::Scene()
 {
     CCScene*  scene = CCScene::create();      // 'scene' is an autorelease object
     PauseMenu* layer = MainMenu::create();     // 'layer' is an autorelease object

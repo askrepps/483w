@@ -1,5 +1,7 @@
 #include "MainMenuScene.h"
 #include "SimpleAudioEngine.h"
+#include "CharacterSelectScene.h"
+#include "OptionsMenuScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -65,7 +67,7 @@ CCScene* MainMenu::Scene()
 // sender [in] - the object that sent the selected event?
 void MainMenu::CallbackSelectSinglePlayer(CCObject* sender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
 
 // On selecting the multiplayer menu item, switch to a character select scene with the necessary
@@ -74,7 +76,7 @@ void MainMenu::CallbackSelectSinglePlayer(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::CallbackSelectMultiplayer(CCObject* sender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
 
 // On selecting the single player menu item, switch to the options scene
@@ -82,7 +84,7 @@ void MainMenu::CallbackSelectMultiplayer(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::CallbackSelectOptions(CCObject* sender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }
 
 // On selecting the single player menu item, exit the app

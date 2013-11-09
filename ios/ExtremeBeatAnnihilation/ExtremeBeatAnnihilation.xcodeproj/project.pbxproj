@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99370617182E1647007A8CB6 /* CharacterSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99370616182E1647007A8CB6 /* CharacterSelectLayer.m */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
 		99C27E6317E1274F00060D51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6217E1274F00060D51 /* OpenGLES.framework */; };
 		99C27E6517E1274F00060D51 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6417E1274F00060D51 /* OpenAL.framework */; };
@@ -156,7 +157,6 @@
 		C2269AF6182BFE88001312F4 /* ModeSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2269AF5182BFE88001312F4 /* ModeSelectLayer.m */; };
 		C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8241814B3AD00C901FF /* LeftPlayer.m */; };
 		C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8271814B3BE00C901FF /* RightPlayer.m */; };
-		C28B300C18258B5600B1D4A4 /* CharacterSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C28B300B18258B5600B1D4A4 /* CharacterSelectLayer.m */; };
 		C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EA1821565000288C7E /* OptionsLayer.m */; };
 		C2FB1A0A1821609400288C7E /* CCControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EF1821609400288C7E /* CCControl.m */; };
 		C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19F11821609400288C7E /* CCControlButton.m */; };
@@ -176,6 +176,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99370615182E1647007A8CB6 /* CharacterSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSelectLayer.h; sourceTree = "<group>"; };
+		99370616182E1647007A8CB6 /* CharacterSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSelectLayer.m; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C27E6017E1274F00060D51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		99C27E6217E1274F00060D51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -476,8 +478,6 @@
 		C262F8241814B3AD00C901FF /* LeftPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftPlayer.m; sourceTree = "<group>"; };
 		C262F8261814B3BE00C901FF /* RightPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightPlayer.h; sourceTree = "<group>"; };
 		C262F8271814B3BE00C901FF /* RightPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightPlayer.m; sourceTree = "<group>"; };
-		C28B300A18258B5600B1D4A4 /* CharacterSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSelectLayer.h; sourceTree = SOURCE_ROOT; };
-		C28B300B18258B5600B1D4A4 /* CharacterSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSelectLayer.m; sourceTree = SOURCE_ROOT; };
 		C2FB19E91821565000288C7E /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
 		C2FB19EA1821565000288C7E /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
 		C2FB19EE1821609400288C7E /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControl.h; sourceTree = "<group>"; };
@@ -572,14 +572,14 @@
 		99C27E7417E1274F00060D51 /* ExtremeBeatAnnihilation */ = {
 			isa = PBXGroup;
 			children = (
+				99370615182E1647007A8CB6 /* CharacterSelectLayer.h */,
+				99370616182E1647007A8CB6 /* CharacterSelectLayer.m */,
 				C2269AE3182BF809001312F4 /* SoundEvent.h */,
 				C2269AE4182BF809001312F4 /* SoundEvent.m */,
 				99C2800517E1275F00060D51 /* AppDelegate.h */,
 				99C2800617E1275F00060D51 /* AppDelegate.m */,
 				C2FB1A381825B0E500288C7E /* BackgroundLayer.h */,
 				C2FB1A391825B0E600288C7E /* BackgroundLayer.m */,
-				C28B300A18258B5600B1D4A4 /* CharacterSelectLayer.h */,
-				C28B300B18258B5600B1D4A4 /* CharacterSelectLayer.m */,
 				C2FB1A25182586E100288C7E /* Constants.h */,
 				C2FB1A26182586E100288C7E /* Constants.m */,
 				99C2800B17E1275F00060D51 /* IntroLayer.h */,
@@ -1226,6 +1226,7 @@
 				99C27F8917E1275A00060D51 /* CCEventDispatcher.m in Sources */,
 				99C27F8C17E1275A00060D51 /* CCGLView.m in Sources */,
 				99C27F8F17E1275A00060D51 /* CCWindow.m in Sources */,
+				99370617182E1647007A8CB6 /* CharacterSelectLayer.m in Sources */,
 				99C27F9217E1275A00060D51 /* base64.c in Sources */,
 				99C27F9617E1275A00060D51 /* CCArray.m in Sources */,
 				99C27F9917E1275B00060D51 /* ccCArray.m in Sources */,
@@ -1275,7 +1276,6 @@
 				C2FB1A121821609400288C7E /* ccControlShaders.m in Sources */,
 				C2FB1A131821609400288C7E /* CCColourUtils.m in Sources */,
 				C2FB1A141821609400288C7E /* CCScale9Sprite.m in Sources */,
-				C28B300C18258B5600B1D4A4 /* CharacterSelectLayer.m in Sources */,
 				C2FB1A371825AABA00288C7E /* LevelData.m in Sources */,
 				C2269AE5182BF809001312F4 /* SoundEvent.m in Sources */,
 				C2269AF6182BFE88001312F4 /* ModeSelectLayer.m in Sources */,

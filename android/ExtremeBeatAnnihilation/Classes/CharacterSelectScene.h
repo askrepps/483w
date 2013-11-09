@@ -9,7 +9,7 @@
 class CharacterSelect : public cocos2d::CCLayer
 {
 public:
-    virtual bool Init(cocos2d:CCScene* callingScene);
+    virtual bool Init(cocos2d:CCScene* callingScene, bool singlePlayer);
 
     // there's no 'id' for android cocos2d, so we recommend to returning the exact class pointer
     static cocos2d::CCScene* Scene();
@@ -36,6 +36,7 @@ private:
 	vector<CCMenuItemImage>* m_characterSelectionImages;
 	int m_numCharacters;
 	CCMenu* m_characterMenu;
+	bool isSinglePlayer;
 };
 
 #endif // __CHARACTER_SELECT_SCENE_H__

@@ -20,7 +20,7 @@ CCScene* OptionsMenu::Scene()
 bool OptionsMenu::init()
 {
     CCSize           size;
-    CCMenuItemImage* closeItem;
+    CCMenuItemFont* backItem;
     CCMenu*          menu;
     CCLabelTTF*      label;
     CCLabelTTF*      volumelabel;
@@ -37,12 +37,16 @@ bool OptionsMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // add a "close" icon to exit the process
-    closeItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                           menu_selector(OptionsMenu::MenuCloseCallback));
-    closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    //closeItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+    //                                       menu_selector(OptionsMenu::MenuCloseCallback));
+    //closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+
+    // Add a "Back" Button to go back to main menu
+    backItem = CCMenuItemFont::create("BACK", this, menu_selector(OptionsMenu::MenuGoBack));
+    backItem->setPosition(ccp(size.width / 2, 20));
 
     // create menu
-    menu = CCMenu::create(closeItem, NULL);
+    menu = CCMenu::create(backItem, NULL);
     menu->setPosition(CCPointZero);
     this->addChild(menu, 1);
 
@@ -80,7 +84,13 @@ bool OptionsMenu::init()
     return true;
 }
 
-// a selector callback
+void OptionsMenu::MenuGoBack(CCObject* sender)
+{
+
+}
+
+
+/*// a selector callback
 void OptionsMenu::MenuCloseCallback(CCObject* sender)
 {
     CCDirector::sharedDirector()->end();
@@ -89,3 +99,4 @@ void OptionsMenu::MenuCloseCallback(CCObject* sender)
     exit(0);
 #endif
 }
+*/

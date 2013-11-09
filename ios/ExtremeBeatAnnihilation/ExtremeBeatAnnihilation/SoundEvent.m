@@ -14,8 +14,8 @@
 {
     if (self = [super init])
     {
-        self.sample = s;
-        self.freq = f;
+        _sample = s;
+        _freq = f;
     }
     
     return self;
@@ -23,25 +23,25 @@
 
 -(void) setAttributesWithQ1:(float)q1Freq andMedian:(float)medianFreq andQ3:(float)q3Freq
 {
-    if (self.freq < q1Freq)
+    if (_freq < q1Freq)
     {
-        self.side = LEFT;
-        self.type = SLIDE;
+        _side = LEFT;
+        _type = SLIDE;
     }
     else if (self.freq < medianFreq)
     {
-        self.side = LEFT;
-        self.type = JUMP;
+        _side = LEFT;
+        _type = JUMP;
     }
     else if (self.freq < q3Freq)
     {
-        self.side = RIGHT;
-        self.type = SLIDE;
+        _side = RIGHT;
+        _type = SLIDE;
     }
     else
     {
-        self.side = RIGHT;
-        self.type = JUMP;
+        _side = RIGHT;
+        _type = JUMP;
     }
 }
 

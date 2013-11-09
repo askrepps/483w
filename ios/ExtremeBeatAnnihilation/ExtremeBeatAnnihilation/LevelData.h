@@ -11,11 +11,11 @@
 
 @interface LevelData : NSObject
 
-@property uint numSamples;
-@property float q1Freq;
-@property float medianFreq;
-@property float q3Freq;
-@property (retain, nonatomic) NSMutableArray *events;
+@property (readonly) uint numSamples;
+@property (readonly) float q1Freq;
+@property (readonly) float medianFreq;
+@property (readonly) float q3Freq;
+@property (retain, nonatomic, readonly) NSMutableArray *events;
 
 -(id) initDefault;
 -(id) initWithAudioFile:(NSString *)filepath;

@@ -14,21 +14,21 @@
 {
     if (self = [super init])
     {
-        self.numSamples = 410000;
-        self.events = [[NSMutableArray alloc] init];
+        _numSamples = 410000;
+        _events = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < 9; i++)
         {
             SoundEvent *event = [[SoundEvent alloc] initWithSample:(i+1)*44100 andFreq:i*200.0f];
-            [self.events addObject:event];
+            [_events addObject:event];
             [event release];
         }
         
         [self setStats];
         
-        for (SoundEvent *event in self.events)
+        for (SoundEvent *event in _events)
         {
-            [event setAttributesWithQ1:self.q1Freq andMedian:self.medianFreq andQ3:self.q3Freq];
+            [event setAttributesWithQ1:_q1Freq andMedian:_medianFreq andQ3:_q3Freq];
         }
     }
     
@@ -45,7 +45,7 @@
 {
     NSMutableArray *freqs = [[NSMutableArray alloc] init];
     
-    for (SoundEvent *event in self.events)
+    for (SoundEvent *event in _events)
     {
         [freqs addObject:[NSNumber numberWithFloat:event.freq]];
     }
@@ -56,16 +56,16 @@
     uint q1 = median / 2;
     uint q3 = q1 + median;
     
-    self.q1Freq = [[sortedFreqs objectAtIndex:q1] floatValue];
-    self.medianFreq = [[sortedFreqs objectAtIndex:median] floatValue];
-    self.q3Freq = [[sortedFreqs objectAtIndex:q3] floatValue];
+    _q1Freq = [[sortedFreqs objectAtIndex:q1] floatValue];
+    _medianFreq = [[sortedFreqs objectAtIndex:median] floatValue];
+    _q3Freq = [[sortedFreqs objectAtIndex:q3] floatValue];
     
     [freqs release];
 }
 
 -(void) dealloc
 {
-    [self.events release];
+    [_events release];
     [super dealloc];
 }
 

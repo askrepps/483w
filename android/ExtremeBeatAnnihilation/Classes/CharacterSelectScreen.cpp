@@ -7,7 +7,7 @@ using namespace CocosDenshion;
 CCScene* CharacterSelect::Scene()
 {
     CCScene*  scene = CCScene::create();
-    MainMenu* layer = MainMenu::create();
+    CharacterSelect* layer = CharacterSelect::create();
 
     // add layer as a child to scene
     scene->addChild(layer);

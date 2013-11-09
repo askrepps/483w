@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include <vector>
 
-#define CHARACTER_IMAGE_PATH "../Resources/CharacterImages"
+//#define CHARACTER_IMAGE_PATH "../Resources/CharacterImages"
 
 class CharacterSelect : public cocos2d::CCLayer
 {

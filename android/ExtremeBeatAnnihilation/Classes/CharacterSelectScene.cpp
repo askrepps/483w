@@ -5,7 +5,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* CharacterSelect::scene()
+CCScene* CharacterSelect::Scene()
 {
     CCScene*  scene = CCScene::create();
     CharacterSelect* layer = CharacterSelect::create();
@@ -81,7 +81,7 @@ void CharacterSelect::LoadCharacters()
 // a selector callback
 void CharacterSelect::MenuCloseCallback(CCObject* sender)
 {
-    CCDirector::sharedDirector()->replaceScene(MainMenu::scene());
+    CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
 }
 
 

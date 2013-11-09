@@ -5,7 +5,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* OptionsMenu::scene()
+CCScene* OptionsMenu::Scene()
 {
     CCScene*  scene = CCScene::create();
     OptionsMenu* layer = OptionsMenu::create();

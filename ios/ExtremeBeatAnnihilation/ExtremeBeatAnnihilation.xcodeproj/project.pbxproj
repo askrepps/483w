@@ -544,7 +544,6 @@
 		99C27E5417E1274F00060D51 = {
 			isa = PBXGroup;
 			children = (
-				99F6A191182EB1820028DEDD /* MediaPlayer.framework */,
 				99C27E7417E1274F00060D51 /* ExtremeBeatAnnihilation */,
 				99C27E5F17E1274F00060D51 /* Frameworks */,
 				99C27E5E17E1274F00060D51 /* Products */,
@@ -562,6 +561,7 @@
 		99C27E5F17E1274F00060D51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99F6A191182EB1820028DEDD /* MediaPlayer.framework */,
 				99C27E6017E1274F00060D51 /* QuartzCore.framework */,
 				99C27E6217E1274F00060D51 /* OpenGLES.framework */,
 				99C27E6417E1274F00060D51 /* OpenAL.framework */,

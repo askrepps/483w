@@ -5,7 +5,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* OptionsMenu::scene()
+CCScene* OptionsMenu::Scene()
 {
     CCScene*  scene = CCScene::create();
     OptionsMenu* layer = OptionsMenu::create();
@@ -17,7 +17,7 @@ CCScene* OptionsMenu::scene()
 }
 
 // on "init" you need to initialize your instance
-bool OptionsMenu::init()
+bool OptionsMenu::Init()
 {
     CCSize           size;
     CCMenuItemImage* closeItem;

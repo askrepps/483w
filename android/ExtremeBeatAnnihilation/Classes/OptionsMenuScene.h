@@ -7,10 +7,10 @@
 class OptionsMenu : public cocos2d::CCLayer
 {
 public:
-    virtual bool init();
+    virtual bool Init();
 
     // there's no 'id' for android cocos2d, so we recommend to returning the exact class pointer
-    static cocos2d::CCScene* scene();
+    static cocos2d::CCScene* Scene();
 
     // a selector callback
     void MenuCloseCallback(CCObject* pSender);

@@ -9,10 +9,10 @@
 class CharacterSelect : public cocos2d::CCLayer
 {
 public:
-    virtual bool init(cocos2d:CCScene* callingScene, bool singlePlayer);
+    virtual bool Init(cocos2d:CCScene* callingScene, bool singlePlayer);
 
     // there's no 'id' for android cocos2d, so we recommend to returning the exact class pointer
-    static cocos2d::CCScene* scene();
+    static cocos2d::CCScene* Scene();
 
     // a selector callback
     void MenuCloseCallback(CCObject* pSender);

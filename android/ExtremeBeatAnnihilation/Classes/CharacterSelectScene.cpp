@@ -1,4 +1,5 @@
 #include "CharacterSelectScene.h"
+#include "MainMenuScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
@@ -80,11 +81,7 @@ void CharacterSelect::LoadCharacters()
 // a selector callback
 void CharacterSelect::MenuCloseCallback(CCObject* sender)
 {
-    CCDirector::sharedDirector()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+    CCDirector::sharedDirector()->replaceScene(MainMenu::scene());
 }
 
 

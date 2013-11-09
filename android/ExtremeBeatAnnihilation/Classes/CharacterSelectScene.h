@@ -21,7 +21,7 @@ public:
 	int GetNumberOfCharacters(const char* charDirectory);
 
 	// Load the characters into memory
-	void LoadCharacters(const char* charDirectory);
+	void LoadCharacters();
 
 	// Arrange the characters into their proper location
 	void ArrangeCharacterLocations(void);
@@ -33,7 +33,9 @@ private:
 	//std::vector<CCMenuItemImage>* m_characterSelectionImages;
 	int m_numCharacters;
 	cocos2d::CCMenu* m_characterMenu;
-	bool isSinglePlayer;
+	bool m_isSinglePlayer;
+	int m_selectedCharOne;
+	int m_selectedCharTwo;
 };
 
 #endif // __CHARACTER_SELECT_SCENE_H__

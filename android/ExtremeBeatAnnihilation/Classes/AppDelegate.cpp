@@ -7,10 +7,11 @@
 #include "MainMenuScene.h"
 #include "CharacterSelectScene.h"
 
+#define COCOS2D_DEBUG 1
 
 USING_NS_CC;
 
-// Android size plz
+// Why do we have these?
 AppDelegate::AppDelegate()
 {
 }
@@ -32,7 +33,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene* pScene = MainMenu::scene();
+    CCScene* pScene = CharacterSelect::scene();
 
     // run
     pDirector->runWithScene(pScene);

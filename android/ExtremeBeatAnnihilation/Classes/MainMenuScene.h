@@ -6,8 +6,8 @@
 class MainMenu : public cocos2d::CCLayer
 {
 public:
-    virtual bool              Init();
-    static  cocos2d::CCScene* Scene();
+    virtual bool              init();
+    static  cocos2d::CCScene* scene();
             void              MenuCloseCallback(CCObject* pSender);
 
     // implement the "static node()" method manually

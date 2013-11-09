@@ -1,6 +1,5 @@
 #include "OptionsMenuScene.h"
-#include "SimpleAudioEngine.h"
-#include "CCControlSlider.h"
+
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -86,7 +85,7 @@ bool OptionsMenu::init()
 
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
 }
 
 

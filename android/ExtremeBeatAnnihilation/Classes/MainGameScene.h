@@ -2,6 +2,7 @@
 #define __MAINGAME_SCENE_H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 class MainGame : public cocos2d::CCLayer
 {

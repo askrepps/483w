@@ -2,6 +2,9 @@
 #define __MAIN_MENU_SCENE_H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
+#include "CharacterSelectScene.h"
+#include "OptionsMenuScene.h"
 
 class MainMenu : public cocos2d::CCLayer
 {

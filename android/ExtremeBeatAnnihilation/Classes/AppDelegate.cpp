@@ -1,11 +1,5 @@
 #include "AppDelegate.h"
 
-#include "cocos2d.h"
-
-#include "MainGameScene.h"
-#include "OptionsMenuScene.h"
-#include "MainMenuScene.h"
-#include "CharacterSelectScene.h"
 
 #define COCOS2D_DEBUG 1
 

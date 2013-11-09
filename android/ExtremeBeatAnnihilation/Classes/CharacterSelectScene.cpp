@@ -43,7 +43,7 @@ bool CharacterSelect::init()
     // add a "close" icon to exit the process
     closeItem = CCMenuItemFont::create("Back",  this,
                                            menu_selector(CharacterSelect::MenuCloseCallback));
-    closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 80, 20) );
+    closeItem->setPosition(ccp(size.width / 2, 20));
 
 
 
@@ -80,14 +80,19 @@ void CharacterSelect::LoadCharacters()
 // a selector callback
 void CharacterSelect::MenuCloseCallback(CCObject* sender)
 {
+	// Go back to the main menu
     CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
 }
 
-
+// Call back for character selection
 void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 {
+	// Increment the number of characters selected
 	++m_numCharacters;
+	// Conver the object that called this to a CCMenuItemImage (SHOULD ALWAYS BE CCMENUITEMIMAGE)
 	CCMenuItemImage* convert = (CCMenuItemImage *)sender;
+
+	//If we got one character, set the index to the tag, otherwise, we selected character two
 	if(m_numCharacters == 1)
 	{
 		m_selectedCharOne = convert->getTag();
@@ -97,6 +102,7 @@ void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 		m_selectedCharTwo = convert->getTag();
 	}
 
+	// Will move onto music library scene once we get that inplace
 	if(m_numCharacters >= 2)
 	{
 

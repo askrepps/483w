@@ -16,12 +16,11 @@ CCScene* CharacterSelect::scene()
 }
 
 // on "init" you need to initialize your instance
-bool CharacterSelect::init(cocos2d:CCScene* callingScene, bool singlePlayer)
+bool CharacterSelect::init()
 {
     CCSize           size;
     CCMenuItemImage* closeItem;
     CCLabelTTF*      label;
-    CCSprite*        sprite;
 
     if(!CCLayer::init())
     {
@@ -29,7 +28,7 @@ bool CharacterSelect::init(cocos2d:CCScene* callingScene, bool singlePlayer)
     }
 
     // Set whether it is single player or not
-    isSinglePlayer = singlePlayer;
+    isSinglePlayer = true;
 
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
@@ -45,14 +44,9 @@ bool CharacterSelect::init(cocos2d:CCScene* callingScene, bool singlePlayer)
     this->addChild(m_characterMenu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("Main Menu", "Thonburi", 34);
+    label = CCLabelTTF::create("Select your character!", "Thonburi", 34);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
-    this->addChild(Label, 1);
-
-    // add splash screen as a sprite on the center of the screen
-    sprite = CCSprite::create("splashscreen.jpg");
-    sprite->setPosition( ccp(size.width / 2, size.height / 2) );
-    this->addChild(sprite, 0);
+    this->addChild(label, 1);
 
     return true;
 }
@@ -64,15 +58,18 @@ void CharacterSelect::LoadCharacters(const char* charDirectory)
 
 
 	// Create the character menu items
-	characterOne = CCMenuItemImage::create("CharacterOne.png", "selectCharacterOne.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
-	characterOne = CCMenuItemImage::create("CharacterTwo.png", "selectCharacterTwo.png", this, menu_selector(CharacterSelect::MenuCharacterCallBack));
+	characterOne = CCMenuItemImage::create("CharacterIcons/CharacterOne.png", "CharacterIcons/selectCharacterOne.png", this,
+			menu_selector(CharacterSelect::MenuCharacterCallback));
+	characterOne = CCMenuItemImage::create("CharacterIcons/CharacterTwo.png", "CharacterIcons/selectCharacterTwo.png", this,
+			menu_selector(CharacterSelect::MenuCharacterCallback));
 
 	// Set their positions
-	//characterOne->setPosition( ccp())
+	characterOne->setPosition( ccp(20, CCDirector::sharedDirector()->getWinSize().height - 40));
+	characterTwo->setPosition( ccp(20 + 400, CCDirector::sharedDirector()->getWinSize().height - 40));
 }
 
 // a selector callback
-void CharacterSelect::MenuCloseCallback(CCObject &sender)
+void CharacterSelect::MenuCloseCallback(CCObject* sender)
 {
     CCDirector::sharedDirector()->end();
 
@@ -82,7 +79,7 @@ void CharacterSelect::MenuCloseCallback(CCObject &sender)
 }
 
 
-void CharacterSelect::CharacterCallBack(CCObject &sender)
+void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 {
 
 }

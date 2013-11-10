@@ -10,4 +10,6 @@
 
 @interface LeftPlayer : CCSprite
 
+@property NSInteger selectedCharacter;
+
 @end

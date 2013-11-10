@@ -50,12 +50,14 @@
         CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4.png" target:self selector:@selector(Character4Pressed:)];
         character4.position = ccp(size.width - 25, size.height/2);
         
+        CCMenuItemFont *continueButton = [CCMenuItemFont itemWithString:@"Continue" target:self selector:@selector(ContinuePressed:)];
+        continueButton.position = ccp(size.width/2, 64);
+        
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
-        back.position = ccp(size.width/2, size.height/2 - 50);
+        back.position = ccp(size.width/2, 32);
         
-        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, back, nil];
+        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, back, continueButton, nil];
         characterMenu.position = CGPointZero;
-        
        
         [self addChild:characterMenu];
 
@@ -95,6 +97,10 @@
     NSLog(@"Character 4 pressed");
 }
 
+-(void)ContinuePressed:(id)sender
+{
+    NSLog(@"Continue pressed");
+}
 
 
 -(NSInteger)countCharacters  //unused function

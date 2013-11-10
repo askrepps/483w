@@ -174,7 +174,7 @@
 		C2FB1A151821609400288C7E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1A091821609400288C7E /* README.md */; };
 		C2FB1A371825AABA00288C7E /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A361825AABA00288C7E /* LevelData.m */; };
 		C2FB1A3B1825B14400288C7E /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A391825B0E600288C7E /* BackgroundLayer.m */; };
-		C2FB1A3C1825B18C00288C7E /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A26182586E100288C7E /* Constants.m */; };
+		C2FB1A3C1825B18C00288C7E /* Registry.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1A26182586E100288C7E /* Registry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -511,8 +511,8 @@
 		C2FB1A071821609400288C7E /* CCScale9Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScale9Sprite.m; sourceTree = "<group>"; };
 		C2FB1A081821609400288C7E /* CCControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControlExtension.h; sourceTree = "<group>"; };
 		C2FB1A091821609400288C7E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C2FB1A25182586E100288C7E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		C2FB1A26182586E100288C7E /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		C2FB1A25182586E100288C7E /* Registry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registry.h; sourceTree = "<group>"; };
+		C2FB1A26182586E100288C7E /* Registry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Registry.m; sourceTree = "<group>"; };
 		C2FB1A351825AA8600288C7E /* LevelData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
 		C2FB1A361825AABA00288C7E /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
 		C2FB1A381825B0E500288C7E /* BackgroundLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
@@ -587,8 +587,8 @@
 				99C2800617E1275F00060D51 /* AppDelegate.m */,
 				C2FB1A381825B0E500288C7E /* BackgroundLayer.h */,
 				C2FB1A391825B0E600288C7E /* BackgroundLayer.m */,
-				C2FB1A25182586E100288C7E /* Constants.h */,
-				C2FB1A26182586E100288C7E /* Constants.m */,
+				C2FB1A25182586E100288C7E /* Registry.h */,
+				C2FB1A26182586E100288C7E /* Registry.m */,
 				99C2800B17E1275F00060D51 /* IntroLayer.h */,
 				99C2800C17E1275F00060D51 /* IntroLayer.m */,
 				C262F8231814B3AD00C901FF /* LeftPlayer.h */,
@@ -1156,7 +1156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2FB1A3C1825B18C00288C7E /* Constants.m in Sources */,
+				C2FB1A3C1825B18C00288C7E /* Registry.m in Sources */,
 				C2FB1A3B1825B14400288C7E /* BackgroundLayer.m in Sources */,
 				99C27E9117E1275000060D51 /* CCAction.m in Sources */,
 				99C27E9417E1275000060D51 /* CCActionCamera.m in Sources */,

@@ -10,7 +10,7 @@
 #import "CCControlExtension.h"
 #import "SimpleAudioEngine.h"
 #import "MenuLayer.h"
-#import "Constants.h"
+#import "Registry.h"
 
 @interface OptionsLayer ()
 @property (nonatomic, strong) CCLabelTTF *displayValueLabel;

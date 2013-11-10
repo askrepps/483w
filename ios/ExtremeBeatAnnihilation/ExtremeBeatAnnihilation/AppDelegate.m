@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
-#import "Constants.h"
+#import "Registry.h"
 
 @implementation MyNavigationController
 

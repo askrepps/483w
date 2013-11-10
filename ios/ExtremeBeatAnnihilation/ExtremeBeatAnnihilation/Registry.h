@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Constants : NSObject
+@interface Registry : NSObject
 FOUNDATION_EXPORT NSString *const kVolume;
+//FOUNDATION_EXPORT NSNumber *const kHighScore;
+
+@property NSInteger kCharOne;
+@property NSInteger kCharTwo;
+@property BOOL kIsSinglePlayer;
+@property (nonatomic, strong) NSURL *kMusicURL;
 @end

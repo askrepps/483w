@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
-#import "Constants.h"
+#import "Registry.h"
 
-@implementation Constants
+@implementation Registry
 NSString *const kVolume = @"Volume";
 @end

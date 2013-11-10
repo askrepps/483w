@@ -38,16 +38,16 @@
         [self addChild:label];
         
         
-        CCMenuItemImage *character1 = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1.png" target:self selector:@selector(Character1Pressed:)];
+        CCMenuItemImage *character1 = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1selected.png" target:self selector:@selector(Character1Pressed:)];
         character1.position = ccp(size.width/4 - 25, size.height/2);
         
-        CCMenuItemImage *character2 = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2.png" target:self selector:@selector(Character2Pressed:)];
+        CCMenuItemImage *character2 = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2selected.png" target:self selector:@selector(Character2Pressed:)];
         character2.position = ccp(size.width/2 - 25, size.height/2);
         
-        CCMenuItemImage *character3 = [CCMenuItemImage itemWithNormalImage:@"char3.png" selectedImage:@"char3.png" target:self selector:@selector(Character3Pressed:)];
+        CCMenuItemImage *character3 = [CCMenuItemImage itemWithNormalImage:@"char3.png" selectedImage:@"char3selected.png" target:self selector:@selector(Character3Pressed:)];
         character3.position = ccp(size.width/4 * 3 - 25, size.height/2);
         
-        CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4.png" target:self selector:@selector(Character4Pressed:)];
+        CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4selected.png" target:self selector:@selector(Character4Pressed:)];
         character4.position = ccp(size.width - 25, size.height/2);
         
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];

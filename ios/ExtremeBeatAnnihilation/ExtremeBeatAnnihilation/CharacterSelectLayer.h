@@ -9,6 +9,12 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
+#import "MenuLayer.h"
+#import "AppDelegate.h"
+#import "BackgroundLayer.h"
+#import "OptionsLayer.h"
+#import "ModeSelectLayer.h"
+
 #define FOLDER_PATH @"../Resources/CharacterIcons"
 
 @interface CharacterSelectLayer : CCLayer

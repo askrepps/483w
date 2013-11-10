@@ -2,7 +2,7 @@
 //  CharacterSelectLayer.m
 //  ExtremeBeatAnnihilation
 //
-//  Created by 483W on 11/2/13.
+//  Created by Russ Hogan on 11/2/13.
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
@@ -37,28 +37,28 @@
         label.position =  ccp(size.width/2, size.height - 32);
         [self addChild:label];
         
-        NSInteger numCharacters = [self countCharacters];
         
         CCMenuItemImage *character1 = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1.png" target:self selector:@selector(Character1Pressed:)];
-        character1.position = ccp(size.width/2, size.height/2);
+        character1.position = ccp(size.width/4 - 25, size.height/2);
         
         CCMenuItemImage *character2 = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2.png" target:self selector:@selector(Character2Pressed:)];
-        character2.position = ccp(size.width/2, size.height/2);
+        character2.position = ccp(size.width/2 - 25, size.height/2);
         
         CCMenuItemImage *character3 = [CCMenuItemImage itemWithNormalImage:@"char3.png" selectedImage:@"char3.png" target:self selector:@selector(Character3Pressed:)];
-        character3.position = ccp(size.width/2, size.height/2);
+        character3.position = ccp(size.width/4 * 3 - 25, size.height/2);
         
         CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4.png" target:self selector:@selector(Character4Pressed:)];
-        character4.position = ccp(size.width/2, size.height/2);
-        
-        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, nil];
-        characterMenu.position = CGPointZero;
+        character4.position = ccp(size.width - 25, size.height/2);
         
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
-        back.position = ccp(size.width/2, size.height/2 - 32);
-        [self addChild:characterMenu];
-        [self addChild:back];
+        back.position = ccp(size.width/2, size.height/2 - 50);
         
+        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, back, nil];
+        characterMenu.position = CGPointZero;
+        
+       
+        [self addChild:characterMenu];
+
         [[CCDirector sharedDirector] setDisplayStats:NO];
 	}
     
@@ -72,7 +72,7 @@
 
 -(void)backPressed:(id)sender
 {
-    NSLog(@"back pressed");
+    [[CCDirector sharedDirector] replaceScene:[ModeSelectLayer scene]];
 }
 
 -(void)Character1Pressed:(id)sender
@@ -97,7 +97,7 @@
 
 
 
--(NSInteger)countCharacters
+-(NSInteger)countCharacters  //unused function
 {
     NSMutableArray *files = [[NSMutableArray alloc] init];
     NSArray *itemsInFolder = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:FOLDER_PATH error:NULL];

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		99370617182E1647007A8CB6 /* CharacterSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99370616182E1647007A8CB6 /* CharacterSelectLayer.m */; };
+		99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B11830425B00F12C7F /* LettingGo.mp3 */; };
+		99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
 		99C27E6317E1274F00060D51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6217E1274F00060D51 /* OpenGLES.framework */; };
 		99C27E6517E1274F00060D51 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6417E1274F00060D51 /* OpenAL.framework */; };
@@ -184,6 +186,8 @@
 /* Begin PBXFileReference section */
 		99370615182E1647007A8CB6 /* CharacterSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSelectLayer.h; sourceTree = "<group>"; };
 		99370616182E1647007A8CB6 /* CharacterSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSelectLayer.m; sourceTree = "<group>"; };
+		99A886B11830425B00F12C7F /* LettingGo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LettingGo.mp3; path = Resources/SampleTracks/LettingGo.mp3; sourceTree = "<group>"; };
+		99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = TheCallOfStars.mp3; path = Resources/SampleTracks/TheCallOfStars.mp3; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C27E6017E1274F00060D51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		99C27E6217E1274F00060D51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -549,6 +553,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99A886B0183039DB00F12C7F /* Sample Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				99A886B11830425B00F12C7F /* LettingGo.mp3 */,
+				99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */,
+			);
+			name = "Sample Tracks";
+			sourceTree = "<group>";
+		};
 		99C27E5417E1274F00060D51 = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +636,7 @@
 		99C27E7517E1274F00060D51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				99A886B0183039DB00F12C7F /* Sample Tracks */,
 				C20D7884182C037D006CB110 /* CharacterIcons */,
 				C2269AE6182BF856001312F4 /* sliderProgress-hd.png */,
 				C2269AE7182BF856001312F4 /* sliderProgress.png */,
@@ -1139,12 +1153,14 @@
 				99C27E7B17E1274F00060D51 /* Default-568h@2x.png in Resources */,
 				99C27E7D17E1274F00060D51 /* Default-Landscape~ipad.png in Resources */,
 				99C27E7F17E1274F00060D51 /* Icon-72.png in Resources */,
+				99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */,
 				99C27E8117E1274F00060D51 /* Icon-Small-50.png in Resources */,
 				99C27E8317E1274F00060D51 /* Icon-Small.png in Resources */,
 				99C27E8517E1274F00060D51 /* Icon-Small@2x.png in Resources */,
 				99C27E8717E1274F00060D51 /* Icon.png in Resources */,
 				99C27E8917E1274F00060D51 /* Icon@2x.png in Resources */,
 				99C27E8C17E1274F00060D51 /* iTunesArtwork in Resources */,
+				99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */,
 				99C27FE517E1275E00060D51 /* ChangeLog in Resources */,
 				C2FB1A151821609400288C7E /* README.md in Resources */,
 				C2269AED182BF856001312F4 /* sliderProgress-hd.png in Resources */,

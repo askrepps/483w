@@ -7,6 +7,7 @@
 //
 
 #import "RightPlayer.h"
+#import "Registry.h"
 
 @implementation RightPlayer
 

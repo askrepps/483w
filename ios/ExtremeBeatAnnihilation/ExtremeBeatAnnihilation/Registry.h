@@ -12,8 +12,12 @@
 FOUNDATION_EXPORT NSString *const kVolume;
 //FOUNDATION_EXPORT NSNumber *const kHighScore;
 
-@property NSInteger kCharOne;
-@property NSInteger kCharTwo;
-@property BOOL kIsSinglePlayer;
-@property (nonatomic, strong) NSURL *kMusicURL;
++(NSInteger)getCharOne;
++(void)setCharOne:(NSInteger)num;
++(NSInteger)getCharTwo;
++(void)setCharTwo:(NSInteger)num;
++(BOOL)getIsSinglePlayer;
++(void)setIsSinglePlayer:(BOOL)mode;
++(NSURL*)getMusicURL;
++(void)setMusicURL:(NSURL*)URL;
 @end

@@ -10,6 +10,7 @@
 #import "BackgroundLayer.h"
 #import "MenuLayer.h"
 #import "CharacterSelectLayer.h"
+#import "Registry.h"
 
 @implementation ModeSelectLayer
 
@@ -55,12 +56,13 @@
 
 -(void)singlePressed:(id)sender
 {
+    [Registry setIsSinglePlayer:YES];
     [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
 }
 
 -(void)multiPressed:(id)sender
 {
-    
+    [Registry setIsSinglePlayer:NO];
 }
 
 -(void)backPressed:(id)sender

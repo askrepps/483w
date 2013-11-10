@@ -1,6 +1,5 @@
 #include "MainMenuScene.h"
 
-
 using namespace cocos2d;
 using namespace CocosDenshion;
 
@@ -9,14 +8,18 @@ using namespace CocosDenshion;
 // return - false if there was an error in initializing, true otherwise
 bool MainMenu::init()
 {
-    CCMenuItemFont* itemSinglePlayer;  // menu item for starting single player game
-    CCMenuItemFont* itemMultiplayer;   // menu item for starting multiplayer game
-    CCMenuItemFont* itemOptions;       // menu item for opening up options
-    CCMenuItemFont* itemExit;          // menu item for exiting the app
-    CCMenu*         menu;              // menu to contain the closeItem
+    CCLabelTTF*      labelSinglePlayer; // the text for single player menu item
+    CCLabelTTF*      labelMultiplayer;  // the text for multiplayer menu item
+    CCLabelTTF*      labelOptions;      // the text for options menu item
+    CCLabelTTF*      labelExit;         // the text for exit menu item
+    CCMenuItemLabel* itemSinglePlayer;  // menu item for starting single player game
+    CCMenuItemLabel* itemMultiplayer;   // menu item for starting multiplayer game
+    CCMenuItemLabel* itemOptions;       // menu item for opening up options
+    CCMenuItemLabel* itemExit;          // menu item for exiting the app
+    CCMenu*          menu;              // menu to contain the menu items
 
-    CCSize          size;              // the size of the window
-    CCSprite*       sprite;            // the background splashscreen
+    CCSize           size;              // the size of the window
+    CCSprite*        sprite;            // the background splashscreen
 
     if(!CCLayer::init())
     {
@@ -26,21 +29,33 @@ bool MainMenu::init()
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
 
+    // create the text for the menu items
+    labelSinglePlayer = CCLabelTTF::create("Start Single Player", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelOptions      = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelExit         = CCLabelTTF::create("Exit", MENU_FONT_STYLE, MENU_FONT_SIZE);
+
     // create the items for the menu
-    itemSinglePlayer = CCMenuItemFont::create("Start Single Player", this, menu_selector(MainMenu::CallbackSelectSinglePlayer));
-    itemMultiplayer  = CCMenuItemFont::create("Start Multiplayer", this, menu_selector(MainMenu::CallbackSelectMultiplayer));
-    itemOptions      = CCMenuItemFont::create("Options", this, menu_selector(MainMenu::CallbackSelectOptions));
-    itemExit         = CCMenuItemFont::create("Exit", this, menu_selector(MainMenu::CallbackSelectExit));
+    itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::CallbackSelectSinglePlayer));
+    itemMultiplayer  = CCMenuItemLabel::create(labelMultiplayer, this, menu_selector(MainMenu::CallbackSelectMultiplayer));
+    itemOptions      = CCMenuItemLabel::create(labelOptions, this, menu_selector(MainMenu::CallbackSelectOptions));
+    itemExit         = CCMenuItemLabel::create(labelExit, this, menu_selector(MainMenu::CallbackSelectExit));
+
+    // make all menu items red
+    itemSinglePlayer->setColor(MENU_COLOR);
+    itemMultiplayer->setColor(MENU_COLOR);
+    itemOptions->setColor(MENU_COLOR);
+    itemExit->setColor(MENU_COLOR);
 
     // create menu to contain the menu items
     menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, itemExit, NULL);
     menu->alignItemsVertically();
-    menu->setPosition(size.width * 0.5, size.height * 0.5);
+    menu->setPosition(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN);
     this->addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
-    sprite = CCSprite::create("splashscreen.jpg");
-    sprite->setPosition( ccp(size.width / 2, size.height / 2) );
+    sprite = CCSprite::create(BACKGROUND_IMAGE);
+    sprite->setPosition( ccp(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN) );
     this->addChild(sprite, 0);
 
     return true;

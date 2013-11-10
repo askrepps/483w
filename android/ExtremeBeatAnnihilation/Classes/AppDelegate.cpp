@@ -1,6 +1,5 @@
 #include "AppDelegate.h"
 
-
 #define COCOS2D_DEBUG 1
 
 USING_NS_CC;

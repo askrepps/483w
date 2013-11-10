@@ -8,12 +8,9 @@
 
 #import "MusicSelectLayer.h"
 #import "BackgroundLayer.h"
-#import "cocos2d.h"
+#import "AppDelegate.h"
 
 @implementation MusicSelectLayer
-{
-    UIViewController *musicController;
-}
 
 +(CCScene *)scene
 {
@@ -74,45 +71,40 @@
 
 -(void) loadFromLibrary
 {
-
 #if TARGET_IPHONE_SIMULATOR
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Media picker doesn't work in the simulator, please run this app on a device." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 #else
     [[CCDirector sharedDirector] pause];
     
-    musicController = [[UIViewController alloc] init];
-    [musicController setView:[[CCDirector sharedDirector] view]];
-    [musicController setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
-    
     MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
     picker.delegate = self;
     picker.allowsPickingMultipleItems = NO;
     picker.prompt = @"Select a Song...";
-    [musicController presentViewController:picker animated:YES completion:NULL];
+    
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    [app.navController presentViewController:picker animated:YES completion:NULL];
 #endif
-
 }
 
 - (void)mediaPicker:(MPMediaPickerController *) mediaPicker didPickMediaItems:(MPMediaItemCollection *) collection
-{    
-    [musicController dismissViewControllerAnimated:YES completion:NULL];
-    [musicController release];
-    
-    [[CCDirector sharedDirector] resume];
-    
+{
     MPMediaItem *item = [[collection items] objectAtIndex:0];
     NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
     
     // Initialize LevelData object here!!!
     NSLog(@"Loading File URL: %@", url);
+    
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    [app.navController dismissViewControllerAnimated:YES completion:NULL];
+    [[CCDirector sharedDirector] resume];
 }
 
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *) mediaPicker
 {
-    [musicController dismissViewControllerAnimated:YES completion:NULL];
-    [musicController release];
+    AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+    [app.navController dismissViewControllerAnimated:YES completion:NULL];
     [[CCDirector sharedDirector] resume];
 }
 

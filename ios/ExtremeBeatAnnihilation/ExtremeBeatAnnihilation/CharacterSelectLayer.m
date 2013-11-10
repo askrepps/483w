@@ -60,8 +60,6 @@
         characterMenu.position = CGPointZero;
        
         [self addChild:characterMenu];
-
-        [[CCDirector sharedDirector] setDisplayStats:NO];
 	}
     
 	return self;

@@ -36,9 +36,19 @@
 }
 
 // Not implemented for now. Audio file parsing will happen here!
--(id) initWithAudioFile:(NSString *)filepath
+-(id) initWithAudioFileURL:(NSURL *)url;
 {
-    return [self initDefault];
+    if (self = [super init])
+    {
+        
+    }
+    
+    return self;
+}
+
+-(id) initWithAudioFilePath:(NSString *)filePath
+{
+    return [self initWithAudioFileURL:[NSURL fileURLWithPath:filePath]];
 }
 
 -(void) setStats

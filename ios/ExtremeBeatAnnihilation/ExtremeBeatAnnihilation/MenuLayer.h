@@ -6,7 +6,6 @@
 //  Copyright Crash Course Gaming 2013. All rights reserved.
 //
 
-#import <GameKit/GameKit.h>
 #import "cocos2d.h"
 
 @interface MenuLayer : CCLayer

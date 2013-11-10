@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "SoundEvent.h"
 
 @interface LevelData : NSObject
@@ -18,6 +18,7 @@
 @property (retain, nonatomic, readonly) NSMutableArray *events;
 
 -(id) initDefault;
--(id) initWithAudioFile:(NSString *)filepath;
+-(id) initWithAudioFileURL:(NSURL *)url;
+-(id) initWithAudioFilePath:(NSString *)filePath;
 
 @end

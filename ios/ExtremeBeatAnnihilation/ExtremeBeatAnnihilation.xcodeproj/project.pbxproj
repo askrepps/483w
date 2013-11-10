@@ -599,6 +599,8 @@
 				99C2800917E1275F00060D51 /* MenuLayer.m */,
 				C2269AF4182BFE87001312F4 /* ModeSelectLayer.h */,
 				C2269AF5182BFE88001312F4 /* ModeSelectLayer.m */,
+				99F6A18E182E9B730028DEDD /* MusicSelectLayer.h */,
+				99F6A18F182E9B730028DEDD /* MusicSelectLayer.m */,
 				C2FB19E91821565000288C7E /* OptionsLayer.h */,
 				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
 				C262F8261814B3BE00C901FF /* RightPlayer.h */,
@@ -606,8 +608,6 @@
 				99C27E8D17E1274F00060D51 /* libs */,
 				99C27E7517E1274F00060D51 /* Resources */,
 				99C2800117E1275F00060D51 /* Supporting Files */,
-				99F6A18E182E9B730028DEDD /* MusicSelectLayer.h */,
-				99F6A18F182E9B730028DEDD /* MusicSelectLayer.m */,
 			);
 			path = ExtremeBeatAnnihilation;
 			sourceTree = "<group>";

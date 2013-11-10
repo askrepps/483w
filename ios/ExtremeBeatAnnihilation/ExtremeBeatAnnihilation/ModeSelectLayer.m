@@ -9,6 +9,7 @@
 #import "ModeSelectLayer.h"
 #import "BackgroundLayer.h"
 #import "MenuLayer.h"
+#import "CharacterSelectLayer.h"
 
 @implementation ModeSelectLayer
 
@@ -54,7 +55,7 @@
 
 -(void)singlePressed:(id)sender
 {
-    NSLog(@"single pressed");
+    [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
 }
 
 -(void)multiPressed:(id)sender

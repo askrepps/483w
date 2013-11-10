@@ -31,7 +31,7 @@
 {
 	if((self=[super init]))
     {
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Extreme Beat Annihilation" fontName:@"Marker Felt" fontSize:32];
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Choose Your Characters" fontName:@"Marker Felt" fontSize:32];
         
 		CGSize size = [[CCDirector sharedDirector] winSize];
         label.position =  ccp(size.width/2, size.height - 32);
@@ -39,31 +39,24 @@
         
         NSInteger numCharacters = [self countCharacters];
         
-        //        CCMenuItem *starMenuItem = [CCMenuItemImage
-        //                                    itemFromNormalImage:@"ButtonStar.png" selectedImage:@"ButtonStarSel.png"
-        //                                    target:self selector:@selector(starButtonTapped:)];
-        //        starMenuItem.position = ccp(60, 60);
+        CCMenuItemImage *character1 = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1.png" target:self selector:@selector(Character1Pressed:)];
+        character1.position = ccp(size.width/2, size.height/2);
         
-//        CCMenuItemImage *character1 = [CCMenuItemImage itemWithNormalImage:@"./Resources/CharacterIcons/char1.png" selectedImage:@"./Resources/CharacterIcons/char1.png" target:self selector:@selector(Character1Pressed:)];
-//        character1.position = ccp(size.width/2, size.height/2);
-//        
-//        CCMenuItemImage *character2 = [CCMenuItemImage itemWithNormalImage:@"./Resources/CharacterIcons/char2.png" selectedImage:@"./Resources/CharacterIcons/char2.png" target:self selector:@selector(Character2Pressed:)];
-//        character2.position = ccp(size.width/2, size.height/2);
-//        
-//        CCMenuItemImage *character3 = [CCMenuItemImage itemWithNormalImage:@"./Resources/CharacterIcons/char3.png" selectedImage:@"./Resources/CharacterIcons/char3.png" target:self selector:@selector(Character3Pressed:)];
-//        character3.position = ccp(size.width/2, size.height/2);
-//        
-//        CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"./Resources/CharacterIcons/char4.png" selectedImage:@"./Resources/CharacterIcons/char4.png" target:self selector:@selector(Character4Pressed:)];
-//        character4.position = ccp(size.width/2, size.height/2);
-
-
+        CCMenuItemImage *character2 = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2.png" target:self selector:@selector(Character2Pressed:)];
+        character2.position = ccp(size.width/2, size.height/2);
         
-//        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, nil];
-//        characterMenu.position = CGPointZero;
+        CCMenuItemImage *character3 = [CCMenuItemImage itemWithNormalImage:@"char3.png" selectedImage:@"char3.png" target:self selector:@selector(Character3Pressed:)];
+        character3.position = ccp(size.width/2, size.height/2);
+        
+        CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4.png" target:self selector:@selector(Character4Pressed:)];
+        character4.position = ccp(size.width/2, size.height/2);
+        
+        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, nil];
+        characterMenu.position = CGPointZero;
         
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
         back.position = ccp(size.width/2, size.height/2 - 32);
-//        [self addChild:characterMenu];
+        [self addChild:characterMenu];
         [self addChild:back];
         
         [[CCDirector sharedDirector] setDisplayStats:NO];

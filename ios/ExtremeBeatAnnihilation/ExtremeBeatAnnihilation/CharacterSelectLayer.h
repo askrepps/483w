@@ -15,7 +15,15 @@
 #import "OptionsLayer.h"
 #import "ModeSelectLayer.h"
 
-#define FOLDER_PATH @"../Resources/CharacterIcons"
+#define CHARACTER_MENU 00
+#define CHAR_1 01
+#define CHAR_2 02
+#define CHAR_3 03
+#define CHAR_4 04
+#define CHAR_1_SELECTED 11
+#define CHAR_2_SELECTED 12
+#define CHAR_3_SELECTED 13
+#define CHAR_4_SELECTED 14
 
 @interface CharacterSelectLayer : CCLayer
 

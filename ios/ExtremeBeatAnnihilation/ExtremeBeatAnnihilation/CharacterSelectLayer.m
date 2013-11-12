@@ -7,6 +7,7 @@
 //
 
 #import "CharacterSelectLayer.h"
+#import "MenuLayer.h"
 #import "MusicSelectLayer.h"
 #import "Registry.h"
 
@@ -106,7 +107,7 @@
         self.navMenu = [CCMenu menuWithItems:continueButton, back, nil];
         self.navMenu.position = CGPointZero;
         
-        [self addChild:self.characterMenu z:0 tag:CHARACTER_MENU];
+        [self addChild:self.characterMenu z:0];
         [self addChild:self.navMenu];
 	}
     
@@ -120,7 +121,7 @@
 
 -(void)backPressed:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[ModeSelectLayer scene]];
+    [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
 }
 
 -(void)CharacterPressed:(id)sender

@@ -85,6 +85,7 @@ bool OptionsMenu::init()
 
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
+	// Go back to the main menu
 	CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
 }
 

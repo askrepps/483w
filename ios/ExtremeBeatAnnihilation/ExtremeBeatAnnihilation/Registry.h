@@ -12,10 +12,10 @@
 FOUNDATION_EXPORT NSString *const kVolume;
 //FOUNDATION_EXPORT NSNumber *const kHighScore;
 
++(void)setChar:(NSInteger)index;
++(void)removeChar:(NSInteger)index;
 +(NSInteger)getCharOne;
-+(void)setCharOne:(NSInteger)num;
 +(NSInteger)getCharTwo;
-+(void)setCharTwo:(NSInteger)num;
 +(BOOL)getIsSinglePlayer;
 +(void)setIsSinglePlayer:(BOOL)mode;
 +(NSURL*)getMusicURL;

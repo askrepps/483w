@@ -27,24 +27,21 @@
 
 @interface CharacterSelectLayer : CCLayer
 
-// returns a CCScene that contains the MenuLayer as the only child
 +(CCScene *)scene;
 
-// a selector callback
-void menuCloseCallback(NSObject* pSender);
-
-// a selector callback for character selection
-int menuCharacterCallback(NSObject* pSender);
+//// a selector callback
+//void menuCloseCallback(NSObject* pSender);
+//
+//// a selector callback for character selection
+//int menuCharacterCallback(NSObject* pSender);
 
 //Count the characters in FOLDER_PATH
--(NSInteger)countCharacters;
+//-(NSInteger)countCharacters;
 
-// Load the characters into memory
-void loadCharacters(const char* charDirectory);
-
-// Arrange the characters into their proper location
-void arrangeCharacterLocations(void);
-
-
+//// Load the characters into memory
+//void loadCharacters(const char* charDirectory);
+//
+//// Arrange the characters into their proper location
+//void arrangeCharacterLocations(void);
 
 @end

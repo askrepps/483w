@@ -11,29 +11,43 @@
 @implementation Registry
 NSString *const kVolume = @"Volume";
 
-static NSInteger kCharOne;
-static NSInteger kCharTwo;
+static NSInteger kCharOne = -1;
+static NSInteger kCharTwo = -1;
 static BOOL kIsSinglePlayer;
 static NSURL *kMusicURL;
+
++(void)setChar:(NSInteger)index
+{
+    if(kCharOne == -1)
+    {
+        kCharOne = index;
+    }
+    else if(kCharTwo == -1)
+    {
+        kCharTwo = index;
+    }
+}
+
++(void)removeChar:(NSInteger)index
+{
+    if(kCharOne == index)
+    {
+        kCharOne = -1;
+    }
+    else if(kCharTwo == index)
+    {
+        kCharTwo = -1;
+    }
+}
 
 +(NSInteger)getCharOne
 {
     return kCharOne;
 }
 
-+(void)setCharOne:(NSInteger)num
-{
-    kCharOne = num;
-}
-
 +(NSInteger)getCharTwo
 {
     return kCharTwo;
-}
-
-+(void)setCharTwo:(NSInteger)num
-{
-    kCharTwo = num;
 }
 
 +(BOOL)getIsSinglePlayer

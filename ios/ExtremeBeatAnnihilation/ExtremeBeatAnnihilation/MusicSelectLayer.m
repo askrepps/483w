@@ -35,8 +35,8 @@
         CCMenuItemFont *sampleSong2 = [CCMenuItemFont itemWithString:@"Sample Track #2" target:self selector:@selector(loadSample2)];
         CCMenuItemFont *sampleSong3 = [CCMenuItemFont itemWithString:@"Sample Track #3" target:self selector:@selector(loadSample3)];
         CCMenuItemFont *chooseSong = [CCMenuItemFont itemWithString:@"Choose from Library..." target:self selector:@selector(loadFromLibrary)];
-        CCMenu *musicMenu = [CCMenu menuWithItems:sampleSong1, sampleSong2, sampleSong3, chooseSong, nil];
-        
+        CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed)];
+        CCMenu *musicMenu = [CCMenu menuWithItems:sampleSong1, sampleSong2, sampleSong3, chooseSong, back, nil];
         
 		CGSize size = [[CCDirector sharedDirector] winSize];
         label.position =  ccp(size.width/2, size.height - 32);
@@ -44,14 +44,20 @@
         sampleSong2.position = ccp(size.width/2, size.height - 128);
         sampleSong3.position = ccp(size.width/2, size.height - 160);
         chooseSong.position = ccp(size.width/2, size.height - 224);
+        back.position = ccp(size.width/2, 32);
+
         musicMenu.position = CGPointZero;
-        
+                
         [self addChild:label];
         [self addChild:musicMenu];
-        
     }
     
     return self;
+}
+
+-(void) backPressed
+{
+    [[CCDirector sharedDirector] popScene];
 }
 
 -(void) loadSample1

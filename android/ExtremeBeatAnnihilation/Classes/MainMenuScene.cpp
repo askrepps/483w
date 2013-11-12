@@ -45,7 +45,7 @@ bool MainMenu::init()
 
     // create menu to contain the menu items
     menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, NULL);
-    menu->alignItemsVertically();
+    menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
     menu->setPosition(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN);
     this->addChild(menu, 1);
 

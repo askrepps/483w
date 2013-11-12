@@ -7,9 +7,10 @@
 
 #define POSITION_HALF_SCREEN 0.5                 // factor of width/height which give a position halfway
 #define BACKGROUND_IMAGE     "splashscreen.jpg"  // image to display as the background
-#define MENU_COLOR           ccc3(255, 0, 0)     // RGB color of the menu items
+#define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
 #define MENU_FONT_SIZE       50                  // size of the font for the menu items
-#define MENU_FONT_STYLE      "Thonburi"          // style of the font for the menu items
+#define MENU_FONT_STYLE      "Arial"             // style of the font for the menu items
+#define MENU_ITEM_PADDING    20                  // padding between menu items, most likely in pixels
 
 class MainMenu : public cocos2d::CCLayer
 {

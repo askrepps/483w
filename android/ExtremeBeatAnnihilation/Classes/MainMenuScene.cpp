@@ -11,7 +11,6 @@ bool MainMenu::init()
     CCLabelTTF*      labelSinglePlayer; // the text for single player menu item
     CCLabelTTF*      labelMultiplayer;  // the text for multiplayer menu item
     CCLabelTTF*      labelOptions;      // the text for options menu item
-    CCLabelTTF*      labelExit;         // the text for exit menu item
     CCMenuItemLabel* itemSinglePlayer;  // menu item for starting single player game
     CCMenuItemLabel* itemMultiplayer;   // menu item for starting multiplayer game
     CCMenuItemLabel* itemOptions;       // menu item for opening up options
@@ -33,22 +32,19 @@ bool MainMenu::init()
     labelSinglePlayer = CCLabelTTF::create("Start Single Player", MENU_FONT_STYLE, MENU_FONT_SIZE);
     labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", MENU_FONT_STYLE, MENU_FONT_SIZE);
     labelOptions      = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelExit         = CCLabelTTF::create("Exit", MENU_FONT_STYLE, MENU_FONT_SIZE);
 
     // create the items for the menu
     itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::CallbackSelectSinglePlayer));
     itemMultiplayer  = CCMenuItemLabel::create(labelMultiplayer, this, menu_selector(MainMenu::CallbackSelectMultiplayer));
     itemOptions      = CCMenuItemLabel::create(labelOptions, this, menu_selector(MainMenu::CallbackSelectOptions));
-    itemExit         = CCMenuItemLabel::create(labelExit, this, menu_selector(MainMenu::CallbackSelectExit));
 
     // make all menu items red
     itemSinglePlayer->setColor(MENU_COLOR);
     itemMultiplayer->setColor(MENU_COLOR);
     itemOptions->setColor(MENU_COLOR);
-    itemExit->setColor(MENU_COLOR);
 
     // create menu to contain the menu items
-    menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, itemExit, NULL);
+    menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, NULL);
     menu->alignItemsVertically();
     menu->setPosition(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN);
     this->addChild(menu, 1);
@@ -98,12 +94,4 @@ void MainMenu::CallbackSelectMultiplayer(CCObject* sender)
 void MainMenu::CallbackSelectOptions(CCObject* sender)
 {
 	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
-}
-
-// On selecting the single player menu item, exit the app
-//
-// sender [in] - the object that sent the selected event?
-void MainMenu::CallbackSelectExit(CCObject* sender)
-{
-    CCDirector::sharedDirector()->end();
 }

@@ -14,7 +14,6 @@ bool MainMenu::init()
     CCMenuItemLabel* itemSinglePlayer;  // menu item for starting single player game
     CCMenuItemLabel* itemMultiplayer;   // menu item for starting multiplayer game
     CCMenuItemLabel* itemOptions;       // menu item for opening up options
-    CCMenuItemLabel* itemExit;          // menu item for exiting the app
     CCMenu*          menu;              // menu to contain the menu items
 
     CCSize           size;              // the size of the window

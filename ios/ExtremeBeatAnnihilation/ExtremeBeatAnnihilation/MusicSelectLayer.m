@@ -9,6 +9,7 @@
 #import "MusicSelectLayer.h"
 #import "BackgroundLayer.h"
 #import "AppDelegate.h"
+#import "Registry.h"
 
 @implementation MusicSelectLayer
 
@@ -78,7 +79,7 @@
 -(void) loadFromLibrary
 {
 #if TARGET_IPHONE_SIMULATOR
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Media picker doesn't work in the simulator, please run this app on a device." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Media picker unavailable in the simulator, please run this app on a device." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 #else
     [[CCDirector sharedDirector] pause];
@@ -97,6 +98,7 @@
 {
     MPMediaItem *item = [[collection items] objectAtIndex:0];
     NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
+    [Registry setMusicURL:url];
     
     // Initialize LevelData object here!!!
     NSLog(@"Loading File URL: %@", url);

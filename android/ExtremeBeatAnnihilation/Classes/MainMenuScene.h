@@ -5,7 +5,7 @@
 #include "CharacterSelectScene.h"
 #include "OptionsMenuScene.h"
 
-#define POSITION_HALF_SCREEN 0.5                 // factor of width/height which give a position halfway
+#define POS_HALF_SCREEN      0.5                 // factor of width/height which give a position halfway
 #define BACKGROUND_IMAGE     "splashscreen.jpg"  // image to display as the background
 #define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
 #define MENU_FONT_SIZE       50                  // size of the font for the menu items
@@ -18,9 +18,9 @@ public:
     virtual bool              init();
     static  cocos2d::CCScene* Scene();
 
-    void CallbackSelectSinglePlayer(CCObject* sender);
-    void CallbackSelectMultiplayer(CCObject* sender);
-    void CallbackSelectOptions(CCObject* sender);
+    void HandleSinglePlayerPressed(CCObject* sender);
+    void HandleMultiplayerPressed(CCObject* sender);
+    void HandleOptionsPressed(CCObject* sender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(MainMenu);

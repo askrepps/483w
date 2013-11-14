@@ -33,11 +33,11 @@ bool MainMenu::init()
     labelOptions      = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
 
     // create the items for the menu
-    itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::CallbackSelectSinglePlayer));
-    itemMultiplayer  = CCMenuItemLabel::create(labelMultiplayer, this, menu_selector(MainMenu::CallbackSelectMultiplayer));
-    itemOptions      = CCMenuItemLabel::create(labelOptions, this, menu_selector(MainMenu::CallbackSelectOptions));
+    itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::HandleSinglePlayerPressed));
+    itemMultiplayer  = CCMenuItemLabel::create(labelMultiplayer, this, menu_selector(MainMenu::HandleMultiplayerPressed));
+    itemOptions      = CCMenuItemLabel::create(labelOptions, this, menu_selector(MainMenu::HandleOptionsPressed));
 
-    // make all menu items red
+    // set the color of the menu items
     itemSinglePlayer->setColor(MENU_COLOR);
     itemMultiplayer->setColor(MENU_COLOR);
     itemOptions->setColor(MENU_COLOR);
@@ -45,12 +45,12 @@ bool MainMenu::init()
     // create menu to contain the menu items
     menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, NULL);
     menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
-    menu->setPosition(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN);
+    menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
     this->addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
     sprite = CCSprite::create(BACKGROUND_IMAGE);
-    sprite->setPosition( ccp(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN) );
+    sprite->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
     this->addChild(sprite, 0);
 
     return true;
@@ -73,7 +73,7 @@ CCScene* MainMenu::Scene()
 //    information on starting a single player game
 //
 // sender [in] - the object that sent the selected event?
-void MainMenu::CallbackSelectSinglePlayer(CCObject* sender)
+void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 {
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
@@ -82,15 +82,15 @@ void MainMenu::CallbackSelectSinglePlayer(CCObject* sender)
 //    information on starting a multiplayer game
 //
 // sender [in] - the object that sent the selected event?
-void MainMenu::CallbackSelectMultiplayer(CCObject* sender)
+void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 {
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
 
-// On selecting the single player menu item, switch to the options scene
+// On selecting the options menu item, switch to the options scene
 //
 // sender [in] - the object that sent the selected event?
-void MainMenu::CallbackSelectOptions(CCObject* sender)
+void MainMenu::HandleOptionsPressed(CCObject* sender)
 {
 	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }

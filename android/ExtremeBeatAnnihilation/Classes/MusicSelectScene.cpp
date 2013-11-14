@@ -51,12 +51,12 @@ bool MusicSelect::init()
     // create menu to contain the menu items
     menu = CCMenu::create(itemSampleMusic, itemYourMusic, itemBack, NULL);
     menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
-    menu->setPosition(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN);
+    menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
     this->addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
     //sprite = CCSprite::create(BACKGROUND_IMAGE);
-    //sprite->setPosition( ccp(size.width * POSITION_HALF_SCREEN, size.height * POSITION_HALF_SCREEN) );
+    //sprite->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
     //this->addChild(sprite, 0);
 
     return true;

@@ -1,12 +1,11 @@
 #include "CharacterSelectScene.h"
 
-
 using namespace cocos2d;
 using namespace CocosDenshion;
 
 CCScene* CharacterSelect::Scene()
 {
-    CCScene*  scene = CCScene::create();
+    CCScene*         scene = CCScene::create();
     CharacterSelect* layer = CharacterSelect::create();
 
     // add layer as a child to scene
@@ -19,7 +18,7 @@ CCScene* CharacterSelect::Scene()
 bool CharacterSelect::init()
 {
     CCSize           size;						// The size of the screen
-    CCMenuItemFont* closeItem;					// Goes back to the previous scene
+    CCMenuItemFont*  closeItem;					// Goes back to the previous scene
     CCLabelTTF*      label;						// The label to display current status
     CCMenuItemImage* characterOne;				// Character One for the select screen
     CCMenuItemImage* characterTwo;				// Character Two for the select screen
@@ -39,13 +38,10 @@ bool CharacterSelect::init()
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
 
-
     // add a "close" icon to exit the process
     closeItem = CCMenuItemFont::create("Back",  this,
                                            menu_selector(CharacterSelect::MenuCloseCallback));
     closeItem->setPosition(ccp(size.width / 2, 20));
-
-
 
 	// Create the character menu items and load them into memory, set their tags
 	characterOne = CCMenuItemImage::create("CharacterIcons/CharacterOne.png", "CharacterIcons/selectCharacterOne.png", this,
@@ -89,10 +85,10 @@ void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 {
 	// Increment the number of characters selected
 	++m_numCharacters;
-	// Conver the object that called this to a CCMenuItemImage (SHOULD ALWAYS BE CCMENUITEMIMAGE)
+	// Convert the object that called this to a CCMenuItemImage (SHOULD ALWAYS BE CCMENUITEMIMAGE)
 	CCMenuItemImage* convert = (CCMenuItemImage *)sender;
 
-	//If we got one character, set the index to the tag, otherwise, we selected character two
+	// If we got one character, set the index to the tag, otherwise, we selected character two
 	if(m_numCharacters == 1)
 	{
 		global.m_playerOne = convert->getTag();
@@ -105,6 +101,6 @@ void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 	// Will move onto music library scene once we get that inplace
 	if(m_numCharacters >= 2)
 	{
-
+	    CCDirector::sharedDirector()->replaceScene(MusicSelect::Scene());
 	}
 }

@@ -8,9 +8,10 @@ LOCAL_MODULE_FILENAME := libgame
 
 LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/OptionsMenuScene.cpp \
-				   ../../Classes/MainMenuScene.cpp \
-				   ../../Classes/CharacterSelectScene.cpp
+                   ../../Classes/MainMenuScene.cpp \
+                   ../../Classes/CharacterSelectScene.cpp \
+                   ../../Classes/MusicSelectScene.cpp \
+                   ../../Classes/OptionsMenuScene.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
 

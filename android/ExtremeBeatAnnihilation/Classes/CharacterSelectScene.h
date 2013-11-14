@@ -2,9 +2,11 @@
 #define __CHARACTER_SELECT_SCENE_H__
 
 #include "cocos2d.h"
-#include "MainMenuScene.h"
 #include "SimpleAudioEngine.h"
+#include "MainMenuScene.h"
+#include "MusicSelectScene.h"
 #include "Global.h"
+
 class CharacterSelect : public cocos2d::CCLayer
 {
 public:

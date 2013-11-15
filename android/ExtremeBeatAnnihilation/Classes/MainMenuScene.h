@@ -22,7 +22,7 @@ public:
     void HandleMultiplayerPressed(CCObject* sender);
     void HandleOptionsPressed(CCObject* sender);
 
-    // implement the "static node()" method manually
+    // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(MainMenu);
 };
 

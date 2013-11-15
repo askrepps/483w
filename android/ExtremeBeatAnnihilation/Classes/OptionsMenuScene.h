@@ -18,7 +18,7 @@ public:
     //void MenuCloseCallback(CCObject* pSender);
     void MenuGoBack(CCObject* sender);
 
-    // implement the "static node()" method manually
+    // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(OptionsMenu);
 };
 

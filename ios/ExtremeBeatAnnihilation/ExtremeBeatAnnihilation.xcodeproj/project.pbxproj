@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		99370617182E1647007A8CB6 /* CharacterSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99370616182E1647007A8CB6 /* CharacterSelectLayer.m */; };
+		997AEE321835F62A008ED709 /* LoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 997AEE311835F62A008ED709 /* LoadingLayer.m */; };
 		99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B11830425B00F12C7F /* LettingGo.mp3 */; };
 		99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
@@ -191,6 +192,8 @@
 /* Begin PBXFileReference section */
 		99370615182E1647007A8CB6 /* CharacterSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSelectLayer.h; sourceTree = "<group>"; };
 		99370616182E1647007A8CB6 /* CharacterSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSelectLayer.m; sourceTree = "<group>"; };
+		997AEE301835F62A008ED709 /* LoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingLayer.h; sourceTree = "<group>"; };
+		997AEE311835F62A008ED709 /* LoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingLayer.m; sourceTree = "<group>"; };
 		99A886B11830425B00F12C7F /* LettingGo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LettingGo.mp3; path = Resources/SampleTracks/LettingGo.mp3; sourceTree = "<group>"; };
 		99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = TheCallOfStars.mp3; path = Resources/SampleTracks/TheCallOfStars.mp3; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -637,6 +640,8 @@
 				C28B876318353EFA0093E7E2 /* LeftPlayerLayer.m */,
 				C2FB1A351825AA8600288C7E /* LevelData.h */,
 				C2FB1A361825AABA00288C7E /* LevelData.m */,
+				997AEE301835F62A008ED709 /* LoadingLayer.h */,
+				997AEE311835F62A008ED709 /* LoadingLayer.m */,
 				99C2800817E1275F00060D51 /* MenuLayer.h */,
 				99C2800917E1275F00060D51 /* MenuLayer.m */,
 				99F6A18E182E9B730028DEDD /* MusicSelectLayer.h */,
@@ -1309,6 +1314,7 @@
 				99C27FC017E1275C00060D51 /* CDOpenALSupport.m in Sources */,
 				99C27FC317E1275C00060D51 /* CDXMacOSXSupport.m in Sources */,
 				99C27FC617E1275D00060D51 /* CDXPropertyModifierAction.m in Sources */,
+				997AEE321835F62A008ED709 /* LoadingLayer.m in Sources */,
 				99C27FC917E1275D00060D51 /* CocosDenshion.m in Sources */,
 				99C27FCD17E1275D00060D51 /* SimpleAudioEngine.m in Sources */,
 				99C27FE317E1275E00060D51 /* aabb.c in Sources */,

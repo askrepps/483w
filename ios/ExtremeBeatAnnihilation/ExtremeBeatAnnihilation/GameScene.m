@@ -14,6 +14,7 @@
 #import "RightPlayer.h"
 #import "RightPlayerLayer.h"
 #import "Obstacle.h"
+#import "SoundEvent.h"
 
 @interface GameScene ()
 
@@ -26,5 +27,34 @@
 @end
 
 @implementation GameScene
+
+-(id) initWithLevelData:(LevelData *)levelData
+{
+    if (self = [super init])
+    {
+        
+        
+        _obstacles = [[NSMutableArray alloc] init];
+        for (SoundEvent *event in [levelData events])
+        {
+            // add constructed obstacle to obstacles / layer
+        }
+        
+        [self scheduleUpdate];
+    }
+    
+    return self;
+}
+
+-(void)update:(ccTime)delta
+{
+    
+}
+
+-(void) dealloc
+{
+    [_obstacles release];
+    [super dealloc];
+}
 
 @end

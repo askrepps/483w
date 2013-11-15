@@ -7,7 +7,10 @@
 //
 
 #import "cocos2d.h"
+#import "LevelData.h"
 
 @interface GameScene : CCScene
+
+-(id)initWithLevelData:(LevelData *)levelData;
 
 @end

@@ -31,7 +31,7 @@ public:
 	void ArrangeCharacterLocations(void);
 
 
-    // implement the "static node()" method manually
+	// allows use of create() function which uses init() to create this layer
     CREATE_FUNC(CharacterSelect);
 private:
 	//std::vector<CCMenuItemImage>* m_characterSelectionImages;

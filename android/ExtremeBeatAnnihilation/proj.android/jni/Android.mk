@@ -11,6 +11,7 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/MainMenuScene.cpp \
                    ../../Classes/CharacterSelectScene.cpp \
                    ../../Classes/MusicSelectScene.cpp \
+                   ../../Classes/GameScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   

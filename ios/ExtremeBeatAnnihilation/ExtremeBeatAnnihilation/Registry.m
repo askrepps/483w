@@ -67,6 +67,6 @@ static NSURL *kMusicURL;
 
 +(void)setMusicURL:(NSURL*)URL
 {
-    kMusicURL = URL;
+    kMusicURL = [[NSURL alloc] initWithString:URL.absoluteString];
 }
 @end

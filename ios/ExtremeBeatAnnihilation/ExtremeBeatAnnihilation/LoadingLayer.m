@@ -9,6 +9,7 @@
 #import "LoadingLayer.h"
 #import "Registry.h"
 #import "MenuLayer.h"
+#import "GameScene.h"
 
 @implementation LoadingLayer
 
@@ -38,8 +39,10 @@
                                      
 -(void) loadLevel
 {
-    
-    [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
+    LevelData *data = [[LevelData alloc] initDefault];
+    GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];
+    [data release];
+    [[CCDirector sharedDirector] replaceScene:gameScene];
 }
 
 

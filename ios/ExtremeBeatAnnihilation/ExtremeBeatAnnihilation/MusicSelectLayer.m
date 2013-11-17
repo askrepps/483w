@@ -10,6 +10,7 @@
 #import "BackgroundLayer.h"
 #import "AppDelegate.h"
 #import "Registry.h"
+#import "LoadingLayer.h"
 #import "CharacterSelectLayer.h"
 
 @implementation MusicSelectLayer

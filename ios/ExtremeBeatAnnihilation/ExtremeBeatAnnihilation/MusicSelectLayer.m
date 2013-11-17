@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Registry.h"
 #import "LoadingLayer.h"
+#import "CharacterSelectLayer.h"
 
 @implementation MusicSelectLayer
 
@@ -59,7 +60,7 @@
 
 -(void) backPressed
 {
-    [[CCDirector sharedDirector] popScene];
+    [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
 }
 
 -(void) loadSample1

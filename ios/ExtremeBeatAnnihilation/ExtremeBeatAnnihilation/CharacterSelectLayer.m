@@ -100,6 +100,22 @@
         back.position = ccp(size.width/2, 32);
         
 //        self.characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, nil];
+        
+        // Check if any characters already set
+        if([Registry getCharOne] != -1 && [Registry getCharOne] != -1)
+        {
+            NSInteger indexOne = [Registry getCharOne];
+            NSInteger indexTwo = [Registry getCharTwo];
+            
+            CCMenuItemToggle *selectedOne = [self.characters objectAtIndex:indexOne];
+            CCMenuItemToggle *selectedTwo = [self.characters objectAtIndex:indexTwo];
+            
+            [selectedOne setSelectedIndex:1];
+            [selectedTwo setSelectedIndex:1];
+            self.numSelected = 2;
+            [self toggleSelections];
+        }
+        
         self.characterMenu = [CCMenu menuWithItems:character1, character2, character3, nil];
         self.characterMenu.position = ccp(size.width/2, size.height/2);
         [self.characterMenu alignItemsHorizontallyWithPadding:size.width/3];
@@ -164,7 +180,7 @@
 {
     if([Registry getCharOne] != -1 && [Registry getCharTwo] != -1)
     {
-        [[CCDirector sharedDirector] pushScene:[MusicSelectLayer scene]];
+        [[CCDirector sharedDirector] replaceScene:[MusicSelectLayer scene]];
     }
     else
     {

@@ -17,7 +17,7 @@ bool MusicSelect::init()
     CCMenu*          menu;              // menu to contain the menu items
 
     CCLabelTTF*      header;            // the header font that tells the user what to do
-    //CCSprite*        sprite;            // the background picture
+    //CCSprite*        background;        // the background picture
     CCSize           size;              // the size of the window
 
     if(!CCLayer::init())
@@ -55,9 +55,9 @@ bool MusicSelect::init()
     this->addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
-    //sprite = CCSprite::create(BACKGROUND_IMAGE);
-    //sprite->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
-    //this->addChild(sprite, 0);
+    //background = CCSprite::create(BACKGROUND_IMAGE);
+    //background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
+    //this->addChild(background, 0);
 
     return true;
 }

@@ -2,13 +2,13 @@
 #define __GAME_SCENE_H__
 
 #include "cocos2d.h"
-//#include "BackgroundRLayer.h"
-//#include "BackgroundLLayer.h"
-//#include "ForegroundRLayer.h"
-//#include "ForegroundLLayer.h"
-//#include "PlayerRLayer.h"
-//#include "PlayerLLayer.h"
-//#include "UILayer.h"
+#include "BackgroundRLayer.h"
+#include "BackgroundLLayer.h"
+#include "ForegroundRLayer.h"
+#include "ForegroundLLayer.h"
+#include "PlayerRLayer.h"
+#include "PlayerLLayer.h"
+#include "UILayer.h"
 
 class GameScene : public cocos2d::CCScene
 {

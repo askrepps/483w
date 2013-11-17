@@ -17,7 +17,7 @@ bool MainMenu::init()
     CCMenu*          menu;              // menu to contain the menu items
 
     CCSize           size;              // the size of the window
-    CCSprite*        sprite;            // the background splashscreen
+    CCSprite*        background;        // the background splashscreen
 
     if(!CCLayer::init())
     {
@@ -49,9 +49,9 @@ bool MainMenu::init()
     this->addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
-    sprite = CCSprite::create(BACKGROUND_IMAGE);
-    sprite->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
-    this->addChild(sprite, 0);
+    background = CCSprite::create(BACKGROUND_IMAGE);
+    background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
+    this->addChild(background, 0);
 
     return true;
 }

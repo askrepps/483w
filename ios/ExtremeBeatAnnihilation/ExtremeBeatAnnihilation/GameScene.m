@@ -8,10 +8,8 @@
 
 #import "GameScene.h"
 #import "LeftGroundLayer.h"
-#import "LeftPlayer.h"
 #import "LeftPlayerLayer.h"
 #import "RightGroundLayer.h"
-#import "RightPlayer.h"
 #import "RightPlayerLayer.h"
 #import "Obstacle.h"
 #import "SoundEvent.h"

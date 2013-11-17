@@ -64,7 +64,8 @@
 
 -(void) loadSample1
 {
-    NSLog(@"Loading Sample Track #1...");
+    [Registry setMusicURL:[NSURL fileURLWithPath:@"Resources/SampleTracks/LettingGo.mp3"]];
+    [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
 
 -(void) loadSample2
@@ -101,12 +102,11 @@
     NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
     [Registry setMusicURL:url];
     
-    // Initialize LevelData object here!!!
-    NSLog(@"Loading File URL: %@", url);
-    
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
     [app.navController dismissViewControllerAnimated:YES completion:NULL];
     [[CCDirector sharedDirector] resume];
+    
+    [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
 
 

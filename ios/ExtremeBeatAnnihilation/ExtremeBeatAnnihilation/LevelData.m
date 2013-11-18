@@ -17,6 +17,7 @@
     {
         _numSamples = 410000;
         _events = [[NSMutableArray alloc] init];
+        _sampleRate = 44100;
         
         for (int i = 0; i < 9; i++)
         {

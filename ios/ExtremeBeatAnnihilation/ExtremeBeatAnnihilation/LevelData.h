@@ -16,6 +16,7 @@
 @property (readonly) float medianFreq;
 @property (readonly) float q3Freq;
 @property (retain, nonatomic, readonly) NSMutableArray *events;
+@property (readonly) NSInteger sampleRate;
 
 -(id) initDefault;
 -(id) initWithAudioFileURL:(NSURL *)url;

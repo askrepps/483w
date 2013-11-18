@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kVelocity 100
+
 @interface Registry : NSObject
 FOUNDATION_EXPORT NSString *const kVolume;
 //FOUNDATION_EXPORT NSNumber *const kHighScore;

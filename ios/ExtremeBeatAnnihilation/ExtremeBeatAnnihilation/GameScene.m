@@ -59,6 +59,10 @@
         _leftPlayer.position = ccp(winSize.width/4, winSize.height/2);
         [_leftPlayerLayer addChild:_leftPlayer z:1];
         
+        _rightPlayer = [[RightPlayer alloc] init];
+        _rightPlayer.position = ccp(winSize.width/4*3, winSize.height/2);
+        [_rightPlayerLayer addChild:_rightPlayer z:1];
+        
         [_leftGround addChild:leftBackground];
         [_rightGround addChild:rightBackground];
         

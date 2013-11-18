@@ -11,4 +11,35 @@
 
 @implementation RightPlayer
 
+-(id)init
+{
+    NSString *file;
+    
+    // Get the appropriate sprite sheet
+    switch([Registry getCharOne])
+    {
+        case 0:
+            file = @"char1.png";
+            break;
+        case 1:
+            file = @"char1.png";
+            break;
+        case 2:
+            file = @"char1.png";
+            break;
+        case 3:
+            file = @"";
+            break;
+        default:
+            break;
+    }
+    
+    if(self = [super initWithFile:file])
+    {
+        
+    }
+    
+    return self;
+}
+
 @end

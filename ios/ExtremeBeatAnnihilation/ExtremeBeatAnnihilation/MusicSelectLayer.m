@@ -65,7 +65,7 @@
 
 -(void) loadSample1
 {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];//[NSURL URLWithString:@"/Resources/SampleTracks/LettingGo.mp3"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];
     [Registry setMusicURL:url];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
@@ -73,7 +73,9 @@
 
 -(void) loadSample2
 {
-    [Registry setMusicURL:[NSURL fileURLWithPath:@"Resources/SampleTracks/TheCallOfStars.mp3"]];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"TheCallOfStars" withExtension:@"mp3"];
+    [Registry setMusicURL:url];
+    [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
 

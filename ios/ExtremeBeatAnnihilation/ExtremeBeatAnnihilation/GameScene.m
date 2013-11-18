@@ -45,8 +45,8 @@
         _leftPlayerLayer = [CCLayer node];
         _rightPlayerLayer = [CCLayer node];
         
-        CCSprite *leftBackground = [CCSprite spriteWithFile:@"Resources/background.png"];
-        CCSprite *rightBackground = [CCSprite spriteWithFile:@"Resources/background_inverted.png"];
+        CCSprite *leftBackground = [CCSprite spriteWithFile:@"background.png"];
+        CCSprite *rightBackground = [CCSprite spriteWithFile:@"background_inverted.png"];
         
         leftBackground.position = ccp(winSize.width/2, winSize.height/2);
         rightBackground.position = ccp(winSize.width/2, winSize.height/2);

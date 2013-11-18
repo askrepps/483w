@@ -71,7 +71,8 @@
 
 -(void) loadSample2
 {
-    NSLog(@"Loading Sample Track #2...");
+    [Registry setMusicURL:[NSURL fileURLWithPath:@"Resources/SampleTracks/TheCallOfStars.mp3"]];
+    [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
 
 -(void) loadSample3

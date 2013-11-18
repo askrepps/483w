@@ -65,7 +65,9 @@
 
 -(void) loadSample1
 {
-    [Registry setMusicURL:[NSURL fileURLWithPath:@"Resources/SampleTracks/LettingGo.mp3"]];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];//[NSURL URLWithString:@"/Resources/SampleTracks/LettingGo.mp3"];
+    [Registry setMusicURL:url];
+    [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "LevelData.h"
+#import "Registry.h"
 
 @implementation LevelData
 
@@ -40,10 +41,26 @@
 {
     if (self = [super init])
     {
+        AudioFileID audioFile;
+        UInt32 propertySize = 0;
+        CFDictionaryRef dictionary;
         
+        NSLog(@"Loading url: %@", url);
+        
+        OSStatus status = AudioFileOpenURL((CFURLRef)url, kAudioFileReadPermission, 0, &audioFile);
+        NSLog(@"open status: %ld", status);
+        status = AudioFileGetPropertyInfo(audioFile, kAudioFilePropertyInfoDictionary, &propertySize, 0);
+        NSLog(@"dicitonary size: %d  | status: %ld", (unsigned int)propertySize, status);
+        status = AudioFileGetProperty(audioFile, kAudioFilePropertyInfoDictionary, &propertySize, &dictionary);
+        NSLog(@"dictionary status: %ld", status);
+        
+        NSLog(@"Audio file info: %@", dictionary);
+        CFRelease(dictionary);
+        
+        AudioFileClose(audioFile);
     }
     
-    return self;
+    return [self initDefault];
 }
 
 -(id) initWithAudioFilePath:(NSString *)filePath

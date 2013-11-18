@@ -7,7 +7,6 @@
 //
 
 #import "cocos2d.h"
-#import <AudioToolBox/AudioToolbox.h>
 
 @interface LoadingLayer : CCLayer
 

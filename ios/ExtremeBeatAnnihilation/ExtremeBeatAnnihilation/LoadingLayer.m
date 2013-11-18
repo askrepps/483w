@@ -39,7 +39,8 @@
                                      
 -(void) loadLevel
 {
-    LevelData *data = [[LevelData alloc] initDefault];
+    NSLog(@"URL = %@", [Registry getMusicURL]);
+    LevelData *data = [[LevelData alloc] initWithAudioFileURL:[Registry getMusicURL]];
     GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];
     [data release];
     [[CCDirector sharedDirector] replaceScene:gameScene];

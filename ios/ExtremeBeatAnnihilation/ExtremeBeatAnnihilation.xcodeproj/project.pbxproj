@@ -147,6 +147,8 @@
 		99C2800D17E1275F00060D51 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C2800C17E1275F00060D51 /* IntroLayer.m */; };
 		99F6A190182E9B730028DEDD /* MusicSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F6A18F182E9B730028DEDD /* MusicSelectLayer.m */; };
 		99F6A192182EB1820028DEDD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F6A191182EB1820028DEDD /* MediaPlayer.framework */; };
+		C2081A6F18399F0C00CC488C /* smallFire.png in Resources */ = {isa = PBXBuildFile; fileRef = C2081A6E18399F0C00CC488C /* smallFire.png */; };
+		C2081A7118399F1300CC488C /* smallCoil.png in Resources */ = {isa = PBXBuildFile; fileRef = C2081A7018399F1300CC488C /* smallCoil.png */; };
 		C20D7889182C037D006CB110 /* char1.png in Resources */ = {isa = PBXBuildFile; fileRef = C20D7885182C037D006CB110 /* char1.png */; };
 		C20D788A182C037D006CB110 /* char2.png in Resources */ = {isa = PBXBuildFile; fileRef = C20D7886182C037D006CB110 /* char2.png */; };
 		C20D788B182C037D006CB110 /* char3.png in Resources */ = {isa = PBXBuildFile; fileRef = C20D7887182C037D006CB110 /* char3.png */; };
@@ -478,6 +480,8 @@
 		99F6A18E182E9B730028DEDD /* MusicSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSelectLayer.h; sourceTree = "<group>"; };
 		99F6A18F182E9B730028DEDD /* MusicSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSelectLayer.m; sourceTree = "<group>"; };
 		99F6A191182EB1820028DEDD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C2081A6E18399F0C00CC488C /* smallFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallFire.png; sourceTree = "<group>"; };
+		C2081A7018399F1300CC488C /* smallCoil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallCoil.png; sourceTree = "<group>"; };
 		C20D7885182C037D006CB110 /* char1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = char1.png; sourceTree = "<group>"; };
 		C20D7886182C037D006CB110 /* char2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = char2.png; sourceTree = "<group>"; };
 		C20D7887182C037D006CB110 /* char3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = char3.png; sourceTree = "<group>"; };
@@ -650,6 +654,8 @@
 		99C27E7517E1274F00060D51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C2081A7018399F1300CC488C /* smallCoil.png */,
+				C2081A6E18399F0C00CC488C /* smallFire.png */,
 				C234773C183981E8005408C9 /* background_inverted.png */,
 				C234773D183981E8005408C9 /* background.png */,
 				99A886B0183039DB00F12C7F /* Sample Tracks */,
@@ -1196,6 +1202,8 @@
 				C20D789418302A42006CB110 /* char4selected.png in Resources */,
 				C234773E183981E8005408C9 /* background_inverted.png in Resources */,
 				C234773F183981E8005408C9 /* background.png in Resources */,
+				C2081A6F18399F0C00CC488C /* smallFire.png in Resources */,
+				C2081A7118399F1300CC488C /* smallCoil.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,11 @@
 //
 
 #import "RightPlayerLayer.h"
+#import "RightPlayer.h"
+
+@interface RightPlayerLayer ()
+@property (strong, nonatomic) RightPlayer *player;
+@end
 
 @implementation RightPlayerLayer
 

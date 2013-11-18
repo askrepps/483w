@@ -36,10 +36,29 @@
     
     if(self = [super initWithFile:file])
     {
-        
+        _canJump = YES;
     }
     
     return self;
+}
+
+-(void)jump
+{
+    CCCallFunc *funcAction = [CCCallFunc actionWithTarget:self selector:@selector(enableJump)];
+    CCJumpBy *jumpAction = [CCJumpBy actionWithDuration:0.5 position:ccp(0,0) height:20 jumps:1];
+    
+    CCSequence *actions = [CCSequence actions:jumpAction, funcAction, nil];
+    
+    if(self.canJump)
+    {
+        self.canJump = NO;
+        [self runAction:actions];
+    }
+}
+
+-(void)enableJump
+{
+    self.canJump = YES;
 }
 
 @end

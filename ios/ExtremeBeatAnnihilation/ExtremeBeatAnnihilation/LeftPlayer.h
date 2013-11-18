@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
-#import "CCSprite.h"
+#import "cocos2d.h"
 
 @interface LeftPlayer : CCSprite
+@property BOOL canJump;
 
+-(void)jump;
 @end

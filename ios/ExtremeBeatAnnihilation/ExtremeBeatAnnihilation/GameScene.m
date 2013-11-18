@@ -34,21 +34,29 @@
 {
     if (self = [super init])
     {
-        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
+        [[[CCDirector sharedDirector] touchDispatcher] addStandardDelegate:self priority:0];
+        [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
+        
         [self scheduleUpdate];
+        
+        // Create layers
         
         _leftGround = [CCLayer node];
         _rightGround = [CCLayer node];
         _leftPlayerLayer = [CCLayer node];
         _rightPlayerLayer = [CCLayer node];
         
+        // Add backgrounds
+        
         CCSprite *leftBackground = [CCSprite spriteWithFile:@"background.png"];
         CCSprite *rightBackground = [CCSprite spriteWithFile:@"background_inverted.png"];
         
         leftBackground.position = ccp(winSize.width/2, winSize.height/2);
         rightBackground.position = ccp(winSize.width/2, winSize.height/2);
+        
+        // Create players
         
         _leftPlayer = [[LeftPlayer alloc] init];
         _leftPlayer.position = ccp(winSize.width/4, winSize.height/2);
@@ -123,6 +131,44 @@
     [_leftObstacles release];
     [_rightObstacles release];
     [super dealloc];
+}
+
+#pragma mark - Touch Handling
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    CGPoint currentLocation;
+    
+    for(UITouch *touch in [event allTouches])
+    {
+        currentLocation = [touch locationInView:[touch view]];
+        currentLocation = [[CCDirector sharedDirector] convertToGL:currentLocation];
+        
+        if(CGRectContainsPoint(CGRectMake(0, 0, winSize.width/2, winSize.height/2), currentLocation))
+        {
+            // left player slide
+        }
+        else if(CGRectContainsPoint(CGRectMake(0, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation))
+        {
+            // left player jump
+            [self.leftPlayer jump];
+        }
+        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, 0, winSize.width/2, winSize.height/2), currentLocation))
+        {
+            // right player slide
+        }
+        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation))
+        {
+            // right player jump
+            [self.rightPlayer jump];
+        }
+        else
+        {
+            NSLog(@"Fuck we dun goofed.");
+        }
+    }
 }
 
 @end

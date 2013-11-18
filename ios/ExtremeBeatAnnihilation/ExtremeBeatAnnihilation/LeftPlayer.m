@@ -19,13 +19,13 @@
     switch([Registry getCharOne])
     {
         case 0:
-            file = @"";
+            file = @"char1.png";
             break;
         case 1:
-            file = @"";
+            file = @"char1.png";
             break;
         case 2:
-            file = @"";
+            file = @"char1.png";
             break;
         case 3:
             file = @"";
@@ -34,7 +34,7 @@
             break;
     }
     
-    if([super initWithFile:file rect:CGRectMake(0.0, 0.0, 0, 0)])
+    if(self = [super initWithFile:file])
     {
         
     }

@@ -11,6 +11,8 @@
 #import "RightPlayer.h"
 #import "Obstacle.h"
 #import "SoundEvent.h"
+#import "LeftPlayer.h"
+#import "RightPlayer.h"
 
 @interface GameScene () 
 
@@ -18,6 +20,8 @@
 @property (strong, nonatomic) CCLayer *rightGround;
 @property (strong, nonatomic) CCLayer *leftPlayerLayer;
 @property (strong, nonatomic) CCLayer *rightPlayerLayer;
+@property (strong, nonatomic) LeftPlayer *leftPlayer;
+@property (strong, nonatomic) RightPlayer *rightPlayer;
 @property (strong, nonatomic) NSMutableArray *obstacles;
 
 @end
@@ -51,6 +55,10 @@
         leftBackground.position = ccp(winSize.width/2, winSize.height/2);
         rightBackground.position = ccp(winSize.width/2, winSize.height/2);
         
+        _leftPlayer = [[LeftPlayer alloc] init];
+        _leftPlayer.position = ccp(winSize.width/4, winSize.height/2);
+        [_leftPlayerLayer addChild:_leftPlayer z:1];
+        
         [_leftGround addChild:leftBackground];
         [_rightGround addChild:rightBackground];
         
@@ -58,9 +66,9 @@
         _rightPlayerLayer.touchEnabled = YES;
         
         [self addChild:_leftGround z:0];
-        [self addChild:_rightGround z:0];
+        //[self addChild:_rightGround z:0];
         [self addChild:_leftPlayerLayer z:1];
-        [self addChild:_rightPlayerLayer z:1];
+        //[self addChild:_rightPlayerLayer z:1];
          
         
 

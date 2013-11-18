@@ -7,21 +7,17 @@
 //
 
 #import "GameScene.h"
-#import "LeftGroundLayer.h"
 #import "LeftPlayer.h"
-#import "LeftPlayerLayer.h"
-#import "RightGroundLayer.h"
 #import "RightPlayer.h"
-#import "RightPlayerLayer.h"
 #import "Obstacle.h"
 #import "SoundEvent.h"
 
-@interface GameScene ()
+@interface GameScene () 
 
-@property (strong, nonatomic) LeftGroundLayer *leftGround;
-@property (strong, nonatomic) RightGroundLayer *rightGround;
-@property (strong, nonatomic) LeftPlayerLayer *leftPlayerLayer;
-@property (strong, nonatomic) RightPlayerLayer *rightPlayerLayer;
+@property (strong, nonatomic) CCLayer *leftGround;
+@property (strong, nonatomic) CCLayer *rightGround;
+@property (strong, nonatomic) CCLayer *leftPlayerLayer;
+@property (strong, nonatomic) CCLayer *rightPlayerLayer;
 @property (strong, nonatomic) NSMutableArray *obstacles;
 
 @end
@@ -33,6 +29,8 @@
     if (self = [super init])
     {
         
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+
         
         _obstacles = [[NSMutableArray alloc] init];
         for (SoundEvent *event in [levelData events])
@@ -41,6 +39,31 @@
         }
         
         [self scheduleUpdate];
+        
+        _leftGround = [CCLayer node];
+        _rightGround = [CCLayer node];
+        _leftPlayerLayer = [CCLayer node];
+        _rightPlayerLayer = [CCLayer node];
+        
+        CCSprite *leftBackground = [CCSprite spriteWithFile:@"Resources/background.png"];
+        CCSprite *rightBackground = [CCSprite spriteWithFile:@"Resources/background_inverted.png"];
+        
+        leftBackground.position = ccp(winSize.width/2, winSize.height/2);
+        rightBackground.position = ccp(winSize.width/2, winSize.height/2);
+        
+        [_leftGround addChild:leftBackground];
+        [_rightGround addChild:rightBackground];
+        
+        _leftPlayerLayer.touchEnabled = YES;
+        _rightPlayerLayer.touchEnabled = YES;
+        
+        [self addChild:_leftGround z:0];
+        [self addChild:_rightGround z:0];
+        [self addChild:_leftPlayerLayer z:1];
+        [self addChild:_rightPlayerLayer z:1];
+         
+        
+
     }
     
     return self;

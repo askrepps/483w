@@ -30,7 +30,7 @@ bool CharacterSelect::init()
     }
 
     // Set whether it is single player or not
-    m_isSinglePlayer = true;
+    global.isSinglePlayer = true;
 
     // Initialize number of characters to 0
     m_numCharacters = 0;
@@ -91,11 +91,11 @@ void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 	// If we got one character, set the index to the tag, otherwise, we selected character two
 	if(m_numCharacters == 1)
 	{
-		global.m_playerOne = convert->getTag();
+		global.playerOne = convert->getTag();
 	}
 	else if(m_numCharacters == 2)
 	{
-		global.m_playerTwo = convert->getTag();
+		global.playerTwo = convert->getTag();
 	}
 
 	// Will move onto music library scene once we get that inplace

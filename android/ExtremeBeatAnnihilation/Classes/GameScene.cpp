@@ -38,5 +38,8 @@ bool GameScene::init()
     this->addChild(playerL, 1);
     this->addChild(ui, 2);
 
+    // start up the song chosen by the user
+    //SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong, false);
+
     return true;
 }

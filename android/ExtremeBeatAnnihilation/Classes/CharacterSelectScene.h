@@ -37,8 +37,6 @@ private:
 	//std::vector<CCMenuItemImage>* m_characterSelectionImages;
 	int m_numCharacters;
 	cocos2d::CCMenu* m_characterMenu;
-	bool m_isSinglePlayer;
-	Global global;
 };
 
 #endif // __CHARACTER_SELECT_SCENE_H__

@@ -5,7 +5,6 @@
 #include "cocos2d.h"
 
 #include "Global.h"
-#include "MainGameScene.h"
 #include "OptionsMenuScene.h"
 #include "MainMenuScene.h"
 #include "CharacterSelectScene.h"

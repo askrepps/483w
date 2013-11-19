@@ -1,12 +1,11 @@
 #include "OptionsMenuScene.h"
 
-
 using namespace cocos2d;
 using namespace CocosDenshion;
 
 CCScene* OptionsMenu::Scene()
 {
-    CCScene*  scene = CCScene::create();
+    CCScene*     scene = CCScene::create();
     OptionsMenu* layer = OptionsMenu::create();
 
     // add layer as a child to scene
@@ -18,12 +17,12 @@ CCScene* OptionsMenu::Scene()
 // on "init" you need to initialize your instance
 bool OptionsMenu::init()
 {
-    CCSize           size;
+    CCSize          size;
     CCMenuItemFont* backItem;
-    CCMenu*          menu;
-    CCLabelTTF*      label;
-    CCLabelTTF*      volumelabel;
-    CCLabelTTF*      sfxlabel;
+    CCMenu*         menu;
+    CCLabelTTF*     label;
+    CCLabelTTF*     volumelabel;
+    CCLabelTTF*     sfxlabel;
     cocos2d::extension::CCControlSlider* volume;
     cocos2d::extension::CCControlSlider* sfx;
 

@@ -80,7 +80,7 @@ CCScene* MusicSelect::Scene()
 // sender [in] - the object that sent the selected event?
 void MusicSelect::HandleSampleMusicPressed(CCObject* sender)
 {
-    //CCDirector::sharedDirector()->replaceScene(SampleMusic::Scene());
+    CCDirector::sharedDirector()->replaceScene(SampleMusic::Scene());
 }
 
 // On selecting the your music menu item, switch to the your music scene

@@ -10,6 +10,8 @@
 
 @interface LeftPlayer : CCSprite
 @property BOOL canJump;
+@property BOOL canBlink;
 
 -(void)jump;
+-(void)blink;
 @end

@@ -20,11 +20,11 @@
     {
         case JUMP:
             file = @"smallFire.png";
-            y = 200;
+            y = kFireY;
             break;
         case SLIDE:
             file = @"smallCoil.png";
-            y = 300;
+            y = kCoilY;
             break;
         default:
             break;

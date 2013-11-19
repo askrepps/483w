@@ -19,7 +19,7 @@
         _events = [[NSMutableArray alloc] init];
         _sampleRate = 44100;
         
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 30; i++)
         {
             SoundEvent *event = [[SoundEvent alloc] initWithSample:(i+1)*44100 andFreq:i*200.0f];
             [_events addObject:event];

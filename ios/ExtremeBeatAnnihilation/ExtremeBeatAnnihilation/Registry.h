@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#define kVelocity 100
+#define kVelocity 250
+#define kLevelOffset 100
+#define kFireY 100
+#define kCoilY 200
+#define kJumpHeight 100
 
 @interface Registry : NSObject
 FOUNDATION_EXPORT NSString *const kVolume;

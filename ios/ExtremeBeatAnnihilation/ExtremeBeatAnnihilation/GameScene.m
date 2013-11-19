@@ -25,6 +25,10 @@
 @property (strong, nonatomic) RightPlayer *rightPlayer;
 @property (strong, nonatomic) NSMutableArray *leftObstacles;
 @property (strong, nonatomic) NSMutableArray *rightObstacles;
+@property (strong, nonatomic) CCSprite *leftBG1;
+@property (strong, nonatomic) CCSprite *leftBG2;
+@property (strong, nonatomic) CCSprite *rightBG1;
+@property (strong, nonatomic) CCSprite *rightBG2;
 
 @end
 
@@ -50,24 +54,30 @@
         
         // Add backgrounds
         
-        CCSprite *leftBackground = [CCSprite spriteWithFile:@"background.png"];
-        CCSprite *rightBackground = [CCSprite spriteWithFile:@"background_inverted.png"];
+        _leftBG1 = [CCSprite spriteWithFile:@"background.png"];
+        _leftBG2 = [CCSprite spriteWithFile:@"background.png"];
+        _rightBG1 = [CCSprite spriteWithFile:@"background_inverted.png"];
+        _rightBG2 = [CCSprite spriteWithFile:@"background_inverted.png"];
         
-        leftBackground.position = ccp(winSize.width/2, winSize.height/2);
-        rightBackground.position = ccp(winSize.width/2, winSize.height/2);
+        _leftBG1.position = ccp(winSize.width/2, winSize.height/2);
+        _leftBG2.position = ccp(winSize.width*3/2, winSize.height/2);
+        _rightBG1.position = ccp(winSize.width/2, winSize.height/2);
+        _rightBG2.position = ccp(-winSize.width/2, winSize.height/2);
         
         // Create players
         
         _leftPlayer = [[LeftPlayer alloc] init];
-        _leftPlayer.position = ccp(winSize.width/4, winSize.height/2);
+        _leftPlayer.position = ccp(winSize.width/6, winSize.height/3);
         [_leftGround addChild:_leftPlayer z:1];
         
         _rightPlayer = [[RightPlayer alloc] init];
-        _rightPlayer.position = ccp(winSize.width/4*3, winSize.height/2);
+        _rightPlayer.position = ccp(winSize.width/6*5, winSize.height/3);
         [_rightGround addChild:_rightPlayer z:1];
         
-        [_leftGround addChild:leftBackground];
-        [_rightGround addChild:rightBackground];
+        [_leftGround addChild:_leftBG1];
+        [_leftGround addChild:_leftBG2];
+        [_rightGround addChild:_rightBG1];
+        [_rightGround addChild:_rightBG2];
         
         _leftPlayerLayer.touchEnabled = YES;
         _rightPlayerLayer.touchEnabled = YES;
@@ -77,7 +87,7 @@
         _leftObstacles = [[NSMutableArray alloc] init];
         _rightObstacles = [[NSMutableArray alloc] init];
         
-        uint layerWidth = (float)levelData.numSamples/levelData.sampleRate*kVelocity;
+        uint layerWidth = (float)levelData.numSamples/levelData.sampleRate*kVelocity + kLevelOffset;
         
         for (SoundEvent *event in [levelData events])
         {
@@ -88,13 +98,13 @@
             switch(event.side)
             {
                 case LEFT:
-                    x = (float)event.sample/levelData.sampleRate*kVelocity;
+                    x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset;
                     obs = [[Obstacle alloc] initWithX:x andType:event.type];
                     [_leftObstacles addObject:obs];
                     [_leftGround addChild:obs];
                     break;
                 case RIGHT:
-                    x = layerWidth - (float)event.sample/levelData.sampleRate*kVelocity;
+                    x = layerWidth - (float)event.sample/levelData.sampleRate*kVelocity - kLevelOffset;
                     obs = [[Obstacle alloc] initWithX:x andType:event.type];
                     [_rightObstacles addObject:obs];
                     [_rightGround addChild:obs];
@@ -107,9 +117,9 @@
         }
         
         [self addChild:_leftGround z:0];
-        [self addChild:_rightGround z:0];
+        //[self addChild:_rightGround z:0];
         [self addChild:_leftPlayerLayer z:1];
-        [self addChild:_rightPlayerLayer z:1];
+        //[self addChild:_rightPlayerLayer z:1];
     }
     
     return self;
@@ -117,13 +127,44 @@
 
 -(void)update:(ccTime)delta
 {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    
+    // Shift left background
+    if (self.leftBG1.position.x + self.leftGround.position.x < -winSize.width/2)
+    {
+        self.leftBG1.position = ccp(self.leftBG2.position.x + winSize.width, winSize.height/2);
+    }
+    
+    if (self.leftBG2.position.x + self.leftGround.position.x < -winSize.width/2)
+    {
+        self.leftBG2.position = ccp(self.leftBG1.position.x + winSize.width, winSize.height/2);
+    }
+    
     // Move left player
     self.leftPlayer.position = ccp(self.leftPlayer.position.x + kVelocity*delta, self.leftPlayer.position.y);
     self.leftGround.position = ccp(self.leftGround.position.x - kVelocity*delta, self.leftGround.position.y);
     
     // Move right player
-    self.rightPlayer.position = ccp(self.rightPlayer.position.x - kVelocity*delta, self.rightPlayer.position.y);
-    self.rightGround.position = ccp(self.rightGround.position.x + kVelocity*delta, self.rightGround.position.y);
+    //self.rightPlayer.position = ccp(self.rightPlayer.position.x - kVelocity*delta, self.rightPlayer.position.y);
+    //self.rightGround.position = ccp(self.rightGround.position.x + kVelocity*delta, self.rightGround.position.y);
+    
+    // Collision detection
+    for (Obstacle *obs in self.leftObstacles)
+    {
+        if (CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
+        {
+            [self.leftPlayer blink];
+        }
+    }
+    
+    for (Obstacle *obs in self.rightObstacles)
+    {
+        if (CGRectIntersectsRect(self.rightPlayer.boundingBox, obs.boundingBox))
+        {
+            [self.rightPlayer blink];
+        }
+    }
 }
 
 -(void) dealloc
@@ -162,7 +203,7 @@
         else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation))
         {
             // right player jump
-            [self.rightPlayer jump];
+            //[self.rightPlayer jump];
         }
         else
         {

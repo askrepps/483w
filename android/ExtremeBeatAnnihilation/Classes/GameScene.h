@@ -2,6 +2,9 @@
 #define __GAME_SCENE_H__
 
 #include "cocos2d.h"
+
+#include "Global.h"
+
 #include "BackgroundRLayer.h"
 #include "BackgroundLLayer.h"
 #include "ForegroundRLayer.h"

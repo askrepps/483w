@@ -1,8 +1,8 @@
 #include "AppDelegate.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
-// Android size plz
 AppDelegate::AppDelegate()
 {
 }
@@ -17,16 +17,15 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCDirector* pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
-    // make sure displaying FPS is turned off
-    pDirector->setDisplayStats(false);
+    // start up the menu song
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
 
-    // set FPS. the default value is 1.0/60 if you don't call this
-    pDirector->setAnimationInterval(1.0 / 60);
+    // turn on fps for testing
+    //pDirector->setDisplayStats(true);
+    //pDirector->setAnimationInterval(1.0 / 60);
 
-    // create a scene. it's an autorelease object
+    // start up the main menu as the first scene
     CCScene* pScene = MainMenu::Scene();
-
-    // run
     pDirector->runWithScene(pScene);
 
     return true;
@@ -37,8 +36,8 @@ void AppDelegate::applicationDidEnterBackground()
 {
     CCDirector::sharedDirector()->pause();
 
-    // if you use SimpleAudioEngine, it must be paused
-    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    // pause background music
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -46,6 +45,6 @@ void AppDelegate::applicationWillEnterForeground()
 {
     CCDirector::sharedDirector()->resume();
 
-    // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    // resume background music
+    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

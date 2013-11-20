@@ -17,6 +17,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCDirector* pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
+    // set the initial volumes
+    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(INIT_MUSIC_VOL);
+    SimpleAudioEngine::sharedEngine()->setEffectsVolume(INIT_SFX_VOL);
+
     // start up the menu song
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
 

@@ -87,6 +87,8 @@ void SampleMusic::HandleFirstSongPressed(CCObject* sender)
 {
     global.gameSong = FIRST_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+    // TODO: remove the line below once the audio engine is working in the game scene
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong.c_str(), false);
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 
@@ -97,6 +99,8 @@ void SampleMusic::HandleSecondSongPressed(CCObject* sender)
 {
     global.gameSong = SECOND_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+    // TODO: remove the line below once the audio engine is working in the game scene
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong.c_str(), false);
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 

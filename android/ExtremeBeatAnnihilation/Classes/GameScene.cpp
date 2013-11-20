@@ -38,8 +38,9 @@ bool GameScene::init()
     this->addChild(playerL, 1);
     this->addChild(ui, 2);
 
+    // TODO: get the audio working; for some reason CocosDenshion namespace isn't recognized
     // start up the song chosen by the user
-    //SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong, false);
+    //SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong.c_str(), false);
 
     return true;
 }

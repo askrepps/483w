@@ -1,6 +1,7 @@
 #include "OptionsMenuScene.h"
 
 using namespace cocos2d;
+using namespace extension;
 using namespace CocosDenshion;
 
 CCScene* OptionsMenu::Scene()
@@ -17,14 +18,14 @@ CCScene* OptionsMenu::Scene()
 // on "init" you need to initialize your instance
 bool OptionsMenu::init()
 {
-    CCSize          size;
-    CCMenuItemFont* backItem;
-    CCMenu*         menu;
-    CCLabelTTF*     label;
-    CCLabelTTF*     volumelabel;
-    CCLabelTTF*     sfxlabel;
-    cocos2d::extension::CCControlSlider* volume;
-    cocos2d::extension::CCControlSlider* sfx;
+    CCSize           size;
+    CCMenuItemFont*  backItem;
+    CCMenu*          menu;
+    CCLabelTTF*      label;
+    CCLabelTTF*      volumelabel;
+    CCLabelTTF*      sfxlabel;
+    CCControlSlider* volume;
+    CCControlSlider* sfx;
 
     if(!CCLayer::init())
     {
@@ -33,11 +34,6 @@ bool OptionsMenu::init()
 
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
-
-    // add a "close" icon to exit the process
-    //closeItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-    //                                       menu_selector(OptionsMenu::MenuCloseCallback));
-    //closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
 
     // Add a "Back" Button to go back to main menu
     backItem = CCMenuItemFont::create("BACK", this, menu_selector(OptionsMenu::MenuGoBack));
@@ -64,7 +60,9 @@ bool OptionsMenu::init()
     this->addChild(sfxlabel, 1);
 
     // adds volume slider to the screen
-    volume = cocos2d::extension::CCControlSlider::create("sliderTrack-hd.png", "sliderProgress-hd.png", "sliderThumb-hd.png");
+    volume = CCControlSlider::create("sliderTrack-hd.png", "sliderProgress-hd.png", "sliderThumb-hd.png");
+    volume->addTargetWithActionForControlEvents(this, cccontrol_selector(OptionsMenu::HandleMusicSliderChanged),
+                                                                                      CCControlEventValueChanged);
     volume->setMinimumValue(0);
     volume->setMaximumValue(100);
     volume->setValue(50);
@@ -72,7 +70,9 @@ bool OptionsMenu::init()
     this->addChild(volume, 1);
 
     // adds sfx slider to the screen
-    sfx = cocos2d::extension::CCControlSlider::create("sliderTrack-hd.png", "sliderProgress-hd.png", "sliderThumb-hd.png");
+    sfx = CCControlSlider::create("sliderTrack-hd.png", "sliderProgress-hd.png", "sliderThumb-hd.png");
+    sfx->addTargetWithActionForControlEvents(this, cccontrol_selector(OptionsMenu::HandleSfxSliderChanged),
+                                                                                 CCControlEventValueChanged);
     sfx->setMinimumValue(0);
     sfx->setMaximumValue(100);
     sfx->setValue(50);
@@ -80,6 +80,22 @@ bool OptionsMenu::init()
     this->addChild(sfx, 1);
 
     return true;
+}
+
+// Update the background music volume whenever the value of the slider is changed
+//
+// slider [in] - the slider that changed its value
+void OptionsMenu::HandleMusicSliderChanged(CCControlSlider* slider)
+{
+    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(slider->getValue() / VOLUME_FACTOR);
+}
+
+// Update the sound effects volume whenever the value of the slider is changed
+//
+// slider [in] - the slider that changed its value
+void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
+{
+    SimpleAudioEngine::sharedEngine()->setEffectsVolume(slider->getValue() / VOLUME_FACTOR);
 }
 
 void OptionsMenu::MenuGoBack(CCObject* sender)

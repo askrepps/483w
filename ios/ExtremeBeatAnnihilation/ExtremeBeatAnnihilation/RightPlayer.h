@@ -11,7 +11,9 @@
 @interface RightPlayer : CCSprite
 @property BOOL canJump;
 @property BOOL canBlink;
+@property BOOL canSlide;
 
 -(void)jump;
+-(void)slide;
 -(void)blink;
 @end

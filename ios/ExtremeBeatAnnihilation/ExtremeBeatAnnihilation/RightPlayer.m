@@ -37,6 +37,7 @@
     if(self = [super initWithFile:file])
     {
         _canJump = YES;
+        _canSlide = YES;
         _canBlink = YES;
     }
     
@@ -53,6 +54,20 @@
     if(self.canJump)
     {
         self.canJump = NO;
+        [self runAction:actions];
+    }
+}
+
+-(void)slide
+{
+    // TO BE FILLED OUT LATER
+    CCCallFunc *funcAction = [CCCallFunc actionWithTarget:self selector:@selector(enableSlide)];
+    
+    CCSequence *actions = [CCSequence actions:funcAction, nil];
+    
+    if(self.canSlide)
+    {
+        self.canSlide = NO;
         [self runAction:actions];
     }
 }
@@ -76,6 +91,11 @@
 -(void)enableJump
 {
     self.canJump = YES;
+}
+
+-(void)enableSlide
+{
+    self.canSlide = YES;
 }
 
 -(void)enableBlink

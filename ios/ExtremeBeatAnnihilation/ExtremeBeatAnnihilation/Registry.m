@@ -14,6 +14,8 @@ NSString *const kVolume = @"Volume";
 static NSInteger kCharOne = -1;
 static NSInteger kCharTwo = -1;
 static BOOL kIsSinglePlayer;
+static BOOL kIsSample;
+static NSString *kMusicName;
 static NSURL *kMusicURL;
 
 +(void)setChar:(NSInteger)index
@@ -58,6 +60,26 @@ static NSURL *kMusicURL;
 +(void)setIsSinglePlayer:(BOOL)mode
 {
     kIsSinglePlayer = mode;
+}
+
++(BOOL)getIsSample
+{
+    return kIsSample;
+}
+
++(void)setIsSample:(BOOL)selection
+{
+    kIsSample = selection;
+}
+
++(NSString*)getMusicName;
+{
+    return kMusicName;
+}
+
++(void)setMusicName:(NSString*)name
+{
+    kMusicName = name;
 }
 
 +(NSURL*)getMusicURL

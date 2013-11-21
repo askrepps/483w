@@ -24,6 +24,10 @@ FOUNDATION_EXPORT NSString *const kVolume;
 +(NSInteger)getCharTwo;
 +(BOOL)getIsSinglePlayer;
 +(void)setIsSinglePlayer:(BOOL)mode;
++(void)setIsSample:(BOOL)selection;
++(BOOL)getIsSample;
++(NSString*)getMusicName;
++(void)setMusicName:(NSString*)name;
 +(NSURL*)getMusicURL;
 +(void)setMusicURL:(NSURL*)URL;
 @end

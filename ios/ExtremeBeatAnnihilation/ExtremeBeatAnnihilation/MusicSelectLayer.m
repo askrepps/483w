@@ -66,7 +66,9 @@
 -(void) loadSample1
 {
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];
+    [Registry setMusicName:@"LettingGo.mp3"];
     [Registry setMusicURL:url];
+    [Registry setIsSample:YES];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
@@ -74,7 +76,9 @@
 -(void) loadSample2
 {
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"TheCallOfStars" withExtension:@"mp3"];
+    [Registry setMusicName:@"TheCallOfStars.mp3"];
     [Registry setMusicURL:url];
+    [Registry setIsSample:YES];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
@@ -107,11 +111,12 @@
     MPMediaItem *item = [[collection items] objectAtIndex:0];
     NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
     [Registry setMusicURL:url];
+    [Registry setIsSample:NO];
     
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
     [app.navController dismissViewControllerAnimated:YES completion:NULL];
-    [[CCDirector sharedDirector] resume];
     
+    [[CCDirector sharedDirector] resume];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
 

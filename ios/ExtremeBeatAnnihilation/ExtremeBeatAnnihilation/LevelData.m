@@ -55,8 +55,8 @@
         status = AudioFileGetProperty(audioFile, kAudioFilePropertyInfoDictionary, &propertySize, &dictionary);
         NSLog(@"dictionary status: %ld", status);
         
-        NSLog(@"Audio file info: %@", dictionary);
-        CFRelease(dictionary);
+//        NSLog(@"Audio file info: %@", dictionary);
+//        CFRelease(dictionary);
         
         AudioFileClose(audioFile);
     }

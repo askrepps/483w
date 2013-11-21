@@ -14,6 +14,8 @@
 #import "SoundEvent.h"
 #import "LeftPlayer.h"
 #import "RightPlayer.h"
+#import <AVFoundation/AVFoundation.h>
+#import "SimpleAudioEngine.h"
 
 @interface GameScene () 
 
@@ -29,6 +31,7 @@
 @property (strong, nonatomic) CCSprite *leftBG2;
 @property (strong, nonatomic) CCSprite *rightBG1;
 @property (strong, nonatomic) CCSprite *rightBG2;
+@property (strong, nonatomic) AVPlayer *avPlayer;
 
 @end
 
@@ -47,10 +50,21 @@
         
         // Create layers
         
+//        CGSize layerSize = CGSizeMake(winSize.width/2, winSize.height/2);
+        
         _leftGround = [CCLayer node];
+//        _leftGround.contentSize = layerSize;
+//        _leftGround.position = CGPointZero;
         _rightGround = [CCLayer node];
+//        _rightGround.contentSize = layerSize;
+//        _rightGround.position = ccp(winSize.width/2, 0);
+        
         _leftPlayerLayer = [CCLayer node];
+//        _leftPlayerLayer.contentSize = layerSize;
+//        _leftPlayerLayer.position = CGPointZero;
         _rightPlayerLayer = [CCLayer node];
+//        _rightPlayerLayer.contentSize = layerSize;
+//        _rightPlayerLayer.position = ccp(winSize.width/2, 0);
         
         // Add backgrounds
         
@@ -117,9 +131,21 @@
         }
         
         [self addChild:_leftGround z:0];
-        //[self addChild:_rightGround z:0];
+        [self addChild:_rightGround z:0];
         [self addChild:_leftPlayerLayer z:1];
-        //[self addChild:_rightPlayerLayer z:1];
+        [self addChild:_rightPlayerLayer z:1];
+        
+        // Start playing music
+        if([Registry getIsSample])
+        {
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[Registry getMusicName]];
+        }
+        else
+        {
+            _avPlayer = [[AVPlayer alloc] init];
+            [_avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:[Registry getMusicURL]]];
+            [_avPlayer play];
+        }
     }
     
     return self;
@@ -146,8 +172,8 @@
     self.leftGround.position = ccp(self.leftGround.position.x - kVelocity*delta, self.leftGround.position.y);
     
     // Move right player
-    //self.rightPlayer.position = ccp(self.rightPlayer.position.x - kVelocity*delta, self.rightPlayer.position.y);
-    //self.rightGround.position = ccp(self.rightGround.position.x + kVelocity*delta, self.rightGround.position.y);
+    self.rightPlayer.position = ccp(self.rightPlayer.position.x - kVelocity*delta, self.rightPlayer.position.y);
+    self.rightGround.position = ccp(self.rightGround.position.x + kVelocity*delta, self.rightGround.position.y);
     
     // Collision detection
     for (Obstacle *obs in self.leftObstacles)

@@ -103,15 +103,3 @@ void OptionsMenu::MenuGoBack(CCObject* sender)
 	// Go back to the main menu
 	CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
 }
-
-
-/*// a selector callback
-void OptionsMenu::MenuCloseCallback(CCObject* sender)
-{
-    CCDirector::sharedDirector()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
-}
-*/

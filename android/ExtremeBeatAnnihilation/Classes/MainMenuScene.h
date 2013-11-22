@@ -2,9 +2,11 @@
 #define __MAIN_MENU_SCENE_H__
 
 #include "cocos2d.h"
+
+#include "Global.h"
+
 #include "CharacterSelectScene.h"
 #include "OptionsMenuScene.h"
-#include "Global.h"
 
 #define BACKGROUND_IMAGE     "splashscreen.jpg"  // image to display as the background
 #define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items

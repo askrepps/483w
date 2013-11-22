@@ -3,6 +3,10 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+// externs defined in Global.h
+extern int Player_One;
+extern int Player_Two;
+
 CCScene* CharacterSelect::Scene()
 {
     CCScene*         scene = CCScene::create();
@@ -28,9 +32,6 @@ bool CharacterSelect::init()
     {
         return false;
     }
-
-    // Set whether it is single player or not
-    global.isSinglePlayer = true;
 
     // Initialize number of characters to 0
     m_numCharacters = 0;
@@ -91,11 +92,11 @@ void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 	// If we got one character, set the index to the tag, otherwise, we selected character two
 	if(m_numCharacters == 1)
 	{
-		global.playerOne = convert->getTag();
+		Player_One = convert->getTag();
 	}
 	else if(m_numCharacters == 2)
 	{
-		global.playerTwo = convert->getTag();
+		Player_Two = convert->getTag();
 	}
 
 	// Will move onto music library scene once we get that inplace

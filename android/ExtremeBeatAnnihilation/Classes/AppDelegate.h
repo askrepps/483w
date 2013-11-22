@@ -1,10 +1,12 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
-#include "CCApplication.h"
 #include "cocos2d.h"
+#include "CCApplication.h"
+#include "SimpleAudioEngine.h"
 
 #include "Global.h"
+
 #include "OptionsMenuScene.h"
 #include "MainMenuScene.h"
 #include "CharacterSelectScene.h"

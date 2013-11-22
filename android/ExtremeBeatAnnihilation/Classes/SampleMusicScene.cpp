@@ -3,6 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+// externs defined in Global.h
+extern std::string Game_Song;
+
 // Initialize the menu items, background, and overall setup of the sample music menu
 //
 // return - false if there was an error in initializing, true otherwise
@@ -85,10 +88,10 @@ CCScene* SampleMusic::Scene()
 // sender [in] - the object that sent the selected event?
 void SampleMusic::HandleFirstSongPressed(CCObject* sender)
 {
-    global.gameSong = FIRST_SONG;
+    Game_Song = FIRST_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     // TODO: remove the line below once the audio engine is working in the game scene
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong.c_str(), false);
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 
@@ -97,10 +100,10 @@ void SampleMusic::HandleFirstSongPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void SampleMusic::HandleSecondSongPressed(CCObject* sender)
 {
-    global.gameSong = SECOND_SONG;
+    Game_Song = SECOND_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     // TODO: remove the line below once the audio engine is working in the game scene
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(global.gameSong.c_str(), false);
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 
@@ -109,7 +112,7 @@ void SampleMusic::HandleSecondSongPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void SampleMusic::HandleThirdSongPressed(CCObject* sender)
 {
-    //global.gameSong = THIRD_SONG;
+    //Game_Song = THIRD_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }

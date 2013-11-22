@@ -15,13 +15,4 @@
 #define POS_THREE_QUART_SCREEN 0.75  // factor of screen width/height which gives a position
                                      //   three-quarter-way
 
-// statically created structure that holds all variables to share between scenes------------------------
-static struct Global
-{
-    std::string gameSong;
-	bool        isSinglePlayer;
-	int         playerOne;
-	int         playerTwo;
-} global;
-
 #endif // __GLOBAL_H__

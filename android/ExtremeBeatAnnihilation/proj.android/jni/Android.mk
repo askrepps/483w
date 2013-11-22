@@ -20,7 +20,8 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/PlayerRLayer.cpp \
                    ../../Classes/PlayerLLayer.cpp \
                    ../../Classes/UILayer.cpp \
-                   ../../Classes/OptionsMenuScene.cpp
+                   ../../Classes/OptionsMenuScene.cpp \
+                   ../../Classes/Global.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
 

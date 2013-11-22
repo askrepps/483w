@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
+
+#include "Global.h"
+
 #include "CCControlSlider.h"
 #include "MainMenuScene.h"
 

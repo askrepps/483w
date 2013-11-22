@@ -3,6 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+// externs defined in Global.h
+extern bool Is_Single_Player;
+
 // Initialize the menu items, background, and overall setup of the main menu
 //
 // return - false if there was an error in initializing, true otherwise
@@ -75,6 +78,7 @@ CCScene* MainMenu::Scene()
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 {
+    Is_Single_Player = true;
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
 
@@ -84,6 +88,7 @@ void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 {
+    Is_Single_Player = false;
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
 

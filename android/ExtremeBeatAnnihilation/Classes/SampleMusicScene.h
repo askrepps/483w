@@ -1,7 +1,10 @@
 #ifndef __SAMPLE_MUSIC_SCENE_H__
 #define __SAMPLE_MUSIC_SCENE_H__
 
+#include <string>
+
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 #include "Global.h"
 

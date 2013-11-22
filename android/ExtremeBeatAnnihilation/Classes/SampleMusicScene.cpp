@@ -90,8 +90,6 @@ void SampleMusic::HandleFirstSongPressed(CCObject* sender)
 {
     Game_Song = FIRST_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    // TODO: remove the line below once the audio engine is working in the game scene
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 
@@ -102,8 +100,6 @@ void SampleMusic::HandleSecondSongPressed(CCObject* sender)
 {
     Game_Song = SECOND_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    // TODO: remove the line below once the audio engine is working in the game scene
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 
@@ -112,7 +108,7 @@ void SampleMusic::HandleSecondSongPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void SampleMusic::HandleThirdSongPressed(CCObject* sender)
 {
-    //Game_Song = THIRD_SONG;
+    Game_Song = THIRD_SONG;
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }

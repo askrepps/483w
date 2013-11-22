@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 using namespace cocos2d;
-//using namespace CocosDenshion;
+using namespace CocosDenshion;
 
 // externs defined in Global.h
 extern std::string Game_Song;
@@ -41,9 +41,8 @@ bool GameScene::init()
     this->addChild(playerL, 1);
     this->addChild(ui, 2);
 
-    // TODO: get the audio working; for some reason CocosDenshion namespace isn't recognized
     // start up the song chosen by the user
-    //SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
 
     return true;
 }

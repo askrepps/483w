@@ -88,7 +88,24 @@ void MusicSelect::HandleSampleMusicPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MusicSelect::HandleYourMusicPressed(CCObject* sender)
 {
-    //CCDirector::sharedDirector()->replaceScene(YourMusic::Scene());
+    JavaVM* jvm = cocos2d::JniHelper::getJavaVM();
+    if (NULL == jvm)
+        CCLog("Failed to get the JavaVM");
+
+    JNIEnv* env;
+    jint ret = jvm->GetEnv((void**)&env, JNI_VERSION_1_4);
+    if (ret != JNI_OK)
+        CCLog("Failed to get then JNIEnv");
+
+    jclass classRet = env->FindClass("org/cocos2dx/extbeatanni/ExtremeBeatAnnihilation");
+    if (!classRet)
+        CCLog("Failed to find class ExtremeBeatAnnihilation");
+
+    jmethodID methodRet = env->GetMethodID(classRet, "startupFileExplore", "()V");
+    if (!methodRet)
+        CCLog("Failed to find method startupFileExplore");
+
+    env->CallVoidMethod(classRet, methodRet);
 }
 
 // On selecting the back menu item, switch back to character select scene

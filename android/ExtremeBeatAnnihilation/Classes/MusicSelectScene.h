@@ -1,9 +1,13 @@
 #ifndef __MUSIC_SELECT_SCENE_H__
 #define __MUSIC_SELECT_SCENE_H__
 
+#include <jni.h>
+#include "platform/android/jni/JniHelper.h"
+
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
+
 #include "SampleMusicScene.h"
-//#include "YourMusicScene.h"
 #include "CharacterSelectScene.h"
 
 #define POS_HEADER_HEIGHT    0.9                 // factor of height to position the header

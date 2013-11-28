@@ -151,6 +151,11 @@
     return self;
 }
 
+-(void)visit
+{
+    [super visit];
+}
+
 -(void)update:(ccTime)delta
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];

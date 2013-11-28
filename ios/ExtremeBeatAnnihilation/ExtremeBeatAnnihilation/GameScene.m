@@ -78,6 +78,11 @@
         _rightBG1.position = ccp(winSize.width/2, winSize.height/2);
         _rightBG2.position = ccp(-winSize.width/2, winSize.height/2);
         
+        [_leftGround addChild:_leftBG1];
+        [_leftGround addChild:_leftBG2];
+        [_rightGround addChild:_rightBG1];
+        [_rightGround addChild:_rightBG2];
+        
         // Create players
         
         _leftPlayer = [[LeftPlayer alloc] init];
@@ -87,11 +92,6 @@
         _rightPlayer = [[RightPlayer alloc] init];
         _rightPlayer.position = ccp(winSize.width/6*5, winSize.height/3);
         [_rightGround addChild:_rightPlayer z:1];
-        
-        [_leftGround addChild:_leftBG1];
-        [_leftGround addChild:_leftBG2];
-        [_rightGround addChild:_rightBG1];
-        [_rightGround addChild:_rightBG2];
         
         _leftPlayerLayer.touchEnabled = YES;
         _rightPlayerLayer.touchEnabled = YES;
@@ -149,11 +149,6 @@
     }
     
     return self;
-}
-
--(void)visit
-{
-    [super visit];
 }
 
 -(void)update:(ccTime)delta

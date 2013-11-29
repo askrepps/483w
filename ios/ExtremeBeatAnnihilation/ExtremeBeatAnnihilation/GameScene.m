@@ -35,6 +35,8 @@
 @property (strong, nonatomic) CCSprite *rightBG1;
 @property (strong, nonatomic) CCSprite *rightBG2;
 @property (strong, nonatomic) AVPlayer *avPlayer;
+@property (strong, nonatomic) CCLabelTTF *scoreLabel;
+@property NSInteger score;
 
 @end
 
@@ -138,6 +140,13 @@
         [_rightNode addChild:_rightGround z:0];
         [_rightNode addChild:_rightPlayerLayer z:1];
         
+        // Create menu items
+        
+        _score = 0;
+        _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", _score] fontName:@"Marker Felt" fontSize:24];
+        _scoreLabel.position = ccp(winSize.width/2, winSize.height - 24);
+        [self addChild:_scoreLabel];
+        
         // Start playing music
         if([Registry getIsSample])
         {
@@ -164,10 +173,19 @@
     {
         self.leftBG1.position = ccp(self.leftBG2.position.x + winSize.width, winSize.height/2);
     }
-    
     if (self.leftBG2.position.x + self.leftGround.position.x < -winSize.width/2)
     {
         self.leftBG2.position = ccp(self.leftBG1.position.x + winSize.width, winSize.height/2);
+    }
+    
+    // Shift right background
+    if (self.rightBG1.position.x + self.rightGround.position.x > winSize.width + winSize.width/2)
+    {
+        self.rightBG1.position = ccp(self.rightBG2.position.x - winSize.width, winSize.height/2);
+    }
+    if (self.rightBG2.position.x + self.rightGround.position.x > winSize.width + winSize.width/2)
+    {
+        self.rightBG2.position = ccp(self.rightBG1.position.x - winSize.width, winSize.height/2);
     }
     
     // Move left player

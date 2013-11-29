@@ -16,9 +16,12 @@
 #import "RightPlayer.h"
 #import <AVFoundation/AVFoundation.h>
 #import "SimpleAudioEngine.h"
+#import "ClippingNode.h"
 
 @interface GameScene () 
 
+@property (strong, nonatomic) ClippingNode *leftNode;
+@property (strong, nonatomic) ClippingNode *rightNode;
 @property (strong, nonatomic) CCLayer *leftGround;
 @property (strong, nonatomic) CCLayer *rightGround;
 @property (strong, nonatomic) CCLayer *leftPlayerLayer;
@@ -48,23 +51,23 @@
         
         [self scheduleUpdate];
         
+        // Create the clipping nodes
+        
+        _leftNode = [ClippingNode node];
+        [_leftNode setClippingRegion:CGRectMake(0, 0, winSize.width/2, winSize.height)];
+        [self addChild:_leftNode];
+        
+        _rightNode = [ClippingNode node];
+        [_rightNode setClippingRegion:CGRectMake(winSize.width/2, 0, winSize.width/2, winSize.height)];
+        [self addChild:_rightNode];
+        
         // Create layers
-        
-//        CGSize layerSize = CGSizeMake(winSize.width/2, winSize.height/2);
-        
+
         _leftGround = [CCLayer node];
-//        _leftGround.contentSize = layerSize;
-//        _leftGround.position = CGPointZero;
         _rightGround = [CCLayer node];
-//        _rightGround.contentSize = layerSize;
-//        _rightGround.position = ccp(winSize.width/2, 0);
         
         _leftPlayerLayer = [CCLayer node];
-//        _leftPlayerLayer.contentSize = layerSize;
-//        _leftPlayerLayer.position = CGPointZero;
         _rightPlayerLayer = [CCLayer node];
-//        _rightPlayerLayer.contentSize = layerSize;
-//        _rightPlayerLayer.position = ccp(winSize.width/2, 0);
         
         // Add backgrounds
         
@@ -130,10 +133,10 @@
             [obs release];
         }
         
-        [self addChild:_leftGround z:0];
-        [self addChild:_rightGround z:0];
-        [self addChild:_leftPlayerLayer z:1];
-        [self addChild:_rightPlayerLayer z:1];
+        [_leftNode addChild:_leftGround z:0];
+        [_leftNode addChild:_leftPlayerLayer z:1];
+        [_rightNode addChild:_rightGround z:0];
+        [_rightNode addChild:_rightPlayerLayer z:1];
         
         // Start playing music
         if([Registry getIsSample])
@@ -229,7 +232,7 @@
         else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation))
         {
             // right player jump
-            //[self.rightPlayer jump];
+            [self.rightPlayer jump];
         }
         else
         {

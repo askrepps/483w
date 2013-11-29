@@ -165,7 +165,6 @@
 		C2269AF1182BF856001312F4 /* sliderTrack-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C2269AEA182BF856001312F4 /* sliderTrack-hd.png */; };
 		C2269AF2182BF856001312F4 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = C2269AEB182BF856001312F4 /* sliderTrack.png */; };
 		C2269AF3182BF856001312F4 /* TitleImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2269AEC182BF856001312F4 /* TitleImage.jpg */; };
-		C229CD341847A0290098C02D /* SplitScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C229CD331847A0290098C02D /* SplitScreenLayer.m */; };
 		C229CD3718480DC20098C02D /* ClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C229CD3618480DC20098C02D /* ClippingNode.m */; };
 		C234773E183981E8005408C9 /* background_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773C183981E8005408C9 /* background_inverted.png */; };
 		C234773F183981E8005408C9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773D183981E8005408C9 /* background.png */; };
@@ -501,8 +500,6 @@
 		C2269AEA182BF856001312F4 /* sliderTrack-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sliderTrack-hd.png"; path = "Resources/sliderTrack-hd.png"; sourceTree = "<group>"; };
 		C2269AEB182BF856001312F4 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderTrack.png; path = Resources/sliderTrack.png; sourceTree = "<group>"; };
 		C2269AEC182BF856001312F4 /* TitleImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TitleImage.jpg; path = Resources/TitleImage.jpg; sourceTree = "<group>"; };
-		C229CD321847A0290098C02D /* SplitScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitScreenLayer.h; sourceTree = "<group>"; };
-		C229CD331847A0290098C02D /* SplitScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitScreenLayer.m; sourceTree = "<group>"; };
 		C229CD3518480DC20098C02D /* ClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingNode.h; sourceTree = "<group>"; };
 		C229CD3618480DC20098C02D /* ClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClippingNode.m; sourceTree = "<group>"; };
 		C234773C183981E8005408C9 /* background_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_inverted.png; path = Resources/background_inverted.png; sourceTree = "<group>"; };
@@ -652,8 +649,6 @@
 				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
 				C262F8261814B3BE00C901FF /* RightPlayer.h */,
 				C262F8271814B3BE00C901FF /* RightPlayer.m */,
-				C229CD321847A0290098C02D /* SplitScreenLayer.h */,
-				C229CD331847A0290098C02D /* SplitScreenLayer.m */,
 				99C27E8D17E1274F00060D51 /* libs */,
 				99C27E7517E1274F00060D51 /* Resources */,
 				99C2800117E1275F00060D51 /* Supporting Files */,
@@ -1359,7 +1354,6 @@
 				99F6A190182E9B730028DEDD /* MusicSelectLayer.m in Sources */,
 				C28B876118353E840093E7E2 /* GameScene.m in Sources */,
 				C28B877018353F6A0093E7E2 /* Obstacle.m in Sources */,
-				C229CD341847A0290098C02D /* SplitScreenLayer.m in Sources */,
 				C229CD3718480DC20098C02D /* ClippingNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

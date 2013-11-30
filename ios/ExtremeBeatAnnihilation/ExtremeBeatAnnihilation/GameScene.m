@@ -14,8 +14,8 @@
 #import "SoundEvent.h"
 #import "LeftPlayer.h"
 #import "RightPlayer.h"
-#import "SimpleAudioEngine.h"
 #import "ClippingNode.h"
+#import "GameOverLayer.h"
 
 @interface GameScene () 
 
@@ -170,6 +170,7 @@
 {
     [_leftObstacles release];
     [_rightObstacles release];
+    [_avPlayer release];
     [super dealloc];
 }
 
@@ -236,10 +237,8 @@
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    if(player == self.avPlayer)
-    {
-        NSLog(@"Player finished");
-    }
+    [Registry setScore:self.score];
+    [[CCDirector sharedDirector] replaceScene:[GameOverLayer scene]];
 }
 
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player

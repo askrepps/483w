@@ -166,6 +166,7 @@
 		C2269AF2182BF856001312F4 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = C2269AEB182BF856001312F4 /* sliderTrack.png */; };
 		C2269AF3182BF856001312F4 /* TitleImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2269AEC182BF856001312F4 /* TitleImage.jpg */; };
 		C229CD3718480DC20098C02D /* ClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C229CD3618480DC20098C02D /* ClippingNode.m */; };
+		C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C229CD39184A99CF0098C02D /* GameOverLayer.m */; };
 		C234773E183981E8005408C9 /* background_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773C183981E8005408C9 /* background_inverted.png */; };
 		C234773F183981E8005408C9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773D183981E8005408C9 /* background.png */; };
 		C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8241814B3AD00C901FF /* LeftPlayer.m */; };
@@ -502,6 +503,8 @@
 		C2269AEC182BF856001312F4 /* TitleImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TitleImage.jpg; path = Resources/TitleImage.jpg; sourceTree = "<group>"; };
 		C229CD3518480DC20098C02D /* ClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingNode.h; sourceTree = "<group>"; };
 		C229CD3618480DC20098C02D /* ClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClippingNode.m; sourceTree = "<group>"; };
+		C229CD38184A99CE0098C02D /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		C229CD39184A99CF0098C02D /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		C234773C183981E8005408C9 /* background_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_inverted.png; path = Resources/background_inverted.png; sourceTree = "<group>"; };
 		C234773D183981E8005408C9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = "<group>"; };
 		C262F8231814B3AD00C901FF /* LeftPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftPlayer.h; sourceTree = "<group>"; };
@@ -629,6 +632,8 @@
 				C229CD3618480DC20098C02D /* ClippingNode.m */,
 				C28B875F18353E830093E7E2 /* GameScene.h */,
 				C28B876018353E830093E7E2 /* GameScene.m */,
+				C229CD38184A99CE0098C02D /* GameOverLayer.h */,
+				C229CD39184A99CF0098C02D /* GameOverLayer.m */,
 				C2FB1A25182586E100288C7E /* Registry.h */,
 				C2FB1A26182586E100288C7E /* Registry.m */,
 				99C2800B17E1275F00060D51 /* IntroLayer.h */,
@@ -1355,6 +1360,7 @@
 				C28B876118353E840093E7E2 /* GameScene.m in Sources */,
 				C28B877018353F6A0093E7E2 /* Obstacle.m in Sources */,
 				C229CD3718480DC20098C02D /* ClippingNode.m in Sources */,
+				C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

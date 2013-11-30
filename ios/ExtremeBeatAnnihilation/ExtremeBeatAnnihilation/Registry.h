@@ -28,4 +28,7 @@ FOUNDATION_EXPORT NSString *const kVolume;
 +(void)setMusicName:(NSString*)name;
 +(NSURL*)getMusicURL;
 +(void)setMusicURL:(NSURL*)URL;
++(void)setScore:(NSInteger)score;
++(NSInteger)getScore;
++(void)clean;
 @end

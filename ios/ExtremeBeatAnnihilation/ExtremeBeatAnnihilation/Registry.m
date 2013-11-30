@@ -16,6 +16,7 @@ static NSInteger kCharTwo = -1;
 static BOOL kIsSinglePlayer;
 static NSString *kMusicName;
 static NSURL *kMusicURL;
+static NSInteger kScore = 0;
 
 +(void)setChar:(NSInteger)index
 {
@@ -79,5 +80,25 @@ static NSURL *kMusicURL;
 +(void)setMusicURL:(NSURL*)URL
 {
     kMusicURL = [[URL copy] retain];//[[NSURL alloc] initWithString:URL.absoluteString];
+}
+
++(void)setScore:(NSInteger)score
+{
+    kScore = score;
+}
+
++(NSInteger)getScore
+{
+    return kScore;
+}
+
++(void)clean
+{
+    kCharOne = -1;
+    kCharTwo = -1;
+    kIsSinglePlayer = nil;
+    kMusicName = nil;
+    kMusicURL = nil;
+    kScore = 0;
 }
 @end

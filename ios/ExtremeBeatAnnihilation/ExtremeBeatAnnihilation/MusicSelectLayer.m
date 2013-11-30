@@ -109,7 +109,6 @@
     MPMediaItem *item = [[collection items] objectAtIndex:0];
     NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
     [Registry setMusicURL:url];
-    [Registry setIsSample:NO];
     
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
     [app.navController dismissViewControllerAnimated:YES completion:NULL];

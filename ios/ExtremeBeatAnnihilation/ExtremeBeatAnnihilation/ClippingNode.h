@@ -2,6 +2,7 @@
 //  ClippingNode.h
 //
 //  Created by Steffen Itterheim
+//  http://www.learn-cocos2d.com/2011/01/cocos2d-gem-clippingnode/
 //
 
 #import "cocos2d.h"

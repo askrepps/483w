@@ -85,7 +85,6 @@
         self.canBlink = NO;
         [self runAction:actions];
     }
-    
 }
 
 -(void)enableJump
@@ -101,6 +100,11 @@
 -(void)enableBlink
 {
     self.canBlink = YES;
+}
+
+-(BOOL)isBlinking
+{
+    return !self.canBlink;
 }
 
 @end

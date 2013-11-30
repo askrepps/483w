@@ -68,7 +68,6 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];
     [Registry setMusicName:@"LettingGo.mp3"];
     [Registry setMusicURL:url];
-    [Registry setIsSample:YES];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
@@ -78,7 +77,6 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"TheCallOfStars" withExtension:@"mp3"];
     [Registry setMusicName:@"TheCallOfStars.mp3"];
     [Registry setMusicURL:url];
-    [Registry setIsSample:YES];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }

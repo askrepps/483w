@@ -14,7 +14,6 @@
 #import "SoundEvent.h"
 #import "LeftPlayer.h"
 #import "RightPlayer.h"
-#import <AVFoundation/AVFoundation.h>
 #import "SimpleAudioEngine.h"
 #import "ClippingNode.h"
 
@@ -34,7 +33,7 @@
 @property (strong, nonatomic) CCSprite *leftBG2;
 @property (strong, nonatomic) CCSprite *rightBG1;
 @property (strong, nonatomic) CCSprite *rightBG2;
-@property (strong, nonatomic) AVPlayer *avPlayer;
+@property (strong, nonatomic) AVAudioPlayer *avPlayer;
 @property (strong, nonatomic) CCLabelTTF *scoreLabel;
 @property NSInteger score;
 
@@ -145,22 +144,33 @@
         _score = 0;
         _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", _score] fontName:@"Marker Felt" fontSize:24];
         _scoreLabel.position = ccp(winSize.width/2, winSize.height - 24);
+        
+        CCMenuItemFont *pause = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(pausePressed)];
+        pause.position = ccp(winSize.width/4, winSize.height - 24);
+        
+        CCMenu *menu = [CCMenu menuWithItems:pause, nil];
+        menu.position = CGPointZero;
+        
         [self addChild:_scoreLabel];
+        [self addChild:menu];
         
         // Start playing music
-        if([Registry getIsSample])
-        {
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[Registry getMusicName]];
-        }
-        else
-        {
-            _avPlayer = [[AVPlayer alloc] init];
-            [_avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:[Registry getMusicURL]]];
-            [_avPlayer play];
-        }
+        _avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[Registry getMusicURL] error:nil];
+        NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+        NSNumber *value = [preferences objectForKey:kVolume];
+        _avPlayer.volume = value.floatValue;
+        _avPlayer.delegate = self;
+        [_avPlayer play];
     }
     
     return self;
+}
+
+-(void) dealloc
+{
+    [_leftObstacles release];
+    [_rightObstacles release];
+    [super dealloc];
 }
 
 -(void)update:(ccTime)delta
@@ -202,6 +212,10 @@
         if (CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
         {
             [self.leftPlayer blink];
+            if(self.leftPlayer.isBlinking)
+            {
+                self.score-=100;
+            }
         }
     }
     
@@ -210,15 +224,32 @@
         if (CGRectIntersectsRect(self.rightPlayer.boundingBox, obs.boundingBox))
         {
             [self.rightPlayer blink];
+            self.score-=100;
         }
+    }
+    
+    self.score+=10;
+    [self.scoreLabel setString:[NSString stringWithFormat:@"%d", self.score]];
+}
+
+#pragma mark - AVAudioPlayerDelegate Methods
+
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if(player == self.avPlayer)
+    {
+        NSLog(@"Player finished");
     }
 }
 
--(void) dealloc
+-(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
 {
-    [_leftObstacles release];
-    [_rightObstacles release];
-    [super dealloc];
+    NSLog(@"Player interrupted");
+}
+
+-(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
+{
+    
 }
 
 #pragma mark - Touch Handling
@@ -257,6 +288,16 @@
             NSLog(@"Fuck we dun goofed.");
         }
     }
+}
+
+#pragma mark - Button Presses
+
+-(void)pausePressed
+{
+    NSLog(@"Pause pressed.");
+    //Push Scene
+    [self.avPlayer pause];
+    [self.avPlayer play];
 }
 
 @end

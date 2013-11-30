@@ -62,16 +62,6 @@ static NSURL *kMusicURL;
     kIsSinglePlayer = mode;
 }
 
-+(BOOL)getIsSample
-{
-    return kIsSample;
-}
-
-+(void)setIsSample:(BOOL)selection
-{
-    kIsSample = selection;
-}
-
 +(NSString*)getMusicName;
 {
     return kMusicName;

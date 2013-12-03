@@ -103,4 +103,9 @@
     self.canBlink = YES;
 }
 
+-(BOOL)isBlinking
+{
+    return !self.canBlink;
+}
+
 @end

@@ -210,22 +210,20 @@
     // Collision detection
     for (Obstacle *obs in self.leftObstacles)
     {
-        if (CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
+        if (!self.leftPlayer.isBlinking && CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
         {
             [self.leftPlayer blink];
-            if(self.leftPlayer.isBlinking)
-            {
-                self.score-=100;
-            }
+            //[obs hitByCharacter];
+            self.score-=1000;
         }
     }
     
     for (Obstacle *obs in self.rightObstacles)
     {
-        if (CGRectIntersectsRect(self.rightPlayer.boundingBox, obs.boundingBox))
+        if (!self.rightPlayer.isBlinking && CGRectIntersectsRect(self.rightPlayer.boundingBox, obs.boundingBox))
         {
             [self.rightPlayer blink];
-            self.score-=100;
+            self.score-=1000;
         }
     }
     

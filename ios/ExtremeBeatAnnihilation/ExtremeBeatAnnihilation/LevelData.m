@@ -19,9 +19,9 @@
         _events = [[NSMutableArray alloc] init];
         _sampleRate = 44100;
         
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 225; i++)
         {
-            SoundEvent *event = [[SoundEvent alloc] initWithSample:(i+1)*44100 andFreq:i*200.0f];
+            SoundEvent *event = [[SoundEvent alloc] initWithSample:(i+1)*44100 andFreq:arc4random_uniform(4)];//i*200.0f];
             [_events addObject:event];
             [event release];
         }
@@ -32,6 +32,15 @@
         {
             [event setAttributesWithQ1:_q1Freq andMedian:_medianFreq andQ3:_q3Freq];
         }
+        
+//        NSUInteger count = [_events count];
+//        for (NSUInteger i = 0; i < count; i++)
+//        {
+//            // Select a random element between i and end of array to swap with.
+//            NSInteger nElements = count - i;
+//            NSInteger n = arc4random_uniform(nElements) + i;
+//            [_events exchangeObjectAtIndex:i withObjectAtIndex:n];
+//        }
     }
     
     return self;

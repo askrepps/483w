@@ -36,6 +36,7 @@
 @property (strong, nonatomic) AVAudioPlayer *avPlayer;
 @property (strong, nonatomic) CCLabelTTF *scoreLabel;
 @property NSInteger score;
+@property (strong, nonatomic) CCLayer *pauseLayer;
 
 @end
 
@@ -239,16 +240,6 @@
     [[CCDirector sharedDirector] replaceScene:[GameOverLayer scene]];
 }
 
--(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
-{
-    NSLog(@"Player interrupted");
-}
-
--(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
-{
-    
-}
-
 #pragma mark - Touch Handling
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -282,7 +273,7 @@
         }
         else
         {
-            NSLog(@"Fuck we dun goofed.");
+            NSLog(@"Congratulations, you have broken the physical laws of reality.");
         }
     }
 }
@@ -291,10 +282,15 @@
 
 -(void)pausePressed
 {
-    NSLog(@"Pause pressed.");
-    //Push Scene
+    //Present pause screen as primary layer
     [self.avPlayer pause];
+    [self unscheduleUpdate];
+    
+    
     [self.avPlayer play];
+    [self scheduleUpdate];
 }
+
+#pragma mark - Pause screen methods
 
 @end

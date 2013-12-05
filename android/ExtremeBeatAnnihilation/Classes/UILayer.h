@@ -2,6 +2,11 @@
 #define __UI_LAYER_H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
+
+#include "Global.h"
+
+#include "PauseScene.h"
 
 #define PAUSE_WIDTH_POS      0.9                 // factor of screen with to position pause menu item
 #define PAUSE_HEIGHT_POS     0.1                 // factor of screen height to position pause menu item

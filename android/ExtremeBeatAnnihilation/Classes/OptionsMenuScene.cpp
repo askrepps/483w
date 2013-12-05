@@ -4,6 +4,9 @@ using namespace cocos2d;
 using namespace extension;
 using namespace CocosDenshion;
 
+// externs defined in Global.h
+extern bool Prev_Was_Main_Menu;
+
 CCScene* OptionsMenu::Scene()
 {
     CCScene*     scene = CCScene::create();
@@ -100,6 +103,12 @@ void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
 
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
-	// Go back to the main menu
-	CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+    if (Prev_Was_Main_Menu)                      // Go back to the main menu
+    {
+        CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+    }
+    else                                         // Go back to pause scene
+    {
+        CCDirector::sharedDirector()->replaceScene(PauseLayer::Scene());
+    }
 }

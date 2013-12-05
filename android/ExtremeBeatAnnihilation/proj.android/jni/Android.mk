@@ -20,6 +20,7 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/PlayerRLayer.cpp \
                    ../../Classes/PlayerLLayer.cpp \
                    ../../Classes/UILayer.cpp \
+                   ../../Classes/PauseScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp \
                    ../../Classes/Global.cpp
                    

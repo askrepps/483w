@@ -5,6 +5,7 @@ using namespace CocosDenshion;
 
 // externs defined in Global.h
 extern bool Is_Single_Player;
+extern bool Prev_Was_Main_Menu;
 
 // Initialize the menu items, background, and overall setup of the main menu
 //
@@ -97,5 +98,6 @@ void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleOptionsPressed(CCObject* sender)
 {
+    Prev_Was_Main_Menu = true;
 	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }

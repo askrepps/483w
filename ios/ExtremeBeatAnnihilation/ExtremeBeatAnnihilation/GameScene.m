@@ -16,6 +16,7 @@
 #import "RightPlayer.h"
 #import "ClippingNode.h"
 #import "GameOverLayer.h"
+#import "PauseLayer.h"
 
 @interface GameScene () 
 
@@ -36,7 +37,7 @@
 @property (strong, nonatomic) AVAudioPlayer *avPlayer;
 @property (strong, nonatomic) CCLabelTTF *scoreLabel;
 @property NSInteger score;
-@property (strong, nonatomic) CCLayer *pauseLayer;
+@property (strong, nonatomic) PauseLayer *pauseLayer;
 
 @end
 
@@ -154,16 +155,6 @@
         
         [self addChild:_scoreLabel];
         [self addChild:menu];
-        
-        // Pause menu items
-        
-        _pauseLayer = [CCLayer node];
-        
-        CCMenuItemFont *unPause = [CCMenuItemFont itemWithString:@"Return to Game" target:self selector:@selector(unPausePressed)];
-        CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed)];
-        CCMenu *pauseMenu = [CCMenu menuWithItems:unPause, back, nil];
-        
-        [_pauseLayer addChild: pauseMenu];
         
         // Start playing music
         _avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[Registry getMusicURL] error:nil];
@@ -298,19 +289,6 @@
     
     [self.avPlayer play];
     [self scheduleUpdate];
-}
-
-#pragma mark - Pause screen methods
-
--(void)unPausePressed
-{
-    
-}
-
--(void)backPressed
-// Unpause game
-{
-    
 }
 
 @end

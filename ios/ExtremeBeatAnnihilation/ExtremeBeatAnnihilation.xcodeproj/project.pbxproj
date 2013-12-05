@@ -157,6 +157,7 @@
 		C20D789218302A42006CB110 /* char2selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C20D788E18302A41006CB110 /* char2selected.png */; };
 		C20D789318302A42006CB110 /* char3selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C20D788F18302A42006CB110 /* char3selected.png */; };
 		C20D789418302A42006CB110 /* char4selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C20D789018302A42006CB110 /* char4selected.png */; };
+		C21095C71850E344009B311E /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C21095C61850E344009B311E /* PauseLayer.m */; };
 		C2269AE5182BF809001312F4 /* SoundEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C2269AE4182BF809001312F4 /* SoundEvent.m */; };
 		C2269AED182BF856001312F4 /* sliderProgress-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C2269AE6182BF856001312F4 /* sliderProgress-hd.png */; };
 		C2269AEE182BF856001312F4 /* sliderProgress.png in Resources */ = {isa = PBXBuildFile; fileRef = C2269AE7182BF856001312F4 /* sliderProgress.png */; };
@@ -492,6 +493,8 @@
 		C20D788E18302A41006CB110 /* char2selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = char2selected.png; sourceTree = "<group>"; };
 		C20D788F18302A42006CB110 /* char3selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = char3selected.png; sourceTree = "<group>"; };
 		C20D789018302A42006CB110 /* char4selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = char4selected.png; sourceTree = "<group>"; };
+		C21095C51850E344009B311E /* PauseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseLayer.h; sourceTree = "<group>"; };
+		C21095C61850E344009B311E /* PauseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseLayer.m; sourceTree = "<group>"; };
 		C2269AE3182BF809001312F4 /* SoundEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEvent.h; sourceTree = "<group>"; };
 		C2269AE4182BF809001312F4 /* SoundEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEvent.m; sourceTree = "<group>"; };
 		C2269AE6182BF856001312F4 /* sliderProgress-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sliderProgress-hd.png"; path = "Resources/sliderProgress-hd.png"; sourceTree = "<group>"; };
@@ -652,6 +655,8 @@
 				C28B876F18353F6A0093E7E2 /* Obstacle.m */,
 				C2FB19E91821565000288C7E /* OptionsLayer.h */,
 				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
+				C21095C51850E344009B311E /* PauseLayer.h */,
+				C21095C61850E344009B311E /* PauseLayer.m */,
 				C262F8261814B3BE00C901FF /* RightPlayer.h */,
 				C262F8271814B3BE00C901FF /* RightPlayer.m */,
 				99C27E8D17E1274F00060D51 /* libs */,
@@ -1361,6 +1366,7 @@
 				C28B877018353F6A0093E7E2 /* Obstacle.m in Sources */,
 				C229CD3718480DC20098C02D /* ClippingNode.m in Sources */,
 				C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */,
+				C21095C71850E344009B311E /* PauseLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -74,10 +74,10 @@
         
         // Add backgrounds
         
-        _leftBG1 = [CCSprite spriteWithFile:@"background.png"];
-        _leftBG2 = [CCSprite spriteWithFile:@"background.png"];
-        _rightBG1 = [CCSprite spriteWithFile:@"background_inverted.png"];
-        _rightBG2 = [CCSprite spriteWithFile:@"background_inverted.png"];
+        _leftBG1 = [CCSprite spriteWithFile:@"night_background.png"];
+        _leftBG2 = [CCSprite spriteWithFile:@"night_background.png"];
+        _rightBG1 = [CCSprite spriteWithFile:@"night_background_inverted.png"];
+        _rightBG2 = [CCSprite spriteWithFile:@"night_background_inverted.png"];
         
         _leftBG1.position = ccp(winSize.width/2, winSize.height/2);
         _leftBG2.position = ccp(winSize.width*3/2, winSize.height/2);
@@ -215,7 +215,6 @@
         if (!self.leftPlayer.isBlinking && CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
         {
             [self.leftPlayer blink];
-            //[obs hitByCharacter];
             self.score-=1000;
         }
     }

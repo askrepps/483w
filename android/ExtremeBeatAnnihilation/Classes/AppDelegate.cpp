@@ -3,6 +3,11 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
+// externs defined in Global.cpp
+extern bool  Allow_Volume_Set;
+extern float Music_Volume;
+extern float SFX_Volume;
+
 AppDelegate::AppDelegate()
 {
 }
@@ -18,8 +23,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
     // set the initial volumes
-    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(INIT_MUSIC_VOL);
-    SimpleAudioEngine::sharedEngine()->setEffectsVolume(INIT_SFX_VOL);
+    Music_Volume = INIT_MUSIC_VOL;
+    SFX_Volume   = INIT_SFX_VOL;
+    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(Music_Volume / VOLUME_FACTOR);
+    SimpleAudioEngine::sharedEngine()->setEffectsVolume(SFX_Volume / VOLUME_FACTOR);
+    Allow_Volume_Set = false;    // initialized to false, so volumes don't get set to default values on
+                                 //   init of options menu
 
     // start up the menu song
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);

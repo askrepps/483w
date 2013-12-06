@@ -5,7 +5,10 @@ using namespace extension;
 using namespace CocosDenshion;
 
 // externs defined in Global.h
-extern bool Prev_Was_Main_Menu;
+extern bool  Prev_Was_Main_Menu;
+extern bool  Allow_Volume_Set;
+extern float Music_Volume;
+extern float SFX_Volume;
 
 CCScene* OptionsMenu::Scene()
 {
@@ -68,7 +71,7 @@ bool OptionsMenu::init()
                                                                                       CCControlEventValueChanged);
     volume->setMinimumValue(0);
     volume->setMaximumValue(100);
-    volume->setValue(50);
+    volume->setValue(Music_Volume);
     volume->setPosition( ccp(size.width / 2, (2*size.height/3) - 20));
     this->addChild(volume, 1);
 
@@ -78,9 +81,11 @@ bool OptionsMenu::init()
                                                                                  CCControlEventValueChanged);
     sfx->setMinimumValue(0);
     sfx->setMaximumValue(100);
-    sfx->setValue(50);
+    sfx->setValue(SFX_Volume);
     sfx->setPosition( ccp(size.width / 2, (size.height/3) - 20));
     this->addChild(sfx, 1);
+
+    Allow_Volume_Set = true;          // not that sliders are initialized, volume levels can change
 
     return true;
 }
@@ -90,7 +95,11 @@ bool OptionsMenu::init()
 // slider [in] - the slider that changed its value
 void OptionsMenu::HandleMusicSliderChanged(CCControlSlider* slider)
 {
-    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(slider->getValue() / VOLUME_FACTOR);
+    if (Allow_Volume_Set)            // everything's been initialized, so allow volume setting
+    {
+        Music_Volume = slider->getValue();
+        SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(Music_Volume / VOLUME_FACTOR);
+    }
 }
 
 // Update the sound effects volume whenever the value of the slider is changed
@@ -98,7 +107,11 @@ void OptionsMenu::HandleMusicSliderChanged(CCControlSlider* slider)
 // slider [in] - the slider that changed its value
 void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
 {
-    SimpleAudioEngine::sharedEngine()->setEffectsVolume(slider->getValue() / VOLUME_FACTOR);
+    if (Allow_Volume_Set)            // everything's been initialized, so allow volume setting
+    {
+        SFX_Volume = slider->getValue();
+        SimpleAudioEngine::sharedEngine()->setEffectsVolume(SFX_Volume / VOLUME_FACTOR);
+    }
 }
 
 void OptionsMenu::MenuGoBack(CCObject* sender)
@@ -111,4 +124,7 @@ void OptionsMenu::MenuGoBack(CCObject* sender)
     {
         CCDirector::sharedDirector()->replaceScene(PauseLayer::Scene());
     }
+
+    Allow_Volume_Set = false;    // set to false again, so volumes don't get set to default values upon
+                                 //   return to the options menu
 }

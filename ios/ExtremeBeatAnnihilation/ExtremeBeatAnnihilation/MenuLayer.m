@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "BackgroundLayer.h"
 #import "OptionsLayer.h"
+#import "CharacterSelectLayer.h"
+#import "Registry.h"
 
 #pragma mark - MenuLayer
 
@@ -39,24 +41,19 @@
 	if((self=[super init]))
     {        
         CGSize size = [[CCDirector sharedDirector] winSize];
-        
-//        // Add background image
-//        CCSprite* background = [CCSprite spriteWithFile:@"TitleImage.jpg"];
-//        background.position = CGPointZero;
-//        [self addChild:background];
 
         // Add buttons for starting the game and accessing options
-        CCMenuItemFont *startGame = [CCMenuItemFont itemWithString:@"Start Game" target:self selector:@selector(startPressed:)];
-        startGame.position = ccp(size.width/2, size.height/2);
+        CCMenuItemFont *single = [CCMenuItemFont itemWithString:@"Single Player" target:self selector:@selector(singlePressed:)];
+        single.position = ccp(size.width/2, size.height/2);
+        CCMenuItemFont *multi = [CCMenuItemFont itemWithString:@"Multiplayer" target:self selector:@selector(multiPressed:)];
+        multi.position = ccp(size.width/2, size.height/2 - 32);
         CCMenuItemFont *options = [CCMenuItemFont itemWithString:@"Options" target:self selector:@selector(optionsPressed:)];
-        options.position = ccp(size.width/2, size.height/2 - 32);
+        options.position = ccp(size.width/2, size.height/2 - 64);
         
-        CCMenu *startMenu = [CCMenu menuWithItems:startGame, options, nil];
+        CCMenu *startMenu = [CCMenu menuWithItems:single, multi, options, nil];
         startMenu.position = CGPointZero;
         [self addChild:startMenu];
-        
-        [[CCDirector sharedDirector] setDisplayStats:NO];
-	}
+    }
     
 	return self;
 }
@@ -66,15 +63,19 @@
 	[super dealloc];
 }
 
--(void)startPressed:(id)sender
+-(void)singlePressed:(id)sender
 {
-    NSLog(@"start pressed");
+    [Registry setIsSinglePlayer:YES];
+    [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
+}
+
+-(void)multiPressed:(id)sender
+{
+    [Registry setIsSinglePlayer:NO];
 }
 
 -(void)optionsPressed:(id)sender
 {
-    CCScene *scene = [CCScene node];
-    [scene addChild:[OptionsLayer node]];
-    [[CCDirector sharedDirector] pushScene:scene];
+    [[CCDirector sharedDirector] pushScene:[OptionsLayer scene]];
 }
 @end

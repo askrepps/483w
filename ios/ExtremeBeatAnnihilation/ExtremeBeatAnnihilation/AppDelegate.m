@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
-#import "Constants.h"
+#import "Registry.h"
 
 @implementation MyNavigationController
 
@@ -88,9 +88,6 @@
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
 	director_.wantsFullScreenLayout = YES;
-	
-	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
 	
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];

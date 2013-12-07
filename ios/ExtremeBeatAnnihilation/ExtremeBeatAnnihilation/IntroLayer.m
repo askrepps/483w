@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "MenuLayer.h"
+#import "MusicSelectLayer.h"
 
 #pragma mark - IntroLayer
 

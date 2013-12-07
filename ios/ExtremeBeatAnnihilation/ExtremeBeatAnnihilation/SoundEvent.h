@@ -13,10 +13,10 @@
 typedef enum { LEFT, RIGHT } Side;
 typedef enum { JUMP, SLIDE } Type;
 
-@property uint sample;
-@property float freq;
-@property Side side;
-@property Type type;
+@property (readonly) uint sample;
+@property (readonly) float freq;
+@property (readonly) Side side;
+@property (readonly) Type type;
 
 -(id) initWithSample:(uint)s andFreq:(float)f;
 -(void) setAttributesWithQ1:(float)q1Freq andMedian:(float)medianFreq andQ3:(float)q3Freq;

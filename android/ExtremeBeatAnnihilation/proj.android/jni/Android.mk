@@ -8,8 +8,21 @@ LOCAL_MODULE_FILENAME := libgame
 
 LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+                   ../../Classes/MainMenuScene.cpp \
+                   ../../Classes/CharacterSelectScene.cpp \
+                   ../../Classes/MusicSelectScene.cpp \
+                   ../../Classes/SampleMusicScene.cpp \
+                   ../../Classes/GameScene.cpp \
+                   ../../Classes/BackgroundRLayer.cpp \
+                   ../../Classes/BackgroundLLayer.cpp \
+                   ../../Classes/ForegroundRLayer.cpp \
+                   ../../Classes/ForegroundLLayer.cpp \
+                   ../../Classes/PlayerRLayer.cpp \
+                   ../../Classes/PlayerLLayer.cpp \
+                   ../../Classes/UILayer.cpp \
+                   ../../Classes/PauseScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp \
-				   ../../Classes/MainMenuScene.cpp 
+                   ../../Classes/Global.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
 

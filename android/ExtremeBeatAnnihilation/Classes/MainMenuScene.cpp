@@ -1,28 +1,27 @@
 #include "MainMenuScene.h"
-#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* MainMenu::Scene()
+// externs defined in Global.h
+extern bool Is_Single_Player;
+extern bool Prev_Was_Main_Menu;
+
+// Initialize the menu items, background, and overall setup of the main menu
+//
+// return - false if there was an error in initializing, true otherwise
+bool MainMenu::init()
 {
-    CCScene*  scene = CCScene::create();
-    MainMenu* layer = MainMenu::create();
+    CCLabelTTF*      labelSinglePlayer; // the text for single player menu item
+    CCLabelTTF*      labelMultiplayer;  // the text for multiplayer menu item
+    CCLabelTTF*      labelOptions;      // the text for options menu item
+    CCMenuItemLabel* itemSinglePlayer;  // menu item for starting single player game
+    CCMenuItemLabel* itemMultiplayer;   // menu item for starting multiplayer game
+    CCMenuItemLabel* itemOptions;       // menu item for opening up options
+    CCMenu*          menu;              // menu to contain the menu items
 
-    // add layer as a child to scene
-    scene->addChild(layer);
-
-    return scene;
-}
-
-// on "init" you need to initialize your instance
-bool MainMenu::Init()
-{
-    CCSize           size;           // the size of the window
-    CCMenuItemImage* closeItem;      // the icon to click to close the app
-    CCMenu*          menu;           // menu to contain the closeItem
-    CCLabelTTF*      label;          // label to display "Main Menu"
-    CCSprite*        sprite;         // the background splashscreen
+    CCSize           size;              // the size of the window
+    CCSprite*        background;        // the background splashscreen
 
     if(!CCLayer::init())
     {
@@ -32,35 +31,73 @@ bool MainMenu::Init()
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
 
-    // add a "close" icon to exit the app
-    closeItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-                                           menu_selector(MainMenu::MenuCloseCallback));
-    closeItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    // create the text for the menu items
+    labelSinglePlayer = CCLabelTTF::create("Start Single Player", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelOptions      = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
 
-    // create menu to contain closeItem
-    menu = CCMenu::create(closeItem, NULL);
-    menu->setPosition(CCPointZero);
+    // create the items for the menu
+    itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::HandleSinglePlayerPressed));
+    itemMultiplayer  = CCMenuItemLabel::create(labelMultiplayer, this, menu_selector(MainMenu::HandleMultiplayerPressed));
+    itemOptions      = CCMenuItemLabel::create(labelOptions, this, menu_selector(MainMenu::HandleOptionsPressed));
+
+    // set the color of the menu items
+    itemSinglePlayer->setColor(MENU_COLOR);
+    itemMultiplayer->setColor(MENU_COLOR);
+    itemOptions->setColor(MENU_COLOR);
+
+    // create menu to contain the menu items
+    menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, NULL);
+    menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
+    menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
     this->addChild(menu, 1);
 
-    // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("Main Menu", "Thonburi", 34);
-    label->setPosition( ccp(size.width / 2, size.height - 20) );
-    this->addChild(label, 1);
-
     // add splash screen as a sprite on the center of the screen
-    sprite = CCSprite::create("splashscreen.jpg");
-    sprite->setPosition( ccp(size.width / 2, size.height / 2) );
-    this->addChild(sprite, 0);
+    background = CCSprite::create(BACKGROUND_IMAGE);
+    background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
+    this->addChild(background, 0);
 
     return true;
 }
 
-// a selector callback
-void MainMenu::MenuCloseCallback(CCObject* sender)
+// Create a main menu scene that has a MainMenu layer
+//
+// return - a newly created main menu scene
+CCScene* MainMenu::Scene()
 {
-    CCDirector::sharedDirector()->end();
+    CCScene*  scene = CCScene::create();    // the main menu scene to return
+    MainMenu* layer = MainMenu::create();   // the layer for the scene
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+    scene->addChild(layer);
+
+    return scene;
+}
+
+// On selecting the single player menu item, switch to a character select scene with the necessary
+//    information on starting a single player game
+//
+// sender [in] - the object that sent the selected event?
+void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
+{
+    Is_Single_Player = true;
+	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
+}
+
+// On selecting the multiplayer menu item, switch to a character select scene with the necessary
+//    information on starting a multiplayer game
+//
+// sender [in] - the object that sent the selected event?
+void MainMenu::HandleMultiplayerPressed(CCObject* sender)
+{
+    Is_Single_Player = false;
+	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
+}
+
+// On selecting the options menu item, switch to the options scene
+//
+// sender [in] - the object that sent the selected event?
+void MainMenu::HandleOptionsPressed(CCObject* sender)
+{
+    Prev_Was_Main_Menu = true;
+	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }

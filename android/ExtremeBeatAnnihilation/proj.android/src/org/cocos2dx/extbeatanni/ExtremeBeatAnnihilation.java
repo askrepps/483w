@@ -25,12 +25,19 @@ package org.cocos2dx.extbeatanni;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+	}
+	
+	private void startupFileExplore()
+	{
+		Intent myIntent = new Intent(ExtremeBeatAnnihilation.this, FileExplore.class);
+		startActivity(myIntent);
 	}
 	
     static {

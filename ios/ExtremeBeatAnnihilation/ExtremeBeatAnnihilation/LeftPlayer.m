@@ -84,13 +84,12 @@
     }
     
     CCAnimation *jumpAnim = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.1f];
-    CCAction *act = [CCAnimate actionWithAnimation:jumpAnim];
-    CCAction *jumpingAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:jumpAnim]];
-//    self.jumpAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:jumpAnim]];
-    self.jumpAction = [CCSequence actions:moveAction, act, funcAction, nil];
+    CCAction *animationAction = [CCAnimate actionWithAnimation:jumpAnim];
     
-//    CCSequence *actions = [CCSequence actions:jumpAction, self.jumpAction, funcAction, nil];
-    
+    CCSpawn *jumping = [CCSpawn actions:moveAction, animationAction, nil];
+
+    self.jumpAction = [CCSequence actions:jumping, funcAction, nil];
+        
     if(self.canJump)
     {
         self.canJump = NO;

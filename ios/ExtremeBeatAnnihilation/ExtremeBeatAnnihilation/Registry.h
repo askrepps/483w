@@ -14,6 +14,8 @@
 #define kCoilY 200
 #define kJumpHeight 100
 
+#define kBufferSize 44100
+
 @interface Registry : NSObject
 FOUNDATION_EXPORT NSString *const kVolume;
 //FOUNDATION_EXPORT NSNumber *const kHighScore;

@@ -32,15 +32,6 @@
         {
             [event setAttributesWithQ1:_q1Freq andMedian:_medianFreq andQ3:_q3Freq];
         }
-        
-//        NSUInteger count = [_events count];
-//        for (NSUInteger i = 0; i < count; i++)
-//        {
-//            // Select a random element between i and end of array to swap with.
-//            NSInteger nElements = count - i;
-//            NSInteger n = arc4random_uniform(nElements) + i;
-//            [_events exchangeObjectAtIndex:i withObjectAtIndex:n];
-//        }
     }
     
     return self;
@@ -51,23 +42,66 @@
 {
     if (self = [super init])
     {
-        AudioFileID audioFile;
-        UInt32 propertySize = 0;
-        CFDictionaryRef dictionary;
+        ExtAudioFileRef audioFile;
+        OSStatus status;
+        UInt32 propertySize;
+        SInt64 nFrames;
+        UInt32 nFrames32;
+        UInt32 nChannels;
+        Float64 sampleRate;
+        AudioStreamBasicDescription asbd;
+        AudioStreamBasicDescription format;
+        AudioBufferList bufList;
+        float *buffer;
         
-        NSLog(@"Loading url: %@", url);
+        status = ExtAudioFileOpenURL((CFURLRef)url, &audioFile);
+        NSLog(@"opened file: status = %d", (int)status);
         
-        OSStatus status = AudioFileOpenURL((CFURLRef)url, kAudioFileReadPermission, 0, &audioFile);
-        NSLog(@"open status: %ld", status);
-        status = AudioFileGetPropertyInfo(audioFile, kAudioFilePropertyInfoDictionary, &propertySize, 0);
-        NSLog(@"dicitonary size: %d  | status: %ld", (unsigned int)propertySize, status);
-        status = AudioFileGetProperty(audioFile, kAudioFilePropertyInfoDictionary, &propertySize, &dictionary);
-        NSLog(@"dictionary status: %ld", status);
+        propertySize = sizeof(asbd);
+        status = ExtAudioFileGetProperty(audioFile, kExtAudioFileProperty_FileDataFormat, &propertySize, &asbd);
+        NSLog(@"read ASBD: status = %d", (int)status);
         
-//        NSLog(@"Audio file info: %@", dictionary);
-//        CFRelease(dictionary);
+        sampleRate = asbd.mSampleRate;
+        nChannels = asbd.mChannelsPerFrame;
+        NSLog(@"sampleRate: %f  |  numChannels: %d", asbd.mSampleRate, (unsigned int)asbd.mChannelsPerFrame);
         
-        AudioFileClose(audioFile);
+        propertySize = sizeof(SInt64);
+        status = ExtAudioFileGetProperty(audioFile, kExtAudioFileProperty_FileLengthFrames, &propertySize, &nFrames);
+        nFrames32 = (UInt32)nFrames;
+        NSLog(@"numFrames: %d", (unsigned int)nFrames32);
+        
+        format.mSampleRate = sampleRate;
+        format.mFormatID = kAudioFormatLinearPCM;
+        format.mFormatFlags = kAudioFormatFlagsNativeFloatPacked;
+        format.mBitsPerChannel = 32;
+        format.mChannelsPerFrame = 1;
+        format.mBytesPerFrame = format.mChannelsPerFrame * sizeof(float);
+        format.mFramesPerPacket = 1;
+        format.mBytesPerPacket = format.mFramesPerPacket * format.mBytesPerFrame;
+        
+        propertySize = sizeof(format);
+        status = ExtAudioFileSetProperty(audioFile, kExtAudioFileProperty_ClientDataFormat, propertySize, &format);
+        NSLog(@"set client format: status = %d", (int)status);
+
+        buffer = malloc(sizeof(UInt32) * kBufferSize);
+        
+        bufList.mNumberBuffers = 1;
+        bufList.mBuffers[0].mNumberChannels = 1;
+        bufList.mBuffers[0].mDataByteSize = kBufferSize * sizeof(float);
+        bufList.mBuffers[0].mData = buffer;
+        
+        int count = 0;
+        do {
+            propertySize = kBufferSize;
+            status = ExtAudioFileRead(audioFile, &propertySize, &bufList);
+            
+            NSLog(@"Reading %d samples... status = %d", (unsigned int)propertySize, (int)status);
+            count++;
+        } while (propertySize > 0);
+        
+        NSLog(@"%d", count);
+        
+        free(buffer);
     }
     
     return [self initDefault];

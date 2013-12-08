@@ -50,9 +50,9 @@
         
         // Char 1
         
-        CCMenuItemImage *character1Unselected = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1selected.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character1Unselected = [CCMenuItemImage itemWithNormalImage:@"red_icon.png" selectedImage:@"red_icon_selected.png" target:self selector:@selector(CharacterPressed:)];
         
-        CCMenuItemImage *character1Selected = [CCMenuItemImage itemWithNormalImage:@"char1selected.png" selectedImage:@"char1.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character1Selected = [CCMenuItemImage itemWithNormalImage:@"red_icon_selected.png" selectedImage:@"red_icon.png" target:self selector:@selector(CharacterPressed:)];
         
         [_charSelections addObject:[NSNumber numberWithBool:NO]];
         
@@ -61,9 +61,9 @@
         
         // Char 2
         
-        CCMenuItemImage *character2Unselected = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2selected.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character2Unselected = [CCMenuItemImage itemWithNormalImage:@"blue_icon.png" selectedImage:@"blue_icon_selected.png" target:self selector:@selector(CharacterPressed:)];
         
-        CCMenuItemImage *character2Selected = [CCMenuItemImage itemWithNormalImage:@"char2selected.png" selectedImage:@"char2.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character2Selected = [CCMenuItemImage itemWithNormalImage:@"blue_icon_selected.png" selectedImage:@"blue_icon.png" target:self selector:@selector(CharacterPressed:)];
         
         [_charSelections addObject:[NSNumber numberWithBool:NO]];
         
@@ -72,9 +72,9 @@
         
         // Char 3
         
-        CCMenuItemImage *character3Unselected = [CCMenuItemImage itemWithNormalImage:@"char3.png" selectedImage:@"char3selected.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character3Unselected = [CCMenuItemImage itemWithNormalImage:@"green_icon.png" selectedImage:@"green_icon_selected.png" target:self selector:@selector(CharacterPressed:)];
         
-        CCMenuItemImage *character3Selected = [CCMenuItemImage itemWithNormalImage:@"char3selected.png" selectedImage:@"char3.png"  target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character3Selected = [CCMenuItemImage itemWithNormalImage:@"green_icon_selected.png" selectedImage:@"green_icon.png"  target:self selector:@selector(CharacterPressed:)];
         
         [_charSelections addObject:[NSNumber numberWithBool:NO]];
         

@@ -44,7 +44,7 @@
 @property NSInteger scoreP1;
 @property NSInteger scoreP2;
 
-
+@property (strong, nonatomic) CCMenuItemFont *pauseButton;
 @property (strong, nonatomic) PauseLayer *pauseLayer;
 @property BOOL isPaused;
 
@@ -83,10 +83,10 @@
         
         // Add backgrounds
         
-        _leftBG1 = [CCSprite spriteWithFile:@"night_background.png"];
-        _leftBG2 = [CCSprite spriteWithFile:@"night_background.png"];
-        _rightBG1 = [CCSprite spriteWithFile:@"night_background_inverted.png"];
-        _rightBG2 = [CCSprite spriteWithFile:@"night_background_inverted.png"];
+        _leftBG1 = [CCSprite spriteWithFile:@"background.png"];
+        _leftBG2 = [CCSprite spriteWithFile:@"background.png"];
+        _rightBG1 = [CCSprite spriteWithFile:@"background_inverted.png"];
+        _rightBG2 = [CCSprite spriteWithFile:@"background_inverted.png"];
         
         _leftBG1.position = ccp(winSize.width/2, winSize.height/2);
         _leftBG2.position = ccp(winSize.width*3/2, winSize.height/2);
@@ -174,10 +174,18 @@
             [self addChild:_scoreLabelP2];
         }
         
-        CCMenuItemFont *pause = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(pausePressed)];
-        pause.position = ccp(winSize.width/2, winSize.height - 24);
+        _pauseButton = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(pausePressed)];
         
-        CCMenu *menu = [CCMenu menuWithItems:pause, nil];
+        if([Registry getIsSinglePlayer])
+        {
+            _pauseButton.position = ccp(winSize.width/4, winSize.height - 24);
+        }
+        else
+        {
+            _pauseButton.position = ccp(winSize.width/2, winSize.height - 24);
+        }
+        
+        CCMenu *menu = [CCMenu menuWithItems:_pauseButton, nil];
         menu.position = CGPointZero;
       
         [self addChild:menu];
@@ -348,8 +356,9 @@
     [self unscheduleUpdate];
     
     [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
-    [self.leftPlayer pause];
-    [self.rightPlayer pause];
+    [self.pauseButton setIsEnabled:NO];
+    [self.leftPlayer pauseSchedulerAndActions];
+    [self.rightPlayer pauseSchedulerAndActions];
     self.isPaused = YES;
     [self addChild: _pauseLayer];
 }
@@ -359,10 +368,12 @@
     // sound effect already played in PauseLayer, don't add it here
     [self.avPlayer play];
     [self scheduleUpdate];
+    
     [self removeChild:[self pauseLayer] cleanup:NO];
+    [self.pauseButton setIsEnabled:YES];
     self.isPaused = NO;
-    [self.leftPlayer move];
-    [self.rightPlayer move];
+    [self.leftPlayer resumeSchedulerAndActions];
+    [self.rightPlayer resumeSchedulerAndActions];
 }
 
 @end

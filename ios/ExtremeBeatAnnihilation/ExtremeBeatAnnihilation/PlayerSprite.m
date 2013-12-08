@@ -172,14 +172,4 @@
     return !self.canSlide;
 }
 
--(void)pause
-{
-    [self stopAllActions];
-}
-
--(void)move
-{
-    [self runAction:self.runAction];
-}
-
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Registry.h"
+#import "cocos2d.h"
 
 @implementation Registry
 NSString *const kVolume = @"Volume";
@@ -111,5 +112,6 @@ static BOOL kIsMenuMusicPlaying = NO;
     kMusicName = nil;
     kMusicURL = nil;
     kScore = 0;
+    [CCSpriteFrameCache purgeSharedSpriteFrameCache];
 }
 @end

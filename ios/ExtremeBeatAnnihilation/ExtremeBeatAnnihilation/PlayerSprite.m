@@ -41,7 +41,7 @@
         {
             [runAnimFrames addObject:
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-              [NSString stringWithFormat:@"running_%d.png",i]]];
+              [NSString stringWithFormat:@"%@_running_%d.png", self.fileName, i]]];
         }
         
         CCAnimation *runAnim = [CCAnimation
@@ -60,7 +60,7 @@
         {
             [jumpAnimFrames addObject:
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-              [NSString stringWithFormat:@"jumping_%d.png", i]]];
+              [NSString stringWithFormat:@"%@_jumping_%d.png", self.fileName, i]]];
         }
         
         CCAnimation *jumpAnim = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.1f];

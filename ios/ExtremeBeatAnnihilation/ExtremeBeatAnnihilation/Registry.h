@@ -32,5 +32,7 @@ FOUNDATION_EXPORT NSString *const kVolume;
 +(void)setMusicURL:(NSURL*)URL;
 +(void)setScore:(NSInteger)score;
 +(NSInteger)getScore;
++(void)setIsMenuMusicPlaying:(BOOL)playing;
++(BOOL)getIsMenuMusicPlaying;
 +(void)clean;
 @end

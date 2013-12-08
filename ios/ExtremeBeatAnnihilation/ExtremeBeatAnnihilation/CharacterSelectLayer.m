@@ -10,6 +10,7 @@
 #import "MenuLayer.h"
 #import "MusicSelectLayer.h"
 #import "Registry.h"
+#import "SimpleAudioEngine.h"
 
 @interface CharacterSelectLayer ()
 
@@ -122,6 +123,7 @@
 
 -(void)backPressed:(id)sender
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [Registry clean];
     [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
 }
@@ -133,12 +135,14 @@
     NSInteger index = [self.characters indexOfObject:source];
     if (source.selectedIndex == 0)
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
         [self.charSelections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:NO]];
         self.numSelected--;
         [Registry removeChar:index];
     }
     else
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
         [self.charSelections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
         self.numSelected++;
         [Registry setChar:index];
@@ -166,6 +170,7 @@
 {
     if([Registry getCharOne] != -1 && [Registry getCharTwo] != -1)
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
         [[CCDirector sharedDirector] replaceScene:[MusicSelectLayer scene]];
     }
     else

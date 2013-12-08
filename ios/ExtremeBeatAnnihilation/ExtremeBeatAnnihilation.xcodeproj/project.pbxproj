@@ -11,6 +11,10 @@
 		997AEE321835F62A008ED709 /* LoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 997AEE311835F62A008ED709 /* LoadingLayer.m */; };
 		99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B11830425B00F12C7F /* LettingGo.mp3 */; };
 		99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */; };
+		99BAE9FF185514FD00BCD5A4 /* back.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99BAE9FC185514FD00BCD5A4 /* back.wav */; };
+		99BAEA00185514FD00BCD5A4 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99BAE9FD185514FD00BCD5A4 /* hit.wav */; };
+		99BAEA01185514FD00BCD5A4 /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99BAE9FE185514FD00BCD5A4 /* select.wav */; };
+		99BAEA031855150E00BCD5A4 /* ebaLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
 		99C27E6317E1274F00060D51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6217E1274F00060D51 /* OpenGLES.framework */; };
 		99C27E6517E1274F00060D51 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6417E1274F00060D51 /* OpenAL.framework */; };
@@ -168,8 +172,6 @@
 		C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C229CD39184A99CF0098C02D /* GameOverLayer.m */; };
 		C234773E183981E8005408C9 /* background_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773C183981E8005408C9 /* background_inverted.png */; };
 		C234773F183981E8005408C9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773D183981E8005408C9 /* background.png */; };
-		C234774A1855101D005408C9 /* background_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = C23477481855101D005408C9 /* background_inverted.png */; };
-		C234774B1855101D005408C9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C23477491855101D005408C9 /* background.png */; };
 		C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8241814B3AD00C901FF /* LeftPlayer.m */; };
 		C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8271814B3BE00C901FF /* RightPlayer.m */; };
 		C28B876118353E840093E7E2 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C28B876018353E830093E7E2 /* GameScene.m */; };
@@ -190,6 +192,13 @@
 		C2E116C51854F9480035EF7C /* red_jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116B91854F9480035EF7C /* red_jumping.png */; };
 		C2E116C61854F9480035EF7C /* red_running.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116BA1854F9480035EF7C /* red_running.plist */; };
 		C2E116C71854F9480035EF7C /* red_running.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116BB1854F9480035EF7C /* red_running.png */; };
+		C2E116CE1854FE160035EF7C /* red_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116CC1854FE150035EF7C /* red_sliding.plist */; };
+		C2E116CF1854FE160035EF7C /* red_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116CD1854FE160035EF7C /* red_sliding.png */; };
+		C2E116D6185500940035EF7C /* green_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D4185500940035EF7C /* green_sliding.plist */; };
+		C2E116D7185500940035EF7C /* green_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D5185500940035EF7C /* green_sliding.png */; };
+		C2E116DA1855009F0035EF7C /* blue_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D81855009F0035EF7C /* blue_sliding.plist */; };
+		C2E116DB1855009F0035EF7C /* blue_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D91855009F0035EF7C /* blue_sliding.png */; };
+		C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E116DD185513FD0035EF7C /* PlayerSprite.m */; };
 		C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EA1821565000288C7E /* OptionsLayer.m */; };
 		C2FB1A0A1821609400288C7E /* CCControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EF1821609400288C7E /* CCControl.m */; };
 		C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19F11821609400288C7E /* CCControlButton.m */; };
@@ -215,6 +224,10 @@
 		997AEE311835F62A008ED709 /* LoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingLayer.m; sourceTree = "<group>"; };
 		99A886B11830425B00F12C7F /* LettingGo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LettingGo.mp3; path = Resources/SampleTracks/LettingGo.mp3; sourceTree = "<group>"; };
 		99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = TheCallOfStars.mp3; path = Resources/SampleTracks/TheCallOfStars.mp3; sourceTree = "<group>"; };
+		99BAE9FC185514FD00BCD5A4 /* back.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = back.wav; sourceTree = "<group>"; };
+		99BAE9FD185514FD00BCD5A4 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
+		99BAE9FE185514FD00BCD5A4 /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = select.wav; sourceTree = "<group>"; };
+		99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ebaLoop.mp3; path = Resources/SampleTracks/ebaLoop.mp3; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C27E6017E1274F00060D51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		99C27E6217E1274F00060D51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -550,6 +563,14 @@
 		C2E116B91854F9480035EF7C /* red_jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_jumping.png; sourceTree = "<group>"; };
 		C2E116BA1854F9480035EF7C /* red_running.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = red_running.plist; sourceTree = "<group>"; };
 		C2E116BB1854F9480035EF7C /* red_running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_running.png; sourceTree = "<group>"; };
+		C2E116CC1854FE150035EF7C /* red_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = red_sliding.plist; sourceTree = "<group>"; };
+		C2E116CD1854FE160035EF7C /* red_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_sliding.png; sourceTree = "<group>"; };
+		C2E116D4185500940035EF7C /* green_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = green_sliding.plist; sourceTree = "<group>"; };
+		C2E116D5185500940035EF7C /* green_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_sliding.png; sourceTree = "<group>"; };
+		C2E116D81855009F0035EF7C /* blue_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blue_sliding.plist; sourceTree = "<group>"; };
+		C2E116D91855009F0035EF7C /* blue_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_sliding.png; sourceTree = "<group>"; };
+		C2E116DC185513FD0035EF7C /* PlayerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSprite.h; sourceTree = "<group>"; };
+		C2E116DD185513FD0035EF7C /* PlayerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSprite.m; sourceTree = "<group>"; };
 		C2FB19E91821565000288C7E /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
 		C2FB19EA1821565000288C7E /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
 		C2FB19EE1821609400288C7E /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControl.h; sourceTree = "<group>"; };
@@ -611,10 +632,22 @@
 		99A886B0183039DB00F12C7F /* Sample Tracks */ = {
 			isa = PBXGroup;
 			children = (
+				99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */,
 				99A886B11830425B00F12C7F /* LettingGo.mp3 */,
 				99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */,
 			);
 			name = "Sample Tracks";
+			sourceTree = "<group>";
+		};
+		99BAE9FB185514FD00BCD5A4 /* sfx */ = {
+			isa = PBXGroup;
+			children = (
+				99BAE9FC185514FD00BCD5A4 /* back.wav */,
+				99BAE9FD185514FD00BCD5A4 /* hit.wav */,
+				99BAE9FE185514FD00BCD5A4 /* select.wav */,
+			);
+			name = sfx;
+			path = Resources/sfx;
 			sourceTree = "<group>";
 		};
 		99C27E5417E1274F00060D51 = {
@@ -689,6 +722,8 @@
 				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
 				C21095C51850E344009B311E /* PauseLayer.h */,
 				C21095C61850E344009B311E /* PauseLayer.m */,
+				C2E116DC185513FD0035EF7C /* PlayerSprite.h */,
+				C2E116DD185513FD0035EF7C /* PlayerSprite.m */,
 				C262F8261814B3BE00C901FF /* RightPlayer.h */,
 				C262F8271814B3BE00C901FF /* RightPlayer.m */,
 				99C27E8D17E1274F00060D51 /* libs */,
@@ -701,6 +736,7 @@
 		99C27E7517E1274F00060D51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				99BAE9FB185514FD00BCD5A4 /* sfx */,
 				C23477481855101D005408C9 /* background_inverted.png */,
 				C23477491855101D005408C9 /* background.png */,
 				C2E116AC1854F9480035EF7C /* Character Sheets */,
@@ -1128,6 +1164,8 @@
 		C2E116AD1854F9480035EF7C /* Blue */ = {
 			isa = PBXGroup;
 			children = (
+				C2E116D81855009F0035EF7C /* blue_sliding.plist */,
+				C2E116D91855009F0035EF7C /* blue_sliding.png */,
 				C2E116AE1854F9480035EF7C /* blue_jumping.plist */,
 				C2E116AF1854F9480035EF7C /* blue_jumping.png */,
 				C2E116B01854F9480035EF7C /* blue_running.plist */,
@@ -1139,6 +1177,8 @@
 		C2E116B21854F9480035EF7C /* Green */ = {
 			isa = PBXGroup;
 			children = (
+				C2E116D4185500940035EF7C /* green_sliding.plist */,
+				C2E116D5185500940035EF7C /* green_sliding.png */,
 				C2E116B31854F9480035EF7C /* green_jumping.plist */,
 				C2E116B41854F9480035EF7C /* green_jumping.png */,
 				C2E116B51854F9480035EF7C /* green_running.plist */,
@@ -1150,6 +1190,8 @@
 		C2E116B71854F9480035EF7C /* Red */ = {
 			isa = PBXGroup;
 			children = (
+				C2E116CC1854FE150035EF7C /* red_sliding.plist */,
+				C2E116CD1854FE160035EF7C /* red_sliding.png */,
 				C2E116B81854F9480035EF7C /* red_jumping.plist */,
 				C2E116B91854F9480035EF7C /* red_jumping.png */,
 				C2E116BA1854F9480035EF7C /* red_running.plist */,
@@ -1273,6 +1315,7 @@
 				99C27E7F17E1274F00060D51 /* Icon-72.png in Resources */,
 				99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */,
 				99C27E8117E1274F00060D51 /* Icon-Small-50.png in Resources */,
+				99BAEA01185514FD00BCD5A4 /* select.wav in Resources */,
 				99C27E8317E1274F00060D51 /* Icon-Small.png in Resources */,
 				99C27E8517E1274F00060D51 /* Icon-Small@2x.png in Resources */,
 				99C27E8717E1274F00060D51 /* Icon.png in Resources */,
@@ -1298,6 +1341,7 @@
 				C20D789418302A42006CB110 /* char4selected.png in Resources */,
 				C234773E183981E8005408C9 /* background_inverted.png in Resources */,
 				C234773F183981E8005408C9 /* background.png in Resources */,
+				99BAEA00185514FD00BCD5A4 /* hit.wav in Resources */,
 				C2E116A51854F9290035EF7C /* night_background_inverted.png in Resources */,
 				C2E116A91854F93A0035EF7C /* night_background.png in Resources */,
 				C2E116AA1854F93A0035EF7C /* smallCoil.png in Resources */,
@@ -1307,6 +1351,8 @@
 				C2E116BE1854F9480035EF7C /* blue_running.plist in Resources */,
 				C2E116BF1854F9480035EF7C /* blue_running.png in Resources */,
 				C2E116C01854F9480035EF7C /* green_jumping.plist in Resources */,
+				99BAEA031855150E00BCD5A4 /* ebaLoop.mp3 in Resources */,
+				99BAE9FF185514FD00BCD5A4 /* back.wav in Resources */,
 				C2E116C11854F9480035EF7C /* green_jumping.png in Resources */,
 				C2E116C21854F9480035EF7C /* green_running.plist in Resources */,
 				C2E116C31854F9480035EF7C /* green_running.png in Resources */,
@@ -1314,8 +1360,12 @@
 				C2E116C51854F9480035EF7C /* red_jumping.png in Resources */,
 				C2E116C61854F9480035EF7C /* red_running.plist in Resources */,
 				C2E116C71854F9480035EF7C /* red_running.png in Resources */,
-				C234774A1855101D005408C9 /* background_inverted.png in Resources */,
-				C234774B1855101D005408C9 /* background.png in Resources */,
+				C2E116CE1854FE160035EF7C /* red_sliding.plist in Resources */,
+				C2E116CF1854FE160035EF7C /* red_sliding.png in Resources */,
+				C2E116D6185500940035EF7C /* green_sliding.plist in Resources */,
+				C2E116D7185500940035EF7C /* green_sliding.png in Resources */,
+				C2E116DA1855009F0035EF7C /* blue_sliding.plist in Resources */,
+				C2E116DB1855009F0035EF7C /* blue_sliding.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,6 +1514,7 @@
 				C229CD3718480DC20098C02D /* ClippingNode.m in Sources */,
 				C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */,
 				C21095C71850E344009B311E /* PauseLayer.m in Sources */,
+				C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

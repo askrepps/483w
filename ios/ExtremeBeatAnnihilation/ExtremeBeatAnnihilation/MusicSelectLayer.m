@@ -12,6 +12,7 @@
 #import "Registry.h"
 #import "LoadingLayer.h"
 #import "CharacterSelectLayer.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MusicSelectLayer
 
@@ -60,11 +61,13 @@
 
 -(void) backPressed
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
 }
 
 -(void) loadSample1
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];
     [Registry setMusicName:@"LettingGo.mp3"];
     [Registry setMusicURL:url];
@@ -74,6 +77,7 @@
 
 -(void) loadSample2
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"TheCallOfStars" withExtension:@"mp3"];
     [Registry setMusicName:@"TheCallOfStars.mp3"];
     [Registry setMusicURL:url];
@@ -83,11 +87,13 @@
 
 -(void) loadSample3
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     NSLog(@"Loading Sample Track #3...");
 }
 
 -(void) loadFromLibrary
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 #if TARGET_IPHONE_SIMULATOR
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Media picker unavailable in the simulator, please run this app on a device." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];

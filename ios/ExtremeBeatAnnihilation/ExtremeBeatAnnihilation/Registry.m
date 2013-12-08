@@ -17,6 +17,7 @@ static BOOL kIsSinglePlayer;
 static NSString *kMusicName;
 static NSURL *kMusicURL;
 static NSInteger kScore = 0;
+static BOOL kIsMenuMusicPlaying = NO;
 
 +(void)setChar:(NSInteger)index
 {
@@ -90,6 +91,16 @@ static NSInteger kScore = 0;
 +(NSInteger)getScore
 {
     return kScore;
+}
+
++(void)setIsMenuMusicPlaying:(BOOL)playing
+{
+    kIsMenuMusicPlaying = playing;
+}
+
++(BOOL)getIsMenuMusicPlaying
+{
+    return kIsMenuMusicPlaying;
 }
 
 +(void)clean

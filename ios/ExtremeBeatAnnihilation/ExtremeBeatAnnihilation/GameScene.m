@@ -313,20 +313,22 @@
         currentLocation = [touch locationInView:[touch view]];
         currentLocation = [[CCDirector sharedDirector] convertToGL:currentLocation];
         
-        if(CGRectContainsPoint(CGRectMake(0, 0, winSize.width/2, winSize.height/2), currentLocation))
+        if(CGRectContainsPoint(CGRectMake(0, 0, winSize.width/2, winSize.height/2), currentLocation) && ![self.leftPlayer isJumping])
         {
             // left player slide
+            [self.leftPlayer slide];
         }
-        else if(CGRectContainsPoint(CGRectMake(0, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation))
+        else if(CGRectContainsPoint(CGRectMake(0, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation) && ![self.leftPlayer isSliding])
         {
             // left player jump
             [self.leftPlayer jump];
         }
-        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, 0, winSize.width/2, winSize.height/2), currentLocation))
+        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, 0, winSize.width/2, winSize.height/2), currentLocation) && ![self.rightPlayer isJumping])
         {
             // right player slide
+            [self.rightPlayer slide];
         }
-        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation))
+        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation) && ![self.rightPlayer isSliding])
         {
             // right player jump
             [self.rightPlayer jump];

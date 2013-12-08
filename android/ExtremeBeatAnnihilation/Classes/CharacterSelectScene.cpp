@@ -133,11 +133,8 @@ void CharacterSelect::MenuBackCallback(CCObject* sender)
 
 void CharacterSelect::MenuContinueCallback(CCObject* sender)
 {
-	if(m_numCharacters >= 2)
-	{
-		CCDirector::sharedDirector()->replaceScene(MusicSelect::Scene());
-	}
-	else if(m_currentSelectedChar != NO_CHAR_SELECT)
+
+	if(m_currentSelectedChar != NO_CHAR_SELECT)
 	{
 		switch(m_numCharacters)
 			{
@@ -162,6 +159,9 @@ void CharacterSelect::MenuContinueCallback(CCObject* sender)
 		else
 			EnableMenu(false);
 	}
+
+	if(m_numCharacters >= 2)
+		CCDirector::sharedDirector()->replaceScene(MusicSelect::Scene());
 
 }
 

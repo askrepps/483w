@@ -40,14 +40,13 @@
 @property (strong, nonatomic) CCLabelTTF *scoreLabelP1;
 @property (strong, nonatomic) CCLabelTTF *scoreLabelP2;
 
-
-
 @property NSInteger score;
 @property NSInteger scoreP1;
 @property NSInteger scoreP2;
 
 
 @property (strong, nonatomic) PauseLayer *pauseLayer;
+@property BOOL isPaused;
 
 @end
 
@@ -155,12 +154,10 @@
         
         if ([Registry getIsSinglePlayer])
         {
-    
-        _score = 0;
-        _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", _score] fontName:@"Marker Felt" fontSize:24];
-        _scoreLabel.position = ccp(winSize.width/2, winSize.height - 24);
-        [self addChild:_scoreLabel];
-            
+            _score = 0;
+            _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", _score] fontName:@"Marker Felt" fontSize:24];
+            _scoreLabel.position = ccp(winSize.width/2, winSize.height - 24);
+            [self addChild:_scoreLabel];
         }
         
         else
@@ -182,9 +179,11 @@
         
         CCMenu *menu = [CCMenu menuWithItems:pause, nil];
         menu.position = CGPointZero;
-        
       
         [self addChild:menu];
+        
+        _pauseLayer = [[PauseLayer alloc] initWithGameScene: self];
+        _isPaused = NO;
         
         // Start playing music
         _avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[Registry getMusicURL] error:nil];
@@ -193,8 +192,6 @@
         _avPlayer.volume = value.floatValue;
         _avPlayer.delegate = self;
         [_avPlayer play];
-        
-        _pauseLayer = [[PauseLayer alloc] initWithGameScene: self];
     }
     
     return self;
@@ -308,34 +305,37 @@
     
     CGPoint currentLocation;
     
-    for(UITouch *touch in [event allTouches])
+    if(!self.isPaused)
     {
-        currentLocation = [touch locationInView:[touch view]];
-        currentLocation = [[CCDirector sharedDirector] convertToGL:currentLocation];
-        
-        if(CGRectContainsPoint(CGRectMake(0, 0, winSize.width/2, winSize.height/2), currentLocation) && ![self.leftPlayer isJumping])
+        for(UITouch *touch in [event allTouches])
         {
-            // left player slide
-            [self.leftPlayer slide];
-        }
-        else if(CGRectContainsPoint(CGRectMake(0, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation) && ![self.leftPlayer isSliding])
-        {
-            // left player jump
-            [self.leftPlayer jump];
-        }
-        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, 0, winSize.width/2, winSize.height/2), currentLocation) && ![self.rightPlayer isJumping])
-        {
-            // right player slide
-            [self.rightPlayer slide];
-        }
-        else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation) && ![self.rightPlayer isSliding])
-        {
-            // right player jump
-            [self.rightPlayer jump];
-        }
-        else
-        {
-            NSLog(@"Congratulations, you have broken the physical laws of reality.");
+            currentLocation = [touch locationInView:[touch view]];
+            currentLocation = [[CCDirector sharedDirector] convertToGL:currentLocation];
+            
+            if(CGRectContainsPoint(CGRectMake(0, 0, winSize.width/2, winSize.height/2), currentLocation) && ![self.leftPlayer isJumping])
+            {
+                // left player slide
+                [self.leftPlayer slide];
+            }
+            else if(CGRectContainsPoint(CGRectMake(0, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation) && ![self.leftPlayer isSliding])
+            {
+                // left player jump
+                [self.leftPlayer jump];
+            }
+            else if(CGRectContainsPoint(CGRectMake(winSize.width/2, 0, winSize.width/2, winSize.height/2), currentLocation) && ![self.rightPlayer isJumping])
+            {
+                // right player slide
+                [self.rightPlayer slide];
+            }
+            else if(CGRectContainsPoint(CGRectMake(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2), currentLocation) && ![self.rightPlayer isSliding])
+            {
+                // right player jump
+                [self.rightPlayer jump];
+            }
+            else
+            {
+                NSLog(@"Congratulations, you have broken the physical laws of reality.");
+            }
         }
     }
 }
@@ -344,15 +344,14 @@
 
 -(void)pausePressed
 {
-    //Present pause screen as primary layer
     [self.avPlayer pause];
     [self unscheduleUpdate];
-    //[[CCDirector sharedDirector] pause];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
-    [self addChild: _pauseLayer];
     
-    //[self.avPlayer play];
-    //[self scheduleUpdate];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
+    [self.leftPlayer pause];
+    [self.rightPlayer pause];
+    self.isPaused = YES;
+    [self addChild: _pauseLayer];
 }
 
 -(void)resumeGame
@@ -361,7 +360,9 @@
     [self.avPlayer play];
     [self scheduleUpdate];
     [self removeChild:[self pauseLayer] cleanup:NO];
-
+    self.isPaused = NO;
+    [self.leftPlayer move];
+    [self.rightPlayer move];
 }
 
 @end

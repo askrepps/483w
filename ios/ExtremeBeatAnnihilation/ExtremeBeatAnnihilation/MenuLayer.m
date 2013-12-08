@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.m
+//  MenuLayer.m
 //  ExtremeBeatAnnihilation
 //
 //  Created by ROBERT WILLIAM CARRIER on 9/11/13.
@@ -19,21 +19,16 @@
 
 @implementation MenuLayer
 
-// Helper class method that creates a Scene with the MenuLayer as the only child.
 +(CCScene *)scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-	// 'menu' is an autorelease object.
     BackgroundLayer *background = [BackgroundLayer node];
 	MenuLayer *menu = [MenuLayer node];
 	
-	// add menu as a child to scene
     [scene addChild:background z:-1];
 	[scene addChild: menu];
 	
-	// return the scene
 	return scene;
 }
 
@@ -62,8 +57,6 @@
 -(void)onEnterTransitionDidFinish
 {
     [super onEnterTransitionDidFinish];
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];
-    
     if (![Registry getIsMenuMusicPlaying])
     {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];

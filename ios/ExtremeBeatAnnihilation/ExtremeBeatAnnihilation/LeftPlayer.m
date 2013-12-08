@@ -9,6 +9,14 @@
 #import "LeftPlayer.h"
 #import "Registry.h"
 
+@interface LeftPlayer ()
+
+@property (strong, nonatomic) CCAction *runAction;
+@property (strong, nonatomic) CCAction *jumpAction;
+@property (strong, nonatomic) CCAction *slideAction;
+
+@end
+
 @implementation LeftPlayer
 
 -(id)init
@@ -19,26 +27,44 @@
     switch([Registry getCharOne])
     {
         case 0:
-            file = @"char1.png";
+            file = @"red";
             break;
         case 1:
-            file = @"char1.png";
+            file = @"blue";
             break;
         case 2:
-            file = @"char1.png";
-            break;
-        case 3:
-            file = @"";
+            file = @"green";
             break;
         default:
             break;
     }
     
-    if(self = [super initWithFile:file])
+    if(self = [super init])
     {
         _canJump = YES;
         _canSlide = YES;
         _canBlink = YES;
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"%@_running.plist", file]];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"%@_jumping.plist", file]];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"%@_sliding.plist", file]];
+                
+        NSMutableArray *runAnimFrames = [NSMutableArray array];
+        for(int i = 1; i <= 7; i++)
+        {
+            [runAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"running_%d.png",i]]];
+        }
+        
+        CCAnimation *runAnim = [CCAnimation
+                                 animationWithSpriteFrames:runAnimFrames delay:0.1f];
+        
+        self.runAction = [CCRepeatForever actionWithAction:
+                           [CCAnimate actionWithAnimation:runAnim]];
+        [self runAction:self.runAction];
+        
+        self.scale = 2.0;
     }
     
     return self;
@@ -47,14 +73,29 @@
 -(void)jump
 {
     CCCallFunc *funcAction = [CCCallFunc actionWithTarget:self selector:@selector(enableJump)];
-    CCJumpBy *jumpAction = [CCJumpBy actionWithDuration:0.5 position:ccp(0,0) height:kJumpHeight jumps:1];
+    CCJumpBy *moveAction = [CCJumpBy actionWithDuration:0.5 position:ccp(0,0) height:kJumpHeight jumps:1];
     
-    CCSequence *actions = [CCSequence actions:jumpAction, funcAction, nil];
+    NSMutableArray *jumpAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 7; i++)
+    {
+        [jumpAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"jumping_%d.png",i]]];
+    }
+    
+    CCAnimation *jumpAnim = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.1f];
+    CCAction *act = [CCAnimate actionWithAnimation:jumpAnim];
+    CCAction *jumpingAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:jumpAnim]];
+//    self.jumpAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:jumpAnim]];
+    self.jumpAction = [CCSequence actions:moveAction, act, funcAction, nil];
+    
+//    CCSequence *actions = [CCSequence actions:jumpAction, self.jumpAction, funcAction, nil];
     
     if(self.canJump)
     {
         self.canJump = NO;
-        [self runAction:actions];
+        [self stopAction:self.runAction];
+        [self runAction:self.jumpAction];
     }
 }
 
@@ -89,7 +130,9 @@
 
 -(void)enableJump
 {
+    [self stopAction:self.jumpAction];
     self.canJump = YES;
+    [self runAction:self.runAction];
 }
 
 -(void)enableSlide

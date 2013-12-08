@@ -64,6 +64,12 @@
     [super onEnterTransitionDidFinish];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];
     
+    if (![Registry getIsMenuMusicPlaying])
+    {
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];
+        [Registry setIsMenuMusicPlaying:YES];
+    }
+    
 }
 
 -(void)dealloc

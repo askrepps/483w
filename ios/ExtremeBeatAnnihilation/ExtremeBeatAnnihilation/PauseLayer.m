@@ -8,25 +8,28 @@
 
 #import "PauseLayer.h"
 #import "OptionsLayer.h"
+#import "MenuLayer.h"
+#import "Registry.h"
+#import "GameScene.h"
+
+@interface PauseLayer ()
+
+@property (nonatomic, retain) GameScene *gameScene;
+
+@end
 
 @implementation PauseLayer
 
-+(CCScene *)scene
-{
-	CCScene *scene = [CCScene node];
-	PauseLayer *layer = [PauseLayer node];
-	[scene addChild: layer];
-    
-	return scene;
-}
 
--(id)init
+-(id)initWithGameScene:(GameScene *)scene
 {
     if((self = [super init]))
     {
+        _gameScene = scene;
         CCMenuItemFont *unPause = [CCMenuItemFont itemWithString:@"Return to Game" target:self selector:@selector(unPausePressed)];
-        CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed)];
-        CCMenu *pauseMenu = [CCMenu menuWithItems:unPause, back, nil];
+        CCMenuItemFont *quit = [CCMenuItemFont itemWithString:@"Quit" target:self selector:@selector(quitPressed)];
+        CCMenu *pauseMenu = [CCMenu menuWithItems:unPause, quit, nil];
+        [pauseMenu alignItemsVertically];
         
         [self addChild: pauseMenu];
     }
@@ -34,15 +37,19 @@
     return self;
 }
 
+//will this work?
+
 #pragma mark - Button presses
 
 -(void)unPausePressed
 {
-    
+    [[self gameScene] resumeGame];
 }
 
--(void)backPressed
+-(void)quitPressed
 {
+    [Registry clean];
+    [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
     
 }
 

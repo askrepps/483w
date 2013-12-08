@@ -14,4 +14,6 @@
 
 -(id)initWithLevelData:(LevelData *)levelData;
 
+-(void)resumeGame;
+
 @end

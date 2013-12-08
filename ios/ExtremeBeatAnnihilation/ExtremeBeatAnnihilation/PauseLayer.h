@@ -7,9 +7,11 @@
 //
 
 #import "cocos2d.h"
+#import "GameScene.h"
+
 
 @interface PauseLayer : CCLayer
 
-+(CCScene *)scene;
+-(id)initWithGameScene:(GameScene *)scene;
 
 @end

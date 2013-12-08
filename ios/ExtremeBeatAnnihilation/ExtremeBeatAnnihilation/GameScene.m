@@ -163,6 +163,8 @@
         _avPlayer.volume = value.floatValue;
         _avPlayer.delegate = self;
         [_avPlayer play];
+        
+        _pauseLayer = [[PauseLayer alloc] initWithGameScene: self];
     }
     
     return self;
@@ -173,6 +175,7 @@
     [_leftObstacles release];
     [_rightObstacles release];
     [_avPlayer release];
+    [_pauseLayer release];
     [super dealloc];
 }
 
@@ -285,9 +288,20 @@
     //Present pause screen as primary layer
     [self.avPlayer pause];
     [self unscheduleUpdate];
+    //[[CCDirector sharedDirector] pause];
     
+    [self addChild: _pauseLayer];
+    
+    //[self.avPlayer play];
+    //[self scheduleUpdate];
+}
+
+-(void)resumeGame
+{
     [self.avPlayer play];
     [self scheduleUpdate];
+    [self removeChild:[self pauseLayer] cleanup:NO];
+
 }
 
 @end

@@ -15,4 +15,6 @@
 -(void)slide;
 -(void)blink;
 -(BOOL)isBlinking;
+-(BOOL)isJumping;
+-(BOOL)isSliding;
 @end

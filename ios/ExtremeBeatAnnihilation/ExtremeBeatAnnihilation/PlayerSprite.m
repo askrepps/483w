@@ -52,7 +52,7 @@
         
         // Jumping action
         
-        CCCallFunc *funcAction = [CCCallFunc actionWithTarget:self selector:@selector(enableJump)];
+        CCCallFunc *jumpFuncAction = [CCCallFunc actionWithTarget:self selector:@selector(enableJump)];
         CCJumpBy *moveAction = [CCJumpBy actionWithDuration:0.5 position:ccp(0,0) height:kJumpHeight jumps:1];
         
         NSMutableArray *jumpAnimFrames = [NSMutableArray array];
@@ -60,7 +60,7 @@
         {
             [jumpAnimFrames addObject:
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-              [NSString stringWithFormat:@"jumping_%d.png",i]]];
+              [NSString stringWithFormat:@"jumping_%d.png", i]]];
         }
         
         CCAnimation *jumpAnim = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.1f];
@@ -68,11 +68,26 @@
         
         CCSpawn *jumping = [CCSpawn actions:moveAction, animationAction, nil];
         
-        self.jumpAction = [CCSequence actions:jumping, funcAction, nil];
+        self.jumpAction = [CCSequence actions:jumping, jumpFuncAction, nil];
         
         // Slide action
         
+        CCCallFunc *slideFuncAction = [CCCallFunc actionWithTarget:self selector:@selector(enableSlide)];
         
+        NSMutableArray *slideAnimFrames = [NSMutableArray array];
+        for(int i = 1; i <= 2; i++)
+        {
+            [slideAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"%@_slide_%d.png", self.fileName, i]]];
+        }
+        
+        CCAnimation *slideAnim = [CCAnimation animationWithSpriteFrames:slideAnimFrames delay:0.1f];
+        CCAction *slideAnimationAction = [CCAnimate actionWithAnimation:slideAnim];
+        
+        CCSpawn *sliding = [CCSpawn actions:slideAnimationAction, nil];
+        
+        self.slideAction = [CCSequence actions:sliding, slideFuncAction, nil];
         
         // Start initial action
         self.scale = 2.0;
@@ -83,7 +98,7 @@
 }
 
 -(void)jump
-{    
+{
     if(self.canJump)
     {
         self.canJump = NO;
@@ -94,15 +109,11 @@
 
 -(void)slide
 {
-    // TO BE FILLED OUT LATER
-    CCCallFunc *funcAction = [CCCallFunc actionWithTarget:self selector:@selector(enableSlide)];
-    
-    CCSequence *actions = [CCSequence actions:funcAction, nil];
-    
     if(self.canSlide)
     {
         self.canSlide = NO;
-        [self runAction:actions];
+        [self stopAction:self.runAction];
+        [self runAction:self.slideAction];
     }
 }
 
@@ -130,7 +141,9 @@
 
 -(void)enableSlide
 {
+    [self stopAction:self.slideAction];
     self.canSlide = YES;
+    [self runAction:self.runAction];
 }
 
 -(void)enableBlink

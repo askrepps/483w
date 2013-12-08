@@ -17,6 +17,7 @@
 #import "ClippingNode.h"
 #import "GameOverLayer.h"
 #import "PauseLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameScene () 
 
@@ -36,7 +37,16 @@
 @property (strong, nonatomic) CCSprite *rightBG2;
 @property (strong, nonatomic) AVAudioPlayer *avPlayer;
 @property (strong, nonatomic) CCLabelTTF *scoreLabel;
+@property (strong, nonatomic) CCLabelTTF *scoreLabelP1;
+@property (strong, nonatomic) CCLabelTTF *scoreLabelP2;
+
+
+
 @property NSInteger score;
+@property NSInteger scoreP1;
+@property NSInteger scoreP2;
+
+
 @property (strong, nonatomic) PauseLayer *pauseLayer;
 
 @end
@@ -143,17 +153,37 @@
         
         // Create menu items
         
+        if ([Registry getIsSinglePlayer])
+        {
+    
         _score = 0;
         _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", _score] fontName:@"Marker Felt" fontSize:24];
         _scoreLabel.position = ccp(winSize.width/2, winSize.height - 24);
+        [self addChild:_scoreLabel];
+            
+        }
+        
+        else
+        {
+            _scoreP1 = 0;
+            _scoreLabelP1 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"P1: %d", _scoreP1] fontName:@"Marker Felt" fontSize:24];
+            _scoreLabelP1.position = ccp(winSize.width/4, winSize.height - 24);
+            
+            _scoreP2 = 0;
+            _scoreLabelP2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"P2: %d", _scoreP2] fontName:@"Marker Felt" fontSize:24];
+            _scoreLabelP2.position = ccp(winSize.width/4 * 3, winSize.height - 24);
+            
+            [self addChild:_scoreLabelP1];
+            [self addChild:_scoreLabelP2];
+        }
         
         CCMenuItemFont *pause = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(pausePressed)];
-        pause.position = ccp(winSize.width/4, winSize.height - 24);
+        pause.position = ccp(winSize.width/2, winSize.height - 24);
         
         CCMenu *menu = [CCMenu menuWithItems:pause, nil];
         menu.position = CGPointZero;
         
-        [self addChild:_scoreLabel];
+      
         [self addChild:menu];
         
         // Start playing music
@@ -218,7 +248,14 @@
         if (!self.leftPlayer.isBlinking && CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
         {
             [self.leftPlayer blink];
-            self.score-=1000;
+            if ([Registry getIsSinglePlayer]) {
+                   self.score-=1000;
+            }
+            else
+            {
+                self.scoreP1-=1000;
+            }
+                     [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:-1.0f gain:1.0f];
         }
     }
     
@@ -226,13 +263,33 @@
     {
         if (!self.rightPlayer.isBlinking && CGRectIntersectsRect(self.rightPlayer.boundingBox, obs.boundingBox))
         {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:1.0f gain:1.0f];
             [self.rightPlayer blink];
-            self.score-=1000;
+            if ([Registry getIsSinglePlayer]) {
+                self.score-=1000;
+            }
+            else
+            {
+                self.scoreP2-=1000;
+            }
         }
     }
+    if ([Registry getIsSinglePlayer])
+    {
+         self.score+=10;
+        [self.scoreLabel setString:[NSString stringWithFormat:@"%d", self.score]];
+    }
     
-    self.score+=10;
-    [self.scoreLabel setString:[NSString stringWithFormat:@"%d", self.score]];
+    else
+    {
+        self.scoreP1+=10;
+        self.scoreP2+=10;
+        [self.scoreLabelP1 setString:[NSString stringWithFormat:@"P1: %d", self.scoreP1]];
+        [self.scoreLabelP2 setString:[NSString stringWithFormat:@"P2: %d", self.scoreP2]];
+
+    }
+   
+   
 }
 
 #pragma mark - AVAudioPlayerDelegate Methods
@@ -289,7 +346,7 @@
     [self.avPlayer pause];
     [self unscheduleUpdate];
     //[[CCDirector sharedDirector] pause];
-    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     [self addChild: _pauseLayer];
     
     //[self.avPlayer play];
@@ -298,6 +355,7 @@
 
 -(void)resumeGame
 {
+    // sound effect already played in PauseLayer, don't add it here
     [self.avPlayer play];
     [self scheduleUpdate];
     [self removeChild:[self pauseLayer] cleanup:NO];

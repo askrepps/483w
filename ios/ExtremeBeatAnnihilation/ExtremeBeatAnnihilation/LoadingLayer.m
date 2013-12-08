@@ -37,10 +37,17 @@
     
     return self;
 }
+
+-(void) onEnter
+{
+    [super onEnter];
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [Registry setIsMenuMusicPlaying:NO];
+    
+}
                                      
 -(void) loadLevel
 {
-    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     NSLog(@"URL = %@", [Registry getMusicURL]);
     LevelData *data = [[LevelData alloc] initWithAudioFileURL:[Registry getMusicURL]];
     GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];

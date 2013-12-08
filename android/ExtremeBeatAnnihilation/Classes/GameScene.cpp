@@ -12,46 +12,43 @@ extern std::string Game_Song;
 // return - false if there was an error in initializing, true otherwise
 bool GameScene::init()
 {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    BackgroundRLayer* backgroundR;      // background for the right player's screen
-    BackgroundLLayer* backgroundL;      // background for the left player's screen
-    ForegroundRLayer* foregroundR;      // foreground (like obstacles) for the right player's screen
-    ForegroundLLayer* foregroundL;      // foreground (like obstacles) for the left player's screen
-    PlayerRLayer*     playerR;          // the layer to contain the right player
-    PlayerLLayer*     playerL;          // the layer to contain the left player
-    UILayer*          ui;               // the overall ui of the scene
+	CCSize   winSize = CCDirector::sharedDirector()->getWinSize();
+    UILayer* ui;                                                     // the overall ui of the scene
 
     if(!CCScene::init())
     {
         return false;
     }
 
-    backgroundR = BackgroundRLayer::create();
-    backgroundL = BackgroundLLayer::create();
-    foregroundR = ForegroundRLayer::create();
-    foregroundL = ForegroundLLayer::create();
-    playerR     = PlayerRLayer::create();
-    playerL     = PlayerLLayer::create();
-    ui          = UILayer::create();
+    m_backgroundR = BackgroundRLayer::create();
+    m_backgroundL = BackgroundLLayer::create();
+    m_foregroundR = ForegroundRLayer::create();
+    m_foregroundL = ForegroundLLayer::create();
+    m_playerR     = PlayerRLayer::create();
+    m_playerL     = PlayerLLayer::create();
+    ui            = UILayer::create();
+
+    this->addChild(m_backgroundR, 0);
+    this->addChild(m_backgroundL, 0);
+    this->addChild(m_foregroundR, 1);
+    this->addChild(m_foregroundL, 1);
+    this->addChild(m_playerR, 1);
+    this->addChild(m_playerL, 1);
+    this->addChild(ui, 2);
 
     rightPlayer = PlayerR::create();
     rightPlayer->setPosition(ccp(winSize.width/6*5, winSize.height/3));
-    foregroundR->addChild(rightPlayer, 1);
+    m_foregroundR->addChild(rightPlayer, 1);
 
-    leftPlayer  = PlayerL::create();
+    leftPlayer = PlayerL::create();
     leftPlayer->setPosition(ccp(winSize.width/6, winSize.height/3));
-    foregroundL->addChild(leftPlayer, 1);
-
-    this->addChild(backgroundR, 0);
-    this->addChild(backgroundL, 0);
-    this->addChild(foregroundR, 1);
-    this->addChild(foregroundL, 1);
-    this->addChild(playerR, 1);
-    this->addChild(playerL, 1);
-    this->addChild(ui, 2);
+    m_foregroundL->addChild(leftPlayer, 1);
 
     // start up the song chosen by the user
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
+
+    // startup all the update methods of the layers
+    ScheduleAllUpdates();
 
     return true;
 }
@@ -66,7 +63,6 @@ void GameScene::ccTouchesBegin( cocos2d::CCSet * ptouches, cocos2d::CCEvent * ev
     CCRect* topLeft = new CCRect(0, winSize.height/2, winSize.width/2, winSize.height/2);
     CCRect* bottomRight = new CCRect(winSize.width/2, 0, winSize.width/2, winSize.height/2);
     CCRect* topRight = new CCRect(winSize.width/2, winSize.height/2, winSize.width/2, winSize.height/2);
-
 
     for(int i = 0; i <= ptouches->count(); i++)
 	{
@@ -99,4 +95,10 @@ void GameScene::ccTouchesBegin( cocos2d::CCSet * ptouches, cocos2d::CCEvent * ev
 
 		it++;
 	}
+}
+
+// schedule the updates to run for all the necessary layers
+void GameScene::ScheduleAllUpdates()
+{
+    m_backgroundL->scheduleUpdate();
 }

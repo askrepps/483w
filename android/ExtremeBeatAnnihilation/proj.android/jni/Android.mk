@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/UILayer.cpp \
                    ../../Classes/PauseScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp \
+                   ../../Classes/ClipNode.cpp \
                    ../../Classes/Global.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   

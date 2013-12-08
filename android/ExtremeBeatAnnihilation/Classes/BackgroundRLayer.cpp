@@ -25,10 +25,5 @@ bool BackgroundRLayer::init()
     // set the position of the layer to the right side of the screen
     this->setPosition(screenSize.width * POS_HALF_SCREEN, 0);
 
-    // TODO: remove this as it is temporary to display a test
-    CCLabelTTF* tempHeader = CCLabelTTF::create("Test Right", "Arial", 50);
-    tempHeader->setPosition( ccp(layerSize.width * 0.5, layerSize.height * 0.5) );
-    this->addChild(tempHeader);
-
     return true;
 }

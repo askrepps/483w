@@ -6,6 +6,8 @@
 // macros to be used by all files-----------------------------------------------------------------------
 #define COCOS2D_DEBUG          1
 
+#define VELOCITY               250   // speed factor at which to move objects on the game screen
+
 #define MENU_MUSIC             "Music/MenuSong.mp3"   // song to play for the menus
 #define INIT_MUSIC_VOL         50    // initial music volume; between 1 - 100
 #define INIT_SFX_VOL           50    // initial sound effects volume; between 1 - 100

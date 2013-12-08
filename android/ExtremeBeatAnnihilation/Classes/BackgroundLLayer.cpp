@@ -7,8 +7,9 @@ using namespace cocos2d;
 // return - false if there was an error in initializing, true otherwise
 bool BackgroundLLayer::init()
 {
-    CCSize screenSize;                         // the size of the window
-    CCSize layerSize;                          // size of this layer
+    ClipNode* clipNode;               // boundary to clip the image if outside the boundary
+    CCSize    screenSize;             // the size of the window
+    CCSize    layerSize;              // size of this layer
 
     if(!CCLayer::init())
     {
@@ -18,17 +19,55 @@ bool BackgroundLLayer::init()
     // get the window size from the director
     screenSize = CCDirector::sharedDirector()->getWinSize();
 
-    // set layerSize to be the full height and half the width of screenSize
+    // set layerSize to be the full height and half the width of screenSize, and position the layer to
+    //   the left side of the screen
     layerSize.setSize(screenSize.width * POS_HALF_SCREEN, screenSize.height);
-    this->setContentSize(layerSize);
+    setContentSize(layerSize);
+    setPosition(0, 0);
 
-    // set the position of the layer to the left side of the screen
-    this->setPosition(0, 0);
+    // create the clip node and add it
+    clipNode = new ClipNode();
+    clipNode->autorelease();
+    clipNode->setPosition(0, 0);
+    clipNode->setClipsToBounds(true);
+    clipNode->setClippingRegion( CCRect(0, 0, layerSize.width, layerSize.height) );
+    addChild(clipNode);
 
-    // TODO: remove this as it is temporary to display a test
-    CCLabelTTF* tempHeader = CCLabelTTF::create("Test Left", "Arial", 50);
-    tempHeader->setPosition( ccp(layerSize.width * 0.5, layerSize.height * 0.5) );
-    this->addChild(tempHeader);
+    // create and add the first background sprite
+    m_background1 = CCSprite::create(BACKGROUND);
+    m_background1->setPosition( ccp(0, screenSize.height * POS_HALF_SCREEN) );
+    clipNode->addChild(m_background1);
+
+    // create, position after first background, and add the second background
+    m_background2 = CCSprite::create(BACKGROUND);
+    m_background2->setPosition( ccp(m_background1->boundingBox().size.width, screenSize.height * POS_HALF_SCREEN) );
+    clipNode->addChild(m_background2);
 
     return true;
+}
+
+// shift the background sprites on every frame update
+//
+// delta [in] - time since last update?
+void BackgroundLLayer::update(float delta)
+{
+    CCSize size;                    // the size of the window
+
+    // if first background is off the screen, place it in front of the second background
+    if (m_background1->getPosition().x < -m_background1->boundingBox().size.width)
+    {
+        m_background1->setPosition( ccp(m_background2->getPosition().x + m_background2->boundingBox().size.width,
+                                                                                      m_background1->getPosition().y) );
+    }
+
+    // if second background is off the screen, place it in front of the first background
+    if (m_background2->getPosition().x < -m_background2->boundingBox().size.width)
+    {
+        m_background2->setPosition( ccp(m_background1->getPosition().x + m_background1->boundingBox().size.width,
+                                                                                      m_background2->getPosition().y) );
+    }
+
+    // shift the backgrounds to the left by the velocity amount
+    m_background1->setPosition( ccp(m_background1->getPosition().x - VELOCITY*delta, m_background1->getPosition().y) );
+    m_background2->setPosition( ccp(m_background2->getPosition().x - VELOCITY*delta, m_background2->getPosition().y) );
 }

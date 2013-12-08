@@ -1,6 +1,7 @@
 #include "UILayer.h"
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 // Initialize the UI for the main game scene
 //
@@ -39,5 +40,6 @@ bool UILayer::init()
 // sender [in] - the object that sent the selected event
 void UILayer::HandlePausePressed(CCObject* sender)
 {
-
+    CCDirector::sharedDirector()->pushScene(PauseLayer::Scene());
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }

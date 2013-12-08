@@ -9,8 +9,6 @@
 #include "CCControlSlider.h"
 #include "MainMenuScene.h"
 
-#define VOLUME_FACTOR 100     // factor to divide slider values in order to get number between 0.0 - 1.0
-
 class OptionsMenu : public cocos2d::CCLayer
 {
 public:

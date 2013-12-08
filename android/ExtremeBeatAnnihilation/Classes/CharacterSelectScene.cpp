@@ -22,10 +22,16 @@ CCScene* CharacterSelect::Scene()
 bool CharacterSelect::init()
 {
     CCSize           size;						// The size of the screen
-    CCMenuItemFont*  closeItem;					// Goes back to the previous scene
-    CCLabelTTF*      label;						// The label to display current status
+    CCMenuItemFont*  backItem;					// Goes back to the previous selection
+    CCMenuItemFont*  continueItem;				// Goes forward in the process
     CCMenuItemImage* characterOne;				// Character One for the select screen
     CCMenuItemImage* characterTwo;				// Character Two for the select screen
+    CCMenuItemImage* characterThree;			// Character Three for the select screen
+    CCMenuItemImage* selectedCharacterOne;
+    CCMenuItemImage* selectedCharacterTwo;
+    CCMenuItemImage* selectedCharacterThree;
+   	CCLabelTTF*       label;					// The label to display current status
+    CCMenu* 		  characterMenu;			// The menu
 
     // Super init, MUST DO
     if(!CCLayer::init())
@@ -36,35 +42,59 @@ bool CharacterSelect::init()
     // Initialize number of characters to 0
     m_numCharacters = 0;
 
+    // Set the selected index to nothing being selected
+    m_currentSelectedChar = NO_CHAR_SELECT;
+
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
 
     // add a "close" icon to exit the process
-    closeItem = CCMenuItemFont::create("Back",  this,
-                                           menu_selector(CharacterSelect::MenuCloseCallback));
-    closeItem->setPosition(ccp(size.width / 2, 20));
+    backItem = CCMenuItemFont::create("Back",  this,
+                                           menu_selector(CharacterSelect::MenuBackCallback));
+    backItem->setPosition(ccp(size.width / 4 * 3, 50));
+
+    // add a "continue" icon
+    continueItem = CCMenuItemFont::create("Continue", this, menu_selector(CharacterSelect::MenuContinueCallback));
+    continueItem->setPosition(ccp(size.width / 4, 50));
 
 	// Create the character menu items and load them into memory, set their tags
-	characterOne = CCMenuItemImage::create("CharacterIcons/CharacterOne.png", "CharacterIcons/selectCharacterOne.png", this,
-			menu_selector(CharacterSelect::MenuCharacterCallback));
-	characterOne->setTag(1);
-	characterTwo = CCMenuItemImage::create("CharacterIcons/CharacterTwo.png", "CharacterIcons/selectCharacterTwo.png", this,
-			menu_selector(CharacterSelect::MenuCharacterCallback));
-	characterTwo->setTag(2);
+	characterOne = CCMenuItemImage::create("CharacterIcons/CharacterOne.png", "CharacterIcons/selectCharacterOne.png");
+	selectedCharacterOne = CCMenuItemImage::create("CharacterIcons/selectCharacterOne.png", "CharacterIcons/CharacterOne.png");
+	CCLog("%p %p %p\n", this,  characterOne, selectedCharacterOne);
+	m_charOne_Wrapper = CCMenuItemToggle::createWithTarget(this, menu_selector(CharacterSelect::MenuCharacterCallback), characterOne, selectedCharacterOne, NULL);
+	m_charOne_Wrapper->setTag(1);
+
+	// Create the character two
+	characterTwo = CCMenuItemImage::create("CharacterIcons/CharacterTwo.png", "CharacterIcons/selectCharacterTwo.png");
+	selectedCharacterTwo = CCMenuItemImage::create("CharacterIcons/selectCharacterTwo.png", "CharacterIcons/CharacterTwo.png");
+	m_charTwo_Wrapper = CCMenuItemToggle::createWithTarget(this, menu_selector(CharacterSelect::MenuCharacterCallback), characterTwo, selectedCharacterTwo, NULL);
+	m_charTwo_Wrapper->setTag(2);
+
+	// Create the character three
+	characterThree = CCMenuItemImage::create("CharacterIcons/CharacterThree.png", "CharacterIcons/selectCharacterThree.png");
+	selectedCharacterThree = CCMenuItemImage::create("CharacterIcons/selectCharacterThree.png", "CharacterIcons/CharacterThree.png");
+	m_charThree_Wrapper = CCMenuItemToggle::createWithTarget(this, menu_selector(CharacterSelect::MenuCharacterCallback), characterThree, selectedCharacterThree, NULL);
+	m_charThree_Wrapper->setTag(3);
 
 	// Set their positions relative to the screen size, I used 8 as it gave the most buffer room, we can add a third easily
-	characterOne->setPosition( ccp(size.width / 8, CCDirector::sharedDirector()->getWinSize().height / 2));
-	characterTwo->setPosition( ccp((size.width / 8) * 4 + 10, CCDirector::sharedDirector()->getWinSize().height / 2));
+	m_charOne_Wrapper->setPosition( ccp(size.width / 8, CCDirector::sharedDirector()->getWinSize().height / 2));
+	m_charTwo_Wrapper->setPosition( ccp((size.width / 8) * 4 + 10, CCDirector::sharedDirector()->getWinSize().height / 2));
+	m_charThree_Wrapper->setPosition( ccp((size.width / 8) * 7 + 10, CCDirector::sharedDirector()->getWinSize().height / 2));
+
 
     // create menu, adding in all the MenuItems
-    m_characterMenu = CCMenu::create(closeItem, characterOne, characterTwo, NULL);
-    m_characterMenu->setPosition(CCPointZero);
-    this->addChild(m_characterMenu, 1);
+	characterMenu = CCMenu::create(continueItem, backItem, m_charOne_Wrapper, m_charTwo_Wrapper, m_charThree_Wrapper, NULL);
+	characterMenu->setPosition(CCPointZero);
+    this->addChild(characterMenu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("Select your character!", "Thonburi", 34);
+    label = CCLabelTTF::create("Select the left character!", "Thonburi", 34);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
+
+    // Set the local variables to class members to store them for later
+    m_label = label;
+    m_characterMenu = characterMenu;
 
     return true;
 }
@@ -75,33 +105,112 @@ void CharacterSelect::LoadCharacters()
 }
 
 // a selector callback
-void CharacterSelect::MenuCloseCallback(CCObject* sender)
+void CharacterSelect::MenuBackCallback(CCObject* sender)
 {
+	if(m_currentSelectedChar != NO_CHAR_SELECT)
+		m_itemImage->setSelectedIndex(0);
+	EnableMenu(true);
 	// Go back to the main menu
-    CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+	switch(m_numCharacters)
+	{
+	case 0:
+    	CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+    	break;
+	case 1:
+		--m_numCharacters;
+		m_currentSelectedChar = NO_CHAR_SELECT;
+		m_label->setString("Select the left character!");
+		break;
+	case 2:
+		--m_numCharacters;
+		m_currentSelectedChar = NO_CHAR_SELECT;
+		m_label->setString("Select the right character!");
+		break;
+	default:
+		break;
+	}
+}
+
+void CharacterSelect::MenuContinueCallback(CCObject* sender)
+{
+	if(m_numCharacters >= 2)
+	{
+		CCDirector::sharedDirector()->replaceScene(MusicSelect::Scene());
+	}
+	else if(m_currentSelectedChar != NO_CHAR_SELECT)
+	{
+		switch(m_numCharacters)
+			{
+			case 0:
+				++m_numCharacters;
+				Player_One = m_currentSelectedChar;
+				m_currentSelectedChar = NO_CHAR_SELECT;
+				m_label->setString("Select the right character!");
+				break;
+			case 1:
+				++m_numCharacters;
+				Player_Two = m_currentSelectedChar;
+				m_currentSelectedChar = NO_CHAR_SELECT;
+				m_label->setString("Hit continue to select music!");
+				break;
+			default:
+				break;
+			}
+		m_itemImage->setSelectedIndex(0);
+		if(m_numCharacters < 2)
+			EnableMenu(true);
+		else
+			EnableMenu(false);
+	}
+
 }
 
 // Call back for character selection
 void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 {
-	// Increment the number of characters selected
-	++m_numCharacters;
 	// Convert the object that called this to a CCMenuItemImage (SHOULD ALWAYS BE CCMENUITEMIMAGE)
-	CCMenuItemImage* convert = (CCMenuItemImage *)sender;
+	if(m_numCharacters < 2)
+	{
+		m_itemImage = (CCMenuItemToggle *)sender;
 
-	// If we got one character, set the index to the tag, otherwise, we selected character two
-	if(m_numCharacters == 1)
-	{
-		Player_One = convert->getTag();
+		if(m_currentSelectedChar == NO_CHAR_SELECT)
+		{
+			m_currentSelectedChar = m_itemImage->getTag();
+			DisableMenu();
+		}
+		else
+		{
+			m_currentSelectedChar = NO_CHAR_SELECT;
+			EnableMenu(true);
+		}
 	}
-	else if(m_numCharacters == 2)
-	{
-		Player_Two = convert->getTag();
-	}
+}
 
-	// Will move onto music library scene once we get that inplace
-	if(m_numCharacters >= 2)
+
+void CharacterSelect::DisableMenu(void)
+{
+	switch(m_itemImage->getTag())
 	{
-	    CCDirector::sharedDirector()->replaceScene(MusicSelect::Scene());
+	case 1:
+		m_charTwo_Wrapper->setEnabled(false);
+		m_charThree_Wrapper->setEnabled(false);
+		break;
+	case 2:
+		m_charOne_Wrapper->setEnabled(false);
+		m_charThree_Wrapper->setEnabled(false);
+		break;
+	case 3:
+		m_charTwo_Wrapper->setEnabled(false);
+		m_charOne_Wrapper->setEnabled(false);
+		break;
+	default:
+		break;
 	}
+}
+
+void CharacterSelect::EnableMenu(bool val)
+{
+	m_charOne_Wrapper->setEnabled(val);
+	m_charTwo_Wrapper->setEnabled(val);
+	m_charThree_Wrapper->setEnabled(val);
 }

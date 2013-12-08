@@ -62,11 +62,6 @@ bool SampleMusic::init()
     menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
     this->addChild(menu, 1);
 
-    // add splash screen as a sprite on the center of the screen
-    //background = CCSprite::create(BACKGROUND_IMAGE);
-    //background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
-    //this->addChild(background, 0);
-
     return true;
 }
 

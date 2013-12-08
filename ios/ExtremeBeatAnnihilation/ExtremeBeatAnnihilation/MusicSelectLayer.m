@@ -19,10 +19,10 @@
 {
 	CCScene *scene = [CCScene node];
 	
-    BackgroundLayer *background = [BackgroundLayer node];
+    //BackgroundLayer *background = [BackgroundLayer node];
 	MusicSelectLayer *mode = [MusicSelectLayer node];
 	
-    [scene addChild:background z:-1];
+    //[scene addChild:background z:-1];
 	[scene addChild:mode];
 	
 	return scene;

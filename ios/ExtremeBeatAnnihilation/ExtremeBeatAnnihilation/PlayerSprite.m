@@ -156,4 +156,14 @@
     return !self.canBlink;
 }
 
+-(BOOL)isJumping
+{
+    return !self.canJump;
+}
+
+-(BOOL)isSliding
+{
+    return !self.canSlide;
+}
+
 @end

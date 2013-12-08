@@ -47,6 +47,7 @@
         self.characters = [[NSMutableArray alloc] init];
         self.charSelections = [[NSMutableArray alloc] init];
         
+        // Char 1
         
         CCMenuItemImage *character1Unselected = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1selected.png" target:self selector:@selector(CharacterPressed:)];
         
@@ -56,6 +57,8 @@
         
         CCMenuItemToggle *character1 = [CCMenuItemToggle itemWithTarget:self selector:@selector(CharacterPressed:) items:character1Unselected, character1Selected, nil];
         [_characters addObject:character1];
+        
+        // Char 2
         
         CCMenuItemImage *character2Unselected = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2selected.png" target:self selector:@selector(CharacterPressed:)];
         
@@ -76,23 +79,13 @@
         
         CCMenuItemToggle *character3 = [CCMenuItemToggle itemWithTarget:self selector:@selector(CharacterPressed:) items:character3Unselected, character3Selected, nil];
         [_characters addObject:character3];
-        //
-        //        CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4selected.png" target:self selector:@selector(CharacterPressed:)];
-        //        [_unselectedChars addObject:character4];
-        
-        
-        //
-        //        CCMenuItemImage *character4Selected = [CCMenuItemImage itemWithNormalImage:@"char4selected.png" selectedImage:@"char4.png" target:self selector:@selector(CharacterPressed:)];
-        //        [_selectedChars addObject:character4Selected];
         
         CCMenuItemFont *continueButton = [CCMenuItemFont itemWithString:@"Continue" target:self selector:@selector(ContinuePressed:)];
         continueButton.position = ccp(size.width/2, 64);
         
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
         back.position = ccp(size.width/2, 32);
-        
-        //        self.characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, nil];
-        
+                
         // Check if any characters already set
         if([Registry getCharOne] != -1 && [Registry getCharTwo] != -1)
         {

@@ -192,6 +192,13 @@
 		C2E116C51854F9480035EF7C /* red_jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116B91854F9480035EF7C /* red_jumping.png */; };
 		C2E116C61854F9480035EF7C /* red_running.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116BA1854F9480035EF7C /* red_running.plist */; };
 		C2E116C71854F9480035EF7C /* red_running.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116BB1854F9480035EF7C /* red_running.png */; };
+		C2E116CE1854FE160035EF7C /* red_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116CC1854FE150035EF7C /* red_sliding.plist */; };
+		C2E116CF1854FE160035EF7C /* red_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116CD1854FE160035EF7C /* red_sliding.png */; };
+		C2E116D6185500940035EF7C /* green_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D4185500940035EF7C /* green_sliding.plist */; };
+		C2E116D7185500940035EF7C /* green_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D5185500940035EF7C /* green_sliding.png */; };
+		C2E116DA1855009F0035EF7C /* blue_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D81855009F0035EF7C /* blue_sliding.plist */; };
+		C2E116DB1855009F0035EF7C /* blue_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D91855009F0035EF7C /* blue_sliding.png */; };
+		C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E116DD185513FD0035EF7C /* PlayerSprite.m */; };
 		C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EA1821565000288C7E /* OptionsLayer.m */; };
 		C2FB1A0A1821609400288C7E /* CCControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EF1821609400288C7E /* CCControl.m */; };
 		C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19F11821609400288C7E /* CCControlButton.m */; };
@@ -530,6 +537,8 @@
 		C229CD39184A99CF0098C02D /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		C234773C183981E8005408C9 /* background_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_inverted.png; path = Resources/background_inverted.png; sourceTree = "<group>"; };
 		C234773D183981E8005408C9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = "<group>"; };
+		C23477481855101D005408C9 /* background_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_inverted.png; sourceTree = "<group>"; };
+		C23477491855101D005408C9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		C262F8231814B3AD00C901FF /* LeftPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftPlayer.h; sourceTree = "<group>"; };
 		C262F8241814B3AD00C901FF /* LeftPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftPlayer.m; sourceTree = "<group>"; };
 		C262F8261814B3BE00C901FF /* RightPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightPlayer.h; sourceTree = "<group>"; };
@@ -554,6 +563,14 @@
 		C2E116B91854F9480035EF7C /* red_jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_jumping.png; sourceTree = "<group>"; };
 		C2E116BA1854F9480035EF7C /* red_running.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = red_running.plist; sourceTree = "<group>"; };
 		C2E116BB1854F9480035EF7C /* red_running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_running.png; sourceTree = "<group>"; };
+		C2E116CC1854FE150035EF7C /* red_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = red_sliding.plist; sourceTree = "<group>"; };
+		C2E116CD1854FE160035EF7C /* red_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_sliding.png; sourceTree = "<group>"; };
+		C2E116D4185500940035EF7C /* green_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = green_sliding.plist; sourceTree = "<group>"; };
+		C2E116D5185500940035EF7C /* green_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_sliding.png; sourceTree = "<group>"; };
+		C2E116D81855009F0035EF7C /* blue_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blue_sliding.plist; sourceTree = "<group>"; };
+		C2E116D91855009F0035EF7C /* blue_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_sliding.png; sourceTree = "<group>"; };
+		C2E116DC185513FD0035EF7C /* PlayerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSprite.h; sourceTree = "<group>"; };
+		C2E116DD185513FD0035EF7C /* PlayerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSprite.m; sourceTree = "<group>"; };
 		C2FB19E91821565000288C7E /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
 		C2FB19EA1821565000288C7E /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
 		C2FB19EE1821609400288C7E /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControl.h; sourceTree = "<group>"; };
@@ -705,6 +722,8 @@
 				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
 				C21095C51850E344009B311E /* PauseLayer.h */,
 				C21095C61850E344009B311E /* PauseLayer.m */,
+				C2E116DC185513FD0035EF7C /* PlayerSprite.h */,
+				C2E116DD185513FD0035EF7C /* PlayerSprite.m */,
 				C262F8261814B3BE00C901FF /* RightPlayer.h */,
 				C262F8271814B3BE00C901FF /* RightPlayer.m */,
 				99C27E8D17E1274F00060D51 /* libs */,
@@ -1143,6 +1162,8 @@
 		C2E116AD1854F9480035EF7C /* Blue */ = {
 			isa = PBXGroup;
 			children = (
+				C2E116D81855009F0035EF7C /* blue_sliding.plist */,
+				C2E116D91855009F0035EF7C /* blue_sliding.png */,
 				C2E116AE1854F9480035EF7C /* blue_jumping.plist */,
 				C2E116AF1854F9480035EF7C /* blue_jumping.png */,
 				C2E116B01854F9480035EF7C /* blue_running.plist */,
@@ -1154,6 +1175,8 @@
 		C2E116B21854F9480035EF7C /* Green */ = {
 			isa = PBXGroup;
 			children = (
+				C2E116D4185500940035EF7C /* green_sliding.plist */,
+				C2E116D5185500940035EF7C /* green_sliding.png */,
 				C2E116B31854F9480035EF7C /* green_jumping.plist */,
 				C2E116B41854F9480035EF7C /* green_jumping.png */,
 				C2E116B51854F9480035EF7C /* green_running.plist */,
@@ -1165,6 +1188,8 @@
 		C2E116B71854F9480035EF7C /* Red */ = {
 			isa = PBXGroup;
 			children = (
+				C2E116CC1854FE150035EF7C /* red_sliding.plist */,
+				C2E116CD1854FE160035EF7C /* red_sliding.png */,
 				C2E116B81854F9480035EF7C /* red_jumping.plist */,
 				C2E116B91854F9480035EF7C /* red_jumping.png */,
 				C2E116BA1854F9480035EF7C /* red_running.plist */,
@@ -1333,6 +1358,12 @@
 				C2E116C51854F9480035EF7C /* red_jumping.png in Resources */,
 				C2E116C61854F9480035EF7C /* red_running.plist in Resources */,
 				C2E116C71854F9480035EF7C /* red_running.png in Resources */,
+				C2E116CE1854FE160035EF7C /* red_sliding.plist in Resources */,
+				C2E116CF1854FE160035EF7C /* red_sliding.png in Resources */,
+				C2E116D6185500940035EF7C /* green_sliding.plist in Resources */,
+				C2E116D7185500940035EF7C /* green_sliding.png in Resources */,
+				C2E116DA1855009F0035EF7C /* blue_sliding.plist in Resources */,
+				C2E116DB1855009F0035EF7C /* blue_sliding.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1512,7 @@
 				C229CD3718480DC20098C02D /* ClippingNode.m in Sources */,
 				C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */,
 				C21095C71850E344009B311E /* PauseLayer.m in Sources */,
+				C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

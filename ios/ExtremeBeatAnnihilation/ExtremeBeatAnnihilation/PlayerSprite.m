@@ -81,6 +81,12 @@
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
               [NSString stringWithFormat:@"%@_slide_%d.png", self.fileName, i]]];
         }
+        for(int i = 1; i < 5; i++)
+        {
+            [slideAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"%@_slide_2.png", self.fileName]]];
+        }
         
         CCAnimation *slideAnim = [CCAnimation animationWithSpriteFrames:slideAnimFrames delay:0.1f];
         CCAction *slideAnimationAction = [CCAnimate actionWithAnimation:slideAnim];

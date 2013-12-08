@@ -6,6 +6,7 @@
 #include "MainMenuScene.h"
 #include "MusicSelectScene.h"
 #include "Global.h"
+#include <cstdarg>
 
 class CharacterSelect : public cocos2d::CCLayer
 {
@@ -16,7 +17,9 @@ public:
     static cocos2d::CCScene* Scene();
 
     // a selector callback
-    void MenuCloseCallback(CCObject* pSender);
+    void MenuBackCallback(CCObject* pSender);
+
+    void MenuContinueCallback(CCObject* pSender);
 
 	// a selector callback for character selection
 	void MenuCharacterCallback(CCObject* pSender);
@@ -27,16 +30,20 @@ public:
 	// Load the characters into memory
 	void LoadCharacters();
 
-	// Arrange the characters into their proper location
-	void ArrangeCharacterLocations(void);
-
-
 	// allows use of create() function which uses init() to create this layer
     CREATE_FUNC(CharacterSelect);
+
 private:
-	//std::vector<CCMenuItemImage>* m_characterSelectionImages;
-	int m_numCharacters;
-	cocos2d::CCMenu* m_characterMenu;
+    void DisableMenu(void);
+    void EnableMenu(bool val);
+	int 					  m_numCharacters;			// The number of characters selected
+	int						  m_currentSelectedChar;		// The current selected character
+	cocos2d::CCMenuItemToggle* m_itemImage;				// The image for enabling on continue and such.
+	cocos2d::CCLabelTTF*      m_label;					// The label to display current status
+	cocos2d::CCMenu* 		  m_characterMenu;			// The menu
+	cocos2d::CCMenuItemToggle* m_charOne_Wrapper;
+	cocos2d::CCMenuItemToggle* m_charTwo_Wrapper;
+	cocos2d::CCMenuItemToggle* m_charThree_Wrapper;
 };
 
 #endif // __CHARACTER_SELECT_SCENE_H__

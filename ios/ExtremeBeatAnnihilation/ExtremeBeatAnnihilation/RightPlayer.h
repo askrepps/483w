@@ -6,15 +6,8 @@
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
-#import "cocos2d.h"
+#import "PlayerSprite.h"
 
-@interface RightPlayer : CCSprite
-@property BOOL canJump;
-@property BOOL canBlink;
-@property BOOL canSlide;
+@interface RightPlayer : PlayerSprite
 
--(void)jump;
--(void)slide;
--(void)blink;
--(BOOL)isBlinking;
 @end

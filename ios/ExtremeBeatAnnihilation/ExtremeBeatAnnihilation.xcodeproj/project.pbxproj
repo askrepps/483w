@@ -168,8 +168,6 @@
 		C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C229CD39184A99CF0098C02D /* GameOverLayer.m */; };
 		C234773E183981E8005408C9 /* background_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773C183981E8005408C9 /* background_inverted.png */; };
 		C234773F183981E8005408C9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C234773D183981E8005408C9 /* background.png */; };
-		C234774A1855101D005408C9 /* background_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = C23477481855101D005408C9 /* background_inverted.png */; };
-		C234774B1855101D005408C9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C23477491855101D005408C9 /* background.png */; };
 		C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8241814B3AD00C901FF /* LeftPlayer.m */; };
 		C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8271814B3BE00C901FF /* RightPlayer.m */; };
 		C28B876118353E840093E7E2 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C28B876018353E830093E7E2 /* GameScene.m */; };
@@ -196,6 +194,7 @@
 		C2E116D7185500940035EF7C /* green_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D5185500940035EF7C /* green_sliding.png */; };
 		C2E116DA1855009F0035EF7C /* blue_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D81855009F0035EF7C /* blue_sliding.plist */; };
 		C2E116DB1855009F0035EF7C /* blue_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D91855009F0035EF7C /* blue_sliding.png */; };
+		C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E116DD185513FD0035EF7C /* PlayerSprite.m */; };
 		C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EA1821565000288C7E /* OptionsLayer.m */; };
 		C2FB1A0A1821609400288C7E /* CCControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EF1821609400288C7E /* CCControl.m */; };
 		C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19F11821609400288C7E /* CCControlButton.m */; };
@@ -562,6 +561,8 @@
 		C2E116D5185500940035EF7C /* green_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_sliding.png; sourceTree = "<group>"; };
 		C2E116D81855009F0035EF7C /* blue_sliding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blue_sliding.plist; sourceTree = "<group>"; };
 		C2E116D91855009F0035EF7C /* blue_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_sliding.png; sourceTree = "<group>"; };
+		C2E116DC185513FD0035EF7C /* PlayerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSprite.h; sourceTree = "<group>"; };
+		C2E116DD185513FD0035EF7C /* PlayerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSprite.m; sourceTree = "<group>"; };
 		C2FB19E91821565000288C7E /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
 		C2FB19EA1821565000288C7E /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
 		C2FB19EE1821609400288C7E /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControl.h; sourceTree = "<group>"; };
@@ -701,6 +702,8 @@
 				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
 				C21095C51850E344009B311E /* PauseLayer.h */,
 				C21095C61850E344009B311E /* PauseLayer.m */,
+				C2E116DC185513FD0035EF7C /* PlayerSprite.h */,
+				C2E116DD185513FD0035EF7C /* PlayerSprite.m */,
 				C262F8261814B3BE00C901FF /* RightPlayer.h */,
 				C262F8271814B3BE00C901FF /* RightPlayer.m */,
 				99C27E8D17E1274F00060D51 /* libs */,
@@ -1486,6 +1489,7 @@
 				C229CD3718480DC20098C02D /* ClippingNode.m in Sources */,
 				C229CD3A184A99CF0098C02D /* GameOverLayer.m in Sources */,
 				C21095C71850E344009B311E /* PauseLayer.m in Sources */,
+				C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

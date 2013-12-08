@@ -10,6 +10,7 @@
 #import "Registry.h"
 #import "MenuLayer.h"
 #import "GameScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation LoadingLayer
 
@@ -31,7 +32,7 @@
         CCLabelTTF *label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"Marker Felt" fontSize:32];
         label.position = ccp(size.width/2, size.height/2);
         [self addChild:label];
-        [self scheduleOnce:@selector(loadLevel) delay:2];
+        [self scheduleOnce:@selector(loadLevel) delay:0];
     }
     
     return self;
@@ -39,6 +40,7 @@
                                      
 -(void) loadLevel
 {
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     NSLog(@"URL = %@", [Registry getMusicURL]);
     LevelData *data = [[LevelData alloc] initWithAudioFileURL:[Registry getMusicURL]];
     GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];

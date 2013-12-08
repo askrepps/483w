@@ -11,6 +11,7 @@
 #import "MenuLayer.h"
 #import "Registry.h"
 #import "GameScene.h"
+#import "SimpleAudioEngine.h"
 
 @interface PauseLayer ()
 
@@ -43,11 +44,13 @@
 
 -(void)unPausePressed
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [[self gameScene] resumeGame];
 }
 
 -(void)quitPressed
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [Registry clean];
     [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
     

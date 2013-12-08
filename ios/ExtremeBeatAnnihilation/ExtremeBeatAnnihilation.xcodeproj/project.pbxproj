@@ -11,6 +11,10 @@
 		997AEE321835F62A008ED709 /* LoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 997AEE311835F62A008ED709 /* LoadingLayer.m */; };
 		99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B11830425B00F12C7F /* LettingGo.mp3 */; };
 		99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */; };
+		99BAE9FF185514FD00BCD5A4 /* back.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99BAE9FC185514FD00BCD5A4 /* back.wav */; };
+		99BAEA00185514FD00BCD5A4 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99BAE9FD185514FD00BCD5A4 /* hit.wav */; };
+		99BAEA01185514FD00BCD5A4 /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99BAE9FE185514FD00BCD5A4 /* select.wav */; };
+		99BAEA031855150E00BCD5A4 /* ebaLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */; };
 		99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6017E1274F00060D51 /* QuartzCore.framework */; };
 		99C27E6317E1274F00060D51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6217E1274F00060D51 /* OpenGLES.framework */; };
 		99C27E6517E1274F00060D51 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6417E1274F00060D51 /* OpenAL.framework */; };
@@ -213,6 +217,10 @@
 		997AEE311835F62A008ED709 /* LoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingLayer.m; sourceTree = "<group>"; };
 		99A886B11830425B00F12C7F /* LettingGo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LettingGo.mp3; path = Resources/SampleTracks/LettingGo.mp3; sourceTree = "<group>"; };
 		99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = TheCallOfStars.mp3; path = Resources/SampleTracks/TheCallOfStars.mp3; sourceTree = "<group>"; };
+		99BAE9FC185514FD00BCD5A4 /* back.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = back.wav; sourceTree = "<group>"; };
+		99BAE9FD185514FD00BCD5A4 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
+		99BAE9FE185514FD00BCD5A4 /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = select.wav; sourceTree = "<group>"; };
+		99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ebaLoop.mp3; path = Resources/SampleTracks/ebaLoop.mp3; sourceTree = "<group>"; };
 		99C27E5D17E1274F00060D51 /* ExtremeBeatAnnihilation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtremeBeatAnnihilation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C27E6017E1274F00060D51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		99C27E6217E1274F00060D51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -607,10 +615,22 @@
 		99A886B0183039DB00F12C7F /* Sample Tracks */ = {
 			isa = PBXGroup;
 			children = (
+				99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */,
 				99A886B11830425B00F12C7F /* LettingGo.mp3 */,
 				99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */,
 			);
 			name = "Sample Tracks";
+			sourceTree = "<group>";
+		};
+		99BAE9FB185514FD00BCD5A4 /* sfx */ = {
+			isa = PBXGroup;
+			children = (
+				99BAE9FC185514FD00BCD5A4 /* back.wav */,
+				99BAE9FD185514FD00BCD5A4 /* hit.wav */,
+				99BAE9FE185514FD00BCD5A4 /* select.wav */,
+			);
+			name = sfx;
+			path = Resources/sfx;
 			sourceTree = "<group>";
 		};
 		99C27E5417E1274F00060D51 = {
@@ -697,6 +717,7 @@
 		99C27E7517E1274F00060D51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				99BAE9FB185514FD00BCD5A4 /* sfx */,
 				C2E116AC1854F9480035EF7C /* Character Sheets */,
 				C2E116A61854F93A0035EF7C /* night_background.png */,
 				C2E116A71854F93A0035EF7C /* smallCoil.png */,
@@ -1267,6 +1288,7 @@
 				99C27E7F17E1274F00060D51 /* Icon-72.png in Resources */,
 				99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */,
 				99C27E8117E1274F00060D51 /* Icon-Small-50.png in Resources */,
+				99BAEA01185514FD00BCD5A4 /* select.wav in Resources */,
 				99C27E8317E1274F00060D51 /* Icon-Small.png in Resources */,
 				99C27E8517E1274F00060D51 /* Icon-Small@2x.png in Resources */,
 				99C27E8717E1274F00060D51 /* Icon.png in Resources */,
@@ -1292,6 +1314,7 @@
 				C20D789418302A42006CB110 /* char4selected.png in Resources */,
 				C234773E183981E8005408C9 /* background_inverted.png in Resources */,
 				C234773F183981E8005408C9 /* background.png in Resources */,
+				99BAEA00185514FD00BCD5A4 /* hit.wav in Resources */,
 				C2E116A51854F9290035EF7C /* night_background_inverted.png in Resources */,
 				C2E116A91854F93A0035EF7C /* night_background.png in Resources */,
 				C2E116AA1854F93A0035EF7C /* smallCoil.png in Resources */,
@@ -1301,6 +1324,8 @@
 				C2E116BE1854F9480035EF7C /* blue_running.plist in Resources */,
 				C2E116BF1854F9480035EF7C /* blue_running.png in Resources */,
 				C2E116C01854F9480035EF7C /* green_jumping.plist in Resources */,
+				99BAEA031855150E00BCD5A4 /* ebaLoop.mp3 in Resources */,
+				99BAE9FF185514FD00BCD5A4 /* back.wav in Resources */,
 				C2E116C11854F9480035EF7C /* green_jumping.png in Resources */,
 				C2E116C21854F9480035EF7C /* green_running.plist in Resources */,
 				C2E116C31854F9480035EF7C /* green_running.png in Resources */,

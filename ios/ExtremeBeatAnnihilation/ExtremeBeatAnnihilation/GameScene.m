@@ -17,6 +17,7 @@
 #import "ClippingNode.h"
 #import "GameOverLayer.h"
 #import "PauseLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameScene () 
 
@@ -219,6 +220,7 @@
         {
             [self.leftPlayer blink];
             self.score-=1000;
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:-1.0f gain:1.0f];
         }
     }
     
@@ -226,6 +228,7 @@
     {
         if (!self.rightPlayer.isBlinking && CGRectIntersectsRect(self.rightPlayer.boundingBox, obs.boundingBox))
         {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:1.0f gain:1.0f];
             [self.rightPlayer blink];
             self.score-=1000;
         }
@@ -289,7 +292,7 @@
     [self.avPlayer pause];
     [self unscheduleUpdate];
     //[[CCDirector sharedDirector] pause];
-    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     [self addChild: _pauseLayer];
     
     //[self.avPlayer play];
@@ -298,6 +301,7 @@
 
 -(void)resumeGame
 {
+    // sound effect already played in PauseLayer, don't add it here
     [self.avPlayer play];
     [self scheduleUpdate];
     [self removeChild:[self pauseLayer] cleanup:NO];

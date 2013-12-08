@@ -93,6 +93,7 @@
 //    CCScene *scene = [CCScene node];
 //    [scene addChild:[MenuLayer scene]];
 //    [[CCDirector sharedDirector] replaceScene:scene];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [[CCDirector sharedDirector] popScene];
 }
 

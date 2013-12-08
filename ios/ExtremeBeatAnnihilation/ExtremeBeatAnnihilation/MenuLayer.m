@@ -13,6 +13,7 @@
 #import "OptionsLayer.h"
 #import "CharacterSelectLayer.h"
 #import "Registry.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - MenuLayer
 
@@ -58,6 +59,13 @@
 	return self;
 }
 
+-(void)onEnterTransitionDidFinish
+{
+    [super onEnterTransitionDidFinish];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];
+    
+}
+
 -(void)dealloc
 {
 	[super dealloc];
@@ -67,15 +75,19 @@
 {
     [Registry setIsSinglePlayer:YES];
     [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
+    
 }
 
 -(void)multiPressed:(id)sender
 {
     [Registry setIsSinglePlayer:NO];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 }
 
 -(void)optionsPressed:(id)sender
 {
     [[CCDirector sharedDirector] pushScene:[OptionsLayer scene]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 }
 @end

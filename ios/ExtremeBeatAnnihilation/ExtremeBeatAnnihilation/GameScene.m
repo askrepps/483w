@@ -309,6 +309,8 @@
     {
         [Registry setFirstScore:self.scoreP1 andSecondScore:self.scoreP2];
     }
+    
+    [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:NO];
     [[CCDirector sharedDirector] replaceScene:[GameOverLayer scene]];
 }
 

@@ -77,6 +77,7 @@ CCScene* PauseLayer::Scene()
 // sender [in] - the object that sent the selected event
 void PauseLayer::HandleOptionsPressed(CCObject* sender)
 {
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Prev_Was_Main_Menu = false;
     CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }
@@ -86,6 +87,8 @@ void PauseLayer::HandleOptionsPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event
 void PauseLayer::HandleMainMenuPressed(CCObject* sender)
 {
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+
     // these lines can be done in this order, because each line is read and saved before executing them
 
     // pop this scene off the stack which brings you to the game scene, and then replace with main menu
@@ -102,6 +105,7 @@ void PauseLayer::HandleMainMenuPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event
 void PauseLayer::HandleResumePressed(CCObject* sender)
 {
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
     CCDirector::sharedDirector()->popScene();
     SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

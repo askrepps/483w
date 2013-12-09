@@ -40,6 +40,7 @@ bool UILayer::init()
 // sender [in] - the object that sent the selected event
 void UILayer::HandlePausePressed(CCObject* sender)
 {
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     CCDirector::sharedDirector()->pushScene(PauseLayer::Scene());
 }

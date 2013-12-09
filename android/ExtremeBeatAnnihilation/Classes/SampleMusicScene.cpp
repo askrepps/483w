@@ -116,5 +116,6 @@ void SampleMusic::HandleThirdSongPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void SampleMusic::HandleBackPressed(CCObject* sender)
 {
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
     CCDirector::sharedDirector()->replaceScene(MusicSelect::Scene());
 }

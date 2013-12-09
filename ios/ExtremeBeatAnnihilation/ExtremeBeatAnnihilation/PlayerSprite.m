@@ -125,7 +125,7 @@
 
 -(void)blink
 {
-    CCBlink *blinkAction = [CCBlink actionWithDuration:1.0 blinks:6];
+    CCBlink *blinkAction = [CCBlink actionWithDuration:0.8 blinks:6];
     CCCallFunc *funcAction = [CCCallFunc actionWithTarget:self selector:@selector(enableBlink)];
     CCShow *showAction = [CCShow action];
     

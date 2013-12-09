@@ -117,8 +117,6 @@
         _leftObstacles = [[NSMutableArray alloc] init];
         _rightObstacles = [[NSMutableArray alloc] init];
         
-        uint layerWidth = (uint)((float)levelData.numSamples/levelData.sampleRate*kVelocity) + kLevelOffset;
-        
         for (SoundEvent *event in [levelData events])
         {
             // add constructed obstacle to obstacles / layer

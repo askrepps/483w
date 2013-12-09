@@ -101,4 +101,5 @@ void GameScene::ccTouchesBegin( cocos2d::CCSet * ptouches, cocos2d::CCEvent * ev
 void GameScene::ScheduleAllUpdates()
 {
     m_backgroundL->scheduleUpdate();
+    m_backgroundR->scheduleUpdate();
 }

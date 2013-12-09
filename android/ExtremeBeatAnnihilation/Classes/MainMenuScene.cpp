@@ -54,6 +54,7 @@ bool MainMenu::init()
 
     // add splash screen as a sprite on the center of the screen
     background = CCSprite::create(BACKGROUND_IMAGE);
+    background->setScale(size.height / background->boundingBox().size.height);
     background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
     this->addChild(background, 0);
 

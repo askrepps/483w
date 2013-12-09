@@ -111,7 +111,8 @@ void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
     {
         SFX_Volume = slider->getValue();
         SimpleAudioEngine::sharedEngine()->setEffectsVolume(SFX_Volume / VOLUME_FACTOR);
-        SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+        // TODO: Make it so this plays only once on options slide for refernce
+       // SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     }
 }
 

@@ -78,6 +78,7 @@
         _leftGround = [CCLayer node];
         _rightGround = [CCLayer node];
         
+        
         _leftPlayerLayer = [CCLayer node];
         _rightPlayerLayer = [CCLayer node];
         
@@ -116,7 +117,7 @@
         _leftObstacles = [[NSMutableArray alloc] init];
         _rightObstacles = [[NSMutableArray alloc] init];
         
-        uint layerWidth = (float)levelData.numSamples/levelData.sampleRate*kVelocity + kLevelOffset;
+        uint layerWidth = (uint)((float)levelData.numSamples/levelData.sampleRate*kVelocity) + kLevelOffset;
         
         for (SoundEvent *event in [levelData events])
         {
@@ -133,8 +134,8 @@
                     [_leftGround addChild:obs];
                     break;
                 case RIGHT:
-                    x = layerWidth - (float)event.sample/levelData.sampleRate*kVelocity - kLevelOffset;
-                    obs = [[Obstacle alloc] initWithX:x andType:event.type];
+                    x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset - kRightCorrection;//layerWidth - ((float)(levelData.numSamples - event.sample)/levelData.sampleRate*kVelocity) - kLevelOffset;
+                    obs = [[Obstacle alloc] initWithX:-x andType:event.type];
                     [_rightObstacles addObject:obs];
                     [_rightGround addChild:obs];
                     break;

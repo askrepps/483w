@@ -82,7 +82,7 @@
         [_characters addObject:character3];
         
         CCMenuItemFont *continueButton = [CCMenuItemFont itemWithString:@"Continue" target:self selector:@selector(ContinuePressed:)];
-        continueButton.position = ccp(size.width/2, 64);
+        continueButton.position = ccp(size.width/2, 68);
         
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
         back.position = ccp(size.width/2, 32);

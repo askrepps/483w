@@ -11,7 +11,7 @@
 #define kVelocity 250
 #define kLevelOffset 100
 #define kFireY 100
-#define kCoilY 200
+#define kCoilY 155
 #define kJumpHeight 100
 
 #define kBufferSize 44100

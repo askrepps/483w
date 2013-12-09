@@ -81,7 +81,7 @@
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
               [NSString stringWithFormat:@"%@_slide_%d.png", self.fileName, i]]];
         }
-        for(int i = 1; i < 5; i++)
+        for(int i = 1; i < 7; i++)
         {
             [slideAnimFrames addObject:
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:

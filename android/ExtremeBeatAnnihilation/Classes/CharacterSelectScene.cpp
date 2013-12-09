@@ -133,6 +133,7 @@ void CharacterSelect::MenuBackCallback(CCObject* sender)
 
 void CharacterSelect::MenuContinueCallback(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
 
 	if(m_currentSelectedChar != NO_CHAR_SELECT)
 	{
@@ -168,6 +169,7 @@ void CharacterSelect::MenuContinueCallback(CCObject* sender)
 // Call back for character selection
 void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
 	// Convert the object that called this to a CCMenuItemImage (SHOULD ALWAYS BE CCMENUITEMIMAGE)
 	if(m_numCharacters < 2)
 	{

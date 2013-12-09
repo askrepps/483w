@@ -111,11 +111,13 @@ void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
     {
         SFX_Volume = slider->getValue();
         SimpleAudioEngine::sharedEngine()->setEffectsVolume(SFX_Volume / VOLUME_FACTOR);
+        SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
     }
 }
 
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
     if (Prev_Was_Main_Menu)                      // Go back to the main menu
     {
         CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());

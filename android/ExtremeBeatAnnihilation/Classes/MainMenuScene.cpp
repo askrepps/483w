@@ -80,7 +80,7 @@ CCScene* MainMenu::Scene()
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Is_Single_Player = true;
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
@@ -91,7 +91,7 @@ void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Is_Single_Player = false;
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
@@ -101,7 +101,7 @@ void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleOptionsPressed(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Prev_Was_Main_Menu = true;
 	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }

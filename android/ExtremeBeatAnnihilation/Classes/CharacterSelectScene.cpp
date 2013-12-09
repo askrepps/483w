@@ -134,7 +134,7 @@ void CharacterSelect::MenuBackCallback(CCObject* sender)
 
 void CharacterSelect::MenuContinueCallback(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
 
 	if(m_currentSelectedChar != NO_CHAR_SELECT)
 	{

@@ -80,7 +80,7 @@ CCScene* MusicSelect::Scene()
 // sender [in] - the object that sent the selected event?
 void MusicSelect::HandleSampleMusicPressed(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     CCDirector::sharedDirector()->replaceScene(SampleMusic::Scene());
 }
 
@@ -89,7 +89,7 @@ void MusicSelect::HandleSampleMusicPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MusicSelect::HandleYourMusicPressed(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/continue.wav");
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     JavaVM* jvm = cocos2d::JniHelper::getJavaVM();
     if (NULL == jvm)
         CCLog("Failed to get the JavaVM");

@@ -107,6 +107,7 @@ void CharacterSelect::LoadCharacters()
 // a selector callback
 void CharacterSelect::MenuBackCallback(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
 	if(m_currentSelectedChar != NO_CHAR_SELECT)
 		m_itemImage->setSelectedIndex(0);
 	EnableMenu(true);
@@ -169,7 +170,6 @@ void CharacterSelect::MenuContinueCallback(CCObject* sender)
 // Call back for character selection
 void CharacterSelect::MenuCharacterCallback(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
 	// Convert the object that called this to a CCMenuItemImage (SHOULD ALWAYS BE CCMENUITEMIMAGE)
 	if(m_numCharacters < 2)
 	{

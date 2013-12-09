@@ -9,7 +9,7 @@
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
 
-@interface OptionsLayer : CCLayer
+@interface SettingsLayer : CCLayer
 
 +(CCScene *)scene;
 

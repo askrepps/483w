@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
-#import "OptionsLayer.h"
+#import "SettingsLayer.h"
 #import "CCControlExtension.h"
 #import "SimpleAudioEngine.h"
 #import "MenuLayer.h"
 #import "Registry.h"
 
-@interface OptionsLayer ()
+@interface SettingsLayer ()
 @property (nonatomic, strong) CCLabelTTF *displayValueLabel;
 @property (nonatomic, strong) CCControlSlider *slider;
 
@@ -20,12 +20,12 @@
 
 @end
 
-@implementation OptionsLayer
+@implementation SettingsLayer
 
 +(CCScene *)scene
 {
 	CCScene *scene = [CCScene node];
-	OptionsLayer *layer = [OptionsLayer node];
+	SettingsLayer *layer = [SettingsLayer node];
 	[scene addChild: layer];
 
 	return scene;

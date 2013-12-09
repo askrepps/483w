@@ -10,7 +10,7 @@
 #import "MenuLayer.h"
 #import "AppDelegate.h"
 #import "BackgroundLayer.h"
-#import "OptionsLayer.h"
+#import "SettingsLayer.h"
 #import "CharacterSelectLayer.h"
 #import "Registry.h"
 #import "SimpleAudioEngine.h"
@@ -88,7 +88,7 @@
 
 -(void)optionsPressed:(id)sender
 {
-    [[CCDirector sharedDirector] pushScene:[OptionsLayer scene]];
+    [[CCDirector sharedDirector] pushScene:[SettingsLayer scene]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 }
 @end

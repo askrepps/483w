@@ -7,7 +7,7 @@
 //
 
 #import "PauseLayer.h"
-#import "OptionsLayer.h"
+#import "SettingsLayer.h"
 #import "MenuLayer.h"
 #import "Registry.h"
 #import "GameScene.h"
@@ -49,7 +49,7 @@
 
 -(void)settingsPressed
 {
-    [[CCDirector sharedDirector] pushScene:[OptionsLayer scene]];
+    [[CCDirector sharedDirector] pushScene:[SettingsLayer scene]];
 }
 
 -(void)quitPressed

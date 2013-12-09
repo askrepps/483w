@@ -195,7 +195,7 @@
 		C2E116DA1855009F0035EF7C /* blue_sliding.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D81855009F0035EF7C /* blue_sliding.plist */; };
 		C2E116DB1855009F0035EF7C /* blue_sliding.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116D91855009F0035EF7C /* blue_sliding.png */; };
 		C2E116DE185513FD0035EF7C /* PlayerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E116DD185513FD0035EF7C /* PlayerSprite.m */; };
-		C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EA1821565000288C7E /* OptionsLayer.m */; };
+		C2FB19EB1821565000288C7E /* SettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EA1821565000288C7E /* SettingsLayer.m */; };
 		C2FB1A0A1821609400288C7E /* CCControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19EF1821609400288C7E /* CCControl.m */; };
 		C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19F11821609400288C7E /* CCControlButton.m */; };
 		C2FB1A0C1821609400288C7E /* CCControlColourPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB19F31821609400288C7E /* CCControlColourPicker.m */; };
@@ -561,8 +561,8 @@
 		C2E116D91855009F0035EF7C /* blue_sliding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_sliding.png; sourceTree = "<group>"; };
 		C2E116DC185513FD0035EF7C /* PlayerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSprite.h; sourceTree = "<group>"; };
 		C2E116DD185513FD0035EF7C /* PlayerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSprite.m; sourceTree = "<group>"; };
-		C2FB19E91821565000288C7E /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
-		C2FB19EA1821565000288C7E /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
+		C2FB19E91821565000288C7E /* SettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLayer.h; sourceTree = "<group>"; };
+		C2FB19EA1821565000288C7E /* SettingsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsLayer.m; sourceTree = "<group>"; };
 		C2FB19EE1821609400288C7E /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControl.h; sourceTree = "<group>"; };
 		C2FB19EF1821609400288C7E /* CCControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCControl.m; sourceTree = "<group>"; };
 		C2FB19F01821609400288C7E /* CCControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControlButton.h; sourceTree = "<group>"; };
@@ -708,8 +708,8 @@
 				99F6A18F182E9B730028DEDD /* MusicSelectLayer.m */,
 				C28B876E18353F6A0093E7E2 /* Obstacle.h */,
 				C28B876F18353F6A0093E7E2 /* Obstacle.m */,
-				C2FB19E91821565000288C7E /* OptionsLayer.h */,
-				C2FB19EA1821565000288C7E /* OptionsLayer.m */,
+				C2FB19E91821565000288C7E /* SettingsLayer.h */,
+				C2FB19EA1821565000288C7E /* SettingsLayer.m */,
 				C21095C51850E344009B311E /* PauseLayer.h */,
 				C21095C61850E344009B311E /* PauseLayer.m */,
 				C2E116DC185513FD0035EF7C /* PlayerSprite.h */,
@@ -1474,7 +1474,7 @@
 				99C2800D17E1275F00060D51 /* IntroLayer.m in Sources */,
 				C262F8251814B3AE00C901FF /* LeftPlayer.m in Sources */,
 				C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */,
-				C2FB19EB1821565000288C7E /* OptionsLayer.m in Sources */,
+				C2FB19EB1821565000288C7E /* SettingsLayer.m in Sources */,
 				C2FB1A0A1821609400288C7E /* CCControl.m in Sources */,
 				C2FB1A0B1821609400288C7E /* CCControlButton.m in Sources */,
 				C2FB1A0C1821609400288C7E /* CCControlColourPicker.m in Sources */,

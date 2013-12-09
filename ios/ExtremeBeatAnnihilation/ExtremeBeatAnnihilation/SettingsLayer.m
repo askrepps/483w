@@ -9,7 +9,6 @@
 #import "SettingsLayer.h"
 #import "CCControlExtension.h"
 #import "SimpleAudioEngine.h"
-#import "MenuLayer.h"
 #import "Registry.h"
 
 @interface SettingsLayer ()
@@ -73,9 +72,6 @@
 -(void)dealloc
 {
 	[super dealloc];
-
-    //[self.displayValueLabel release];
-    //[self.slider release];
 }
 
 -(void)onEnterTransitionDidFinish
@@ -90,9 +86,6 @@
 
 -(void)dismissPressed:(id)sender
 {
-//    CCScene *scene = [CCScene node];
-//    [scene addChild:[MenuLayer scene]];
-//    [[CCDirector sharedDirector] replaceScene:scene];
     [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [[CCDirector sharedDirector] popScene];
 }

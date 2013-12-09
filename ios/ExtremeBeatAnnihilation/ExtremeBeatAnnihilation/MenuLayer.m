@@ -43,7 +43,7 @@
         single.position = ccp(size.width/2, size.height/2);
         CCMenuItemFont *multi = [CCMenuItemFont itemWithString:@"Multiplayer" target:self selector:@selector(multiPressed:)];
         multi.position = ccp(size.width/2, size.height/2 - 32);
-        CCMenuItemFont *options = [CCMenuItemFont itemWithString:@"Options" target:self selector:@selector(optionsPressed:)];
+        CCMenuItemFont *options = [CCMenuItemFont itemWithString:@"Settings" target:self selector:@selector(optionsPressed:)];
         options.position = ccp(size.width/2, size.height/2 - 64);
         
         CCMenu *startMenu = [CCMenu menuWithItems:single, multi, options, nil];

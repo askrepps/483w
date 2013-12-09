@@ -28,8 +28,9 @@
     {
         _gameScene = scene;
         CCMenuItemFont *unPause = [CCMenuItemFont itemWithString:@"Return to Game" target:self selector:@selector(unPausePressed)];
+        CCMenuItemFont *settings = [CCMenuItemFont itemWithString:@"Settings" target:self selector:@selector(settingsPressed)];
         CCMenuItemFont *quit = [CCMenuItemFont itemWithString:@"Quit" target:self selector:@selector(quitPressed)];
-        CCMenu *pauseMenu = [CCMenu menuWithItems:unPause, quit, nil];
+        CCMenu *pauseMenu = [CCMenu menuWithItems:unPause, settings, quit, nil];
         [pauseMenu alignItemsVertically];
         
         [self addChild: pauseMenu];
@@ -37,8 +38,6 @@
     
     return self;
 }
-
-//will this work?
 
 #pragma mark - Button presses
 
@@ -48,12 +47,16 @@
     [[self gameScene] resumeGame];
 }
 
+-(void)settingsPressed
+{
+    [[CCDirector sharedDirector] pushScene:[OptionsLayer scene]];
+}
+
 -(void)quitPressed
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
     [Registry clean];
     [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
-    
 }
 
 @end

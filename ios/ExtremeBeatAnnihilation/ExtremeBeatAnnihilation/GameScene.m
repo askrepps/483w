@@ -369,6 +369,10 @@
     [self.avPlayer play];
     [self scheduleUpdate];
     
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSNumber *value = [preferences objectForKey:kVolume];
+    self.avPlayer.volume = value.floatValue;
+    
     [self removeChild:[self pauseLayer] cleanup:NO];
     [self.pauseButton setIsEnabled:YES];
     self.isPaused = NO;

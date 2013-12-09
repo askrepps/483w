@@ -18,6 +18,8 @@ static BOOL kIsSinglePlayer;
 static NSString *kMusicName;
 static NSURL *kMusicURL;
 static NSInteger kScore = 0;
+static NSInteger kScoreP1 = 0;
+static NSInteger kScoreP2 = 0;
 static BOOL kIsMenuMusicPlaying = NO;
 
 +(void)setChar:(NSInteger)index
@@ -81,7 +83,7 @@ static BOOL kIsMenuMusicPlaying = NO;
 
 +(void)setMusicURL:(NSURL*)URL
 {
-    kMusicURL = [[URL copy] retain];//[[NSURL alloc] initWithString:URL.absoluteString];
+    kMusicURL = [[URL copy] retain];
 }
 
 +(void)setScore:(NSInteger)score
@@ -89,9 +91,22 @@ static BOOL kIsMenuMusicPlaying = NO;
     kScore = score;
 }
 
-+(NSInteger)getScore
++(void)setFirstScore:(NSInteger)score1 andSecondScore:(NSInteger)score2
 {
-    return kScore;
+    kScoreP1 = score1;
+    kScoreP2 = score2;
+}
+
++(NSArray*)getScore
+{
+    if(kIsSinglePlayer)
+    {
+        return [NSArray arrayWithObjects:[NSNumber numberWithInteger:kScore], nil];
+    }
+    else
+    {
+        return [NSArray arrayWithObjects:[NSNumber numberWithInteger:kScoreP1], [NSNumber numberWithInteger:kScoreP2], nil];
+    }
 }
 
 +(void)setIsMenuMusicPlaying:(BOOL)playing
@@ -112,6 +127,8 @@ static BOOL kIsMenuMusicPlaying = NO;
     kMusicName = nil;
     kMusicURL = nil;
     kScore = 0;
+    kScoreP1 = 0;
+    kScoreP2 = 0;
     [CCSpriteFrameCache purgeSharedSpriteFrameCache];
 }
 @end

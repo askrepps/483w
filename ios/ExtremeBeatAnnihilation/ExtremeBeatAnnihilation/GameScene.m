@@ -301,7 +301,14 @@
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    [Registry setScore:self.score];
+    if([Registry getIsSinglePlayer])
+    {
+        [Registry setScore:self.score];
+    }
+    else
+    {
+        [Registry setFirstScore:self.scoreP1 andSecondScore:self.scoreP2];
+    }
     [[CCDirector sharedDirector] replaceScene:[GameOverLayer scene]];
 }
 

@@ -253,8 +253,9 @@
         if (!self.leftPlayer.isBlinking && CGRectIntersectsRect(self.leftPlayer.boundingBox, obs.boundingBox))
         {
             [self.leftPlayer blink];
-            if ([Registry getIsSinglePlayer]) {
-                   self.score-=1000;
+            if ([Registry getIsSinglePlayer])
+            {
+                   self.score-=500;
             }
             else
             {
@@ -270,8 +271,9 @@
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:1.0f gain:1.0f];
             [self.rightPlayer blink];
-            if ([Registry getIsSinglePlayer]) {
-                self.score-=1000;
+            if ([Registry getIsSinglePlayer])
+            {
+                self.score-=500;
             }
             else
             {
@@ -291,10 +293,7 @@
         self.scoreP2+=10;
         [self.scoreLabelP1 setString:[NSString stringWithFormat:@"P1: %d", self.scoreP1]];
         [self.scoreLabelP2 setString:[NSString stringWithFormat:@"P2: %d", self.scoreP2]];
-
     }
-   
-   
 }
 
 #pragma mark - AVAudioPlayerDelegate Methods

@@ -34,12 +34,14 @@ bool BackgroundLLayer::init()
     addChild(clipNode);
 
     // create and add the first background sprite
-    m_background1 = CCSprite::create(BACKGROUND);
+    m_background1 = CCSprite::create(LEFT_BACKGROUND);
+    m_background1->setScale(screenSize.height / m_background1->boundingBox().size.height);
     m_background1->setPosition( ccp(0, screenSize.height * POS_HALF_SCREEN) );
     clipNode->addChild(m_background1);
 
     // create, position after first background, and add the second background
-    m_background2 = CCSprite::create(BACKGROUND);
+    m_background2 = CCSprite::create(LEFT_BACKGROUND);
+    m_background2->setScale(screenSize.height / m_background2->boundingBox().size.height);
     m_background2->setPosition( ccp(m_background1->boundingBox().size.width, screenSize.height * POS_HALF_SCREEN) );
     clipNode->addChild(m_background2);
 
@@ -51,20 +53,18 @@ bool BackgroundLLayer::init()
 // delta [in] - time since last update?
 void BackgroundLLayer::update(float delta)
 {
-    CCSize size;                    // the size of the window
-
     // if first background is off the screen, place it in front of the second background
-    if (m_background1->getPosition().x < -m_background1->boundingBox().size.width)
+    if (m_background1->getPosition().x < -m_background1->boundingBox().size.width/2)
     {
         m_background1->setPosition( ccp(m_background2->getPosition().x + m_background2->boundingBox().size.width,
-                                                                                      m_background1->getPosition().y) );
+                                                                                   m_background1->getPosition().y) );
     }
 
     // if second background is off the screen, place it in front of the first background
-    if (m_background2->getPosition().x < -m_background2->boundingBox().size.width)
+    if (m_background2->getPosition().x < -m_background2->boundingBox().size.width/2)
     {
         m_background2->setPosition( ccp(m_background1->getPosition().x + m_background1->boundingBox().size.width,
-                                                                                      m_background2->getPosition().y) );
+                                                                                   m_background2->getPosition().y) );
     }
 
     // shift the backgrounds to the left by the velocity amount

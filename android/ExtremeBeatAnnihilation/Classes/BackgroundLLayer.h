@@ -7,7 +7,7 @@
 
 #include "ClipNode.h"
 
-#define BACKGROUND "night_background.png"      // image to display for the background
+#define LEFT_BACKGROUND "night_background.png"      // image to display for the background
 
 class BackgroundLLayer : public cocos2d::CCLayer
 {

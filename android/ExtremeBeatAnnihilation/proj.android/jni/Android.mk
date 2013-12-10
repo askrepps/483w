@@ -19,8 +19,6 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/BackgroundLLayer.cpp \
                    ../../Classes/ForegroundRLayer.cpp \
                    ../../Classes/ForegroundLLayer.cpp \
-                   ../../Classes/PlayerRLayer.cpp \
-                   ../../Classes/PlayerLLayer.cpp \
                    ../../Classes/UILayer.cpp \
                    ../../Classes/PauseScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp \

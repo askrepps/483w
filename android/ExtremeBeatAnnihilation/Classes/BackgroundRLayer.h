@@ -7,7 +7,7 @@
 
 #include "ClipNode.h"
 
-#define RIGHT_BACKGROUND "night_background_inverted.png"      // image to display for the background
+#define RIGHT_BACKGROUND "background_inverted.png"      // image to display for the background
 
 class BackgroundRLayer : public cocos2d::CCLayer
 {

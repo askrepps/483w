@@ -88,8 +88,8 @@
 -(void) loadSample3
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"ebaLoop" withExtension:@"mp3"];
-    [Registry setMusicName:@"ebaLoop.mp3"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"test2" withExtension:@"m4a"];
+    [Registry setMusicName:@"test2.m4a"];
     [Registry setMusicURL:url];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];

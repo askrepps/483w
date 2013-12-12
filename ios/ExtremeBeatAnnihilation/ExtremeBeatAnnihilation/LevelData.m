@@ -46,13 +46,13 @@
         OSStatus status;
         UInt32 propertySize;
         SInt64 nFrames;
-        UInt32 nFrames32;
         UInt32 nChannels;
-        Float64 sampleRate;
         AudioStreamBasicDescription asbd;
         AudioStreamBasicDescription format;
         AudioBufferList bufList;
         float *buffer;
+        UInt32 bufferSize;
+        Peak *envelope;
         
         status = ExtAudioFileOpenURL((CFURLRef)url, &audioFile);
         NSLog(@"opened file: status = %d", (int)status);
@@ -61,16 +61,16 @@
         status = ExtAudioFileGetProperty(audioFile, kExtAudioFileProperty_FileDataFormat, &propertySize, &asbd);
         NSLog(@"read ASBD: status = %d", (int)status);
         
-        sampleRate = asbd.mSampleRate;
+        _sampleRate = asbd.mSampleRate;
         nChannels = asbd.mChannelsPerFrame;
         NSLog(@"sampleRate: %f  |  numChannels: %d", asbd.mSampleRate, (unsigned int)asbd.mChannelsPerFrame);
         
         propertySize = sizeof(SInt64);
         status = ExtAudioFileGetProperty(audioFile, kExtAudioFileProperty_FileLengthFrames, &propertySize, &nFrames);
-        nFrames32 = (UInt32)nFrames;
-        NSLog(@"numFrames: %d", (unsigned int)nFrames32);
+        _numSamples = nFrames;
+        NSLog(@"numSamples: %d", _numSamples);
         
-        format.mSampleRate = sampleRate;
+        format.mSampleRate = _sampleRate;
         format.mFormatID = kAudioFormatLinearPCM;
         format.mFormatFlags = kAudioFormatFlagsNativeFloatPacked;
         format.mBitsPerChannel = 32;
@@ -82,29 +82,81 @@
         propertySize = sizeof(format);
         status = ExtAudioFileSetProperty(audioFile, kExtAudioFileProperty_ClientDataFormat, propertySize, &format);
         NSLog(@"set client format: status = %d", (int)status);
-
-        buffer = malloc(sizeof(UInt32) * kBufferSize);
+        
+        bufferSize = (UInt32)(_sampleRate / 4);
+        buffer = malloc(sizeof(float) * bufferSize);
+        envelope = malloc(sizeof(Peak) * ((nFrames / bufferSize) + 2));
         
         bufList.mNumberBuffers = 1;
         bufList.mBuffers[0].mNumberChannels = 1;
-        bufList.mBuffers[0].mDataByteSize = kBufferSize * sizeof(float);
+        bufList.mBuffers[0].mDataByteSize = bufferSize * sizeof(float);
         bufList.mBuffers[0].mData = buffer;
         
         int count = 0;
-        do {
-            propertySize = kBufferSize;
+        int offset;
+        float max = 0;
+        
+        do
+        {
+            propertySize = bufferSize;
             status = ExtAudioFileRead(audioFile, &propertySize, &bufList);
             
             NSLog(@"Reading %d samples... status = %d", (unsigned int)propertySize, (int)status);
+            
+            max = 0;
+            for (int i = 0; i < bufferSize; i++)
+            {
+                if (buffer[i] > max)
+                {
+                    max = buffer[i];
+                    offset = i;
+                }
+            }
+            
+            envelope[count].sample = count*bufferSize + offset;
+            envelope[count].amp = max;
+            envelope[count].freq = 0;
             count++;
         } while (propertySize > 0);
         
         NSLog(@"%d", count);
         
+        _events = [[NSMutableArray alloc] init];
+        
+        if (count > 1 && envelope[0].amp > envelope[1].amp)
+        {
+            NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[0].sample, envelope[0].amp);
+            SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[0].sample andFreq:100];
+            [_events addObject:event];
+            [event release];
+        }
+        
+        for (int i = 1; i < count-1; i++)
+        {
+            if (envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp)
+            {
+                NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[i].sample, envelope[i].amp);
+                SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[i].sample andFreq:100];
+                [_events addObject:event];
+                [event release];
+            }
+        }
+        
+        if (count > 1 && envelope[count-1].amp > envelope[count-2].amp)
+        {
+            NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[count-1].sample, envelope[count-1].amp);
+            SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[count-1].sample andFreq:100];
+            [_events addObject:event];
+            [event release];
+        }
+        
+        [self setStats];
+        
         free(buffer);
+        free(envelope);
     }
     
-    return [self initDefault];
+    return self;
 }
 
 -(id) initWithAudioFilePath:(NSString *)filePath

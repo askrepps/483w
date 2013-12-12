@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9906C111185A212E00D9B53F /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9906C110185A212E00D9B53F /* test.mp3 */; };
+		9906C113185A233A00D9B53F /* test2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9906C112185A233A00D9B53F /* test2.m4a */; };
 		99370617182E1647007A8CB6 /* CharacterSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99370616182E1647007A8CB6 /* CharacterSelectLayer.m */; };
 		997AEE321835F62A008ED709 /* LoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 997AEE311835F62A008ED709 /* LoadingLayer.m */; };
 		99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B11830425B00F12C7F /* LettingGo.mp3 */; };
@@ -214,6 +216,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9906C110185A212E00D9B53F /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = test.mp3; path = Resources/SampleTracks/test.mp3; sourceTree = "<group>"; };
+		9906C112185A233A00D9B53F /* test2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.m4a; path = Resources/SampleTracks/test2.m4a; sourceTree = "<group>"; };
 		99370615182E1647007A8CB6 /* CharacterSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSelectLayer.h; sourceTree = "<group>"; };
 		99370616182E1647007A8CB6 /* CharacterSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSelectLayer.m; sourceTree = "<group>"; };
 		997AEE301835F62A008ED709 /* LoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingLayer.h; sourceTree = "<group>"; };
@@ -622,6 +626,8 @@
 		99A886B0183039DB00F12C7F /* Sample Tracks */ = {
 			isa = PBXGroup;
 			children = (
+				9906C112185A233A00D9B53F /* test2.m4a */,
+				9906C110185A212E00D9B53F /* test.mp3 */,
 				99BAEA021855150E00BCD5A4 /* ebaLoop.mp3 */,
 				99A886B11830425B00F12C7F /* LettingGo.mp3 */,
 				99A886B21830425B00F12C7F /* TheCallOfStars.mp3 */,
@@ -1308,6 +1314,7 @@
 				99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */,
 				99C27FE517E1275E00060D51 /* ChangeLog in Resources */,
 				C2FB1A151821609400288C7E /* README.md in Resources */,
+				9906C111185A212E00D9B53F /* test.mp3 in Resources */,
 				C2269AED182BF856001312F4 /* sliderProgress-hd.png in Resources */,
 				C2269AEE182BF856001312F4 /* sliderProgress.png in Resources */,
 				C2269AEF182BF856001312F4 /* sliderThumb-hd.png in Resources */,
@@ -1342,6 +1349,7 @@
 				C2079BAC18553B6400D97882 /* blue_icon.png in Resources */,
 				C2079BAD18553B6400D97882 /* green_icon_selected.png in Resources */,
 				C2079BAE18553B6400D97882 /* green_icon.png in Resources */,
+				9906C113185A233A00D9B53F /* test2.m4a in Resources */,
 				C2079BAF18553B6400D97882 /* red_icon_selected.png in Resources */,
 				C2079BB018553B6400D97882 /* red_icon.png in Resources */,
 				C2079BB318553C4F00D97882 /* background_inverted.png in Resources */,

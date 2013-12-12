@@ -27,9 +27,6 @@
 		99C27E6F17E1274F00060D51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E6E17E1274F00060D51 /* CoreGraphics.framework */; };
 		99C27E7117E1274F00060D51 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E7017E1274F00060D51 /* CoreText.framework */; };
 		99C27E7317E1274F00060D51 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C27E7217E1274F00060D51 /* GameKit.framework */; };
-		99C27E7717E1274F00060D51 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C27E7617E1274F00060D51 /* Default.png */; };
-		99C27E7917E1274F00060D51 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C27E7817E1274F00060D51 /* Default@2x.png */; };
-		99C27E7B17E1274F00060D51 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C27E7A17E1274F00060D51 /* Default-568h@2x.png */; };
 		99C27E7D17E1274F00060D51 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C27E7C17E1274F00060D51 /* Default-Landscape~ipad.png */; };
 		99C27E7F17E1274F00060D51 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C27E7E17E1274F00060D51 /* Icon-72.png */; };
 		99C27E8117E1274F00060D51 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C27E8017E1274F00060D51 /* Icon-Small-50.png */; };
@@ -176,6 +173,9 @@
 		C262F8281814B3BE00C901FF /* RightPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C262F8271814B3BE00C901FF /* RightPlayer.m */; };
 		C28B876118353E840093E7E2 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C28B876018353E830093E7E2 /* GameScene.m */; };
 		C28B877018353F6A0093E7E2 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = C28B876F18353F6A0093E7E2 /* Obstacle.m */; };
+		C2BDC0D0185A1F9100C9FEC0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BDC0CD185A1F9100C9FEC0 /* Default-568h@2x.png */; };
+		C2BDC0D1185A1F9100C9FEC0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BDC0CE185A1F9100C9FEC0 /* Default.png */; };
+		C2BDC0D2185A1F9100C9FEC0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BDC0CF185A1F9100C9FEC0 /* Default@2x.png */; };
 		C2E116AA1854F93A0035EF7C /* smallCoil.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116A71854F93A0035EF7C /* smallCoil.png */; };
 		C2E116AB1854F93A0035EF7C /* smallFire.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E116A81854F93A0035EF7C /* smallFire.png */; };
 		C2E116BC1854F9480035EF7C /* blue_jumping.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2E116AE1854F9480035EF7C /* blue_jumping.plist */; };
@@ -239,9 +239,6 @@
 		99C27E6E17E1274F00060D51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		99C27E7017E1274F00060D51 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		99C27E7217E1274F00060D51 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		99C27E7617E1274F00060D51 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
-		99C27E7817E1274F00060D51 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
-		99C27E7A17E1274F00060D51 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		99C27E7C17E1274F00060D51 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		99C27E7E17E1274F00060D51 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
 		99C27E8017E1274F00060D51 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -543,6 +540,9 @@
 		C28B876018353E830093E7E2 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		C28B876E18353F6A0093E7E2 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
 		C28B876F18353F6A0093E7E2 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
+		C2BDC0CD185A1F9100C9FEC0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		C2BDC0CE185A1F9100C9FEC0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		C2BDC0CF185A1F9100C9FEC0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		C2E116A71854F93A0035EF7C /* smallCoil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smallCoil.png; path = Resources/smallCoil.png; sourceTree = "<group>"; };
 		C2E116A81854F93A0035EF7C /* smallFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smallFire.png; path = Resources/smallFire.png; sourceTree = "<group>"; };
 		C2E116AE1854F9480035EF7C /* blue_jumping.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blue_jumping.plist; sourceTree = "<group>"; };
@@ -732,6 +732,9 @@
 		99C27E7517E1274F00060D51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C2BDC0CD185A1F9100C9FEC0 /* Default-568h@2x.png */,
+				C2BDC0CE185A1F9100C9FEC0 /* Default.png */,
+				C2BDC0CF185A1F9100C9FEC0 /* Default@2x.png */,
 				C2079BB118553C4F00D97882 /* background_inverted.png */,
 				C2079BB218553C4F00D97882 /* background.png */,
 				99BAE9FB185514FD00BCD5A4 /* sfx */,
@@ -747,9 +750,6 @@
 				C2269AEA182BF856001312F4 /* sliderTrack-hd.png */,
 				C2269AEB182BF856001312F4 /* sliderTrack.png */,
 				C2269AEC182BF856001312F4 /* TitleImage.jpg */,
-				99C27E7617E1274F00060D51 /* Default.png */,
-				99C27E7817E1274F00060D51 /* Default@2x.png */,
-				99C27E7A17E1274F00060D51 /* Default-568h@2x.png */,
 				99C27E7C17E1274F00060D51 /* Default-Landscape~ipad.png */,
 				99C27E7E17E1274F00060D51 /* Icon-72.png */,
 				99C27E8017E1274F00060D51 /* Icon-Small-50.png */,
@@ -1298,9 +1298,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99C27E7717E1274F00060D51 /* Default.png in Resources */,
-				99C27E7917E1274F00060D51 /* Default@2x.png in Resources */,
-				99C27E7B17E1274F00060D51 /* Default-568h@2x.png in Resources */,
 				99C27E7D17E1274F00060D51 /* Default-Landscape~ipad.png in Resources */,
 				99C27E7F17E1274F00060D51 /* Icon-72.png in Resources */,
 				99A886B41830425B00F12C7F /* TheCallOfStars.mp3 in Resources */,
@@ -1354,6 +1351,9 @@
 				C2079BB018553B6400D97882 /* red_icon.png in Resources */,
 				C2079BB318553C4F00D97882 /* background_inverted.png in Resources */,
 				C2079BB418553C4F00D97882 /* background.png in Resources */,
+				C2BDC0D0185A1F9100C9FEC0 /* Default-568h@2x.png in Resources */,
+				C2BDC0D1185A1F9100C9FEC0 /* Default.png in Resources */,
+				C2BDC0D2185A1F9100C9FEC0 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,8 +41,17 @@
 
 		CCSprite *background;
 		
-		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-			background = [CCSprite spriteWithFile:@"Default.png"];
+		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+        {
+            if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+                ([UIScreen mainScreen].scale == 2.0))
+            {
+                background = [CCSprite spriteWithFile:@"Default@2x.png"];
+            }
+            else
+            {
+                background = [CCSprite spriteWithFile:@"Default.png"];
+            }
 			background.rotation = 90;
 		} else {
 			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];

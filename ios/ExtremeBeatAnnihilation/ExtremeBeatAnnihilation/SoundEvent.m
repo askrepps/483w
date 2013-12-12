@@ -23,17 +23,17 @@
 
 -(void) setAttributesWithQ1:(float)q1Freq andMedian:(float)medianFreq andQ3:(float)q3Freq
 {
-    if (_freq < q1Freq)
+    if (_freq <= q1Freq)
     {
         _side = LEFT;
         _type = SLIDE;
     }
-    else if (self.freq < medianFreq)
+    else if (self.freq <= medianFreq)
     {
         _side = LEFT;
         _type = JUMP;
     }
-    else if (self.freq < q3Freq)
+    else if (self.freq <= q3Freq)
     {
         _side = RIGHT;
         _type = SLIDE;

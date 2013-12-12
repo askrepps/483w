@@ -152,6 +152,11 @@
         
         [self setStats];
         
+        for (SoundEvent *event in _events)
+        {
+            [event setAttributesWithQ1:_q1Freq andMedian:_medianFreq andQ3:_q3Freq];
+        }
+        
         free(buffer);
         free(envelope);
     }

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kObstacleGap 44100
 #define kVelocity 250
 #define kLevelOffset 80
 #define kRightCorrection 460

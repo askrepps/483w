@@ -39,6 +39,14 @@
     return self;
 }
 
+-(void)onEnter
+{
+    [super onEnter];
+    ccColor4B black = {0, 0, 0, 255};
+    CCLayerColor *colorLayer = [[CCLayerColor alloc] initWithColor:black];
+    [self addChild:colorLayer z:-1];
+}
+
 #pragma mark - Button presses
 
 -(void)unPausePressed

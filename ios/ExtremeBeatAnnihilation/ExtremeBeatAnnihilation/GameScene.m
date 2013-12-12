@@ -102,11 +102,11 @@
         // Create players
         
         _leftPlayer = [[LeftPlayer alloc] init];
-        _leftPlayer.position = ccp(winSize.width/6, winSize.height/3);
+        _leftPlayer.position = ccp(winSize.width/8, winSize.height/3);
         [_leftGround addChild:_leftPlayer z:1];
         
         _rightPlayer = [[RightPlayer alloc] init];
-        _rightPlayer.position = ccp(winSize.width/6*5, winSize.height/3);
+        _rightPlayer.position = ccp(winSize.width/8*7, winSize.height/3);
         [_rightGround addChild:_rightPlayer z:1];
         
         _leftPlayerLayer.touchEnabled = YES;

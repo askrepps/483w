@@ -60,7 +60,7 @@ bool CharacterSelect::init()
 	// Create the character menu items and load them into memory, set their tags
 	characterOne = CCMenuItemImage::create("CharacterIcons/CharacterOne.png", "CharacterIcons/selectCharacterOne.png");
 	selectedCharacterOne = CCMenuItemImage::create("CharacterIcons/selectCharacterOne.png", "CharacterIcons/CharacterOne.png");
-	CCLog("%p %p %p\n", this,  characterOne, selectedCharacterOne);
+
 	m_charOne_Wrapper = CCMenuItemToggle::createWithTarget(this, menu_selector(CharacterSelect::MenuCharacterCallback), characterOne, selectedCharacterOne, NULL);
 	m_charOne_Wrapper->setTag(1);
 

@@ -101,16 +101,23 @@ void MusicSelect::HandleYourMusicPressed(CCObject* sender)
     if (!classRet)
         CCLog("Failed to find class ExtremeBeatAnnihilation");
 
+    jmethodID constructRet = env->GetMethodID(classRet, "init", "()V");
+    if(!constructRet)
+    	CCLog("Failed to get the constructor");
+
+    jobject extremeBeatAnnihilation = env->NewObject(classRet, constructRet);
+
     jmethodID methodRet = env->GetMethodID(classRet, "startupFileExplore", "()Ljava/lang/String;");
     if (!methodRet)
         CCLog("Failed to find method startupFileExplore");
 
-    jobject result = env->CallObjectMethod(classRet, methodRet);
+
+    jobject result = env->CallNonvirtualObjectMethod(extremeBeatAnnihilation, classRet, methodRet);
     if (!result)
         CCLog("Got a NULL back from song selection");
 
-    const char *charResult = env->GetStringUTFChars(jstring(result), NULL);
-    Game_Song = charResult;
+    //const char *charResult = env->GetStringUTFChars(jstring(result), NULL);
+    //Game_Song = charResult;
 }
 
 // On selecting the back menu item, switch back to character select scene

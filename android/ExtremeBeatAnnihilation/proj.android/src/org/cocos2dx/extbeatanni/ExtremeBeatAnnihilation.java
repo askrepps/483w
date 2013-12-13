@@ -28,12 +28,26 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 
 	private static final int REQUEST_SONG_FILE = 0;
 	private String chosenSong;
+	
+	@Override
+	public void init()
+	{
+		try
+		{
+			super.init();
+		}
+		catch(Exception e)
+		{
+			Log.d("Extreme Init", "Error" + e.getMessage());
+		}
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -43,10 +57,26 @@ public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
-	private String startupFileExplore()
+	public String startupFileExplore()
 	{
-		Intent fileExploreIntent = new Intent(ExtremeBeatAnnihilation.this, FileExplore.class);
-		startActivityForResult(fileExploreIntent, REQUEST_SONG_FILE);
+		try
+		{
+ 			Intent fileExploreIntent = new Intent(ExtremeBeatAnnihilation.this, FileExplore.class);
+			
+			if(fileExploreIntent != null)
+			{
+				startActivityForResult(fileExploreIntent, REQUEST_SONG_FILE);
+			}
+			else 
+			{
+				Log.d("Extreme Beat Annihilation", "FileExploreIntent null\n");
+			}
+		}
+		catch(Exception e)
+		{
+			Log.d("Extreme", "Error" + e.getMessage());
+		}
+		
 		return chosenSong;
 	}
 	

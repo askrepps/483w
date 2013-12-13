@@ -27,11 +27,14 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
 	private void startupFileExplore()

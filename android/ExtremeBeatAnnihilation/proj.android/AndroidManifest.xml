@@ -24,11 +24,7 @@
         </activity>
         <activity
             android:name="org.cocos2dx.extbeatanni.FileExplore"
-            android:label="@string/title_activity_file_explore"
-            android:parentActivityName="org.cocos2dx.extbeatanni.ExtremeBeatAnnihilation" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.cocos2dx.extbeatanni.ExtremeBeatAnnihilation" />
+            android:label="@string/title_activity_file_explore" >
         </activity>
     </application>
 

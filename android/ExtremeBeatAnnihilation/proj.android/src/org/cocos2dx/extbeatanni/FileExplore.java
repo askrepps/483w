@@ -199,6 +199,8 @@ public class FileExplore extends Activity {
                     // File picked
                     else {
                         // Perform action with file picked
+                    	setResult(Activity.RESULT_OK, new Intent().putExtra("Song File", chosenFile));
+                    	finish();
                     }
 
                 }

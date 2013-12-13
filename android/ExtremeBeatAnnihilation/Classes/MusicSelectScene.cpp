@@ -3,6 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+// externs defined in Global.h
+extern std::string Game_Song;
+
 // Initialize the menu items, background, and overall setup of the music selection menu
 //
 // return - false if there was an error in initializing, true otherwise
@@ -17,7 +20,6 @@ bool MusicSelect::init()
     CCMenu*          menu;              // menu to contain the menu items
 
     CCLabelTTF*      header;            // the header font that tells the user what to do
-    //CCSprite*        background;        // the background picture
     CCSize           size;              // the size of the window
 
     if(!CCLayer::init())
@@ -54,11 +56,6 @@ bool MusicSelect::init()
     menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
     this->addChild(menu, 1);
 
-    // add splash screen as a sprite on the center of the screen
-    //background = CCSprite::create(BACKGROUND_IMAGE);
-    //background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
-    //this->addChild(background, 0);
-
     return true;
 }
 
@@ -90,6 +87,7 @@ void MusicSelect::HandleSampleMusicPressed(CCObject* sender)
 void MusicSelect::HandleYourMusicPressed(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+
     JavaVM* jvm = cocos2d::JniHelper::getJavaVM();
     if (NULL == jvm)
         CCLog("Failed to get the JavaVM");
@@ -103,11 +101,16 @@ void MusicSelect::HandleYourMusicPressed(CCObject* sender)
     if (!classRet)
         CCLog("Failed to find class ExtremeBeatAnnihilation");
 
-    jmethodID methodRet = env->GetMethodID(classRet, "startupFileExplore", "()V");
+    jmethodID methodRet = env->GetMethodID(classRet, "startupFileExplore", "()Ljava/lang/String;");
     if (!methodRet)
         CCLog("Failed to find method startupFileExplore");
 
-    env->CallVoidMethod(classRet, methodRet);
+    jobject result = env->CallObjectMethod(classRet, methodRet);
+    if (!result)
+        CCLog("Got a NULL back from song selection");
+
+    const char *charResult = env->GetStringUTFChars(jstring(result), NULL);
+    Game_Song = charResult;
 }
 
 // On selecting the back menu item, switch back to character select scene

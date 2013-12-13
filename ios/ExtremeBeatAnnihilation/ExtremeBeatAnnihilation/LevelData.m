@@ -133,7 +133,8 @@
         
         for (int i = 1; i < count-1; i++)
         {
-            if (envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp)
+            if (envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp
+                && ([_events count] == 0 || envelope[i].sample - [[_events objectAtIndex:[_events count]-1] sample] >= kObstacleGap))
             {
                 NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[i].sample, envelope[i].amp);
                 SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[i].sample andFreq:100];
@@ -142,7 +143,8 @@
             }
         }
         
-        if (count > 1 && envelope[count-1].amp > envelope[count-2].amp)
+        if (count > 1 && envelope[count-1].amp > envelope[count-2].amp
+            && ([_events count] == 0 || envelope[count-1].sample - [[_events objectAtIndex:[_events count]-1] sample] > kObstacleGap))
         {
             NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[count-1].sample, envelope[count-1].amp);
             SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[count-1].sample andFreq:100];

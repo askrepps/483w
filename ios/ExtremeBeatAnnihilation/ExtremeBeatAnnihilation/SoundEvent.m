@@ -26,7 +26,7 @@
     if (_freq <= q1Freq)
     {
         _side = LEFT;
-        _type = SLIDE;
+        _type = JUMP;
     }
     else if (self.freq <= medianFreq)
     {

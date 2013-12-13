@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#define kObstacleGap 44100
+#define kObstacleGap 40000
 #define kVelocity 250
-#define kLevelOffset 80
+#define kLevelOffset 110
 #define kRightCorrection 460
 #define kFireY 100
-#define kCoilY 155
+#define kCoilY 152
 #define kJumpHeight 100
 
 @interface Registry : NSObject

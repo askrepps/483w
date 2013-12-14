@@ -51,7 +51,7 @@ void LoadScene::GenerateObstacles()
 	// Populate the obstacles
 	// TODO: Actually implement algorithm
 	// TODO: DELETE THIS FOR THE LOVE OF GOD AND ALL THAT IS HOLY WHEN THE ALGORITHM IS READY
-	usleep(5000000);		// Sleep for 5 seconds (or 5000000 microseconds)
+	usleep(2000000);		// Sleep for 5 seconds (or 5000000 microseconds)
 
 	// We are all ready to go to play the game, pause the music and get the party
 	// started!

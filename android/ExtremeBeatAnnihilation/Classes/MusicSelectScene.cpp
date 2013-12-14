@@ -231,7 +231,7 @@ void MusicSelect::HandlePlayPressed(CCObject* sender)
 
     // stop the music and open the game scene
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    CCDirector::sharedDirector()->replaceScene(GameScene::create());
+    CCDirector::sharedDirector()->replaceScene(LoadScene::Scene());
 }
 
 // On selecting the back menu item, switch back to character select scene

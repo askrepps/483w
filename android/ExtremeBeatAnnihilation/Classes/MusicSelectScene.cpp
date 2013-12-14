@@ -101,11 +101,13 @@ void MusicSelect::HandleYourMusicPressed(CCObject* sender)
     if (!classRet)
         CCLog("Failed to find class ExtremeBeatAnnihilation");
 
-    jmethodID constructRet = env->GetMethodID(classRet, "init", "()V");
+    jmethodID constructRet = env->GetStaticMethodID(classRet, "getObject", "()Ljava/lang/Object;");
     if(!constructRet)
     	CCLog("Failed to get the constructor");
 
-    jobject extremeBeatAnnihilation = env->NewObject(classRet, constructRet);
+    jobject extremeBeatAnnihilation = env->CallStaticObjectMethod(classRet, constructRet);
+    if(!extremeBeatAnnihilation)
+    	CCLog("ExtremeBeatAnnihilation set to NULL");
 
     jmethodID methodRet = env->GetMethodID(classRet, "startupFileExplore", "()Ljava/lang/String;");
     if (!methodRet)
@@ -115,6 +117,7 @@ void MusicSelect::HandleYourMusicPressed(CCObject* sender)
     jobject result = env->CallNonvirtualObjectMethod(extremeBeatAnnihilation, classRet, methodRet);
     if (!result)
         CCLog("Got a NULL back from song selection");
+
 
     //const char *charResult = env->GetStringUTFChars(jstring(result), NULL);
     //Game_Song = charResult;

@@ -34,26 +34,21 @@ import android.view.WindowManager;
 public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 
 	private static final int REQUEST_SONG_FILE = 0;
+	private static Object activity;
 	private String chosenSong;
+	public volatile boolean waitForResult = true;
 	
-	@Override
-	public void init()
+	public static Object getObject()
 	{
-		try
-		{
-			super.init();
-		}
-		catch(Exception e)
-		{
-			Log.d("Extreme Init", "Error" + e.getMessage());
-		}
+		Log.i("cppCall", "Returning activity");
+		return activity;
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+		activity = this;
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
@@ -77,6 +72,7 @@ public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 			Log.d("Extreme", "Error" + e.getMessage());
 		}
 		
+		while(waitForResult);
 		return chosenSong;
 	}
 	

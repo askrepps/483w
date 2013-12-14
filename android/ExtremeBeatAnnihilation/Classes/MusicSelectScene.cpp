@@ -155,6 +155,8 @@ void MusicSelect::HandleThirdSongPressed(CCObject* sender)
 void MusicSelect::HandleYourMusicPressed(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+	jclass tmpClass;			// Prevent a stale local ref bug
+	jobject tmpObject;			// Prevent a stale local ref bug
 
 	// if we haven't before, retrieve all the JNI data to be able to call java methods
     if (!m_haveJniData)
@@ -167,17 +169,21 @@ void MusicSelect::HandleYourMusicPressed(CCObject* sender)
         if (ret != JNI_OK)
             CCLog("Failed to get then JNIEnv");
 
-        m_extBeatAnniClass = m_env->FindClass("org/cocos2dx/extbeatanni/ExtremeBeatAnnihilation");
-        if (!m_extBeatAnniClass)
+        tmpClass = m_env->FindClass("org/cocos2dx/extbeatanni/ExtremeBeatAnnihilation");
+        if (!tmpClass)
             CCLog("Failed to find class ExtremeBeatAnnihilation");
+
+        m_extBeatAnniClass = (jclass)m_env->NewGlobalRef(tmpClass);
+
 
         jmethodID getObjectMethod = m_env->GetStaticMethodID(m_extBeatAnniClass, "getObject", "()Ljava/lang/Object;");
         if(!getObjectMethod)
             CCLog("Failed to find method getObject");
 
-        m_extBeatAnniInstance = m_env->CallStaticObjectMethod(m_extBeatAnniClass, getObjectMethod);
-        if(!m_extBeatAnniInstance)
+        tmpObject = m_env->CallStaticObjectMethod(m_extBeatAnniClass, getObjectMethod);
+        if(!tmpObject)
             CCLog("Failed to get the current instance of the running activity");
+        m_extBeatAnniInstance = (jobject)m_env->NewGlobalRef(tmpObject);
 
         m_startupFileExploreMethod = m_env->GetMethodID(m_extBeatAnniClass, "startupFileExplore", "()V");
         if (!m_startupFileExploreMethod)
@@ -225,7 +231,9 @@ void MusicSelect::HandlePlayPressed(CCObject* sender)
         // convert the returned string to a C++ char* to that can be stored in Game_Song
         const char *charResult = m_env->GetStringUTFChars(jstring(result), NULL);
         Game_Song = charResult;
-
+        // Be sure to set these up for garbage collection
+        m_env->DeleteGlobalRef(m_extBeatAnniInstance);
+        m_env->DeleteGlobalRef(m_extBeatAnniClass);
         m_choseUserMusic = false;
     }
 

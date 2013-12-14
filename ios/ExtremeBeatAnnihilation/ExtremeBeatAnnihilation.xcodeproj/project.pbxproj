@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9906C111185A212E00D9B53F /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9906C110185A212E00D9B53F /* test.mp3 */; };
 		9906C113185A233A00D9B53F /* test2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9906C112185A233A00D9B53F /* test2.m4a */; };
+		9906C115185CF62600D9B53F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9906C114185CF62600D9B53F /* Accelerate.framework */; };
 		99370617182E1647007A8CB6 /* CharacterSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99370616182E1647007A8CB6 /* CharacterSelectLayer.m */; };
 		997AEE321835F62A008ED709 /* LoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 997AEE311835F62A008ED709 /* LoadingLayer.m */; };
 		99A886B31830425B00F12C7F /* LettingGo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99A886B11830425B00F12C7F /* LettingGo.mp3 */; };
@@ -214,6 +215,7 @@
 /* Begin PBXFileReference section */
 		9906C110185A212E00D9B53F /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = test.mp3; path = Resources/SampleTracks/test.mp3; sourceTree = "<group>"; };
 		9906C112185A233A00D9B53F /* test2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.m4a; path = Resources/SampleTracks/test2.m4a; sourceTree = "<group>"; };
+		9906C114185CF62600D9B53F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		99370615182E1647007A8CB6 /* CharacterSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSelectLayer.h; sourceTree = "<group>"; };
 		99370616182E1647007A8CB6 /* CharacterSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSelectLayer.m; sourceTree = "<group>"; };
 		997AEE301835F62A008ED709 /* LoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingLayer.h; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9906C115185CF62600D9B53F /* Accelerate.framework in Frameworks */,
 				99C27E6917E1274F00060D51 /* AVFoundation.framework in Frameworks */,
 				99F6A192182EB1820028DEDD /* MediaPlayer.framework in Frameworks */,
 				99C27E6117E1274F00060D51 /* QuartzCore.framework in Frameworks */,
@@ -658,6 +661,7 @@
 		99C27E5F17E1274F00060D51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9906C114185CF62600D9B53F /* Accelerate.framework */,
 				99F6A191182EB1820028DEDD /* MediaPlayer.framework */,
 				99C27E6017E1274F00060D51 /* QuartzCore.framework */,
 				99C27E6217E1274F00060D51 /* OpenGLES.framework */,

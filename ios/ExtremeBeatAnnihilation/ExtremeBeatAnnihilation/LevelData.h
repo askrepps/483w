@@ -7,6 +7,7 @@
 //
 
 #import <AudioToolbox/AudioToolbox.h>
+#import <Accelerate/Accelerate.h>
 #import "SoundEvent.h"
 
 @interface LevelData : NSObject

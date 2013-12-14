@@ -57,6 +57,8 @@
     if (self = [super init])
     {
         CGSize winSize = [[CCDirector sharedDirector] winSize];
+        uint prevLeft = 0;
+        uint prevRight = 0;
         
         [[[CCDirector sharedDirector] touchDispatcher] addStandardDelegate:self priority:0];
         [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
@@ -126,22 +128,30 @@
             switch(event.side)
             {
                 case LEFT:
-                    x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset;
-                    obs = [[Obstacle alloc] initWithX:x andType:event.type];
-                    [_leftObstacles addObject:obs];
-                    [_leftGround addChild:obs];
+                    if (prevLeft == 0 || event.sample - prevLeft > kObstacleGap)
+                    {
+                        prevLeft = event.sample;
+                        x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset;
+                        obs = [[Obstacle alloc] initWithX:x andType:event.type];
+                        [_leftObstacles addObject:obs];
+                        [_leftGround addChild:obs];
+                        [obs release];
+                    }
                     break;
                 case RIGHT:
-                    x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset - kRightCorrection;//layerWidth - ((float)(levelData.numSamples - event.sample)/levelData.sampleRate*kVelocity) - kLevelOffset;
-                    obs = [[Obstacle alloc] initWithX:-x andType:event.type];
-                    [_rightObstacles addObject:obs];
-                    [_rightGround addChild:obs];
+                    if (prevRight == 0 || event.sample - prevRight > kObstacleGap)
+                    {
+                        prevRight = event.sample;
+                        x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset - kRightCorrection;//layerWidth - ((float)(levelData.numSamples - event.sample)/levelData.sampleRate*kVelocity) - kLevelOffset;
+                        obs = [[Obstacle alloc] initWithX:-x andType:event.type];
+                        [_rightObstacles addObject:obs];
+                        [_rightGround addChild:obs];
+                        [obs release];
+                    }
                     break;
                 default:
                     break;
             }
-            
-            [obs release];
         }
         
         [_leftNode addChild:_leftGround z:0];

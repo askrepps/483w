@@ -54,6 +54,10 @@
         UInt32 bufferSize;
         Peak *envelope;
         
+        FFTSetup fftSettings;
+        UInt32 log2n;
+        COMPLEX_SPLIT fftData;
+        
         status = ExtAudioFileOpenURL((CFURLRef)url, &audioFile);
         NSLog(@"opened file: status = %d", (int)status);
         
@@ -92,9 +96,17 @@
         bufList.mBuffers[0].mDataByteSize = bufferSize * sizeof(float);
         bufList.mBuffers[0].mData = buffer;
         
+        log2n = log2f(bufferSize);
+        fftSettings = vDSP_create_fftsetup(log2n, kFFTRadix2);
+        fftData.realp = malloc(sizeof(float) * bufferSize/2);
+        fftData.imagp = malloc(sizeof(float) * bufferSize/2);
+        
         int count = 0;
         int offset;
-        float max = 0;
+        float maxAmp;
+        int maxFreqBin;
+        float freqPerBin = _sampleRate / bufferSize;
+        float maxFreqBinValue;
         
         do
         {
@@ -103,19 +115,33 @@
             
             NSLog(@"Reading %d samples... status = %d", (unsigned int)propertySize, (int)status);
             
-            max = 0;
+            maxAmp = 0;
             for (int i = 0; i < bufferSize; i++)
             {
-                if (buffer[i] > max)
+                if (buffer[i] > maxAmp)
                 {
-                    max = buffer[i];
+                    maxAmp = buffer[i];
                     offset = i;
                 }
             }
             
+            vDSP_ctoz((COMPLEX *) buffer, 2, &fftData, 1, bufferSize/2);
+            vDSP_fft_zrip(fftSettings, &fftData, 1, log2n, kFFTDirection_Forward);
+            
+            maxFreqBinValue = 0;
+            maxFreqBin = 0;
+            for (int i = 1; i < bufferSize/2; i++)
+            {
+                if (fftData.realp[i] > maxFreqBinValue)
+                {
+                    maxFreqBinValue = fftData.realp[i];
+                    maxFreqBin = i;
+                }
+            }
+            
             envelope[count].sample = count*bufferSize + offset;
-            envelope[count].amp = max;
-            envelope[count].freq = 0;
+            envelope[count].amp = maxAmp;
+            envelope[count].freq = maxFreqBin * freqPerBin;
             count++;
         } while (propertySize > 0);
         
@@ -125,29 +151,29 @@
         
         if (count > 1 && envelope[0].amp > envelope[1].amp)
         {
-            NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[0].sample, envelope[0].amp);
-            SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[0].sample andFreq:100];
+            NSLog(@"s: %d  | amp: %f  | freq: %f", (unsigned int)envelope[0].sample, envelope[0].amp, envelope[0].freq);
+            SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[0].sample andFreq:envelope[0].freq];
             [_events addObject:event];
             [event release];
         }
         
         for (int i = 1; i < count-1; i++)
         {
-            if (envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp
-                && ([_events count] == 0 || envelope[i].sample - [[_events objectAtIndex:[_events count]-1] sample] >= kObstacleGap))
+            if (envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp)
+                //&& ([_events count] == 0 || envelope[i].sample - [[_events objectAtIndex:[_events count]-1] sample] >= kObstacleGap))
             {
-                NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[i].sample, envelope[i].amp);
-                SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[i].sample andFreq:100];
+                NSLog(@"s: %d  | amp: %f  | freq: %f", (unsigned int)envelope[i].sample, envelope[i].amp, envelope[i].freq);
+                SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[i].sample andFreq:envelope[i].freq];
                 [_events addObject:event];
                 [event release];
             }
         }
         
-        if (count > 1 && envelope[count-1].amp > envelope[count-2].amp
-            && ([_events count] == 0 || envelope[count-1].sample - [[_events objectAtIndex:[_events count]-1] sample] > kObstacleGap))
+        if (count > 1 && envelope[count-1].amp > envelope[count-2].amp)
+            //&& ([_events count] == 0 || envelope[count-1].sample - [[_events objectAtIndex:[_events count]-1] sample] > kObstacleGap))
         {
-            NSLog(@"sample: %d  | amp: %f", (unsigned int)envelope[count-1].sample, envelope[count-1].amp);
-            SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[count-1].sample andFreq:100];
+            NSLog(@"s: %d  | amp: %f  | freq: %f", (unsigned int)envelope[count-1].sample, envelope[count-1].amp, envelope[count-1].freq);
+            SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[count-1].sample andFreq:envelope[count-1].freq];
             [_events addObject:event];
             [event release];
         }
@@ -161,6 +187,9 @@
         
         free(buffer);
         free(envelope);
+        free(fftData.realp);
+        free(fftData.imagp);
+        vDSP_destroy_fftsetup(fftSettings);
     }
     
     return self;

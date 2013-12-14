@@ -25,8 +25,6 @@
 @property (strong, nonatomic) ClippingNode *rightNode;
 @property (strong, nonatomic) CCLayer *leftGround;
 @property (strong, nonatomic) CCLayer *rightGround;
-@property (strong, nonatomic) CCLayer *leftPlayerLayer;
-@property (strong, nonatomic) CCLayer *rightPlayerLayer;
 @property (strong, nonatomic) LeftPlayer *leftPlayer;
 @property (strong, nonatomic) RightPlayer *rightPlayer;
 @property (strong, nonatomic) NSMutableArray *leftObstacles;
@@ -80,10 +78,6 @@
         _leftGround = [CCLayer node];
         _rightGround = [CCLayer node];
         
-        
-        _leftPlayerLayer = [CCLayer node];
-        _rightPlayerLayer = [CCLayer node];
-        
         // Add backgrounds
         
         _leftBG1 = [CCSprite spriteWithFile:@"background.png"];
@@ -110,9 +104,6 @@
         _rightPlayer = [[RightPlayer alloc] init];
         _rightPlayer.position = ccp(winSize.width/8*7, winSize.height/3);
         [_rightGround addChild:_rightPlayer z:1];
-        
-        _leftPlayerLayer.touchEnabled = YES;
-        _rightPlayerLayer.touchEnabled = YES;
         
         // Create Obstacles
         
@@ -155,9 +146,7 @@
         }
         
         [_leftNode addChild:_leftGround z:0];
-        [_leftNode addChild:_leftPlayerLayer z:1];
         [_rightNode addChild:_rightGround z:0];
-        [_rightNode addChild:_rightPlayerLayer z:1];
         
         // Create menu items
         

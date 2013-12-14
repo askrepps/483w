@@ -11,15 +11,18 @@ extern std::string Game_Song;
 // return - false if there was an error in initializing, true otherwise
 bool MusicSelect::init()
 {
-    CCLabelTTF*      labelSampleMusic;  // the text for sample music menu item
+    CCLabelTTF*      labelFirstSong;    // the text for the first song menu item
+    CCLabelTTF*      labelSecondSong;   // the text for the second song menu item
+    CCLabelTTF*      labelThirdSong;    // the text for the third song menu item
     CCLabelTTF*      labelYourMusic;    // the text for your music menu item
+    CCLabelTTF*      labelPlay;         // the text for play menu item
     CCLabelTTF*      labelBack;         // the text for back menu item
-    CCMenuItemLabel* itemSampleMusic;   // menu item for opening sample music selection
+    CCMenuItemLabel* itemFirstSong;     // menu item for choosing the first song
+    CCMenuItemLabel* itemSecondSong;    // menu item for choosing the second song
+    CCMenuItemLabel* itemThirdSong;     // menu item for choosing the third song
     CCMenuItemLabel* itemYourMusic;     // menu item for opening your music selection
     CCMenuItemLabel* itemBack;          // menu item for going back to character select
     CCMenu*          menu;              // menu to contain the menu items
-
-    CCLabelTTF*      header;            // the header font that tells the user what to do
     CCSize           size;              // the size of the window
 
     if(!CCLayer::init())
@@ -31,30 +34,49 @@ bool MusicSelect::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the header for the scene
-    header = CCLabelTTF::create("Choose where you want to get your songs", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
-    this->addChild(header, 1);
+    m_header = CCLabelTTF::create("Choose a song", FONT_STYLE, FONT_SIZE);
+    m_header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
+    m_header->setColor(MENU_COLOR);
+    this->addChild(m_header, 1);
 
     // create the text for the menu items
-    labelSampleMusic = CCLabelTTF::create("Select Sample Music", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelYourMusic   = CCLabelTTF::create("Select Your Music", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelBack        = CCLabelTTF::create("Back", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelFirstSong  = CCLabelTTF::create("Letting Go - UltraMax", FONT_STYLE, FONT_SIZE);
+    labelSecondSong = CCLabelTTF::create("The Call of Stars - UltraMax", FONT_STYLE, FONT_SIZE);
+    labelThirdSong  = CCLabelTTF::create("Need Song - Artist", FONT_STYLE, FONT_SIZE);
+    labelYourMusic  = CCLabelTTF::create("Select Your Music", FONT_STYLE, FONT_SIZE);
+    labelBack       = CCLabelTTF::create("Back", FONT_STYLE, FONT_SIZE);
+    labelPlay       = CCLabelTTF::create("Play", FONT_STYLE, FONT_SIZE);
 
     // create the items for the menu
-    itemSampleMusic = CCMenuItemLabel::create(labelSampleMusic, this, menu_selector(MusicSelect::HandleSampleMusicPressed));
-    itemYourMusic   = CCMenuItemLabel::create(labelYourMusic, this, menu_selector(MusicSelect::HandleYourMusicPressed));
-    itemBack        = CCMenuItemLabel::create(labelBack, this, menu_selector(MusicSelect::HandleBackPressed));
+    itemFirstSong  = CCMenuItemLabel::create(labelFirstSong, this, menu_selector(MusicSelect::HandleFirstSongPressed));
+    itemSecondSong = CCMenuItemLabel::create(labelSecondSong, this, menu_selector(MusicSelect::HandleSecondSongPressed));
+    itemThirdSong  = CCMenuItemLabel::create(labelThirdSong, this, menu_selector(MusicSelect::HandleThirdSongPressed));
+    itemYourMusic  = CCMenuItemLabel::create(labelYourMusic, this, menu_selector(MusicSelect::HandleYourMusicPressed));
+    itemBack       = CCMenuItemLabel::create(labelBack, this, menu_selector(MusicSelect::HandleBackPressed));
+    m_itemPlay     = CCMenuItemLabel::create(labelPlay, this, menu_selector(MusicSelect::HandlePlayPressed));
 
     // set the color of the menu items
-    itemSampleMusic->setColor(MENU_COLOR);
-    itemYourMusic->setColor(MENU_COLOR);
-    itemBack->setColor(MENU_COLOR);
+    itemFirstSong->setColor(FONT_COLOR);
+    itemSecondSong->setColor(FONT_COLOR);
+    itemThirdSong->setColor(FONT_COLOR);
+    itemYourMusic->setColor(FONT_COLOR);
+    itemBack->setColor(FONT_COLOR);
+    m_itemPlay->setColor(FONT_COLOR);
+
+    // disable the play menu item, because user needs to pick a song first
+    m_itemPlay->setVisible(false);
+    m_itemPlay->setEnabled(false);
 
     // create menu to contain the menu items
-    menu = CCMenu::create(itemSampleMusic, itemYourMusic, itemBack, NULL);
-    menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
-    menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
+    menu = CCMenu::create(itemFirstSong, itemSecondSong, itemThirdSong, itemYourMusic, m_itemPlay, itemBack, NULL);
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+    menu->setPosition(size.width * POS_HALF_SCREEN, size.height * MENU_POS_HEIGHT);
     this->addChild(menu, 1);
+
+    // initialize the booleans
+    m_choseUserMusic = false;
+    m_haveJniData    = false;
+    m_songSelected   = false;
 
     return true;
 }
@@ -72,55 +94,144 @@ CCScene* MusicSelect::Scene()
     return scene;
 }
 
-// On selecting the sample music menu item, switch to the sample music scene
+// On selecting the first song menu item, change the selected song to the first sample track
 //
-// sender [in] - the object that sent the selected event?
-void MusicSelect::HandleSampleMusicPressed(CCObject* sender)
+// sender [in] - the object that sent the selected event
+void MusicSelect::HandleFirstSongPressed(CCObject* sender)
 {
-	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
-    CCDirector::sharedDirector()->replaceScene(SampleMusic::Scene());
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+    Game_Song = FIRST_SONG;
+
+    // if song wasn't selected previously, set up the scene to start the game
+    if (!m_songSelected)
+    {
+        m_header->setString("Song selected! Press Play or choose another!");
+        m_itemPlay->setVisible(true);
+        m_itemPlay->setEnabled(true);
+        m_songSelected = true;
+    }
 }
 
-// On selecting the your music menu item, switch to the your music scene
+// On selecting the second song menu item, change the selected song to the second sample track
+//
+// sender [in] - the object that sent the selected event
+void MusicSelect::HandleSecondSongPressed(CCObject* sender)
+{
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+    Game_Song = SECOND_SONG;
+
+    // if song wasn't selected previously, set up the scene to start the game
+    if (!m_songSelected)
+    {
+        m_header->setString("Song selected! Press Play or choose another!");
+        m_itemPlay->setVisible(true);
+        m_itemPlay->setEnabled(true);
+        m_songSelected = true;
+    }
+}
+
+// On selecting the third song menu item, change the selected song to the third sample track
+//
+// sender [in] - the object that sent the selected event
+void MusicSelect::HandleThirdSongPressed(CCObject* sender)
+{
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+    Game_Song = THIRD_SONG;
+
+    // if song wasn't selected previously, set up the scene to start the game
+    if (!m_songSelected)
+    {
+        m_header->setString("Song selected! Press Play or choose another!");
+        m_itemPlay->setVisible(true);
+        m_itemPlay->setEnabled(true);
+        m_songSelected = true;
+    }
+}
+
+// On selecting the your music menu item, start the file explore activity for the user to choose a song
+//   on their SD card
 //
 // sender [in] - the object that sent the selected event?
 void MusicSelect::HandleYourMusicPressed(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
 
-    JavaVM* jvm = cocos2d::JniHelper::getJavaVM();
-    if (NULL == jvm)
-        CCLog("Failed to get the JavaVM");
+	// if we haven't before, retrieve all the JNI data to be able to call java methods
+    if (!m_haveJniData)
+    {
+        JavaVM* jvm = cocos2d::JniHelper::getJavaVM();
+        if (NULL == jvm)
+            CCLog("Failed to get the JavaVM");
 
-    JNIEnv* env;
-    jint ret = jvm->GetEnv((void**)&env, JNI_VERSION_1_4);
-    if (ret != JNI_OK)
-        CCLog("Failed to get then JNIEnv");
+        jint ret = jvm->GetEnv((void**)&m_env, JNI_VERSION_1_4);
+        if (ret != JNI_OK)
+            CCLog("Failed to get then JNIEnv");
 
-    jclass classRet = env->FindClass("org/cocos2dx/extbeatanni/ExtremeBeatAnnihilation");
-    if (!classRet)
-        CCLog("Failed to find class ExtremeBeatAnnihilation");
+        m_extBeatAnniClass = m_env->FindClass("org/cocos2dx/extbeatanni/ExtremeBeatAnnihilation");
+        if (!m_extBeatAnniClass)
+            CCLog("Failed to find class ExtremeBeatAnnihilation");
 
-    jmethodID constructRet = env->GetStaticMethodID(classRet, "getObject", "()Ljava/lang/Object;");
-    if(!constructRet)
-    	CCLog("Failed to get the constructor");
+        jmethodID getObjectMethod = m_env->GetStaticMethodID(m_extBeatAnniClass, "getObject", "()Ljava/lang/Object;");
+        if(!getObjectMethod)
+            CCLog("Failed to find method getObject");
 
-    jobject extremeBeatAnnihilation = env->CallStaticObjectMethod(classRet, constructRet);
-    if(!extremeBeatAnnihilation)
-    	CCLog("ExtremeBeatAnnihilation set to NULL");
+        m_extBeatAnniInstance = m_env->CallStaticObjectMethod(m_extBeatAnniClass, getObjectMethod);
+        if(!m_extBeatAnniInstance)
+            CCLog("Failed to get the current instance of the running activity");
 
-    jmethodID methodRet = env->GetMethodID(classRet, "startupFileExplore", "()Ljava/lang/String;");
-    if (!methodRet)
-        CCLog("Failed to find method startupFileExplore");
+        m_startupFileExploreMethod = m_env->GetMethodID(m_extBeatAnniClass, "startupFileExplore", "()V");
+        if (!m_startupFileExploreMethod)
+            CCLog("Failed to find method startupFileExplore");
 
+        m_getSelectedSongMethod = m_env->GetMethodID(m_extBeatAnniClass, "getSelectedSong", "()Ljava/lang/String;");
+        if (!m_getSelectedSongMethod)
+            CCLog("Failed to find method getSelectedSong");
 
-    jobject result = env->CallNonvirtualObjectMethod(extremeBeatAnnihilation, classRet, methodRet);
-    if (!result)
-        CCLog("Got a NULL back from song selection");
+        m_haveJniData = true;
+    }
 
+    // call the java method within the ExtremeBeatAnnihilation activity that will start up file explore
+    m_env->CallNonvirtualVoidMethod(m_extBeatAnniInstance, m_extBeatAnniClass, m_startupFileExploreMethod);
 
-    //const char *charResult = env->GetStringUTFChars(jstring(result), NULL);
-    //Game_Song = charResult;
+    m_choseUserMusic = true;
+
+    // if song wasn't selected previously, set up the scene to start the game
+    if (!m_songSelected)
+    {
+        m_header->setString("Song selected! Press Play or choose another!");
+        m_itemPlay->setVisible(true);
+        m_itemPlay->setEnabled(true);
+        m_songSelected = true;
+    }
+}
+
+// On selecting the play menu item, get the selected song if user music was chosen, and switch to the
+//   game scene
+//
+// sender [in] - the object that sent the selected event
+void MusicSelect::HandlePlayPressed(CCObject* sender)
+{
+    SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+
+    // if user chose from the SD card, get the selected song from the ExtremeBeatAnnihilation activity
+    if (m_choseUserMusic)
+    {
+        // call the java method within the ExtremeBeatAnnihilation activity that will get the selected
+        //   song
+        jobject result = m_env->CallNonvirtualObjectMethod(m_extBeatAnniInstance, m_extBeatAnniClass, m_getSelectedSongMethod);
+        if (!result)
+            CCLog("Got a NULL back for the song selection");
+
+        // convert the returned string to a C++ char* to that can be stored in Game_Song
+        const char *charResult = m_env->GetStringUTFChars(jstring(result), NULL);
+        Game_Song = charResult;
+
+        m_choseUserMusic = false;
+    }
+
+    // stop the music and open the game scene
+    SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+    CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 
 // On selecting the back menu item, switch back to character select scene

@@ -11,7 +11,6 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/MainMenuScene.cpp \
                    ../../Classes/CharacterSelectScene.cpp \
                    ../../Classes/MusicSelectScene.cpp \
-                   ../../Classes/SampleMusicScene.cpp \
 				   ../../Classes/PlayerR.cpp \
 				   ../../Classes/PlayerL.cpp \
                    ../../Classes/GameScene.cpp \

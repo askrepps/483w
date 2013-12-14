@@ -85,8 +85,7 @@ void SampleMusic::HandleFirstSongPressed(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Game_Song = FIRST_SONG;
-    SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    CCDirector::sharedDirector()->replaceScene(GameScene::create());
+    CCDirector::sharedDirector()->replaceScene(LoadScene::Scene());
 }
 
 // On selecting the second song menu item, switch to the game scene using the song selected
@@ -96,8 +95,7 @@ void SampleMusic::HandleSecondSongPressed(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Game_Song = SECOND_SONG;
-    SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    CCDirector::sharedDirector()->replaceScene(GameScene::create());
+    CCDirector::sharedDirector()->replaceScene(LoadScene::Scene());
 }
 
 // On selecting the third song menu item, switch to the game scene using the song selected
@@ -107,8 +105,7 @@ void SampleMusic::HandleThirdSongPressed(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Game_Song = THIRD_SONG;
-    SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    CCDirector::sharedDirector()->replaceScene(GameScene::create());
+    CCDirector::sharedDirector()->replaceScene(LoadScene::Scene());
 }
 
 // On selecting the back menu item, switch back to music select scene

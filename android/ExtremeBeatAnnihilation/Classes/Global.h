@@ -2,7 +2,9 @@
 #define __GLOBAL_H__
 
 #include <string>
+#include <vector>
 
+#include "Obstacle.h"
 // macros to be used by all files-----------------------------------------------------------------------
 #define COCOS2D_DEBUG          1
 
@@ -18,5 +20,14 @@
 #define POS_QUARTER_SCREEN     0.25  // factor of screen width/height which gives a position quarter-way
 #define POS_THREE_QUART_SCREEN 0.75  // factor of screen width/height which gives a position
                                      //   three-quarter-way
+
+#define JUMPING_OBSTACLE 1			 // The obstacle is a jumping obstacle
+#define SLIDING_OBSTACLE 0			 // The obstacle is a sliding obstacle
+
+#define JUMPING_SPRITE "Obstacles/smallFire.png"		// The sprite location for jumping obstacles
+#define SLIDING_SPRITE "Obstacles/smallCoil.png"		// The sprite location for sliding obstacles
+
+#define JUMPING_HEIGHT	100			 // The height for the jumping obstacles
+#define SLIDING_HEIGHT	150			 // The height for the sliding obstacles
 
 #endif // __GLOBAL_H__

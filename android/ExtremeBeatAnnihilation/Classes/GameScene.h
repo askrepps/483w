@@ -14,6 +14,9 @@
 #include "ForegroundLLayer.h"
 #include "UILayer.h"
 
+extern std::vector<Obstacle> leftSongObstacles;
+extern std::vector<Obstacle> rightSongObstacles;
+
 class GameScene : public cocos2d::CCScene
 {
 public:

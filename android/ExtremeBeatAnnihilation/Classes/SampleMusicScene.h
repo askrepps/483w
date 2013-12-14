@@ -8,7 +8,7 @@
 
 #include "Global.h"
 
-#include "GameScene.h"
+#include "LoadScene.h"
 #include "MusicSelectScene.h"
 
 #define POS_HEADER_HEIGHT    0.9                 // factor of height to position the header

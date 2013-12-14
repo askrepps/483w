@@ -10,3 +10,6 @@ int         Player_Two;            // id of the character selected for player tw
 bool        Allow_Volume_Set;      // true when volume levels are allowed to change, false when not
 float       Music_Volume;          // volume level for the music
 float       SFX_Volume;            // volume level for the sound effects
+
+std::vector<Obstacle> leftSongObstacles;	// The obstacles for the left side of the screen
+std::vector<Obstacle> rightSongObstacles;	// The obstacles for the right side of the screen

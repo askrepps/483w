@@ -23,6 +23,8 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/PauseScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp \
                    ../../Classes/ClipNode.cpp \
+                   ../../Classes/LoadScene.cpp \
+                   ../../Classes/Obstacle.cpp \
                    ../../Classes/Global.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   

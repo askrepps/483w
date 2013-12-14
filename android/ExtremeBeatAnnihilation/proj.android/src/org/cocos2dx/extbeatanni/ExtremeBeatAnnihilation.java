@@ -36,7 +36,6 @@ public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 	private static final int REQUEST_SONG_FILE = 0;
 	private static Object activity;
 	private String chosenSong;
-	public volatile boolean waitForResult = true;
 	
 	public static Object getObject()
 	{
@@ -71,8 +70,7 @@ public class ExtremeBeatAnnihilation extends Cocos2dxActivity{
 		{
 			Log.d("Extreme", "Error" + e.getMessage());
 		}
-		
-		while(waitForResult);
+
 		return chosenSong;
 	}
 	

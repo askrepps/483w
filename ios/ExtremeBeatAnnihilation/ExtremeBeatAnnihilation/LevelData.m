@@ -87,7 +87,7 @@
         status = ExtAudioFileSetProperty(audioFile, kExtAudioFileProperty_ClientDataFormat, propertySize, &format);
         NSLog(@"set client format: status = %d", (int)status);
         
-        bufferSize = (UInt32)(_sampleRate / 4);
+        bufferSize = (UInt32)(_sampleRate / kBuffersPerSecond);
         buffer = malloc(sizeof(float) * bufferSize);
         envelope = malloc(sizeof(Peak) * ((nFrames / bufferSize) + 2));
         

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kBuffersPerSecond 4
 #define kObstacleGap 40000
 #define kVelocity 250
 #define kLevelOffset 110

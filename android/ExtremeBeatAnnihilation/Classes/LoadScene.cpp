@@ -3,11 +3,10 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-
 CCScene* LoadScene::Scene()
 {
 	// Create the scene and add the layer in
-    CCScene*         scene = CCScene::create();
+    CCScene*   scene = CCScene::create();
     LoadScene* layer = LoadScene::create();
 
     // add layer as a child to scene
@@ -21,8 +20,8 @@ CCScene* LoadScene::Scene()
 // return - false if there was an error in initializing, true otherwise
 bool LoadScene::init()
 {
-    CCLabelTTF*      loading;  	  // The label saying loading
-    CCSize           size;        // the size of the window
+    CCLabelTTF* loading;  	  // The label saying loading
+    CCSize      size;         // the size of the window
 
     // Initialize the CCLayer, if it fails, obviously we need to break
     if(!CCLayer::init())
@@ -51,10 +50,7 @@ void LoadScene::GenerateObstacles()
 	// Populate the obstacles
 	// TODO: Actually implement algorithm
 	// TODO: DELETE THIS FOR THE LOVE OF GOD AND ALL THAT IS HOLY WHEN THE ALGORITHM IS READY
-	usleep(2000000);		// Sleep for 5 seconds (or 5000000 microseconds)
+	usleep(2000000);		// Sleep for 2 seconds (or 2000000 microseconds)
 
-	// We are all ready to go to play the game, pause the music and get the party
-	// started!
-	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 	CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }

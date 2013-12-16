@@ -42,29 +42,30 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
     CCSetIterator it              = touches->begin();
     CCPoint       currentLocation;
     CCTouch*      touch;
-    CCRect*       bottomRight     = new CCRect(0, 0, size.width, size.height/2);
-    CCRect*       topRight        = new CCRect(0, size.height/2, size.width, size.height / 2);
+    CCRect*       topRight        = new CCRect(0, 0, size.width, size.height/2);
+    CCRect*       bottomRight     = new CCRect(0, size.height/2, size.width, size.height / 2);
 
-    for(int i = 0; i <= touches->count(); i++)
-    {
+    //for(int i = 0; i <= touches->count(); i++)
+    //{
         touch = (CCTouch*)(*it);
-        currentLocation = touch->getLocationInView();
-        //currentLocation = CCDirector(sharedDirector)::(convertToGL:currentLocation);
+        if(touch)
+        {
+			currentLocation = touch->getLocationInView();
+			//currentLocation = CCDirector(sharedDirector)::(convertToGL:currentLocation);
 
-        if(bottomRight->containsPoint(currentLocation))          // right player slide
-        {
-        	CCLog("Slide with player %p", m_player);
-        	 m_player->Slide();
+			if(bottomRight->containsPoint(currentLocation))          // right player slide
+			{
+				 m_player->Slide();
+			}
+			else if(topRight->containsPoint(currentLocation))        // right player jump
+			{
+				m_player->Jump();
+			}
+			else
+			{
+				CCLog("1Congratulations, you have broken the physical laws of reality.\n");
+			}
         }
-        else if(topRight->containsPoint(currentLocation))        // right player jump
-        {
-            m_player->Jump();
-        }
-        else
-        {
-            CCLog("1Congratulations, you have broken the physical laws of reality.\n");
-        }
-
-        it++;
-    }
+    //    it++;
+    //}
 }

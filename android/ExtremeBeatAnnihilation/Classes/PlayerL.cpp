@@ -78,11 +78,14 @@ bool PlayerL::init()
 
 		slideAnimFrames = CCArray::create();
 
-		for(int i = 1; i <= 2; i++)
+		for(int i = 1; i <= 7; i++)
 		{
+			int j = i;
+			if(j > 2)
+					j = 2;
 			slideAnimFrames->
 				addObject(CCSpriteFrameCache::sharedSpriteFrameCache()->
-						spriteFrameByName(CCString::createWithFormat("blue_slide_%d.png", i)->getCString ()));
+						spriteFrameByName(CCString::createWithFormat("blue_slide_%d.png", j)->getCString ()));
 		}
 
 		slideAnim = CCAnimation::createWithSpriteFrames(slideAnimFrames, 0.1f);
@@ -139,11 +142,14 @@ bool PlayerL::init()
 
 		slideAnimFrames = CCArray::create();
 
-		for(int i = 1; i <= 2; i++)
+		for(int i = 1; i <= 7; i++)
 		{
+			int j = i;
+			if(j > 2)
+				j = 2;
 			slideAnimFrames->
 				addObject(CCSpriteFrameCache::sharedSpriteFrameCache()->
-						spriteFrameByName(CCString::createWithFormat("green_slide_%d.png", i)->getCString ()));
+						spriteFrameByName(CCString::createWithFormat("green_slide_%d.png", j)->getCString ()));
 		}
 
 		slideAnim = CCAnimation::createWithSpriteFrames(slideAnimFrames, 0.1f);
@@ -205,11 +211,14 @@ bool PlayerL::init()
 
     		slideAnimFrames = CCArray::create();
 
-    		for(int i = 1; i <= 2; i++)
+    		for(int i = 1; i <= 7; i++)
     		{
+    			int j = i;
+				if(j > 2)
+					j = 2;
     			slideAnimFrames->
     				addObject(CCSpriteFrameCache::sharedSpriteFrameCache()->
-    						spriteFrameByName(CCString::createWithFormat("red_slide_%d.png", i)->getCString ()));
+    						spriteFrameByName(CCString::createWithFormat("red_slide_%d.png", j)->getCString ()));
     		}
 
     		slideAnim = CCAnimation::createWithSpriteFrames(slideAnimFrames, 0.1f);

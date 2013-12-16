@@ -37,9 +37,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     //pDirector->setDisplayStats(true);
     //pDirector->setAnimationInterval(1.0 / 60);
 
-    // start up the main menu as the first scene
-    CCScene* pScene = MainMenu::Scene();
-    pDirector->runWithScene(pScene);
+    // start up the intro scene as the first scene
+    pDirector->runWithScene(IntroScene::Scene());
 
     return true;
 }

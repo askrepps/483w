@@ -8,6 +8,7 @@ LOCAL_MODULE_FILENAME := libgame
 
 LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+                   ../../Classes/IntroScene.cpp \
                    ../../Classes/MainMenuScene.cpp \
                    ../../Classes/CharacterSelectScene.cpp \
                    ../../Classes/MusicSelectScene.cpp \

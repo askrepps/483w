@@ -20,8 +20,8 @@ private:
 	bool canJump;
 	bool canSlide;
 	cocos2d::CCAction *runForever;
-	cocos2d::CCAction *jumpAction;
-	cocos2d::CCAction *slideAction;
+	cocos2d::CCFiniteTimeAction *jumpAction;
+	cocos2d::CCFiniteTimeAction *slideAction;
 };
 
 #endif // __PLAYER_L_H__

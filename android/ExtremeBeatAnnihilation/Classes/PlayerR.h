@@ -19,6 +19,9 @@ public:
 private:
 	bool canJump;
 	bool canSlide;
+	cocos2d::CCAction *runForever;
+	cocos2d::CCAction *jumpAction;
+	cocos2d::CCAction *slideAction;
 };
 
 #endif // __PLAYER_R_H__

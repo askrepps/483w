@@ -24,6 +24,8 @@ public:
 
     void ScheduleAllUpdates();
 
+    virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+
     // allows use of create() function which uses init() to create this scene
     CREATE_FUNC(GameScene);
 

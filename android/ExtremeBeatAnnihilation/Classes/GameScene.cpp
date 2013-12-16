@@ -26,6 +26,9 @@ bool GameScene::init()
     m_foregroundL = ForegroundLLayer::create();
     ui            = UILayer::create();
 
+    m_foregroundR->setTouchEnabled(true);
+    m_foregroundL->setTouchEnabled(true);
+
     // add all the layers
     addChild(m_backgroundR, 0);
     addChild(m_backgroundL, 0);
@@ -47,4 +50,36 @@ void GameScene::ScheduleAllUpdates()
 {
     m_backgroundL->scheduleUpdate();
     m_backgroundR->scheduleUpdate();
+}
+
+void GameScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+{
+	CCSize        size            = CCDirector::sharedDirector()->getWinSize();
+	CCSetIterator it              = touches->begin();
+	CCPoint       currentLocation;
+	CCTouch*      touch;
+	CCRect*       Left     		 = new CCRect(0, 0, size.width/2, size.height);
+	CCRect*       Right   	     = new CCRect(size.width/2, 0, size.width/2, size.height);
+
+	for(int i = 0; i <= touches->count(); i++)
+	{
+		touch = (CCTouch*)(*it);
+		currentLocation = touch->getLocationInView();
+		//currentLocation = CCDirector(sharedDirector)::(convertToGL:currentLocation);
+
+		if(Left->containsPoint(currentLocation))        // left side
+		{
+			m_foregroundL->ccTouchesBegan(touches, event);
+		}
+		else if(Right->containsPoint(currentLocation))      // right side
+		{
+			m_foregroundR->ccTouchesBegan(touches, event);
+		}
+		else
+		{
+			CCLog("0Congratulations, you have broken the physical laws of reality.\n");
+		}
+
+		it++;
+	}
 }

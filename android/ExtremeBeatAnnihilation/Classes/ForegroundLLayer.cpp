@@ -26,7 +26,8 @@ bool ForegroundLLayer::init()
 
     // create the player and add it
     m_player = PlayerL::create();
-    m_player->setPosition( ccp(layerSize.width/6, layerSize.height/3) );
+    m_player->setPosition( ccp(layerSize.width/2, layerSize.height/3) );
+    CCLog("Player pointer L %p", m_player);
     addChild(m_player);
 
     return true;
@@ -42,8 +43,8 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
     CCSetIterator it              = touches->begin();
     CCPoint       currentLocation;
     CCTouch*      touch;
-    CCRect*       bottomLeft      = new CCRect(0, 0, size.width/2, size.height/2);
-    CCRect*       topLeft         = new CCRect(0, size.height/2, size.width/2, size.height/2);
+    CCRect*       bottomLeft      = new CCRect(0, 0, size.width, size.height/2);
+    CCRect*       topLeft         = new CCRect(0, size.height/2, size.width, size.height / 2);
 
     for(int i = 0; i <= touches->count(); i++)
     {
@@ -53,7 +54,7 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 
         if(bottomLeft->containsPoint(currentLocation))        // left player slide
         {
-
+        	m_player->Slide();
         }
         else if(topLeft->containsPoint(currentLocation))      // left player jump
         {
@@ -61,7 +62,7 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
         }
         else
         {
-            CCLog("Congratulations, you have broken the physical laws of reality.\n");
+            CCLog("2Congratulations, you have broken the physical laws of reality.\n");
         }
 
         it++;

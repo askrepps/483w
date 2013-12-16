@@ -198,8 +198,17 @@ public class FileExplore extends Activity {
                     }
                     // File picked
                     else {
-                    	setResult(Activity.RESULT_OK, new Intent().putExtra("Song File", path.getAbsolutePath() + "/" + chosenFile));
-                    	finish();
+                    	// if the file chosen is a supported file format, then allow it to be chosen
+                    	if (chosenFile.matches("((.+)(\\.)(mp3|mp4|m4a|flac|wav|mid)$)"))
+                    	{
+	                    	setResult(Activity.RESULT_OK, new Intent().putExtra("Song File", path.getAbsolutePath() + "/" + chosenFile));
+	                    	finish();
+                    	}
+                    	else
+                    	{
+                    		removeDialog(DIALOG_LOAD_FILE);
+                            showDialog(DIALOG_LOAD_FILE);
+                    	}
                     }
 
                 }

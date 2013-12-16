@@ -13,15 +13,12 @@ extern std::string Game_Song;
 bool GameScene::init()
 {
     UILayer* ui;                                // the overall ui of the scene
-    //CCSize screenSize;
-    //CCSize layerSize;
+
     if(!CCScene::init())
     {
         return false;
     }
 
-    //screenSize = CCDirector::sharedDirector()->getWinSize();
-    //layerSize.setSize(screenSize.width * POS_HALF_SCREEN, screenSize.height);
     // create all the layers
     m_backgroundR = BackgroundRLayer::create();
     m_backgroundL = BackgroundLLayer::create();
@@ -31,11 +28,7 @@ bool GameScene::init()
 
     m_foregroundR->setTouchEnabled(true);
     m_foregroundL->setTouchEnabled(true);
-    /*
-    m_foregroundR->setContentSize(layerSize);
-    m_foregroundL->setContentSize(layerSize);
-    m_foregroundR->setPosition(screenSize.width * POS_HALF_SCREEN, 0);
-    m_foregroundL->setPosition(0,0); */
+
     // add all the layers
     addChild(m_backgroundR, 0);
     addChild(m_backgroundL, 0);

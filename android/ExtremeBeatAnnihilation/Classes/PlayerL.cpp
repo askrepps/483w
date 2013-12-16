@@ -32,20 +32,17 @@ bool PlayerL::init()
 		{
 			CCString *frame;
 			frame = CCString::createWithFormat("red_running_%d.png", i);
-			CCLog("%s", frame->getCString());
 
 			CCSpriteFrame *spriteFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frame->getCString());
 			if(!spriteFrame)
 				CCLog("Error loading Sprite Frame");
-			else
-				CCLog("Pointer - %p", spriteFrame);
-
 
 			runAnimFrames->addObject(spriteFrame);
 		}
 
 
 		CCAnimation *runAnim = CCAnimation::createWithSpriteFrames(runAnimFrames, 0.1f);
+		CC_SAFE_RETAIN(runAnim);
 
 		PlayerL::runForever = CCRepeatForever::create(CCAnimate::create(runAnim));
 
@@ -63,6 +60,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *jumpAnim = CCAnimation::createWithSpriteFrames(jumpAnimFrames, 0.1f);
+		CC_SAFE_RETAIN(jumpAnim);
 		CCAction *animationAction = CCAnimate::create(jumpAnim);
 
 		CCSpawn *jumping = CCSpawn::create(jumpAction, animationAction, NULL);
@@ -82,6 +80,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *slideAnim = CCAnimation::createWithSpriteFrames(slideAnimFrames, 0.1f);
+		CC_SAFE_RETAIN(slideAnim);
 		CCFiniteTimeAction *slideanimationAction = CCAnimate::create(slideAnim);
 
 		CCSpawn *sliding = CCSpawn::create(slideanimationAction, NULL);
@@ -107,7 +106,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *runAnim = CCAnimation::createWithSpriteFrames(runAnimFrames, 0.1f);
-
+		CC_SAFE_RETAIN(runAnim);
 		PlayerL::runForever = CCRepeatForever::create(CCAnimate::create(runAnim));
 
 		//Jumping Animation
@@ -124,6 +123,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *jumpAnim = CCAnimation::createWithSpriteFrames(jumpAnimFrames, 0.1f);
+		CC_SAFE_RETAIN(jumpAnim);
 		CCAction *animationAction = CCAnimate::create(jumpAnim);
 
 		CCSpawn *jumping = CCSpawn::create(jumpAction, animationAction, NULL);
@@ -143,6 +143,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *slideAnim = CCAnimation::createWithSpriteFrames(slideAnimFrames, 0.1f);
+		CC_SAFE_RETAIN(slideAnim);
 		CCFiniteTimeAction *slideanimationAction = CCAnimate::create(slideAnim);
 
 		CCSpawn *sliding = CCSpawn::create(slideanimationAction, NULL);
@@ -168,7 +169,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *runAnim = CCAnimation::createWithSpriteFrames(runAnimFrames, 0.1f);
-
+		CC_SAFE_RETAIN(runAnim);
 		runForever = CCRepeatForever::create(CCAnimate::create(runAnim));
 		CCLog("RunForever %p", runForever);
 
@@ -187,7 +188,7 @@ bool PlayerL::init()
 
 		CCAnimation *jumpAnim = CCAnimation::createWithSpriteFrames(jumpAnimFrames, 0.1f);
 		CCAction *animationAction = CCAnimate::create(jumpAnim);
-
+		CC_SAFE_RETAIN(jumpAnim);
 		CCSpawn *jumping = CCSpawn::create(jumpAction, animationAction, NULL);
 
 		jumpAction = (CCJumpBy *)CCSequence::create(jumping, jumpFuncAction, NULL);
@@ -205,6 +206,7 @@ bool PlayerL::init()
 		}
 
 		CCAnimation *slideAnim = CCAnimation::createWithSpriteFrames(slideAnimFrames, 0.1f);
+		CC_SAFE_RETAIN(slideAnim);
 		CCFiniteTimeAction *slideanimationAction = CCAnimate::create(slideAnim);
 
 		CCSpawn *sliding = CCSpawn::create(slideanimationAction, NULL);
@@ -219,7 +221,7 @@ bool PlayerL::init()
 
     canJump = true;
     canSlide = true;
-
+    runAction(runForever);
     return true;
 }
 
@@ -228,7 +230,7 @@ void PlayerL::Jump()
 	if(canJump)
 	{
 		canJump = false;
-		//stopAction(runForever);
+		stopAction(runForever);
 		runAction(jumpAction);
 	}
 }
@@ -238,7 +240,7 @@ void PlayerL::Slide()
 	if(canJump)
 	{
 		canJump = false;
-		//stopAction(runForever);
+		stopAction(runForever);
 		runAction(slideAction);
 	}
 }

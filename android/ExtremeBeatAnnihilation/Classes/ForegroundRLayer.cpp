@@ -42,11 +42,11 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
     CCSetIterator it              = touches->begin();
     CCPoint       currentLocation;
     CCTouch*      touch;
-    CCRect*       topRight        = new CCRect(0, 0, size.width, size.height/2);
-    CCRect*       bottomRight     = new CCRect(0, size.height/2, size.width, size.height / 2);
+    CCRect*       topRight        = new CCRect(size.width / 2, 0, size.width / 2, size.height/2);
+    CCRect*       bottomRight     = new CCRect(size.width / 2, size.height/2, size.width / 2, size.height / 2);
 
-    //for(int i = 0; i <= touches->count(); i++)
-    //{
+    for(int i = 0; i < touches->count(); i++)
+    {
         touch = (CCTouch*)(*it);
         if(touch)
         {
@@ -66,6 +66,6 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 				CCLog("1Congratulations, you have broken the physical laws of reality.\n");
 			}
         }
-    //    it++;
-    //}
+        it++;
+    }
 }

@@ -42,11 +42,11 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
     CCSetIterator it              = touches->begin();
     CCPoint       currentLocation;
     CCTouch*      touch;
-    CCRect*       topLeft         = new CCRect(0, 0, size.width, size.height/2);
-    CCRect*       bottomLeft      = new CCRect(0, size.height/2, size.width, size.height / 2);
+    CCRect*       topLeft         = new CCRect(0, 0, size.width / 2, size.height/2);
+    CCRect*       bottomLeft      = new CCRect(0, size.height/2, size.width / 2, size.height / 2);
 
-   // for(int i = 0; i <= touches->count(); i++)
-   // {
+    for(int i = 0; i < touches->count(); i++)
+    {
         touch = (CCTouch*)(*it);
         if(touch)
         {
@@ -67,6 +67,6 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 			}
         }
 
-   //     it++;
-   // }
+        it++;
+    }
 }

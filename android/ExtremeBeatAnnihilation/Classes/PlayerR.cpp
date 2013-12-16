@@ -19,7 +19,7 @@ bool PlayerR::init()
     CCArray* runAnimFrames;
     CCAnimation *runAnim;
     CCCallFunc *jumpFuncAction;
-    CCJumpBy *jumpAction;
+    CCJumpBy *jumpingAction;
     CCArray* jumpAnimFrames;
     CCAnimation *jumpAnim;
     CCAction *animationAction;
@@ -53,8 +53,8 @@ bool PlayerR::init()
 
 		//Jumping Animation
 		jumpFuncAction = CCCallFunc::create(this, callfunc_selector(PlayerR::enableJump));
-		jumpAction = CCJumpBy::create(0.5, ccp(0, 0), 100 , 1);
-
+		jumpingAction = CCJumpBy::create(0.5, ccp(0, 0), 100 , 1);
+		CC_SAFE_RETAIN(jumpingAction);
 		jumpAnimFrames = CCArray::create();
 
 		for(int i = 1; i <= 7; i++)
@@ -68,9 +68,9 @@ bool PlayerR::init()
 		CC_SAFE_RETAIN(jumpAnim);
 		animationAction = CCAnimate::create(jumpAnim);
 
-		jumping = CCSpawn::create(jumpAction, animationAction, NULL);
+		jumping = CCSpawn::create(jumpingAction, animationAction, NULL);
 
-		jumpAction = (CCJumpTo*)CCSequence::create(jumping, jumpFuncAction, NULL);
+		jumpAction = CCSequence::create(jumping, jumpFuncAction, NULL);
 
 		//Sliding Animation
 		slideFuncAction = CCCallFunc::create(this, callfunc_selector(PlayerR::enableSlide));
@@ -117,8 +117,8 @@ bool PlayerR::init()
 
 		//Jumping Animation
 		jumpFuncAction = CCCallFunc::create(this, callfunc_selector(PlayerR::enableJump));
-		jumpAction = CCJumpBy::create(0.5, ccp(0, 0), 100 , 1);
-
+		jumpingAction = CCJumpBy::create(0.5, ccp(0, 0), 100 , 1);
+		CC_SAFE_RETAIN(jumpingAction);
 		jumpAnimFrames = CCArray::create();
 
 		for(int i = 1; i <= 7; i++)
@@ -132,9 +132,9 @@ bool PlayerR::init()
 		CC_SAFE_RETAIN(jumpAnim);
 		animationAction = CCAnimate::create(jumpAnim);
 
-		jumping = CCSpawn::create(jumpAction, animationAction, NULL);
+		jumping = CCSpawn::create(jumpingAction, animationAction, NULL);
 
-		jumpAction = (CCJumpTo*)CCSequence::create(jumping, jumpFuncAction, NULL);
+		jumpAction = CCSequence::create(jumping, jumpFuncAction, NULL);
 
 		//Sliding Animation
 		slideFuncAction = CCCallFunc::create(this, callfunc_selector(PlayerR::enableSlide));
@@ -186,8 +186,8 @@ bool PlayerR::init()
 
     		//Jumping Animation
     		jumpFuncAction = CCCallFunc::create(this, callfunc_selector(PlayerR::enableJump));
-    		jumpAction = CCJumpBy::create(0.5, ccp(0, 0), 100 , 1);
-
+    		jumpingAction = CCJumpBy::create(0.5, ccp(0, 0), 100 , 1);
+    		CC_SAFE_RETAIN(jumpingAction);
     		jumpAnimFrames = CCArray::create();
 
     		for(int i = 1; i <= 7; i++)
@@ -201,9 +201,9 @@ bool PlayerR::init()
     		CC_SAFE_RETAIN(jumpAnim);
     		animationAction = CCAnimate::create(jumpAnim);
 
-    		jumping = CCSpawn::create(jumpAction, animationAction, NULL);
+    		jumping = CCSpawn::create(jumpingAction, animationAction, NULL);
 
-    		jumpAction = (CCJumpTo*)CCSequence::create(jumping, jumpFuncAction, NULL);
+    		jumpAction = CCSequence::create(jumping, jumpFuncAction, NULL);
 
     		//Sliding Animation
     		slideFuncAction = CCCallFunc::create(this, callfunc_selector(PlayerR::enableSlide));

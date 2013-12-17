@@ -234,9 +234,11 @@ bool PlayerR::init()
     canJump = true;
     canSlide = true;
     CCSprite::setFlipX(true);
+
     CC_SAFE_RETAIN(slideAction);
     CC_SAFE_RETAIN(jumpAction);
     CC_SAFE_RETAIN(runForever);
+
     runAction(runForever);
     return true;
 }

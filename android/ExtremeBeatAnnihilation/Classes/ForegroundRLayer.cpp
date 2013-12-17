@@ -51,7 +51,6 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
         if(touch)
         {
 			currentLocation = touch->getLocationInView();
-			//currentLocation = CCDirector(sharedDirector)::(convertToGL:currentLocation);
 
 			if(bottomRight->containsPoint(currentLocation))          // right player slide
 			{
@@ -63,7 +62,7 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 			}
 			else
 			{
-				CCLog("1Congratulations, you have broken the physical laws of reality.\n");
+				CCLog("Left Touch.\n");
 			}
         }
         it++;

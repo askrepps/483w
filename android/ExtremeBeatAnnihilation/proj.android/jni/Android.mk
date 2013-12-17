@@ -14,12 +14,12 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/MusicSelectScene.cpp \
 				   ../../Classes/PlayerR.cpp \
 				   ../../Classes/PlayerL.cpp \
+				   ../../Classes/UILayer.cpp \
                    ../../Classes/GameScene.cpp \
                    ../../Classes/BackgroundRLayer.cpp \
                    ../../Classes/BackgroundLLayer.cpp \
                    ../../Classes/ForegroundRLayer.cpp \
                    ../../Classes/ForegroundLLayer.cpp \
-                   ../../Classes/UILayer.cpp \
                    ../../Classes/PauseScene.cpp \
                    ../../Classes/OptionsMenuScene.cpp \
                    ../../Classes/ClipNode.cpp \

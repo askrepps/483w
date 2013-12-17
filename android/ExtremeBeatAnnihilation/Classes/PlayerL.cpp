@@ -234,10 +234,11 @@ bool PlayerL::init()
 
     canJump = true;
     canSlide = true;
+
     CC_SAFE_RETAIN(slideAction);
     CC_SAFE_RETAIN(runForever);
     CC_SAFE_RETAIN(jumpAction);
-    CCLog("Jump %p", jumpAction);
+
     runAction(runForever);
     return true;
 }

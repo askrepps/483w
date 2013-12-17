@@ -12,8 +12,6 @@ extern std::string Game_Song;
 // return - false if there was an error in initializing, true otherwise
 bool GameScene::init()
 {
-    UILayer* ui;                                // the overall ui of the scene
-
     if(!CCScene::init())
     {
         return false;
@@ -24,7 +22,7 @@ bool GameScene::init()
     m_backgroundL = BackgroundLLayer::create();
     m_foregroundR = ForegroundRLayer::create();
     m_foregroundL = ForegroundLLayer::create();
-    ui            = UILayer::create();
+    m_uiLayer     = UILayer::create();
 
     m_foregroundR->setTouchEnabled(true);
     m_foregroundL->setTouchEnabled(true);
@@ -34,7 +32,7 @@ bool GameScene::init()
     addChild(m_backgroundL, 0);
     addChild(m_foregroundR, 1);
     addChild(m_foregroundL, 1);
-    addChild(ui, 2);
+    addChild(m_uiLayer, 2);
 
     // start up the song chosen by the user
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
@@ -50,6 +48,7 @@ void GameScene::ScheduleAllUpdates()
 {
     m_backgroundL->scheduleUpdate();
     m_backgroundR->scheduleUpdate();
+    m_uiLayer->scheduleUpdate();
 }
 
 void GameScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)

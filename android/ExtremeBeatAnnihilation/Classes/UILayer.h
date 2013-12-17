@@ -18,11 +18,17 @@ class UILayer : public cocos2d::CCLayer
 {
 public:
     virtual bool init();
-
-    void HandlePausePressed(CCObject* sender);
+    virtual void update(float delta);			 // Overrides update, update the scores
+    void SetUpSinglePlayer(cocos2d::CCSize size);// Set up the UI for single player
+    void SetUpMultiPlayer(cocos2d::CCSize size); // Set up the UI for multi player
+    void UpdateScore(int delta);				 // Update the scores, it automatically converts for multiplayer
+    void HandlePausePressed(CCObject* sender);   // Handle pause being pressed
 
     // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(UILayer);
+private:
+    cocos2d::CCLabelTTF* m_scoreLabel;		  // The label to hold the score
+    cocos2d::CCLabelTTF* m_p2scoreLabel;	  // Player 2 Score label
 };
 
 #endif // __UI_LAYER_H__

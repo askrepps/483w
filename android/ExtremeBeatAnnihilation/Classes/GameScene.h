@@ -17,6 +17,8 @@
 extern std::vector<Obstacle> leftSongObstacles;
 extern std::vector<Obstacle> rightSongObstacles;
 
+class UILayer;
+
 class GameScene : public cocos2d::CCScene
 {
 public:
@@ -34,6 +36,7 @@ private:
     BackgroundLLayer* m_backgroundL;      // background for the left player's screen
     ForegroundRLayer* m_foregroundR;      // foreground (like obstacles) for the right player's screen
     ForegroundLLayer* m_foregroundL;      // foreground (like obstacles) for the left player's screen
+    UILayer*		  m_uiLayer;
 };
 
 #endif // __GAME_SCENE_H__

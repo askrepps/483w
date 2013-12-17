@@ -23,16 +23,14 @@
 
 #define PLAYER_Y_POS           0.175  // The position of the player vertically
 #define JUMP_Y_POS             0.175  // The position for the jumping obstacle
-#define SLIDE_Y_POS 		   0.275  // the position for the sliding obstacle
+#define SLIDE_Y_POS 		   0.185  // the position for the sliding obstacle
 
+#define PLAYER_SCALE 1.4			 // The scale for the players to use
 
 #define JUMPING_OBSTACLE 1			 // The obstacle is a jumping obstacle
 #define SLIDING_OBSTACLE 0			 // The obstacle is a sliding obstacle
 
 #define JUMPING_SPRITE "Obstacles/smallFire.png"		// The sprite location for jumping obstacles
 #define SLIDING_SPRITE "Obstacles/smallCoil.png"		// The sprite location for sliding obstacles
-
-#define JUMPING_HEIGHT	100			 // The height for the jumping obstacles
-#define SLIDING_HEIGHT	150			 // The height for the sliding obstacles
 
 #endif // __GLOBAL_H__

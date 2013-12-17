@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
 
 #include "Obstacle.h"
-
+#include "SoundEvent.h"
 // macros to be used by all files-----------------------------------------------------------------------
 #define COCOS2D_DEBUG          1
 
@@ -33,5 +35,7 @@
 
 #define JUMPING_SPRITE "Obstacles/smallFire.png"		// The sprite location for jumping obstacles
 #define SLIDING_SPRITE "Obstacles/smallCoil.png"		// The sprite location for sliding obstacles
+
+#define NUM_OBSTACLES 225			 // The number of obstacles to create
 
 #endif // __GLOBAL_H__

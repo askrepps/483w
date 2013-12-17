@@ -26,6 +26,7 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/LoadScene.cpp \
                    ../../Classes/Obstacle.cpp \
                    ../../Classes/SoundEvent.cpp \
+                   ../../Classes/LevelData.cpp \
                    ../../Classes/Global.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   

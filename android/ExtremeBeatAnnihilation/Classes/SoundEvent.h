@@ -11,7 +11,7 @@ class SoundEvent : public cocos2d::CCObject
 public:
     void InitWithSample(unsigned int s, float f);
     void SetAttributesWithQ1(float q1Freq, float medianFreq, float q3Freq);
-
+    float GetFreq(void);
 private:
     unsigned int m_sample;           // need description
     float        m_freq;             // need description

@@ -40,3 +40,8 @@ void SoundEvent::SetAttributesWithQ1(float q1Freq, float medianFreq, float q3Fre
         m_type = JUMP;
     }
 }
+
+float SoundEvent::GetFreq(void)
+{
+	return m_freq;
+}

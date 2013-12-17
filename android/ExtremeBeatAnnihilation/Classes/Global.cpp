@@ -18,3 +18,4 @@ float       SFX_Volume;            // volume level for the sound effects
 
 std::vector<Obstacle> Left_Obstacles;   // The obstacles for the left side of the screen
 std::vector<Obstacle> Right_Obstacles;  // The obstacles for the right side of the screen
+std::vector<SoundEvent> Events;         // Events generate to make the obstacles

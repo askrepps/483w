@@ -55,13 +55,21 @@ void GameScene::update(float delta)
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
         CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
     }
+
+    // Update the backgrounds
+    m_backgroundL->UpdateLayer(delta);
+    m_backgroundR->UpdateLayer(delta);
+
+    // Update the foreground
+    // TODO: Create UpdateLayer for the foregrounds and call them
+
+    // Update the UI Layer
+    m_uiLayer->UpdateLayer(delta);
+
 }
 
 // schedule the updates to run for all the necessary layers
 void GameScene::ScheduleAllUpdates()
 {
     this->scheduleUpdate();
-    m_backgroundL->scheduleUpdate();
-    m_backgroundR->scheduleUpdate();
-    m_uiLayer->scheduleUpdate();
 }

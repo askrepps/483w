@@ -81,7 +81,7 @@ void UILayer::SetUpMultiPlayer(CCSize size)
 	this->addChild(m_p2scoreLabel, 1);
 }
 
-void UILayer::update(float delta)
+void UILayer::UpdateLayer(float delta)
 {
 	UpdateScore(10);
 }

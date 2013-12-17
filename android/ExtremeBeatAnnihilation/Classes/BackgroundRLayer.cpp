@@ -52,7 +52,7 @@ bool BackgroundRLayer::init()
 // shift the background sprites on every frame update
 //
 // delta [in] - time since last update?
-void BackgroundRLayer::update(float delta)
+void BackgroundRLayer::UpdateLayer(float delta)
 {
     // if first background is off the screen, place it behind the second background
     if ( (m_background1->getPosition().x - m_background1->boundingBox().size.width/2) > getContentSize().width )

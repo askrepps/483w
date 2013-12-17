@@ -18,7 +18,7 @@ class UILayer : public cocos2d::CCLayer
 {
 public:
     virtual bool init();
-    virtual void update(float delta);			 // Overrides update, update the scores
+    void UpdateLayer(float delta);				 // Overrides update, update the scores
     void SetUpSinglePlayer(cocos2d::CCSize size);// Set up the UI for single player
     void SetUpMultiPlayer(cocos2d::CCSize size); // Set up the UI for multi player
     void UpdateScore(int delta);				 // Update the scores, it automatically converts for multiplayer

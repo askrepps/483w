@@ -13,7 +13,7 @@ class BackgroundLLayer : public cocos2d::CCLayer
 {
 public:
     virtual bool init();
-    virtual void update(float delta);
+    void UpdateLayer(float delta);
 
     // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(BackgroundLLayer);

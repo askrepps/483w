@@ -59,6 +59,14 @@ bool PauseLayer::init()
     return true;
 }
 
+// runs when the app enters the scene
+void PauseLayer::onEnter()
+{
+    // pause music as soon as possible, so the player doesn't miss any game time
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    CCLayer::onEnter();
+}
+
 // Create a pause scene that has a PauseLayer layer
 //
 // return - a newly created pause scene

@@ -18,7 +18,9 @@
 class PauseLayer : public cocos2d::CCLayer
 {
 public:
-    virtual bool              init();
+    virtual bool init();
+    virtual void onEnter();
+
     static  cocos2d::CCScene* Scene();
 
     void HandleOptionsPressed(CCObject* sender);

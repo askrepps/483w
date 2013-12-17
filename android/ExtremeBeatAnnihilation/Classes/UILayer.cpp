@@ -104,6 +104,5 @@ void UILayer::UpdateScore(int delta)
 void UILayer::HandlePausePressed(CCObject* sender)
 {
     SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     CCDirector::sharedDirector()->pushScene(PauseLayer::Scene());
 }

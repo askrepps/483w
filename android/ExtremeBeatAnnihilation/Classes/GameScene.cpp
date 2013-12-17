@@ -4,7 +4,9 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 
 // externs defined in Global.h
-extern std::string Game_Song;
+extern std::string           Game_Song;
+extern std::vector<Obstacle> leftSongObstacles;
+extern std::vector<Obstacle> rightSongObstacles;
 
 // Initialize the main game scene with all the layers for the left and right backgrounds, foregrounds,
 //    and ui
@@ -43,42 +45,25 @@ bool GameScene::init()
     return true;
 }
 
+// check if song the song ended and switch to the main menu if it did
+//
+// delta [in] - time since last update?
+void GameScene::update(float delta)
+{
+    // switch to the main menu when the song finishes
+    // TODO: create an end game scene and switch to that instead
+    if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+    {
+        SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
+        CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+    }
+}
+
 // schedule the updates to run for all the necessary layers
 void GameScene::ScheduleAllUpdates()
 {
+    this->scheduleUpdate();
     m_backgroundL->scheduleUpdate();
     m_backgroundR->scheduleUpdate();
     m_uiLayer->scheduleUpdate();
-}
-
-void GameScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
-{
-	CCSize        size            = CCDirector::sharedDirector()->getWinSize();
-	CCSetIterator it              = touches->begin();
-	CCPoint       currentLocation;
-	CCTouch*      touch;
-	CCRect*       Left     		 = new CCRect(0, 0, size.width/2, size.height);
-	CCRect*       Right   	     = new CCRect(size.width/2, 0, size.width/2, size.height);
-
-	for(int i = 0; i <= touches->count(); i++)
-	{
-		touch = (CCTouch*)(*it);
-		currentLocation = touch->getLocationInView();
-		//currentLocation = CCDirector(sharedDirector)::(convertToGL:currentLocation);
-
-		if(Left->containsPoint(currentLocation))        // left side
-		{
-			m_foregroundL->ccTouchesBegan(touches, event);
-		}
-		else if(Right->containsPoint(currentLocation))      // right side
-		{
-			m_foregroundR->ccTouchesBegan(touches, event);
-		}
-		else
-		{
-			CCLog("0Congratulations, you have broken the physical laws of reality.\n");
-		}
-
-		it++;
-	}
 }

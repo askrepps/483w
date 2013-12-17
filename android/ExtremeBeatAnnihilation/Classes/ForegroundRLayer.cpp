@@ -64,10 +64,6 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 			{
 				m_player->Jump();
 			}
-			else
-			{
-				CCLog("Left Touch.\n");
-			}
         }
         it++;
     }

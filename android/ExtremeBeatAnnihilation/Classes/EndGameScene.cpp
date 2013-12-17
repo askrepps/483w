@@ -105,23 +105,9 @@ void EndGame::SetUpMultiPlayer(CCSize size)
 // sender [in] - the object that sent the selected event
 void EndGame::HandleMainMenuPressed(CCObject* sender)
 {
+	// Play the sound effect
     SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
 
-    // these lines can be done in this order, because each line is read and saved before executing them
-
-    CCLog("trying to pop");
-    // pop this scene off the stack which brings you to the game scene, and then replace with main menu
-    CCDirector::sharedDirector()->popScene();
-    CCLog("pop successful");
-    CCLog("trying to replace Scene");
+    // Replace the scene
     CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
-    CCLog("replace Scene success");
-
-    // stop will destroy the game scene music data, and then start up the menu music
-    CCLog("trying to stop background music");
-    SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-    CCLog("success");
-    CCLog("trying to play menu music");
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
-    CCLog("success");
 }

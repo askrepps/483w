@@ -12,6 +12,7 @@ LOCAL_SRC_FILES := maincpp/main.cpp \
                    ../../Classes/MainMenuScene.cpp \
                    ../../Classes/CharacterSelectScene.cpp \
                    ../../Classes/MusicSelectScene.cpp \
+                   ../../Classes/EndGameScene.cpp \
 				   ../../Classes/PlayerR.cpp \
 				   ../../Classes/PlayerL.cpp \
 				   ../../Classes/UILayer.cpp \

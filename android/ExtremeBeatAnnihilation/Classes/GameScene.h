@@ -14,6 +14,7 @@
 #include "ForegroundLLayer.h"
 #include "UILayer.h"
 #include "MainMenuScene.h"
+#include "EndGameScene.h"
 
 class UILayer;
 

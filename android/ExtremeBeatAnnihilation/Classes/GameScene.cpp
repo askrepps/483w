@@ -53,7 +53,7 @@ void GameScene::update(float delta)
     if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
     {
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
-        CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+        CCDirector::sharedDirector()->replaceScene(EndGame::Scene());
     }
 
     // Update the backgrounds

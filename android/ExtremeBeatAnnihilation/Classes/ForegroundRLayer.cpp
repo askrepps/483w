@@ -2,6 +2,9 @@
 
 using namespace cocos2d;
 
+// externs defined in Global.h
+extern std::vector<Obstacle> Right_Obstacles;
+
 // Initialize the right player's foreground (obstacles, player) for the main game scene
 //
 // return - false if there was an error in initializing, true otherwise

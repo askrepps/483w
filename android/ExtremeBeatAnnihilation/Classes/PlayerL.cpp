@@ -7,7 +7,7 @@ extern int Player_One;
 bool PlayerL::init()
 {
 
-	canJump = true;
+	canJump  = true;
 	canSlide = true;
 
     if(!CCSprite::init())
@@ -17,19 +17,19 @@ bool PlayerL::init()
 
     CCSpriteFrameCache* framecache = CCSpriteFrameCache::sharedSpriteFrameCache();
 
-    CCArray* runAnimFrames;
-    CCAnimation *runAnim;
-    CCCallFunc *jumpFuncAction;
-    CCJumpBy *jumpingAction;
-    CCArray* jumpAnimFrames;
-    CCAnimation *jumpAnim;
-    CCAction *animationAction;
-    CCSpawn *jumping;
-    CCCallFunc *slideFuncAction;
-    CCArray* slideAnimFrames;
-    CCAnimation *slideAnim;
-    CCFiniteTimeAction *slideanimationAction;
-    CCSpawn *sliding;
+    CCArray*            runAnimFrames;
+    CCAnimation*        runAnim;
+    CCCallFunc*         jumpFuncAction;
+    CCJumpBy*           jumpingAction;
+    CCArray*            jumpAnimFrames;
+    CCAnimation*        jumpAnim;
+    CCAction*           animationAction;
+    CCSpawn*            jumping;
+    CCCallFunc*         slideFuncAction;
+    CCArray*            slideAnimFrames;
+    CCAnimation*        slideAnim;
+    CCFiniteTimeAction* slideanimationAction;
+    CCSpawn*            sliding;
 
     switch (Player_One)
     {

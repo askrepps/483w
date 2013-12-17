@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Obstacle.h"
+
 // macros to be used by all files-----------------------------------------------------------------------
 #define COCOS2D_DEBUG          1
 

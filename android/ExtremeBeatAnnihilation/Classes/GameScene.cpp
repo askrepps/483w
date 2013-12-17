@@ -4,9 +4,7 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 
 // externs defined in Global.h
-extern std::string           Game_Song;
-extern std::vector<Obstacle> leftSongObstacles;
-extern std::vector<Obstacle> rightSongObstacles;
+extern std::string Game_Song;
 
 // Initialize the main game scene with all the layers for the left and right backgrounds, foregrounds,
 //    and ui

@@ -10,15 +10,18 @@ using namespace cocos2d;
 //               creates an obstacle positioned for sliding under
 void Obstacle::InitWithPositionAndType(int x, int type)
 {
+    // get the window size from the director
+    CCSize size = CCDirector::sharedDirector()->getWinSize();
+
 	switch(type)
 	{
 	case JUMPING_OBSTACLE:
 		CCSprite::initWithFile(JUMPING_SPRITE);
-		setPosition( ccp(x, JUMPING_HEIGHT) );
+		setPosition( ccp(x, size.height * JUMP_Y_POS) );
 		break;
 	case SLIDING_OBSTACLE:
 		CCSprite::initWithFile(SLIDING_SPRITE);
-		setPosition( ccp(x, SLIDING_HEIGHT) );
+		setPosition( ccp(x, size.height * SLIDE_Y_POS) );
 		break;
 	default:
 		CCLog("Illegal Obstacle Type");

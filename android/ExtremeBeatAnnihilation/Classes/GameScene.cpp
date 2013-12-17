@@ -38,18 +38,17 @@ bool GameScene::init()
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Game_Song.c_str(), false);
 
     // startup all the update methods of the layers
-    ScheduleAllUpdates();
+    scheduleUpdate();
 
     return true;
 }
 
-// check if song the song ended and switch to the main menu if it did
+// check if the song ended and switch to the end game scene if it did; update all of the layers
 //
 // delta [in] - time since last update?
 void GameScene::update(float delta)
 {
-    // switch to the main menu when the song finishes
-    // TODO: create an end game scene and switch to that instead
+    // switch to the end game when the song finishes
     if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
     {
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
@@ -66,10 +65,4 @@ void GameScene::update(float delta)
     // Update the UI Layer
     m_uiLayer->UpdateLayer(delta);
 
-}
-
-// schedule the updates to run for all the necessary layers
-void GameScene::ScheduleAllUpdates()
-{
-    this->scheduleUpdate();
 }

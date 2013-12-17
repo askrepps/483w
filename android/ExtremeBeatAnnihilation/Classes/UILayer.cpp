@@ -6,6 +6,7 @@ using namespace CocosDenshion;
 extern bool Is_Single_Player;      // Are we playing in single player?
 extern int	Player_One_Score;      // Score for player one (or the score for single player)
 extern int 	Player_Two_Score;	   // Score for player two (for multiplayer)
+
 // Initialize the UI for the main game scene
 //
 // return - false if there was an error in initializing, true otherwise

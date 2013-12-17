@@ -13,7 +13,6 @@
 #include "ForegroundRLayer.h"
 #include "ForegroundLLayer.h"
 #include "UILayer.h"
-#include "MainMenuScene.h"
 #include "EndGameScene.h"
 
 class UILayer;
@@ -23,8 +22,6 @@ class GameScene : public cocos2d::CCScene
 public:
     virtual bool init();
     virtual void update(float delta);
-
-    void ScheduleAllUpdates();
 
     // allows use of create() function which uses init() to create this scene
     CREATE_FUNC(GameScene);

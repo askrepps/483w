@@ -19,7 +19,12 @@
 #define POS_HALF_SCREEN        0.5   // factor of screen width/height which give a position halfway
 #define POS_QUARTER_SCREEN     0.25  // factor of screen width/height which gives a position quarter-way
 #define POS_THREE_QUART_SCREEN 0.75  // factor of screen width/height which gives a position
-                                     //   three-quarter-way
+								     //   three-quarter-way
+
+#define PLAYER_Y_POS           0.175  // The position of the player vertically
+#define JUMP_Y_POS             0.175  // The position for the jumping obstacle
+#define SLIDE_Y_POS 		   0.275  // the position for the sliding obstacle
+
 
 #define JUMPING_OBSTACLE 1			 // The obstacle is a jumping obstacle
 #define SLIDING_OBSTACLE 0			 // The obstacle is a sliding obstacle

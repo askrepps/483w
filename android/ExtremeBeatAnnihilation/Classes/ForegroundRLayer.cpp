@@ -26,7 +26,7 @@ bool ForegroundRLayer::init()
 
     // create the player and add it
     m_player = PlayerR::create();
-    m_player->setPosition( ccp(layerSize.width/4 * 3, layerSize.height/3) );
+    m_player->setPosition( ccp(layerSize.width/4 * 3, layerSize.height * PLAYER_Y_POS) );
     addChild(m_player);
 
     return true;

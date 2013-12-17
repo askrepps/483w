@@ -19,9 +19,8 @@ class EndGame : public cocos2d::CCLayer
 {
 public:
     virtual bool init();
-    virtual void onEnter();
 
-    static  cocos2d::CCScene* Scene();
+    static cocos2d::CCScene* Scene();
 
     void SetUpSinglePlayer(cocos2d::CCSize size);// Set up the EndGame for single player
     void SetUpMultiPlayer(cocos2d::CCSize size); // Set up the EndGame for multi player
@@ -30,6 +29,7 @@ public:
 
     // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(EndGame);
+
 private:
     cocos2d::CCLabelTTF* m_scoreLabel;		  // The label to hold the score
     cocos2d::CCLabelTTF* m_p2scoreLabel;	  // Player 2 Score label

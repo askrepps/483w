@@ -35,10 +35,10 @@ bool EndGame::init()
     this->addChild(header, 1);
 
     // Set up for single player or not
-        if(Is_Single_Player)
-        	SetUpSinglePlayer(size);
-        else
-        	SetUpMultiPlayer(size);
+    if(Is_Single_Player)
+        SetUpSinglePlayer(size);
+    else
+        SetUpMultiPlayer(size);
 
     // create the quit to main menu menu item
     labelMainMenu = CCLabelTTF::create("Go to Main Menu", MENU_FONT_STYLE, MENU_FONT_SIZE);
@@ -59,17 +59,12 @@ bool EndGame::init()
 // return - a newly created end game scene
 CCScene* EndGame::Scene()
 {
-    CCScene*    scene = CCScene::create();       // the end game scene to return
-    EndGame* 	layer = EndGame::create();       // the layer for the scene
+    CCScene* scene = CCScene::create();       // the end game scene to return
+    EndGame* layer = EndGame::create();       // the layer for the scene
 
     scene->addChild(layer);
 
     return scene;
-}
-// runs when the app enters the scene
-void EndGame::onEnter()
-{
-    CCLayer::onEnter();
 }
 
 void EndGame::SetUpSinglePlayer(CCSize size)

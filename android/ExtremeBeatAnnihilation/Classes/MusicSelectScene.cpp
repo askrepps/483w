@@ -34,7 +34,7 @@ bool MusicSelect::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the header for the scene
-    m_header = CCLabelTTF::create("Choose a song", FONT_STYLE, FONT_SIZE);
+    m_header = CCLabelTTF::create("Choose a song", FONT_STYLE, 30);
     m_header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
     m_header->setColor(MENU_COLOR);
     this->addChild(m_header, 1);

@@ -39,7 +39,7 @@
 
 // Not implemented for now. Audio file parsing will happen here!
 -(id) initWithURL:(NSURL *)url
-{
+{    
     BOOL __block isSuccessful = NO;
     
     if (self = [super init])
@@ -273,6 +273,8 @@
     free(fftData.realp);
     free(fftData.imagp);
     vDSP_destroy_fftsetup(fftSettings);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:GameReady object:self userInfo:@{@"levelData":self}];
 }
 
 -(void) setStats

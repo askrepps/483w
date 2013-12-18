@@ -20,6 +20,7 @@
 @interface Registry : NSObject
 FOUNDATION_EXPORT NSString *const kMusic;
 FOUNDATION_EXPORT NSString *const kSFX;
+FOUNDATION_EXPORT NSString *const GameReady;
 
 +(void)setChar:(NSInteger)index;
 +(void)removeChar:(NSInteger)index;

@@ -13,6 +13,12 @@
 #import "SimpleAudioEngine.h"
 #import "MusicSelectLayer.h"
 
+@interface LoadingLayer ()
+
+@property (strong, nonatomic) LevelData *data;
+
+@end
+
 @implementation LoadingLayer
 
 +(CCScene *)scene
@@ -28,6 +34,8 @@
 {
     if (self = [super init])
     {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadGame:) name:GameReady object:nil];
+        
         CGSize size = [[CCDirector sharedDirector] winSize];
         
         CCLabelTTF *label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"Marker Felt" fontSize:32];
@@ -44,13 +52,25 @@
     [super onEnter];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [Registry setIsMenuMusicPlaying:NO];
-    
+}
+
+-(void)dealloc
+{
+    [super dealloc];
+    [_data release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
                                      
 -(void) loadLevel
 {
     NSLog(@"URL = %@", [Registry getMusicURL]);
-    LevelData *data = [[LevelData alloc] initWithURL:[Registry getMusicURL]];
+    _data = [[[LevelData alloc] initWithURL:[Registry getMusicURL]] retain];
+}
+
+-(void) loadGame:(NSNotification*)notification
+{
+    LevelData *data = [notification.userInfo objectForKey:@"levelData"];
+    
     if (data != NULL)
     {
         GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];
@@ -61,6 +81,7 @@
     {
         NSLog(@"uh oh...");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error loading song. Please choose another song." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
         [[CCDirector sharedDirector] replaceScene:[MusicSelectLayer scene]];
     }
 }

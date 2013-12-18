@@ -12,6 +12,7 @@
 @implementation Registry
 NSString *const kMusic = @"Music";
 NSString *const kSFX = @"SFX";
+NSString *const GameReady = @"GameReady";
 
 static NSInteger kCharOne = -1;
 static NSInteger kCharTwo = -1;

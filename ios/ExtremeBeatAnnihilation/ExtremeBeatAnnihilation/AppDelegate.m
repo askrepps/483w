@@ -136,7 +136,8 @@
     
     // Load volume preferences
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    [preferences registerDefaults:@{kVolume:@1}];
+    [preferences registerDefaults:@{kMusic:@1}];
+    [preferences registerDefaults:@{kSFX:@1}];
 	
 	return YES;
 }

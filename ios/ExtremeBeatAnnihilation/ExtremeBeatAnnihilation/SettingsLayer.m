@@ -12,11 +12,10 @@
 #import "Registry.h"
 
 @interface SettingsLayer ()
-@property (nonatomic, strong) CCLabelTTF *displayValueLabel;
-@property (nonatomic, strong) CCControlSlider *slider;
-
--(void)valueChanged:(CCControlSlider*)sender;
-
+@property (nonatomic, strong) CCLabelTTF *displayMusicLabel;
+@property (nonatomic, strong) CCLabelTTF *displaySFXLabel;
+@property (nonatomic, strong) CCControlSlider *musicSlider;
+@property (nonatomic, strong) CCControlSlider *sfxSlider;
 @end
 
 @implementation SettingsLayer
@@ -40,23 +39,38 @@
         optionsLabel.position = ccp(size.width/2, size.height - 32);
         [self addChild:optionsLabel];
         
-        // Create the slider
-        _slider = [CCControlSlider sliderWithBackgroundFile:@"sliderTrack.png" progressFile:@"sliderProgress.png" thumbFile:@"sliderThumb.png"];
-        _slider.minimumValue = 0.0f;
-        _slider.maximumValue = 1.0f;
-        _slider.position = ccp(size.width/3, size.height/2);
-        [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:CCControlEventValueChanged];
-        [self addChild:_slider];
+        // Create the sliders
+        _musicSlider = [CCControlSlider sliderWithBackgroundFile:@"sliderTrack.png" progressFile:@"sliderProgress.png" thumbFile:@"sliderThumb.png"];
+        _musicSlider.minimumValue = 0.0f;
+        _musicSlider.maximumValue = 1.0f;
+        _musicSlider.position = ccp(size.width/3, size.height/2 + 40);
+        [_musicSlider addTarget:self action:@selector(musicValueChanged:) forControlEvents:CCControlEventValueChanged];
+        [self addChild:_musicSlider];
         
-        // Create the display label
-        _displayValueLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"0.0%f", 100*_slider.value] fontName:@"Marker Felt" fontSize:28];
-        _displayValueLabel.position = ccp(size.width/3 + _slider.contentSize.width/3*2, size.height/2);
-		[self addChild:_displayValueLabel];
+        _sfxSlider = [CCControlSlider sliderWithBackgroundFile:@"sliderTrack.png" progressFile:@"sliderProgress.png" thumbFile:@"sliderThumb.png"];
+        _sfxSlider.minimumValue = 0.0f;
+        _sfxSlider.maximumValue = 1.0f;
+        _sfxSlider.position = ccp(size.width/3, size.height/2 - 40);
+        [_sfxSlider addTarget:self action:@selector(sfxValueChanged:) forControlEvents:CCControlEventValueChanged];
+        [self addChild:_sfxSlider];
+        
+        // Create the display labels
+        _displayMusicLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"0.0%f", 100*_musicSlider.value] fontName:@"Marker Felt" fontSize:28];
+        _displayMusicLabel.position = ccp(size.width/3 + _musicSlider.contentSize.width/3*2, size.height/2 + 40);
+		[self addChild:_displayMusicLabel];
+        
+        _displaySFXLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"0.0%f", 100*_sfxSlider.value] fontName:@"Marker Felt" fontSize:28];
+        _displaySFXLabel.position = ccp(size.width/3 + _sfxSlider.contentSize.width/3*2, size.height/2 - 40);
+		[self addChild:_displaySFXLabel];
 
-        // Postion Volume label
-        CCLabelTTF *volumeLabel = [CCLabelTTF labelWithString:@"Volume:" fontName:@"Marker Felt" fontSize:28];
-        volumeLabel.position = ccp(size.width/3 - _slider.contentSize.width/3, size.height/2 + _slider.contentSize.height);
+        // Postion labels
+        CCLabelTTF *volumeLabel = [CCLabelTTF labelWithString:@"Music:" fontName:@"Marker Felt" fontSize:28];
+        volumeLabel.position = ccp(size.width/3 - _musicSlider.contentSize.width/3, _musicSlider.position.y + volumeLabel.contentSize.height);
         [self addChild:volumeLabel];
+        
+        CCLabelTTF *sfxLabel = [CCLabelTTF labelWithString:@"SFX:" fontName:@"Marker Felt" fontSize:28];
+        sfxLabel.position = ccp(size.width/3 - _sfxSlider.contentSize.width/3, _sfxSlider.position.y + sfxLabel.contentSize.height);
+        [self addChild:sfxLabel];
         
         // Create dismiss button
         CCMenuItemFont *dismiss = [CCMenuItemFont itemWithString:@"Dismiss" target:self selector:@selector(dismissPressed:)];
@@ -79,9 +93,11 @@
     [super onEnterTransitionDidFinish];
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    NSNumber *value = [preferences objectForKey:kVolume];
+    NSNumber *musicValue = [preferences objectForKey:kMusic];
+    NSNumber *sfxValue = [preferences objectForKey:kSFX];
     
-    [self.slider setValue:value.floatValue animated:NO];
+    [self.musicSlider setValue:musicValue.floatValue animated:NO];
+    [self.sfxSlider setValue:sfxValue.floatValue animated:NO];
 }
 
 -(void)dismissPressed:(id)sender
@@ -90,16 +106,27 @@
     [[CCDirector sharedDirector] popScene];
 }
 
--(void)valueChanged:(id)sender
+-(void)musicValueChanged:(id)sender
 {
     CCControlSlider *slider = sender;
-    self.displayValueLabel.string = [NSString stringWithFormat:@"%0.0f", 100*slider.value];
+    self.displayMusicLabel.string = [NSString stringWithFormat:@"%0.0f", 100*slider.value];
     
-    [[SimpleAudioEngine sharedEngine] setEffectsVolume:slider.value];
     [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:slider.value];
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    [preferences setFloat:slider.value forKey:kVolume];
+    [preferences setFloat:slider.value forKey:kMusic];
+    [preferences synchronize];
+}
+
+-(void)sfxValueChanged:(id)sender
+{
+    CCControlSlider *slider = sender;
+    self.displaySFXLabel.string = [NSString stringWithFormat:@"%0.0f", 100*slider.value];
+    
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:slider.value];
+    
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    [preferences setFloat:slider.value forKey:kSFX];
     [preferences synchronize];
 }
 

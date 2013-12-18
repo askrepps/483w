@@ -55,9 +55,10 @@
     if (![Registry getIsMenuMusicPlaying])
     {
         NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-        NSNumber *value = [preferences objectForKey:kVolume];
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:value.floatValue];
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:value.floatValue];
+        NSNumber *musicValue = [preferences objectForKey:kMusic];
+        NSNumber *sfxValue = [preferences objectForKey:kSFX];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:sfxValue.floatValue];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicValue.floatValue];
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];
         [Registry setIsMenuMusicPlaying:YES];

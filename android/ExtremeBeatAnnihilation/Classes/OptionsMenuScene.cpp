@@ -25,8 +25,9 @@ CCScene* OptionsMenu::Scene()
 bool OptionsMenu::init()
 {
     CCSize           size;
-    CCMenuItemFont*  backItem;
+    CCMenuItemLabel* backItem;
     CCMenu*          menu;
+    CCLabelTTF*      backLabel;                 // the text for the back menu item
     CCLabelTTF*      label;
     CCLabelTTF*      volumelabel;
     CCLabelTTF*      sfxlabel;
@@ -42,7 +43,8 @@ bool OptionsMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // Add a "Back" Button to go back to main menu
-    backItem = CCMenuItemFont::create("BACK", this, menu_selector(OptionsMenu::MenuGoBack));
+    backLabel = CCLabelTTF::create("BACK", FONT_STYLE, 34);
+    backItem  = CCMenuItemLabel::create(backLabel, this, menu_selector(OptionsMenu::MenuGoBack));
     backItem->setPosition(ccp(size.width / 2, 20));
 
     // create menu
@@ -51,17 +53,17 @@ bool OptionsMenu::init()
     this->addChild(menu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("OPTIONS", "Thonburi", 34);
+    label = CCLabelTTF::create("OPTIONS", FONT_STYLE, 34);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
 
     // add a label that shows "Volume" next to the volume slider bar
-    volumelabel = CCLabelTTF::create("MUSIC", "Thonburi", 34);
+    volumelabel = CCLabelTTF::create("MUSIC", FONT_STYLE, 34);
     volumelabel->setPosition( ccp(60, (2*size.height/3) - 20) );
     this->addChild(volumelabel, 1);
 
     // add a label that shows "SFX" next to the sfx slider bar
-    sfxlabel = CCLabelTTF::create("SFX", "Thonburi", 34);
+    sfxlabel = CCLabelTTF::create("SFX", FONT_STYLE, 34);
     sfxlabel->setPosition( ccp(70, (size.height/3) - 20) );
     this->addChild(sfxlabel, 1);
 

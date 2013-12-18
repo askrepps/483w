@@ -32,9 +32,9 @@ bool MainMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the text for the menu items
-    labelSinglePlayer = CCLabelTTF::create("Start Single Player", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelOptions      = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelSinglePlayer = CCLabelTTF::create("Start Single Player", FONT_STYLE, MENU_FONT_SIZE);
+    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", FONT_STYLE, MENU_FONT_SIZE);
+    labelOptions      = CCLabelTTF::create("Options", FONT_STYLE, MENU_FONT_SIZE);
 
     // create the items for the menu
     itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::HandleSinglePlayerPressed));

@@ -29,7 +29,7 @@ bool EndGame::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the header and add it to the scene
-    header = CCLabelTTF::create("GAME OVER!", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    header = CCLabelTTF::create("GAME OVER!", FONT_STYLE, MENU_FONT_SIZE);
     header->setColor(MENU_COLOR);
     header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
     this->addChild(header, 1);
@@ -41,7 +41,7 @@ bool EndGame::init()
         SetUpMultiPlayer(size);
 
     // create the quit to main menu menu item
-    labelMainMenu = CCLabelTTF::create("Go to Main Menu", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelMainMenu = CCLabelTTF::create("Go to Main Menu", FONT_STYLE, MENU_FONT_SIZE);
     itemMainMenu  = CCMenuItemLabel::create(labelMainMenu, this, menu_selector(EndGame::HandleMainMenuPressed));
     itemMainMenu->setColor(MENU_COLOR);
 
@@ -70,7 +70,7 @@ CCScene* EndGame::Scene()
 void EndGame::SetUpSinglePlayer(CCSize size)
 {
 	// Create the label in the top middle
-	m_scoreLabel = CCLabelTTF::create(CCString::createWithFormat("Score: %d", Player_One_Score)->getCString(), MENU_FONT_STYLE, MENU_FONT_SIZE);
+	m_scoreLabel = CCLabelTTF::create(CCString::createWithFormat("Score: %d", Player_One_Score)->getCString(), FONT_STYLE, MENU_FONT_SIZE);
 	m_scoreLabel->setColor(MENU_COLOR);
 	m_scoreLabel->setPosition(ccp(size.width * POS_HALF_SCREEN, size.height * .8));
 
@@ -81,12 +81,12 @@ void EndGame::SetUpSinglePlayer(CCSize size)
 void EndGame::SetUpMultiPlayer(CCSize size)
 {
 	// Create the label for player one, in the top in the middle of the left hand side
-	m_scoreLabel = CCLabelTTF::create(CCString::createWithFormat("Player One Score: %d", Player_One_Score)->getCString(), MENU_FONT_STYLE, MENU_FONT_SIZE);
+	m_scoreLabel = CCLabelTTF::create(CCString::createWithFormat("Player One Score: %d", Player_One_Score)->getCString(), FONT_STYLE, MENU_FONT_SIZE);
 	m_scoreLabel->setColor(MENU_COLOR);
 	m_scoreLabel->setPosition(ccp(size.width * POS_HALF_SCREEN , size.height * .8));
 
 	// Creat the label for player two, in the top in the middle of the right hand side
-	m_p2scoreLabel = CCLabelTTF::create(CCString::createWithFormat("Player Two Score: %d", Player_Two_Score)->getCString(), MENU_FONT_STYLE, MENU_FONT_SIZE);
+	m_p2scoreLabel = CCLabelTTF::create(CCString::createWithFormat("Player Two Score: %d", Player_Two_Score)->getCString(), FONT_STYLE, MENU_FONT_SIZE);
 	m_p2scoreLabel->setColor(MENU_COLOR);
 	m_p2scoreLabel->setPosition(ccp(size.width * POS_HALF_SCREEN, size.height * .7));
 

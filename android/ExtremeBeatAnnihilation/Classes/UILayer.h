@@ -12,7 +12,6 @@
 #define PAUSE_HEIGHT_POS     0.08                // factor of screen height to position pause menu item
 #define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
 #define MENU_FONT_SIZE       50                  // size of the font for the menu items
-#define MENU_FONT_STYLE      "Arial"             // style of the font for the menu items
 
 class UILayer : public cocos2d::CCLayer
 {

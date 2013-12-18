@@ -19,6 +19,8 @@
 #define VOLUME_FACTOR          100   // factor to divide volume in order to get number between 0.0 - 1.0
 #define NO_CHAR_SELECT 		   -1    // No character is currently selected
 
+#define FONT_STYLE             "Fonts/BlackWolf.ttf"  // font style for all text in the game
+
 #define POS_HALF_SCREEN        0.5   // factor of screen width/height which give a position halfway
 #define POS_QUARTER_SCREEN     0.25  // factor of screen width/height which gives a position quarter-way
 #define POS_THREE_QUART_SCREEN 0.75  // factor of screen width/height which gives a position

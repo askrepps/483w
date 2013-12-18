@@ -42,7 +42,7 @@ bool MusicSelect::init()
     // create the text for the menu items
     labelFirstSong  = CCLabelTTF::create("Letting Go - UltraMax", FONT_STYLE, FONT_SIZE);
     labelSecondSong = CCLabelTTF::create("The Call of Stars - UltraMax", FONT_STYLE, FONT_SIZE);
-    labelThirdSong  = CCLabelTTF::create("Need Song - Artist", FONT_STYLE, FONT_SIZE);
+    labelThirdSong  = CCLabelTTF::create("Waiting - UltraMax", FONT_STYLE, FONT_SIZE);
     labelYourMusic  = CCLabelTTF::create("Select from SD card", FONT_STYLE, FONT_SIZE);
     labelBack       = CCLabelTTF::create("Back", FONT_STYLE, FONT_SIZE);
     labelPlay       = CCLabelTTF::create("Play", FONT_STYLE, FONT_SIZE);

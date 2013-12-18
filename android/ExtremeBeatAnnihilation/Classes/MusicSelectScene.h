@@ -18,7 +18,7 @@
 
 #define FIRST_SONG           "Music/LettingGo.mp3"
 #define SECOND_SONG          "Music/TheCallOfStars.mp3"
-#define THIRD_SONG           ""
+#define THIRD_SONG           "Music/Waiting.mp3"
 
 class MusicSelect : public cocos2d::CCLayer
 {

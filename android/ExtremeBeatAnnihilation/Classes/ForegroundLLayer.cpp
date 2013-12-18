@@ -119,10 +119,7 @@ void ForegroundLLayer::UpdateLayer(float delta)
 				if(Is_Single_Player)
 					Player_One_Score += SINGLE_PLAYER_DEDUCTION;
 				else
-				{
 					Player_One_Score += MULTI_PLAYER_DEDUCTION;
-					Player_Two_Score += MULTI_PLAYER_DEDUCTION;
-				}
 			}
 		}
 	}

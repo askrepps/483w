@@ -4,6 +4,9 @@ using namespace cocos2d;
 
 // externs defined in Global.h
 extern std::vector<Obstacle*> Right_Obstacles;
+extern bool Is_Single_Player;      // Are we playing in single player?
+extern int	Player_One_Score;      // Score for player one (or the score for single player)
+extern int 	Player_Two_Score;	   // Score for player two (for multiplayer)
 
 // Initialize the right player's foreground (obstacles, player) for the main game scene
 //
@@ -41,20 +44,53 @@ bool ForegroundRLayer::init()
     m_player->setScale(PLAYER_SCALE);
     m_clipNode->addChild(m_player);
 
+    m_delta = 0.0;
+
     return true;
 }
 
 void ForegroundRLayer::UpdateLayer(float delta)
 {
+	CCRect obstacleRect;
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCRect playerRect = CCRectMake(
+										m_player->getPosition().x - (m_player->getContentSize().width/2),
+										m_player->getPosition().y - (m_player->getContentSize().height/2),
+										m_player->getContentSize().width,
+										m_player->getContentSize().height
+								  );
 
 	//Update the locations of each, and remove as need
 	for(std::vector<Obstacle*>::size_type i = 0; i != Right_Obstacles.size(); ++i)
 	{
 		if(Right_Obstacles[i])
 		{
-			Right_Obstacles[i]->setPosition(ccp(Right_Obstacles[i]->getPosition().x + OBSTACLE_VELOCITY,
+			Right_Obstacles[i]->setPosition(ccp(Right_Obstacles[i]->getPosition().x + VELOCITY*delta,
 												Right_Obstacles[i]->getPosition().y));
+		}
+
+		// Collision detection
+		if(m_player->CanCollide())
+		{
+			obstacleRect = CCRectMake(
+											Right_Obstacles[i]->getPosition().x - (Right_Obstacles[i]->getContentSize().width/2),
+											Right_Obstacles[i]->getPosition().y - (Right_Obstacles[i]->getContentSize().height/2),
+											Right_Obstacles[i]->getContentSize().width,
+											Right_Obstacles[i]->getContentSize().height
+									  );
+
+			// Collision occured, deduct points and flag as can't collide
+			if(obstacleRect.intersectsRect(playerRect))
+			{
+				m_player->Blink();
+				if(Is_Single_Player)
+					Player_One_Score += SINGLE_PLAYER_DEDUCTION;
+				else
+				{
+					Player_One_Score += MULTI_PLAYER_DEDUCTION;
+					Player_Two_Score += MULTI_PLAYER_DEDUCTION;
+				}
+			}
 		}
 	}
 
@@ -72,8 +108,6 @@ void ForegroundRLayer::UpdateLayer(float delta)
 			}
 		}
 	}
-
-	// Collision detection here
 }
 
 // Needs description

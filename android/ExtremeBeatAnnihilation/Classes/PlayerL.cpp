@@ -9,6 +9,7 @@ bool PlayerL::init()
 
 	canJump  = true;
 	canSlide = true;
+	canCollide = true;
 
     if(!CCSprite::init())
     {
@@ -273,4 +274,28 @@ void PlayerL::enableSlide()
 {
     canSlide = true;
     runAction(runForever);
+}
+
+bool PlayerL::CanCollide()
+{
+	return canCollide;
+}
+
+void PlayerL::SetCollide()
+{
+	canCollide = true;
+}
+
+void PlayerL::Blink()
+{
+	CCBlink *blinkAction = CCBlink::create(1.0, 8);
+	CCCallFunc *funcAction = CCCallFunc::create(this, callfunc_selector(PlayerL::SetCollide));
+	CCShow *showAction = CCShow::create();
+
+	CCSequence *actions = CCSequence::create(blinkAction, showAction, funcAction, NULL);
+	if(canCollide)
+	{
+		canCollide = false;
+		runAction(actions);
+	}
 }

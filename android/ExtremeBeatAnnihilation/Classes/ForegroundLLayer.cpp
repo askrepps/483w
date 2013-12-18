@@ -4,6 +4,9 @@ using namespace cocos2d;
 
 // externs defined in Global.h
 extern std::vector<Obstacle*> Left_Obstacles;
+extern bool Is_Single_Player;      // Are we playing in single player?
+extern int	Player_One_Score;      // Score for player one (or the score for single player)
+extern int 	Player_Two_Score;	   // Score for player two (for multiplayer)
 
 // Initialize the left player's foreground (obstacles, player) for the main game scene
 //
@@ -41,6 +44,7 @@ bool ForegroundLLayer::init()
     m_player->setScale(PLAYER_SCALE);
     m_clipNode->addChild(m_player);
 
+    m_delta = 0.0;				//  Initialize to 0
     return true;
 }
 
@@ -80,15 +84,46 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 
 void ForegroundLLayer::UpdateLayer(float delta)
 {
+	CCRect obstacleRect;
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCRect playerRect = CCRectMake(
+										m_player->getPosition().x - (m_player->getContentSize().width/2),
+										m_player->getPosition().y - (m_player->getContentSize().height/2),
+										m_player->getContentSize().width,
+										m_player->getContentSize().height
+								  );
 
 	//Update the locations of each, and remove as need
 	for(std::vector<Obstacle*>::size_type i = 0; i != Left_Obstacles.size(); ++i)
 	{
 		if(Left_Obstacles[i])
 		{
-			Left_Obstacles[i]->setPosition(ccp(Left_Obstacles[i]->getPosition().x - OBSTACLE_VELOCITY,
+			Left_Obstacles[i]->setPosition(ccp(Left_Obstacles[i]->getPosition().x - VELOCITY*delta,
 											   Left_Obstacles[i]->getPosition().y));
+		}
+
+		// Collision detection
+		if(m_player->CanCollide())
+		{
+			obstacleRect = CCRectMake(
+											Left_Obstacles[i]->getPosition().x - (Left_Obstacles[i]->getContentSize().width/2),
+											Left_Obstacles[i]->getPosition().y - (Left_Obstacles[i]->getContentSize().height/2),
+											Left_Obstacles[i]->getContentSize().width,
+											Left_Obstacles[i]->getContentSize().height
+									  );
+
+			// Collision occured, deduct points and flag as can't collide
+			if(obstacleRect.intersectsRect(playerRect))
+			{
+				m_player->Blink();
+				if(Is_Single_Player)
+					Player_One_Score += SINGLE_PLAYER_DEDUCTION;
+				else
+				{
+					Player_One_Score += MULTI_PLAYER_DEDUCTION;
+					Player_Two_Score += MULTI_PLAYER_DEDUCTION;
+				}
+			}
 		}
 	}
 

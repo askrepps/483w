@@ -13,7 +13,6 @@
 #define COCOS2D_DEBUG          1
 
 #define VELOCITY               250   // speed factor at which to move objects on the game screen
-#define OBSTACLE_VELOCITY	   20    // velocity for obstacles
 
 #define MENU_MUSIC             "Music/MenuSong.mp3"   // song to play for the menus
 #define INIT_MUSIC_VOL         50    // initial music volume; between 1 - 100
@@ -30,7 +29,7 @@
 
 #define PLAYER_Y_POS           0.175  // The position of the player vertically
 #define JUMP_Y_POS             0.160  // The position for the jumping obstacle
-#define SLIDE_Y_POS 		   0.320  // the position for the sliding obstacle
+#define SLIDE_Y_POS 		   0.340  // the position for the sliding obstacle
 
 #define PLAYER_SCALE 1.4			 // The scale for the players to use
 
@@ -42,6 +41,11 @@
 #define JUMPING_SPRITE "Obstacles/smallFire.png"		// The sprite location for jumping obstacles
 #define SLIDING_SPRITE "Obstacles/smallCoil.png"		// The sprite location for sliding obstacles
 
+#define SINGLE_PLAYER_DEDUCTION -500					// Score to deduct in single player
+#define MULTI_PLAYER_DEDUCTION -1000					// Score to deduct in multi player
+
 #define NUM_OBSTACLES 225			 // The number of obstacles to create
+
+#define INVULN_PERIOD 1.0			 // How long the player is invulnerable - in seconds
 
 #endif // __GLOBAL_H__

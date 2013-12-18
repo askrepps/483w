@@ -23,7 +23,8 @@ public:
 
 private:
     PlayerL* m_player;                           // player sprite
-    cocos2d::ClipNode* m_clipNode;					 // Clip node for obstacles
+    cocos2d::ClipNode* m_clipNode;				 // Clip node for obstacles
+    float m_delta;								 // Time delta for player use
 };
 
 #endif // __FOREGROUND_L_LAYER_H__

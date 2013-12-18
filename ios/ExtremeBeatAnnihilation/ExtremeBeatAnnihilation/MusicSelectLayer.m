@@ -35,9 +35,9 @@
     {
         CCLabelTTF *label = [CCLabelTTF labelWithString:@"Music Select" fontName:@"Marker Felt" fontSize:32];
         
-        CCMenuItemFont *sampleSong1 = [CCMenuItemFont itemWithString:@"Sample Track #1" target:self selector:@selector(loadSample1)];
-        CCMenuItemFont *sampleSong2 = [CCMenuItemFont itemWithString:@"Sample Track #2" target:self selector:@selector(loadSample2)];
-        CCMenuItemFont *sampleSong3 = [CCMenuItemFont itemWithString:@"Sample Track #3" target:self selector:@selector(loadSample3)];
+        CCMenuItemFont *sampleSong1 = [CCMenuItemFont itemWithString:@"Letting Go - UltraMax" target:self selector:@selector(loadSample1)];
+        CCMenuItemFont *sampleSong2 = [CCMenuItemFont itemWithString:@"The Call of Stars - UltraMax" target:self selector:@selector(loadSample2)];
+        CCMenuItemFont *sampleSong3 = [CCMenuItemFont itemWithString:@"Piano Test File" target:self selector:@selector(loadSample3)];
         CCMenuItemFont *chooseSong = [CCMenuItemFont itemWithString:@"Choose from Library..." target:self selector:@selector(loadFromLibrary)];
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed)];
         CCMenu *musicMenu = [CCMenu menuWithItems:sampleSong1, sampleSong2, sampleSong3, chooseSong, back, nil];
@@ -71,6 +71,7 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];
     [Registry setMusicName:@"LettingGo.mp3"];
     [Registry setMusicURL:url];
+    [Registry setIsFileFromLibrary:NO];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
@@ -81,6 +82,7 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"TheCallOfStars" withExtension:@"mp3"];
     [Registry setMusicName:@"TheCallOfStars.mp3"];
     [Registry setMusicURL:url];
+    [Registry setIsFileFromLibrary:NO];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
@@ -91,6 +93,7 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"test2" withExtension:@"m4a"];
     [Registry setMusicName:@"test2.m4a"];
     [Registry setMusicURL:url];
+    [Registry setIsFileFromLibrary:NO];
     [url release];
     [[CCDirector sharedDirector] replaceScene:[LoadingLayer scene]];
 }
@@ -118,7 +121,9 @@
 {
     MPMediaItem *item = [[collection items] objectAtIndex:0];
     NSURL *url = [item valueForProperty:MPMediaItemPropertyAssetURL];
+    
     [Registry setMusicURL:url];
+    [Registry setIsFileFromLibrary:YES];
     
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
     [app.navController dismissViewControllerAnimated:YES completion:NULL];

@@ -36,5 +36,7 @@ FOUNDATION_EXPORT NSString *const kVolume;
 +(NSArray*)getScore;
 +(void)setIsMenuMusicPlaying:(BOOL)playing;
 +(BOOL)getIsMenuMusicPlaying;
++(void)setIsFileFromLibrary:(BOOL)fromLibrary;
++(BOOL)getIsFileFromLibrary;
 +(void)clean;
 @end

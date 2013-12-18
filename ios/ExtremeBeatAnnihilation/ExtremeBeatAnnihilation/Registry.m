@@ -21,6 +21,7 @@ static NSInteger kScore = 0;
 static NSInteger kScoreP1 = 0;
 static NSInteger kScoreP2 = 0;
 static BOOL kIsMenuMusicPlaying = NO;
+static BOOL kIsFileFromLibrary;
 
 +(void)setChar:(NSInteger)index
 {
@@ -117,6 +118,16 @@ static BOOL kIsMenuMusicPlaying = NO;
 +(BOOL)getIsMenuMusicPlaying
 {
     return kIsMenuMusicPlaying;
+}
+
++(void)setIsFileFromLibrary:(BOOL)fromLibrary
+{
+    kIsFileFromLibrary = fromLibrary;
+}
+
++(BOOL)getIsFileFromLibrary
+{
+    return kIsFileFromLibrary;
 }
 
 +(void)clean

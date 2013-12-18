@@ -8,6 +8,7 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 #import <Accelerate/Accelerate.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SoundEvent.h"
 
 @interface LevelData : NSObject
@@ -27,7 +28,6 @@ typedef struct
 @property (readonly) NSInteger sampleRate;
 
 -(id) initDefault;
--(id) initWithAudioFileURL:(NSURL *)url;
--(id) initWithAudioFilePath:(NSString *)filePath;
+-(id) initWithURL:(NSURL *)url;
 
 @end

@@ -11,6 +11,7 @@
 #import "MenuLayer.h"
 #import "GameScene.h"
 #import "SimpleAudioEngine.h"
+#import "MusicSelectLayer.h"
 
 @implementation LoadingLayer
 
@@ -49,10 +50,19 @@
 -(void) loadLevel
 {
     NSLog(@"URL = %@", [Registry getMusicURL]);
-    LevelData *data = [[LevelData alloc] initWithAudioFileURL:[Registry getMusicURL]];
-    GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];
-    [data release];
-    [[CCDirector sharedDirector] replaceScene:gameScene];
+    LevelData *data = [[LevelData alloc] initWithURL:[Registry getMusicURL]];
+    if (data != NULL)
+    {
+        GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];
+        [data release];
+        [[CCDirector sharedDirector] replaceScene:gameScene];
+    }
+    else
+    {
+        NSLog(@"uh oh...");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error loading song. Please choose another song." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [[CCDirector sharedDirector] replaceScene:[MusicSelectLayer scene]];
+    }
 }
 
 

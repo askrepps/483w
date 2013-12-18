@@ -10,6 +10,7 @@ extern bool  Allow_Volume_Set;
 extern float Music_Volume;
 extern float SFX_Volume;
 
+//Returns a scene for from the layer
 CCScene* OptionsMenu::Scene()
 {
     CCScene*     scene = CCScene::create();
@@ -113,11 +114,10 @@ void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
     {
         SFX_Volume = slider->getValue();
         SimpleAudioEngine::sharedEngine()->setEffectsVolume(SFX_Volume / VOLUME_FACTOR);
-        // TODO: Make it so this plays only once on options slide for refernce
-       // SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     }
 }
 
+// Changes the scene back to the Main Menu
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
 	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");

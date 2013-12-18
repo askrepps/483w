@@ -77,9 +77,6 @@ void GameScene::update(float delta)
     m_foregroundL->UpdateLayer(delta);
     m_foregroundR->UpdateLayer(delta);
 
-    // Update the foreground
-    // TODO: Create UpdateLayer for the foregrounds and call them
-
     // Update the UI Layer
     m_uiLayer->UpdateLayer(delta);
 

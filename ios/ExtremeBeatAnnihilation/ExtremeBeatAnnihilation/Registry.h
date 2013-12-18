@@ -11,6 +11,7 @@
 
 #define kBuffersPerSecond 4
 #define kObstacleGap 40000
+#define kAmpThreshold 0.1
 #define kVelocity 250
 #define kLevelOffset 110
 #define kRightCorrection 478

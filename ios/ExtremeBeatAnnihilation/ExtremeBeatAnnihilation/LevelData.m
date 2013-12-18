@@ -231,7 +231,7 @@
     
     _events = [[NSMutableArray alloc] init];
     
-    if (count > 1 && envelope[0].amp > envelope[1].amp)
+    if (count > 1 && envelope[0].amp > kAmpThreshold && envelope[0].amp > envelope[1].amp)
     {
         NSLog(@"s: %d  | amp: %f  | freq: %f", (unsigned int)envelope[0].sample, envelope[0].amp, envelope[0].freq);
         SoundEvent *event = [[SoundEvent alloc] initWithSample:envelope[0].sample andFreq:envelope[0].freq];
@@ -241,7 +241,7 @@
     
     for (int i = 1; i < count-1; i++)
     {
-        if (envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp)
+        if (envelope[i].amp > kAmpThreshold && envelope[i].amp > envelope[i+1].amp && envelope[i].amp > envelope[i-1].amp)
             //&& ([_events count] == 0 || envelope[i].sample - [[_events objectAtIndex:[_events count]-1] sample] >= kObstacleGap))
         {
             NSLog(@"s: %d  | amp: %f  | freq: %f", (unsigned int)envelope[i].sample, envelope[i].amp, envelope[i].freq);
@@ -251,7 +251,7 @@
         }
     }
     
-    if (count > 1 && envelope[count-1].amp > envelope[count-2].amp)
+    if (count > 1 && envelope[count-1].amp > kAmpThreshold &&  envelope[count-1].amp > envelope[count-2].amp)
         //&& ([_events count] == 0 || envelope[count-1].sample - [[_events objectAtIndex:[_events count]-1] sample] > kObstacleGap))
     {
         NSLog(@"s: %d  | amp: %f  | freq: %f", (unsigned int)envelope[count-1].sample, envelope[count-1].amp, envelope[count-1].freq);

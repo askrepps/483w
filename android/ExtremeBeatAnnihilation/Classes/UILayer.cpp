@@ -25,8 +25,9 @@ bool UILayer::init()
     // get the window size from the director
     size = CCDirector::sharedDirector()->getWinSize();
 
-    // create the pause menu item
+    // create the pause menu item, and add an outline around it to make it readable
     labelPause = CCLabelTTF::create("Pause", FONT_STYLE, MENU_FONT_SIZE);
+    labelPause->enableStroke(FONT_STROKE_COLOR, FONT_STROKE_THICK);
 
     // Set up for single player or not
     if(Is_Single_Player)
@@ -55,6 +56,7 @@ void UILayer::SetUpSinglePlayer(CCSize size)
 	// Create the label in the top middle
 	m_scoreLabel = CCLabelTTF::create(CCString::createWithFormat("%d", Player_One_Score)->getCString(), FONT_STYLE, MENU_FONT_SIZE);
 	m_scoreLabel->setColor(MENU_COLOR);
+	m_scoreLabel->enableStroke(FONT_STROKE_COLOR, FONT_STROKE_THICK);
 	m_scoreLabel->setPosition(ccp(size.width * POS_HALF_SCREEN, size.height * .95));
 
 	// Add  the label to the layer
@@ -70,11 +72,13 @@ void UILayer::SetUpMultiPlayer(CCSize size)
 	// Create the label for player one, in the top in the middle of the left hand side
 	m_scoreLabel = CCLabelTTF::create(CCString::createWithFormat("%d", Player_One_Score)->getCString(), FONT_STYLE, MENU_FONT_SIZE);
 	m_scoreLabel->setColor(MENU_COLOR);
+	m_scoreLabel->enableStroke(FONT_STROKE_COLOR, FONT_STROKE_THICK);
 	m_scoreLabel->setPosition(ccp(size.width * POS_QUARTER_SCREEN , size.height * .95));
 
-	// Creat the label for player two, in the top in the middle of the right hand side
+	// Create the label for player two, in the top in the middle of the right hand side
 	m_p2scoreLabel = CCLabelTTF::create(CCString::createWithFormat("%d", Player_Two_Score)->getCString(), FONT_STYLE, MENU_FONT_SIZE);
 	m_p2scoreLabel->setColor(MENU_COLOR);
+	m_p2scoreLabel->enableStroke(FONT_STROKE_COLOR, FONT_STROKE_THICK);
 	m_p2scoreLabel->setPosition(ccp(size.width * POS_THREE_QUART_SCREEN, size.height * .95));
 
 	// Add the labels to the layer

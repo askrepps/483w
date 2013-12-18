@@ -36,6 +36,11 @@ bool MainMenu::init()
     labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", FONT_STYLE, MENU_FONT_SIZE);
     labelOptions      = CCLabelTTF::create("Options", FONT_STYLE, MENU_FONT_SIZE);
 
+    // add shadows to the labels, so they will be easier to read against the background
+    labelSinglePlayer->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);
+    labelMultiplayer->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);
+    labelOptions->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);
+
     // create the items for the menu
     itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::HandleSinglePlayerPressed));
     itemMultiplayer  = CCMenuItemLabel::create(labelMultiplayer, this, menu_selector(MainMenu::HandleMultiplayerPressed));
@@ -50,13 +55,13 @@ bool MainMenu::init()
     menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, NULL);
     menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
     menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
-    this->addChild(menu, 1);
+    addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
     background = CCSprite::create(BACKGROUND_IMAGE);
     background->setScale(size.height / background->boundingBox().size.height);
     background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
-    this->addChild(background, 0);
+    addChild(background, 0);
 
     return true;
 }

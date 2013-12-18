@@ -13,6 +13,10 @@
 #define MENU_FONT_SIZE       50                     // size of the font for the menu items
 #define MENU_ITEM_PADDING    20                     // padding between menu items, most likely in pixels
 
+#define FONT_SHADOW_OFFSET   CCSize(-4, 4)          // offset from the text that the shadow will be
+#define FONT_SHADOW_OPACITY  1.0                    // opacity of the shadow; 0 - 1.0 with 1.0 opaque
+#define FONT_SHADOW_BLUR     1.0                    // blur of the shadow; 0 - 1.0 with 1.0 not blurry
+
 class MainMenu : public cocos2d::CCLayer
 {
 public:

@@ -13,6 +13,9 @@
 #define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
 #define MENU_FONT_SIZE       50                  // size of the font for the menu items
 
+#define FONT_STROKE_COLOR    ccc3(0, 0, 0)       // color of text outlines
+#define FONT_STROKE_THICK    3.0                 // thickness of the outline
+
 class UILayer : public cocos2d::CCLayer
 {
 public:

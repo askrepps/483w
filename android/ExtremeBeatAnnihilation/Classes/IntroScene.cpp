@@ -8,9 +8,10 @@ using namespace CocosDenshion;
 // return - false if there was an error in initializing, true otherwise
 bool IntroScene::init()
 {
-    CCSize    size;              // the size of the window
-    CCSprite* logo;              // the development group logo
-    CCSprite* logoBackground;    // the background for the logo
+    CCSize      size;              // the size of the window
+    CCSprite*   logo;              // the development group logo
+    CCSprite*   logoBackground;    // the background for the logo
+    CCLabelTTF* note;              // the text to tell user to tap screen
 
     if(!CCLayer::init())
     {
@@ -29,9 +30,15 @@ bool IntroScene::init()
 
     // add the logo sprite
     logo = CCSprite::create(LOGO_IMAGE);
-    logo->setScale(size.height / logo->boundingBox().size.height);
-    logo->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
+    logo->setScale(size.height * LOGO_HEIGHT_SCALE / logo->boundingBox().size.height);
+    logo->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_LOGO_HEIGHT) );
     addChild(logo, 1);
+
+    // create the note for the bottom of the screen
+    note = CCLabelTTF::create("Tap screen to continue...", FONT_STYLE, INTRO_FONT_SIZE);
+    note->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_NOTE_HEIGHT) );
+    note->setColor(INTRO_FONT_COLOR);
+    this->addChild(note, 1);
 
     // enable screen touches to be detected
     setTouchEnabled(true);

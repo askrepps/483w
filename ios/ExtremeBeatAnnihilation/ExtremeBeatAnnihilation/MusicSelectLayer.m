@@ -69,7 +69,7 @@
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"LettingGo" withExtension:@"mp3"];
-    [Registry setMusicName:@"LettingGo.mp3"];
+    [Registry setMusicName:@"Letting Go"];
     [Registry setMusicURL:url];
     [Registry setIsFileFromLibrary:NO];
     [url release];
@@ -80,7 +80,7 @@
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"TheCallOfStars" withExtension:@"mp3"];
-    [Registry setMusicName:@"TheCallOfStars.mp3"];
+    [Registry setMusicName:@"The Call of Stars"];
     [Registry setMusicURL:url];
     [Registry setIsFileFromLibrary:NO];
     [url release];
@@ -91,7 +91,7 @@
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"test2" withExtension:@"m4a"];
-    [Registry setMusicName:@"test2.m4a"];
+    [Registry setMusicName:@"Piano Test File"];
     [Registry setMusicURL:url];
     [Registry setIsFileFromLibrary:NO];
     [url release];
@@ -124,6 +124,7 @@
     
     [Registry setMusicURL:url];
     [Registry setIsFileFromLibrary:YES];
+    [Registry setMusicName:[item valueForProperty:MPMediaItemPropertyTitle]];
     
     AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
     [app.navController dismissViewControllerAnimated:YES completion:NULL];

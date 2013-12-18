@@ -112,36 +112,38 @@
         
         for (SoundEvent *event in [levelData events])
         {
-            // add constructed obstacle to obstacles / layer
-            Obstacle *obs;
-            NSInteger x;
-            
-            switch(event.side)
+            if (event.sample > kObstacleGap)
             {
-                case LEFT:
-                    if (prevLeft == 0 || event.sample - prevLeft > kObstacleGap)
-                    {
-                        prevLeft = event.sample;
-                        x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset;
-                        obs = [[Obstacle alloc] initWithX:x andType:event.type];
-                        [_leftObstacles addObject:obs];
-                        [_leftGround addChild:obs];
-                        [obs release];
-                    }
-                    break;
-                case RIGHT:
-                    if (prevRight == 0 || event.sample - prevRight > kObstacleGap)
-                    {
-                        prevRight = event.sample;
-                        x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset - kRightCorrection;//layerWidth - ((float)(levelData.numSamples - event.sample)/levelData.sampleRate*kVelocity) - kLevelOffset;
-                        obs = [[Obstacle alloc] initWithX:-x andType:event.type];
-                        [_rightObstacles addObject:obs];
-                        [_rightGround addChild:obs];
-                        [obs release];
-                    }
-                    break;
-                default:
-                    break;
+                // add constructed obstacle to obstacles / layer
+                Obstacle *obs;
+                NSInteger x;
+                switch(event.side)
+                {
+                    case LEFT:
+                        if (prevLeft == 0 || event.sample - prevLeft > kObstacleGap)
+                        {
+                            prevLeft = event.sample;
+                            x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset;
+                            obs = [[Obstacle alloc] initWithX:x andType:event.type];
+                            [_leftObstacles addObject:obs];
+                            [_leftGround addChild:obs];
+                            [obs release];
+                        }
+                        break;
+                    case RIGHT:
+                        if (prevRight == 0 || event.sample - prevRight > kObstacleGap)
+                        {
+                            prevRight = event.sample;
+                            x = (float)event.sample/levelData.sampleRate*kVelocity + kLevelOffset - kRightCorrection;//layerWidth - ((float)(levelData.numSamples - event.sample)/levelData.sampleRate*kVelocity) - kLevelOffset;
+                            obs = [[Obstacle alloc] initWithX:-x andType:event.type];
+                            [_rightObstacles addObject:obs];
+                            [_rightGround addChild:obs];
+                            [obs release];
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         

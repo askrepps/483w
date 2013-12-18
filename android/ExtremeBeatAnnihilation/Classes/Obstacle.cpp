@@ -2,6 +2,9 @@
 
 using namespace cocos2d;
 
+extern int Jump_Y_Pos;
+extern int Slide_Y_Pos;
+
 // initialize the obstacle based on type which specifies the image to use and y position, and the x
 //   position is x
 //
@@ -10,18 +13,15 @@ using namespace cocos2d;
 //               creates an obstacle positioned for sliding under
 void Obstacle::InitWithPositionAndType(int x, int type)
 {
-    // get the window size from the director
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
-
 	switch(type)
 	{
 	case JUMPING_OBSTACLE:
 		CCSprite::initWithFile(JUMPING_SPRITE);
-		setPosition( ccp(x, size.height * JUMP_Y_POS) );
+		setPosition( ccp(x, Jump_Y_Pos) );
 		break;
 	case SLIDING_OBSTACLE:
 		CCSprite::initWithFile(SLIDING_SPRITE);
-		setPosition( ccp(x, size.height * SLIDE_Y_POS) );
+		setPosition( ccp(x, Slide_Y_Pos) );
 		break;
 	default:
 		CCLog("Illegal Obstacle Type");

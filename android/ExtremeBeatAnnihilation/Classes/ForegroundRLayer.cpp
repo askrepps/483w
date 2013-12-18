@@ -7,6 +7,8 @@ extern std::vector<Obstacle*> Right_Obstacles;
 extern bool Is_Single_Player;      // Are we playing in single player?
 extern int	Player_One_Score;      // Score for player one (or the score for single player)
 extern int 	Player_Two_Score;	   // Score for player two (for multiplayer)
+extern int  Jump_Y_Pos;            // The jumping position
+extern int  Slide_Y_Pos;           // The sliding position
 
 // Initialize the right player's foreground (obstacles, player) for the main game scene
 //
@@ -43,6 +45,9 @@ bool ForegroundRLayer::init()
     m_player->setPosition( ccp(layerSize.width/4 * 3, layerSize.height * PLAYER_Y_POS) );
     m_player->setScale(PLAYER_SCALE);
     m_clipNode->addChild(m_player);
+
+    Jump_Y_Pos  = m_player->getPosition().y - m_player->getContentSize().height / 2 - SLIDING_OFFSET;
+    Slide_Y_Pos = m_player->getPosition().y + m_player->getContentSize().height / 2 + JUMPING_OFFSET;
 
     m_delta = 0.0;
 

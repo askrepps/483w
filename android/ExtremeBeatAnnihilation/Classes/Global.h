@@ -46,6 +46,9 @@
 
 #define NUM_OBSTACLES 225			 // The number of obstacles to create
 
+#define SLIDING_OFFSET 10			 // How much higher do we make the obstacle
+#define JUMPING_OFFSET 81			 // How much do we offset the obstacle
+
 #define INVULN_PERIOD 1.0			 // How long the player is invulnerable - in seconds
 
 #endif // __GLOBAL_H__

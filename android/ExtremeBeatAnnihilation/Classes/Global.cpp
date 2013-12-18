@@ -12,6 +12,9 @@ int         Player_Two;            // id of the character selected for player tw
 int			Player_One_Score;      // Score for player one (or the score for single player)
 int  		Player_Two_Score;	   // Score for player two (for multiplayer)
 
+int 		Jump_Y_Pos;			   // The jump y position
+int         Slide_Y_Pos;           // The slide y position
+
 bool        Allow_Volume_Set;      // true when volume levels are allowed to change, false when not
 float       Music_Volume;          // volume level for the music
 float       SFX_Volume;            // volume level for the sound effects

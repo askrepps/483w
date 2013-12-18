@@ -18,8 +18,8 @@
 #define kJumpHeight 100
 
 @interface Registry : NSObject
-FOUNDATION_EXPORT NSString *const kVolume;
-//FOUNDATION_EXPORT NSNumber *const kHighScore;
+FOUNDATION_EXPORT NSString *const kMusic;
+FOUNDATION_EXPORT NSString *const kSFX;
 
 +(void)setChar:(NSInteger)index;
 +(void)removeChar:(NSInteger)index;

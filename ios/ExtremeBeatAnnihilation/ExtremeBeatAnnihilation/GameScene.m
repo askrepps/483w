@@ -194,7 +194,7 @@
         // Start playing music
         _avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[Registry getMusicURL] error:nil];
         NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-        NSNumber *value = [preferences objectForKey:kVolume];
+        NSNumber *value = [preferences objectForKey:kMusic];
         _avPlayer.volume = value.floatValue;
         _avPlayer.delegate = self;
         [_avPlayer play];
@@ -376,8 +376,8 @@
     [self scheduleUpdate];
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    NSNumber *value = [preferences objectForKey:kVolume];
-    self.avPlayer.volume = value.floatValue;
+    NSNumber *musicValue = [preferences objectForKey:kMusic];
+    self.avPlayer.volume = musicValue.floatValue;
     
     [self removeChild:[self pauseLayer] cleanup:NO];
     [self.pauseButton setIsEnabled:YES];

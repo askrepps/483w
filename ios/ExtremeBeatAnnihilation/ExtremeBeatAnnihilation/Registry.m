@@ -10,7 +10,8 @@
 #import "cocos2d.h"
 
 @implementation Registry
-NSString *const kVolume = @"Volume";
+NSString *const kMusic = @"Music";
+NSString *const kSFX = @"SFX";
 
 static NSInteger kCharOne = -1;
 static NSInteger kCharTwo = -1;

@@ -30,23 +30,23 @@ bool PauseLayer::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the header and add it to the scene
-    header = CCLabelTTF::create("Paused", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    header = CCLabelTTF::create("Paused", FONT_STYLE, MENU_FONT_SIZE);
     header->setColor(MENU_COLOR);
     header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
     this->addChild(header, 1);
 
     // create the options menu item
-    labelOptions = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelOptions = CCLabelTTF::create("Options", FONT_STYLE, MENU_FONT_SIZE);
     itemOptions  = CCMenuItemLabel::create(labelOptions, this, menu_selector(PauseLayer::HandleOptionsPressed));
     itemOptions->setColor(MENU_COLOR);
 
     // create the quit to main menu menu item
-    labelMainMenu = CCLabelTTF::create("Quit to Main Menu", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelMainMenu = CCLabelTTF::create("Quit to Main Menu", FONT_STYLE, MENU_FONT_SIZE);
     itemMainMenu  = CCMenuItemLabel::create(labelMainMenu, this, menu_selector(PauseLayer::HandleMainMenuPressed));
     itemMainMenu->setColor(MENU_COLOR);
 
     // create the resume menu item
-    labelResume = CCLabelTTF::create("Resume", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelResume = CCLabelTTF::create("Resume", FONT_STYLE, MENU_FONT_SIZE);
     itemResume  = CCMenuItemLabel::create(labelResume, this, menu_selector(PauseLayer::HandleResumePressed));
     itemResume->setColor(MENU_COLOR);
 

@@ -22,16 +22,18 @@ CCScene* CharacterSelect::Scene()
 bool CharacterSelect::init()
 {
     CCSize           size;						// The size of the screen
-    CCMenuItemFont*  backItem;					// Goes back to the previous selection
-    CCMenuItemFont*  continueItem;				// Goes forward in the process
+    CCMenuItemLabel* backItem;					// Goes back to the previous selection
+    CCMenuItemLabel* continueItem;				// Goes forward in the process
     CCMenuItemImage* characterOne;				// Character One for the select screen
     CCMenuItemImage* characterTwo;				// Character Two for the select screen
     CCMenuItemImage* characterThree;			// Character Three for the select screen
     CCMenuItemImage* selectedCharacterOne;
     CCMenuItemImage* selectedCharacterTwo;
     CCMenuItemImage* selectedCharacterThree;
-   	CCLabelTTF*       label;					// The label to display current status
-    CCMenu* 		  characterMenu;			// The menu
+    CCLabelTTF*      backLabel;                 // the text for the back menu item
+    CCLabelTTF*      continueLabel;             // the text for the continue menu item
+   	CCLabelTTF*      label;                     // The label to display current status
+    CCMenu* 		 characterMenu;             // The menu
 
     // Super init, MUST DO
     if(!CCLayer::init())
@@ -49,12 +51,13 @@ bool CharacterSelect::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // add a "close" icon to exit the process
-    backItem = CCMenuItemFont::create("Back",  this,
-                                           menu_selector(CharacterSelect::MenuBackCallback));
+    backLabel = CCLabelTTF::create("Back", FONT_STYLE, 34);
+    backItem  = CCMenuItemLabel::create(backLabel,  this, menu_selector(CharacterSelect::MenuBackCallback));
     backItem->setPosition(ccp(size.width / 4 * 3, 50));
 
     // add a "continue" icon
-    continueItem = CCMenuItemFont::create("Continue", this, menu_selector(CharacterSelect::MenuContinueCallback));
+    continueLabel = CCLabelTTF::create("Continue", FONT_STYLE, 34);
+    continueItem  = CCMenuItemLabel::create(continueLabel, this, menu_selector(CharacterSelect::MenuContinueCallback));
     continueItem->setPosition(ccp(size.width / 4, 50));
 
 	// Create the character menu items and load them into memory, set their tags
@@ -88,7 +91,7 @@ bool CharacterSelect::init()
     this->addChild(characterMenu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("Select the left character!", "Thonburi", 34);
+    label = CCLabelTTF::create("Select the left character!", FONT_STYLE, 34);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
 

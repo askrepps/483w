@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameScene.h"
 
 #define kBuffersPerSecond 4
 #define kObstacleGap 40000
 #define kVelocity 250
 #define kLevelOffset 110
-#define kRightCorrection 460
+#define kRightCorrection 478
 #define kFireY 100
 #define kCoilY 152
 #define kJumpHeight 100
@@ -20,7 +21,6 @@
 @interface Registry : NSObject
 FOUNDATION_EXPORT NSString *const kMusic;
 FOUNDATION_EXPORT NSString *const kSFX;
-FOUNDATION_EXPORT NSString *const GameReady;
 
 +(void)setChar:(NSInteger)index;
 +(void)removeChar:(NSInteger)index;
@@ -39,5 +39,7 @@ FOUNDATION_EXPORT NSString *const GameReady;
 +(BOOL)getIsMenuMusicPlaying;
 +(void)setIsFileFromLibrary:(BOOL)fromLibrary;
 +(BOOL)getIsFileFromLibrary;
++(void)setGameScene:(GameScene *)scene;
++(GameScene *)getGameScene;
 +(void)clean;
 @end

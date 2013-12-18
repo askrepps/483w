@@ -12,8 +12,10 @@
 
 @interface GameScene : CCScene <CCTouchAllAtOnceDelegate, AVAudioPlayerDelegate>
 
--(id)initWithLevelData:(LevelData *)levelData;
+@property (strong, nonatomic) AVAudioPlayer *avPlayer;
 
+-(id)initWithLevelData:(LevelData *)levelData;
+-(void)pausePressed;
 -(void)resumeGame;
 
 @end

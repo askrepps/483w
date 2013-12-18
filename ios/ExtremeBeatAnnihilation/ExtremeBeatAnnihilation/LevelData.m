@@ -55,6 +55,7 @@
             NSString *exportPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"exported.m4a"];
             NSURL *exportUrl = [NSURL fileURLWithPath:exportPath];
             exporter.outputURL = exportUrl;
+            [Registry setMusicURL:exportUrl];
             
             // delete previously exported song if it exists
             if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath])
@@ -70,29 +71,21 @@
             // export song
             [exporter exportAsynchronouslyWithCompletionHandler:^{
                 int exportStatus = exporter.status;
-                switch (exportStatus) {
-                    case AVAssetExportSessionStatusFailed: {
-                        // log error to text view
+                switch (exportStatus)
+                {
+                    case AVAssetExportSessionStatusFailed:
+                    {
                         NSError *exportError = exporter.error;
                         NSLog (@"AVAssetExportSessionStatusFailed: %@", exportError);
-                        
-                        
-                        
-                        // handle failure here!
-                        // return null and handle from loading layer?
                         isWaiting = NO;
                         isSuccessful = NO;
-                        
                         break;
                     }
-                    case AVAssetExportSessionStatusCompleted: {
+                    case AVAssetExportSessionStatusCompleted:
+                    {
                         NSLog (@"AVAssetExportSessionStatusCompleted");
-                        
                         isWaiting = NO;
                         isSuccessful = YES;
-                        
-                        [self readAudioDataFromURL:exportUrl];
-                        
                         break;
                     }
                     case AVAssetExportSessionStatusUnknown: { NSLog (@"AVAssetExportSessionStatusUnknown"); break;}
@@ -103,7 +96,13 @@
                 }
             }];
             
+            // wait for export to finish
             while (isWaiting) ;
+            
+            if (isSuccessful)
+            {
+                [self readAudioDataFromURL:exportUrl];
+            }
         }
         else
         {
@@ -273,8 +272,6 @@
     free(fftData.realp);
     free(fftData.imagp);
     vDSP_destroy_fftsetup(fftSettings);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:GameReady object:self userInfo:@{@"levelData":self}];
 }
 
 -(void) setStats

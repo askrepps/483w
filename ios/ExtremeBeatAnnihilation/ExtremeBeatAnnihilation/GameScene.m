@@ -33,7 +33,6 @@
 @property (strong, nonatomic) CCSprite *leftBG2;
 @property (strong, nonatomic) CCSprite *rightBG1;
 @property (strong, nonatomic) CCSprite *rightBG2;
-@property (strong, nonatomic) AVAudioPlayer *avPlayer;
 @property (strong, nonatomic) CCLabelTTF *scoreLabel;
 @property (strong, nonatomic) CCLabelTTF *scoreLabelP1;
 @property (strong, nonatomic) CCLabelTTF *scoreLabelP2;
@@ -200,6 +199,7 @@
         _avPlayer.volume = value.floatValue;
         _avPlayer.delegate = self;
         [_avPlayer play];
+        //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:[[Registry getMusicURL] path] loop:NO];
     }
     
     return self;
@@ -207,6 +207,7 @@
 
 -(void) dealloc
 {
+
     [_leftObstacles release];
     [_rightObstacles release];
     [_avPlayer release];
@@ -261,7 +262,7 @@
             {
                 self.scoreP1-=1000;
             }
-                     [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:-1.0f gain:1.0f];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hit.wav" pitch:1.0f pan:-1.0f gain:1.0f];
         }
     }
     
@@ -360,15 +361,18 @@
 
 -(void)pausePressed
 {
-    [self.avPlayer pause];
-    [self unscheduleUpdate];
-    
-    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
-    [self.pauseButton setIsEnabled:NO];
-    [self.leftPlayer pauseSchedulerAndActions];
-    [self.rightPlayer pauseSchedulerAndActions];
-    self.isPaused = YES;
-    [self addChild: _pauseLayer];
+    if (!self.isPaused)
+    {
+        [self.avPlayer pause];
+        [self unscheduleUpdate];
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
+        [self.pauseButton setIsEnabled:NO];
+        [self.leftPlayer pauseSchedulerAndActions];
+        [self.rightPlayer pauseSchedulerAndActions];
+        self.isPaused = YES;
+        [self addChild: _pauseLayer];
+    }
 }
 
 -(void)resumeGame

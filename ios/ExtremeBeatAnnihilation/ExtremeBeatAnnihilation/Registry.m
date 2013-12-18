@@ -24,6 +24,7 @@ static NSInteger kScoreP1 = 0;
 static NSInteger kScoreP2 = 0;
 static BOOL kIsMenuMusicPlaying = NO;
 static BOOL kIsFileFromLibrary;
+static GameScene *kGameScene;
 
 +(void)setChar:(NSInteger)index
 {
@@ -132,6 +133,16 @@ static BOOL kIsFileFromLibrary;
     return kIsFileFromLibrary;
 }
 
++(void)setGameScene:(GameScene *)scene
+{
+    kGameScene = scene;
+}
+
++(GameScene *)getGameScene
+{
+    return kGameScene;
+}
+
 +(void)clean
 {
     kCharOne = -1;
@@ -142,6 +153,7 @@ static BOOL kIsFileFromLibrary;
     kScore = 0;
     kScoreP1 = 0;
     kScoreP2 = 0;
+    kGameScene = nil;
     [CCSpriteFrameCache purgeSharedSpriteFrameCache];
 }
 @end

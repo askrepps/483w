@@ -13,12 +13,6 @@
 #import "SimpleAudioEngine.h"
 #import "MusicSelectLayer.h"
 
-@interface LoadingLayer ()
-
-@property (strong, nonatomic) LevelData *data;
-
-@end
-
 @implementation LoadingLayer
 
 +(CCScene *)scene
@@ -34,8 +28,6 @@
 {
     if (self = [super init])
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadGame:) name:GameReady object:nil];
-        
         CGSize size = [[CCDirector sharedDirector] winSize];
         
         CCLabelTTF *label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"Marker Felt" fontSize:32];
@@ -53,28 +45,16 @@
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [Registry setIsMenuMusicPlaying:NO];
 }
-
--(void)dealloc
-{
-    [super dealloc];
-    [_data release];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
                                      
 -(void) loadLevel
 {
     NSLog(@"URL = %@", [Registry getMusicURL]);
-    _data = [[[LevelData alloc] initWithURL:[Registry getMusicURL]] retain];
-}
-
--(void) loadGame:(NSNotification*)notification
-{
-    LevelData *data = [notification.userInfo objectForKey:@"levelData"];
-    
-    if (data != NULL)
+    LevelData *data = [[LevelData alloc] initWithURL:[Registry getMusicURL]];
+    if (data != nil)
     {
         GameScene *gameScene = [[[GameScene alloc] initWithLevelData:data] autorelease];
         [data release];
+        [Registry setGameScene:gameScene];
         [[CCDirector sharedDirector] replaceScene:gameScene];
     }
     else
@@ -85,7 +65,5 @@
         [[CCDirector sharedDirector] replaceScene:[MusicSelectLayer scene]];
     }
 }
-
-
 
 @end

@@ -8,10 +8,15 @@ using namespace CocosDenshion;
 // return - false if there was an error in initializing, true otherwise
 bool IntroScene::init()
 {
-    CCSize      size;              // the size of the window
-    CCSprite*   logo;              // the development group logo
-    CCSprite*   logoBackground;    // the background for the logo
-    CCLabelTTF* note;              // the text to tell user to tap screen
+    CCSize           size;              // the size of the window
+    CCSprite*        logo;              // the development group logo
+    CCSprite*        logoBackground;    // the background for the logo
+
+    CCLabelTTF*      note;              // the text to tell user to tap screen
+    CCFadeIn*        fadeIn;            // action to fade in the note
+    CCFadeOut*       fadeOut;           // action to fade out the note
+    CCSequence*      pulse;             // action to run fade out and then in in sequence
+    CCRepeatForever* repeatPulse;       // action to repeat pulse
 
     if(!CCLayer::init())
     {
@@ -38,7 +43,14 @@ bool IntroScene::init()
     note = CCLabelTTF::create("Tap screen to continue...", FONT_STYLE, INTRO_FONT_SIZE);
     note->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_NOTE_HEIGHT) );
     note->setColor(INTRO_FONT_COLOR);
-    this->addChild(note, 1);
+    addChild(note, 1);
+
+    // set up note to fade in and out repeatedly
+    fadeIn      = CCFadeIn::create(NOTE_PULSE_SPEED);
+    fadeOut     = CCFadeOut::create(NOTE_PULSE_SPEED);
+    pulse       = CCSequence::create(fadeOut, fadeIn, NULL);
+    repeatPulse = CCRepeatForever::create(pulse);
+    note->runAction(repeatPulse);
 
     // enable screen touches to be detected
     setTouchEnabled(true);

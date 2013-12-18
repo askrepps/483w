@@ -7,6 +7,7 @@
 
 #include "MainMenuScene.h"
 
+#define NOTE_PULSE_SPEED  0.75                      // speed to fade the note in and out
 #define POS_NOTE_HEIGHT   0.08                      // factor of screen height to position the note
 #define POS_LOGO_HEIGHT   0.57                      // factor of screen height to position the logo
 #define LOGO_IMAGE        "CrashCourseLogo.png"     // the development group logo

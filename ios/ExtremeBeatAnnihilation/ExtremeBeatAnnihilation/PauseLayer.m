@@ -44,6 +44,7 @@
     [super onEnter];
     ccColor4B black = {0, 0, 0, 255};
     CCLayerColor *colorLayer = [[CCLayerColor alloc] initWithColor:black];
+    [[_gameScene avPlayer] setVolume:0.0f];
     [self addChild:colorLayer z:-1];
 }
 
@@ -52,6 +53,9 @@
 -(void)unPausePressed
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSNumber *value = [preferences objectForKey:kMusic];
+    [[_gameScene avPlayer]setVolume:[value floatValue]];
     [[self gameScene] resumeGame];
 }
 

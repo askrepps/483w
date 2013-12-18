@@ -16,9 +16,6 @@
 @property (nonatomic, strong) CCLabelTTF *displaySFXLabel;
 @property (nonatomic, strong) CCControlSlider *musicSlider;
 @property (nonatomic, strong) CCControlSlider *sfxSlider;
-
--(void)valueChanged:(CCControlSlider*)sender;
-
 @end
 
 @implementation SettingsLayer
@@ -59,20 +56,20 @@
         
         // Create the display labels
         _displayMusicLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"0.0%f", 100*_musicSlider.value] fontName:@"Marker Felt" fontSize:28];
-        _displayMusicLabel.position = ccp(size.width/3 + _musicSlider.contentSize.width/3*2, size.height/2);
+        _displayMusicLabel.position = ccp(size.width/3 + _musicSlider.contentSize.width/3*2, size.height/2 + 40);
 		[self addChild:_displayMusicLabel];
         
         _displaySFXLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"0.0%f", 100*_sfxSlider.value] fontName:@"Marker Felt" fontSize:28];
-        _displaySFXLabel.position = ccp(size.width/3 + _sfxSlider.contentSize.width/3*2, size.height/2);
+        _displaySFXLabel.position = ccp(size.width/3 + _sfxSlider.contentSize.width/3*2, size.height/2 - 40);
 		[self addChild:_displaySFXLabel];
 
-        // Postion labell
+        // Postion labels
         CCLabelTTF *volumeLabel = [CCLabelTTF labelWithString:@"Music:" fontName:@"Marker Felt" fontSize:28];
-        volumeLabel.position = ccp(size.width/3 - _musicSlider.contentSize.width/3, size.height/2 + _musicSlider.contentSize.height);
+        volumeLabel.position = ccp(size.width/3 - _musicSlider.contentSize.width/3, _musicSlider.position.y + volumeLabel.contentSize.height);
         [self addChild:volumeLabel];
         
         CCLabelTTF *sfxLabel = [CCLabelTTF labelWithString:@"SFX:" fontName:@"Marker Felt" fontSize:28];
-        sfxLabel.position = ccp(size.width/3 - _sfxSlider.contentSize.width/3, size.height/2 + _sfxSlider.contentSize.height);
+        sfxLabel.position = ccp(size.width/3 - _sfxSlider.contentSize.width/3, _sfxSlider.position.y + sfxLabel.contentSize.height);
         [self addChild:sfxLabel];
         
         // Create dismiss button

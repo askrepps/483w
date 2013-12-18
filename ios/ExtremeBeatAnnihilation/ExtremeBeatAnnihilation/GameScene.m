@@ -44,6 +44,7 @@
 @property (strong, nonatomic) CCMenuItemFont *pauseButton;
 @property (strong, nonatomic) PauseLayer *pauseLayer;
 @property BOOL isPaused;
+@property NSTimeInterval currentTime;
 
 @end
 
@@ -363,6 +364,7 @@
 {
     if (!self.isPaused)
     {
+        self.currentTime = self.avPlayer.currentTime;
         [self.avPlayer pause];
         [self unscheduleUpdate];
         
@@ -378,6 +380,8 @@
 -(void)resumeGame
 {
     // sound effect already played in PauseLayer, don't add it here
+    self.avPlayer.currentTime = self.currentTime;
+    [self.avPlayer prepareToPlay];
     [self.avPlayer play];
     [self scheduleUpdate];
     

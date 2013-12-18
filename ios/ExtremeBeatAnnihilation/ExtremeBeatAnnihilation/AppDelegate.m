@@ -159,13 +159,10 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-    /*
     if( [Registry getGameScene] != nil)
     {
-        [[[Registry getGameScene] avPlayer] pause];
         [[Registry getGameScene] pausePressed];
     }
-     */
     
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation]; 

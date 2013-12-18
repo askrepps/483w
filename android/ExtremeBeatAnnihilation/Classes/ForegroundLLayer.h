@@ -6,6 +6,7 @@
 #include "Global.h"
 
 #include "PlayerL.h"
+#include "ClipNode.h"
 
 class ForegroundLLayer : public cocos2d::CCLayer
 {
@@ -22,6 +23,7 @@ public:
 
 private:
     PlayerL* m_player;                           // player sprite
+    cocos2d::ClipNode* m_clipNode;					 // Clip node for obstacles
 };
 
 #endif // __FOREGROUND_L_LAYER_H__

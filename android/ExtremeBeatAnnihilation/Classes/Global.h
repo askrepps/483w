@@ -8,11 +8,12 @@
 
 #include "Obstacle.h"
 #include "SoundEvent.h"
+
 // macros to be used by all files-----------------------------------------------------------------------
 #define COCOS2D_DEBUG          1
 
 #define VELOCITY               250   // speed factor at which to move objects on the game screen
-#define OBSTACLE_VELOCITY	   10    // velocity for obstacles
+#define OBSTACLE_VELOCITY	   20    // velocity for obstacles
 
 #define MENU_MUSIC             "Music/MenuSong.mp3"   // song to play for the menus
 #define INIT_MUSIC_VOL         50    // initial music volume; between 1 - 100
@@ -28,8 +29,8 @@
 								     //   three-quarter-way
 
 #define PLAYER_Y_POS           0.175  // The position of the player vertically
-#define JUMP_Y_POS             0.175  // The position for the jumping obstacle
-#define SLIDE_Y_POS 		   0.205  // the position for the sliding obstacle
+#define JUMP_Y_POS             0.160  // The position for the jumping obstacle
+#define SLIDE_Y_POS 		   0.320  // the position for the sliding obstacle
 
 #define PLAYER_SCALE 1.4			 // The scale for the players to use
 

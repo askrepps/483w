@@ -67,7 +67,7 @@ void GameScene::update(float delta)
     if(m_timer > 1.0)
     {
     	SpawnObstacle(); // Spawn the obstacle
-    	m_timer -= 1.0;  // Keep what was left over
+    	m_timer = 0.0;   // Reset the counter
     }
     // Update the backgrounds
     m_backgroundL->UpdateLayer(delta);

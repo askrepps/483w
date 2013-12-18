@@ -12,7 +12,6 @@ bool ForegroundRLayer::init()
 {
     CCSize screenSize;                         // the size of the window
     CCSize layerSize;                          // size of this layer
-
     if(!CCLayer::init())
     {
         return false;
@@ -21,17 +20,26 @@ bool ForegroundRLayer::init()
     // get the window size from the director
     screenSize = CCDirector::sharedDirector()->getWinSize();
 
+
     // set layerSize to be the full height and half the width of screenSize, and position the layer to
     //   the right side of the screen
     layerSize.setSize(screenSize.width * POS_HALF_SCREEN, screenSize.height);
     setContentSize(layerSize);
     setPosition(screenSize.width * POS_HALF_SCREEN, 0);
 
+    // create the clip node and add it
+    m_clipNode = new ClipNode();
+    m_clipNode->autorelease();
+    m_clipNode->setPosition(0, 0);
+    m_clipNode->setClipsToBounds(true);
+    m_clipNode->setClippingRegion( CCRect(screenSize.width, 0, layerSize.width, layerSize.height) );
+	addChild(m_clipNode);
+
     // create the player and add it
     m_player = PlayerR::create();
     m_player->setPosition( ccp(layerSize.width/4 * 3, layerSize.height * PLAYER_Y_POS) );
     m_player->setScale(PLAYER_SCALE);
-    addChild(m_player);
+    m_clipNode->addChild(m_player);
 
     return true;
 }
@@ -41,17 +49,22 @@ void ForegroundRLayer::UpdateLayer(float delta)
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	//Update the locations of each, and remove as need
+	for(std::vector<Obstacle*>::size_type i = 0; i != Right_Obstacles.size(); ++i)
+	{
+		if(Right_Obstacles[i])
+		{
+			Right_Obstacles[i]->setPosition(ccp(Right_Obstacles[i]->getPosition().x + OBSTACLE_VELOCITY,
+												Right_Obstacles[i]->getPosition().y));
+		}
+	}
+
 	for(std::vector<Obstacle*>::size_type i = 0; i != Right_Obstacles.size();)
 	{
 		if(Right_Obstacles[i])
 		{
-			Right_Obstacles[i]->setPosition(ccp(Right_Obstacles[i]->getPosition().x + OBSTACLE_VELOCITY, Right_Obstacles[i]->getPosition().y));
-
 			if(Right_Obstacles[i]->getPosition().x > size.width + OFFSET)
 			{
-					Obstacle* temp = Right_Obstacles[i];
 					Right_Obstacles.erase(Right_Obstacles.begin() + i);
-					CC_SAFE_DELETE(temp);
 			}
 			else
 			{
@@ -101,7 +114,7 @@ void ForegroundRLayer::SpawnSlideObstacle(void)
 {
 	Obstacle* slideObstacle = new Obstacle();
 	slideObstacle->InitWithPositionAndType(-OFFSET, SLIDING_OBSTACLE);
-	addChild(slideObstacle);
+	m_clipNode->addChild(slideObstacle);
 	CC_SAFE_RETAIN(slideObstacle);
 	Right_Obstacles.push_back(slideObstacle);
 }
@@ -112,7 +125,7 @@ void ForegroundRLayer::SpawnJumpObstacle(void)
 	Obstacle* jumpObstacle = new Obstacle();
 
 	jumpObstacle->InitWithPositionAndType(-OFFSET, JUMPING_OBSTACLE);
-	addChild(jumpObstacle);
+	m_clipNode->addChild(jumpObstacle);
 	CC_SAFE_RETAIN(jumpObstacle);
 	Right_Obstacles.push_back(jumpObstacle);
 }

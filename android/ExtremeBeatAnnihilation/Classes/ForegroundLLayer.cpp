@@ -27,11 +27,19 @@ bool ForegroundLLayer::init()
     setContentSize(layerSize);
     setPosition(0, 0);
 
+    // create the clip node and add it
+    m_clipNode = new ClipNode();
+    m_clipNode->autorelease();
+    m_clipNode->setPosition(0, 0);
+    m_clipNode->setClipsToBounds(true);
+    m_clipNode->setClippingRegion( CCRect(0, 0, layerSize.width, layerSize.height) );
+	addChild(m_clipNode);
+
     // create the player and add it
     m_player = PlayerL::create();
     m_player->setPosition( ccp(layerSize.width/4, layerSize.height * PLAYER_Y_POS) );
     m_player->setScale(PLAYER_SCALE);
-    addChild(m_player);
+    m_clipNode->addChild(m_player);
 
     return true;
 }
@@ -72,18 +80,25 @@ void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
 
 void ForegroundLLayer::UpdateLayer(float delta)
 {
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+
 	//Update the locations of each, and remove as need
+	for(std::vector<Obstacle*>::size_type i = 0; i != Left_Obstacles.size(); ++i)
+	{
+		if(Left_Obstacles[i])
+		{
+			Left_Obstacles[i]->setPosition(ccp(Left_Obstacles[i]->getPosition().x - OBSTACLE_VELOCITY,
+											   Left_Obstacles[i]->getPosition().y));
+		}
+	}
+
 	for(std::vector<Obstacle*>::size_type i = 0; i != Left_Obstacles.size();)
 	{
 		if(Left_Obstacles[i])
 		{
-			Left_Obstacles[i]->setPosition(ccp(Left_Obstacles[i]->getPosition().x - OBSTACLE_VELOCITY, Left_Obstacles[i]->getPosition().y));
-
-			if(Left_Obstacles[i]->getPosition().x < -OFFSET)
+			if(Left_Obstacles[i]->getPosition().x > size.width + OFFSET)
 			{
-					Obstacle* temp = Left_Obstacles[i];
 					Left_Obstacles.erase(Left_Obstacles.begin() + i);
-					CC_SAFE_DELETE(temp);
 			}
 			else
 			{
@@ -101,7 +116,7 @@ void ForegroundLLayer::SpawnSlideObstacle(void)
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	Obstacle* slideObstacle = new Obstacle();
 	slideObstacle->InitWithPositionAndType(size.width + OFFSET, SLIDING_OBSTACLE);
-	addChild(slideObstacle);
+	m_clipNode->addChild(slideObstacle);
 	CC_SAFE_RETAIN(slideObstacle);
 	Left_Obstacles.push_back(slideObstacle);
 }
@@ -111,7 +126,7 @@ void ForegroundLLayer::SpawnJumpObstacle(void)
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	Obstacle* jumpObstacle = new Obstacle();
-	addChild(jumpObstacle);
+	m_clipNode->addChild(jumpObstacle);
 	jumpObstacle->InitWithPositionAndType(size.width + OFFSET, JUMPING_OBSTACLE);
 	CC_SAFE_RETAIN(jumpObstacle);
 	Left_Obstacles.push_back(jumpObstacle);

@@ -87,6 +87,7 @@ void ForegroundRLayer::UpdateLayer(float delta)
 			// Collision occured, deduct points and flag as can't collide
 			if(obstacleRect.intersectsRect(playerRect))
 			{
+				// Hit an object, deduct score
 				m_player->Blink();
 				if(Is_Single_Player)
 					Player_One_Score += SINGLE_PLAYER_DEDUCTION;

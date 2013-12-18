@@ -3,7 +3,7 @@
 using namespace cocos2d;
 
 // externs defined in Global.h
-extern std::vector<Obstacle> Right_Obstacles;
+extern std::vector<Obstacle*> Right_Obstacles;
 
 // Initialize the right player's foreground (obstacles, player) for the main game scene
 //
@@ -34,6 +34,33 @@ bool ForegroundRLayer::init()
     addChild(m_player);
 
     return true;
+}
+
+void ForegroundRLayer::UpdateLayer(float delta)
+{
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+
+	//Update the locations of each, and remove as need
+	for(std::vector<Obstacle*>::size_type i = 0; i != Right_Obstacles.size();)
+	{
+		if(Right_Obstacles[i])
+		{
+			Right_Obstacles[i]->setPosition(ccp(Right_Obstacles[i]->getPosition().x + OBSTACLE_VELOCITY, Right_Obstacles[i]->getPosition().y));
+
+			if(Right_Obstacles[i]->getPosition().x > size.width + OFFSET)
+			{
+					Obstacle* temp = Right_Obstacles[i];
+					Right_Obstacles.erase(Right_Obstacles.begin() + i);
+					CC_SAFE_DELETE(temp);
+			}
+			else
+			{
+				++i;
+			}
+		}
+	}
+
+	// Collision detection here
 }
 
 // Needs description
@@ -67,4 +94,25 @@ void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent*
         }
         it++;
     }
+}
+
+// Spawns a sliding obstacle
+void ForegroundRLayer::SpawnSlideObstacle(void)
+{
+	Obstacle* slideObstacle = new Obstacle();
+	slideObstacle->InitWithPositionAndType(-OFFSET, SLIDING_OBSTACLE);
+	addChild(slideObstacle);
+	CC_SAFE_RETAIN(slideObstacle);
+	Right_Obstacles.push_back(slideObstacle);
+}
+
+// Spawn a jumping obstacle
+void ForegroundRLayer::SpawnJumpObstacle(void)
+{;
+	Obstacle* jumpObstacle = new Obstacle();
+
+	jumpObstacle->InitWithPositionAndType(-OFFSET, JUMPING_OBSTACLE);
+	addChild(jumpObstacle);
+	CC_SAFE_RETAIN(jumpObstacle);
+	Right_Obstacles.push_back(jumpObstacle);
 }

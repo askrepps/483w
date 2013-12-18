@@ -13,6 +13,10 @@ public:
     virtual bool init();
     virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
 
+    void UpdateLayer(float delta);
+    void SpawnSlideObstacle(void);
+    void SpawnJumpObstacle(void);
+
     // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(ForegroundLLayer);
 

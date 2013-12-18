@@ -22,7 +22,7 @@ class GameScene : public cocos2d::CCScene
 public:
     virtual bool init();
     virtual void update(float delta);
-
+    void SpawnObstacle(void);
     // allows use of create() function which uses init() to create this scene
     CREATE_FUNC(GameScene);
 
@@ -31,7 +31,8 @@ private:
     BackgroundLLayer* m_backgroundL;      // background for the left player's screen
     ForegroundRLayer* m_foregroundR;      // foreground (like obstacles) for the right player's screen
     ForegroundLLayer* m_foregroundL;      // foreground (like obstacles) for the left player's screen
-    UILayer*		  m_uiLayer;
+    UILayer*		  m_uiLayer;          // ui layer for the game
+    float 			  m_timer;			  // The time that elapsed, for spawning obstacles in default
 };
 
 #endif // __GAME_SCENE_H__

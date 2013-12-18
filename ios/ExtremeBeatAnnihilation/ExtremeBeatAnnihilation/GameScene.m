@@ -220,7 +220,6 @@
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
-    
     // Shift left background
     if (self.leftBG1.position.x + self.leftGround.position.x < -winSize.width/2)
     {
@@ -384,6 +383,15 @@
     [self.avPlayer prepareToPlay];
     [self.avPlayer play];
     [self scheduleUpdate];
+    
+    // Readjust positions
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    self.leftPlayer.position = ccp(kVelocity*self.currentTime + winSize.width/8, self.leftPlayer.position.y);
+    self.leftGround.position = ccp(-kVelocity*self.currentTime, self.leftGround.position.y);
+    self.rightPlayer.position = ccp(-kVelocity*self.currentTime + winSize.width/8*7, self.rightPlayer.position.y);
+    self.rightGround.position = ccp(kVelocity*self.currentTime, self.rightGround.position.y);
+    
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     NSNumber *musicValue = [preferences objectForKey:kMusic];

@@ -32,6 +32,9 @@
         CCLabelTTF *overLabel = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Marker Felt" fontSize:32];
         overLabel.position = ccp(size.width/2, size.height - 32);
         
+        CCLabelTTF *titleLabel = [CCLabelTTF labelWithString:[Registry getMusicName] fontName:@"Marker Felt" fontSize:32];
+        titleLabel.position = ccp(size.width/2, size.height - 64);
+        
         CCLabelTTF *scoreLabel;
         
         if([Registry getIsSinglePlayer])
@@ -54,6 +57,7 @@
         menu.position = CGPointZero;
         
         [self addChild:overLabel];
+        [self addChild:titleLabel];
         [self addChild:scoreLabel];
         [self addChild:menu];
     }

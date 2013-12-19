@@ -305,6 +305,7 @@ void PlayerL::SetCollide()
 //Player flashes when colliding with an obstacle
 void PlayerL::Blink()
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/hit.wav");
 	CCBlink *blinkAction = CCBlink::create(1.0, 8);
 	CCCallFunc *funcAction = CCCallFunc::create(this, callfunc_selector(PlayerL::SetCollide));
 	CCShow *showAction = CCShow::create();

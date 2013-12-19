@@ -3,7 +3,8 @@
 using namespace cocos2d;
 
 extern int Player_One;
-
+using namespace cocos2d;
+using namespace CocosDenshion;
 //Initialize the Left player sprite
 bool PlayerL::init()
 {

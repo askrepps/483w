@@ -2,6 +2,7 @@
 #define __PLAYER_L_H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 class PlayerL: public cocos2d::CCSprite
 {

@@ -1,6 +1,7 @@
 #include "PlayerR.h"
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 extern int Player_Two;
 

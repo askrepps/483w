@@ -45,40 +45,34 @@ bool ForegroundLLayer::init()
     m_clipNode->addChild(m_player);
 
     m_delta = 0.0;				//  Initialize to 0
+
+    // enable screen touches to be detected
+    setTouchEnabled(true);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
+
     return true;
 }
 
-// handles touches in the foreground
+// handles touches to the screen
 //
-// touches [in] -
-// event   [in] -
-void ForegroundLLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+// touch [in] - info of the touch that occurred
+// event [in] - ?
+void ForegroundLLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
 {
-    CCSize        size            = CCDirector::sharedDirector()->getWinSize();
-    CCSetIterator it              = touches->begin();
-    CCPoint       currentLocation;
-    CCTouch*      touch;
-    CCRect*       topLeft         = new CCRect(0, 0, size.width / 2, size.height/2);
-    CCRect*       bottomLeft      = new CCRect(0, size.height/2, size.width / 2, size.height / 2);
+    CCSize size           = CCDirector::sharedDirector()->getWinSize();
+    CCRect leftTouchBound = CCRectMake(0, 0, size.width * POS_HALF_SCREEN, size.height);
 
-    for(int i = 0; i < touches->count(); i++)
+    // user swiped left side of screen
+    if(leftTouchBound.containsPoint(touch->getStartLocation()))
     {
-        touch = (CCTouch*)(*it);
-        if(touch)
+        if(touch->getLocation().y - touch->getStartLocation().y >= 0)  // swiped up, so left player jump
         {
-			currentLocation = touch->getLocationInView();
-
-			if(bottomLeft->containsPoint(currentLocation))        // left player slide
-			{
-				m_player->Slide();
-			}
-			else if(topLeft->containsPoint(currentLocation))      // left player jump
-			{
-				m_player->Jump();
-			}
+            m_player->Jump();
         }
-
-        it++;
+        else                                         // swiped down, so left player slide
+        {
+            m_player->Slide();
+        }
     }
 }
 

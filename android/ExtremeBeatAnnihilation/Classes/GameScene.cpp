@@ -81,10 +81,10 @@ void GameScene::update(float delta)
     m_uiLayer->UpdateLayer(delta);
 
 }
+
 // spawns an obstacle every second
 void GameScene::SpawnObstacle(void)
 {
-
 	int obstacle = (int)(rand() % 4);    	 // What obstacle do we create? 0 - 3
 
 	switch(obstacle)

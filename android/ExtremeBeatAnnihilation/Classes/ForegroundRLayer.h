@@ -12,18 +12,19 @@ class ForegroundRLayer : public cocos2d::CCLayer
 {
 public:
     virtual bool init();
-    virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
 
     void UpdateLayer(float delta);
     void SpawnSlideObstacle(void);
     void SpawnJumpObstacle(void);
+
     // allows use of create() function which uses init() to create this layer
     CREATE_FUNC(ForegroundRLayer);
 
 private:
-    PlayerR* m_player;                       // player sprite
+    PlayerR*           m_player;             // player sprite
     cocos2d::ClipNode* m_clipNode;			 // Clip node for obstacles
-    float m_delta;							 // Time delta for player use
+    float              m_delta;				 // Time delta for player use
 };
 
 #endif // __FOREGROUND_R_LAYER_H__

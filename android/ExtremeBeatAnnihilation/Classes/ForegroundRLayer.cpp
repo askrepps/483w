@@ -25,7 +25,6 @@ bool ForegroundRLayer::init()
     // get the window size from the director
     screenSize = CCDirector::sharedDirector()->getWinSize();
 
-
     // set layerSize to be the full height and half the width of screenSize, and position the layer to
     //   the right side of the screen
     layerSize.setSize(screenSize.width * POS_HALF_SCREEN, screenSize.height);
@@ -51,7 +50,34 @@ bool ForegroundRLayer::init()
 
     m_delta = 0.0;
 
+    // enable screen touches to be detected
+    setTouchEnabled(true);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
+
     return true;
+}
+
+// handles touches to the screen
+//
+// touch [in] - info of the touch that occurred
+// event [in] - ?
+void ForegroundRLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
+{
+    CCSize size            = CCDirector::sharedDirector()->getWinSize();
+    CCRect rightTouchBound = CCRectMake(size.width * POS_HALF_SCREEN, 0, size.width * POS_HALF_SCREEN, size.height);
+
+    // user swiped right side of screen
+    if(rightTouchBound.containsPoint(touch->getStartLocation()))
+    {
+        if(touch->getLocation().y - touch->getStartLocation().y >= 0) // swiped up, so right player jump
+        {
+            m_player->Jump();
+        }
+        else                                           // swiped down, so right player slide
+        {
+            m_player->Slide();
+        }
+    }
 }
 
 void ForegroundRLayer::UpdateLayer(float delta)
@@ -111,39 +137,6 @@ void ForegroundRLayer::UpdateLayer(float delta)
 			}
 		}
 	}
-}
-
-// Needs description
-//
-// touches [in] -
-// event   [in] -
-void ForegroundRLayer::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
-{
-    CCSize        size            = CCDirector::sharedDirector()->getWinSize();
-    CCSetIterator it              = touches->begin();
-    CCPoint       currentLocation;
-    CCTouch*      touch;
-    CCRect*       topRight        = new CCRect(size.width / 2, 0, size.width / 2, size.height/2);
-    CCRect*       bottomRight     = new CCRect(size.width / 2, size.height/2, size.width / 2, size.height / 2);
-
-    for(int i = 0; i < touches->count(); i++)
-    {
-        touch = (CCTouch*)(*it);
-        if(touch)
-        {
-			currentLocation = touch->getLocationInView();
-
-			if(bottomRight->containsPoint(currentLocation))          // right player slide
-			{
-				 m_player->Slide();
-			}
-			else if(topRight->containsPoint(currentLocation))        // right player jump
-			{
-				m_player->Jump();
-			}
-        }
-        it++;
-    }
 }
 
 // Spawns a sliding obstacle

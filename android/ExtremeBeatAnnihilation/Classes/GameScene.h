@@ -22,7 +22,9 @@ class GameScene : public cocos2d::CCScene
 public:
     virtual bool init();
     virtual void update(float delta);
+
     void SpawnObstacle(void);
+
     // allows use of create() function which uses init() to create this scene
     CREATE_FUNC(GameScene);
 

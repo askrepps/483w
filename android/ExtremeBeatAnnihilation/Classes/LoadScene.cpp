@@ -3,6 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+// externs defined in Global.cpp
+extern int Font_Size_Default;
+
 CCScene* LoadScene::Scene()
 {
 	// Create the scene and add the layer in
@@ -33,7 +36,7 @@ bool LoadScene::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the loading label and add it to the scene
-    loading = CCLabelTTF::create("Loading...", FONT_STYLE, MENU_FONT_SIZE);
+    loading = CCLabelTTF::create("Loading...", FONT_STYLE, Font_Size_Default);
     loading->setPosition(ccp(size.width / 2, size.height / 2));
     this->addChild(loading, 1);
 

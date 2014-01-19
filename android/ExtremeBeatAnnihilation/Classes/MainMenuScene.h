@@ -10,7 +10,6 @@
 
 #define BACKGROUND_IMAGE     "splashscreen.jpg"     // image to display as the background
 #define MENU_COLOR           ccc3(255, 255, 255)    // RGB color of the menu items
-#define MENU_FONT_SIZE       50                     // size of the font for the menu items
 #define MENU_ITEM_PADDING    20                     // padding between menu items, most likely in pixels
 
 #define FONT_SHADOW_OFFSET   CCSize(-4, 4)          // offset from the text that the shadow will be

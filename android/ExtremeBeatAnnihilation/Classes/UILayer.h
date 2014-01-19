@@ -11,7 +11,6 @@
 #define PAUSE_WIDTH_POS      0.5                 // factor of screen with to position pause menu item
 #define PAUSE_HEIGHT_POS     0.08                // factor of screen height to position pause menu item
 #define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
-#define MENU_FONT_SIZE       50                  // size of the font for the menu items
 
 #define FONT_STROKE_COLOR    ccc3(0, 0, 0)       // color of text outlines
 #define FONT_STROKE_THICK    3.0                 // thickness of the outline

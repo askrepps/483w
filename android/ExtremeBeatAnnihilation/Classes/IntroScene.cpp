@@ -3,6 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+// externs defined in Global.cpp
+extern int Font_Size_Default;
+
 // Initialize the intro scene
 //
 // return - false if there was an error in initializing, true otherwise
@@ -40,7 +43,7 @@ bool IntroScene::init()
     addChild(logo, 1);
 
     // create the note for the bottom of the screen
-    note = CCLabelTTF::create("Tap screen to continue...", FONT_STYLE, INTRO_FONT_SIZE);
+    note = CCLabelTTF::create("Tap screen to continue...", FONT_STYLE, Font_Size_Default);
     note->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_NOTE_HEIGHT) );
     note->setColor(INTRO_FONT_COLOR);
     addChild(note, 1);

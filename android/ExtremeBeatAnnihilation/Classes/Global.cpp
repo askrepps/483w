@@ -1,6 +1,9 @@
 #include "Global.h"
 
 // global variables to use between all files (extern them to use them)----------------------------------
+int         Font_Size_Default;     // default size of all font
+int         Font_Size_Small;       // font size for smaller text
+
 std::string Game_Song;             // file path to the song to play for the game scene
 
 bool        Is_Single_Player;      // true when single player, false when multiplayer
@@ -19,6 +22,6 @@ bool        Allow_Volume_Set;      // true when volume levels are allowed to cha
 float       Music_Volume;          // volume level for the music
 float       SFX_Volume;            // volume level for the sound effects
 
-std::vector<Obstacle*> Left_Obstacles;   // The obstacles for the left side of the screen
-std::vector<Obstacle*> Right_Obstacles;  // The obstacles for the right side of the screen
+std::vector<Obstacle*>  Left_Obstacles;   // The obstacles for the left side of the screen
+std::vector<Obstacle*>  Right_Obstacles;  // The obstacles for the right side of the screen
 std::vector<SoundEvent> Events;         // Events generate to make the obstacles

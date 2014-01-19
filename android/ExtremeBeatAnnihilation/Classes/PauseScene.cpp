@@ -3,7 +3,8 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-// externs defined in Global.h
+// externs defined in Global.cpp
+extern int  Font_Size_Default;
 extern bool Prev_Was_Main_Menu;
 
 // Initialize the pause menu to display over the game scene
@@ -30,23 +31,23 @@ bool PauseLayer::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the header and add it to the scene
-    header = CCLabelTTF::create("Paused", FONT_STYLE, MENU_FONT_SIZE);
+    header = CCLabelTTF::create("Paused", FONT_STYLE, Font_Size_Default);
     header->setColor(MENU_COLOR);
     header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
     this->addChild(header, 1);
 
     // create the options menu item
-    labelOptions = CCLabelTTF::create("Options", FONT_STYLE, MENU_FONT_SIZE);
+    labelOptions = CCLabelTTF::create("Options", FONT_STYLE, Font_Size_Default);
     itemOptions  = CCMenuItemLabel::create(labelOptions, this, menu_selector(PauseLayer::HandleOptionsPressed));
     itemOptions->setColor(MENU_COLOR);
 
     // create the quit to main menu menu item
-    labelMainMenu = CCLabelTTF::create("Quit to Main Menu", FONT_STYLE, MENU_FONT_SIZE);
+    labelMainMenu = CCLabelTTF::create("Quit to Main Menu", FONT_STYLE, Font_Size_Default);
     itemMainMenu  = CCMenuItemLabel::create(labelMainMenu, this, menu_selector(PauseLayer::HandleMainMenuPressed));
     itemMainMenu->setColor(MENU_COLOR);
 
     // create the resume menu item
-    labelResume = CCLabelTTF::create("Resume", FONT_STYLE, MENU_FONT_SIZE);
+    labelResume = CCLabelTTF::create("Resume", FONT_STYLE, Font_Size_Default);
     itemResume  = CCMenuItemLabel::create(labelResume, this, menu_selector(PauseLayer::HandleResumePressed));
     itemResume->setColor(MENU_COLOR);
 

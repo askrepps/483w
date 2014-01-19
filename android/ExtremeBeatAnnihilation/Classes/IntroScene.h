@@ -13,7 +13,6 @@
 #define LOGO_IMAGE        "CrashCourseLogo.png"     // the development group logo
 #define LOGO_BACKGROUND   "LogoBackgound.png"       // the background of the logo
 #define LOGO_HEIGHT_SCALE 0.80                      // factor of screen height to scale the logo
-#define INTRO_FONT_SIZE   50                        // size of the font
 #define INTRO_FONT_COLOR  ccc3(0, 0, 0)             // RGB color of the font
 
 class IntroScene : public cocos2d::CCLayer

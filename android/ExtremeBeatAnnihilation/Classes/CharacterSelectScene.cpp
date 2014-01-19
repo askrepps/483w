@@ -3,7 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-// externs defined in Global.h
+// externs defined in Global.cpp
+extern int Font_Size_Default;
+extern int Font_Size_Small;
 extern int Player_One;
 extern int Player_Two;
 
@@ -51,12 +53,12 @@ bool CharacterSelect::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // add a "close" icon to exit the process
-    backLabel = CCLabelTTF::create("Back", FONT_STYLE, 34);
+    backLabel = CCLabelTTF::create("Back", FONT_STYLE, Font_Size_Default);
     backItem  = CCMenuItemLabel::create(backLabel,  this, menu_selector(CharacterSelect::MenuBackCallback));
     backItem->setPosition(ccp(size.width / 4 * 3, 50));
 
     // add a "continue" icon
-    continueLabel = CCLabelTTF::create("Continue", FONT_STYLE, 34);
+    continueLabel = CCLabelTTF::create("Continue", FONT_STYLE, Font_Size_Default);
     continueItem  = CCMenuItemLabel::create(continueLabel, this, menu_selector(CharacterSelect::MenuContinueCallback));
     continueItem->setPosition(ccp(size.width / 4, 50));
 
@@ -84,14 +86,13 @@ bool CharacterSelect::init()
 	m_charTwo_Wrapper->setPosition( ccp((size.width / 8) * 4 + 10, CCDirector::sharedDirector()->getWinSize().height / 2));
 	m_charThree_Wrapper->setPosition( ccp((size.width / 8) * 7 + 10, CCDirector::sharedDirector()->getWinSize().height / 2));
 
-
     // create menu, adding in all the MenuItems
 	characterMenu = CCMenu::create(continueItem, backItem, m_charOne_Wrapper, m_charTwo_Wrapper, m_charThree_Wrapper, NULL);
 	characterMenu->setPosition(CCPointZero);
     this->addChild(characterMenu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("Select the left character!", FONT_STYLE, 34);
+    label = CCLabelTTF::create("Select the left character!", FONT_STYLE, Font_Size_Small);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
 

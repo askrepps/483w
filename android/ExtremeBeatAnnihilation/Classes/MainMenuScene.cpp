@@ -3,7 +3,8 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-// externs defined in Global.h
+// externs defined in Global.cpp
+extern int  Font_Size_Default;
 extern bool Is_Single_Player;
 extern bool Prev_Was_Main_Menu;
 
@@ -32,9 +33,9 @@ bool MainMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the text for the menu items
-    labelSinglePlayer = CCLabelTTF::create("Start Single Player", FONT_STYLE, MENU_FONT_SIZE);
-    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", FONT_STYLE, MENU_FONT_SIZE);
-    labelOptions      = CCLabelTTF::create("Options", FONT_STYLE, MENU_FONT_SIZE);
+    labelSinglePlayer = CCLabelTTF::create("Start Single Player", FONT_STYLE, Font_Size_Default);
+    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", FONT_STYLE, Font_Size_Default);
+    labelOptions      = CCLabelTTF::create("Options", FONT_STYLE, Font_Size_Default);
 
     // add shadows to the labels, so they will be easier to read against the background
     labelSinglePlayer->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);

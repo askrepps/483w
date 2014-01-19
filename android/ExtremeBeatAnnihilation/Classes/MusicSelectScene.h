@@ -12,7 +12,6 @@
 
 #define POS_HEADER_HEIGHT    0.9                 // factor of height to position the header
 #define FONT_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
-#define FONT_SIZE            40                  // size of the font for the menu items
 #define MENU_PADDING         10                  // padding between menu items, most likely in pixels
 #define MENU_POS_HEIGHT      0.45                // factor of screen height to position the menu
 

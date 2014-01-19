@@ -3,7 +3,9 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-// externs defined in Global.h
+// externs defined in Global.cpp
+extern int         Font_Size_Default;
+extern int         Font_Size_Small;
 extern std::string Game_Song;
 
 // Initialize the menu items, background, and overall setup of the music selection menu
@@ -34,18 +36,18 @@ bool MusicSelect::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the header for the scene
-    m_header = CCLabelTTF::create("Choose a song", FONT_STYLE, 30);
+    m_header = CCLabelTTF::create("Choose a song", FONT_STYLE, Font_Size_Small);
     m_header->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HEADER_HEIGHT) );
     m_header->setColor(MENU_COLOR);
     this->addChild(m_header, 1);
 
     // create the text for the menu items
-    labelFirstSong  = CCLabelTTF::create("Letting Go - UltraMax", FONT_STYLE, FONT_SIZE);
-    labelSecondSong = CCLabelTTF::create("The Call of Stars - UltraMax", FONT_STYLE, FONT_SIZE);
-    labelThirdSong  = CCLabelTTF::create("Waiting - UltraMax", FONT_STYLE, FONT_SIZE);
-    labelYourMusic  = CCLabelTTF::create("Select from SD card", FONT_STYLE, FONT_SIZE);
-    labelBack       = CCLabelTTF::create("Back", FONT_STYLE, FONT_SIZE);
-    labelPlay       = CCLabelTTF::create("Play", FONT_STYLE, FONT_SIZE);
+    labelFirstSong  = CCLabelTTF::create("Letting Go - UltraMax", FONT_STYLE, Font_Size_Default);
+    labelSecondSong = CCLabelTTF::create("The Call of Stars - UltraMax", FONT_STYLE, Font_Size_Default);
+    labelThirdSong  = CCLabelTTF::create("Waiting - UltraMax", FONT_STYLE, Font_Size_Default);
+    labelYourMusic  = CCLabelTTF::create("Select from SD card", FONT_STYLE, Font_Size_Default);
+    labelBack       = CCLabelTTF::create("Back", FONT_STYLE, Font_Size_Default);
+    labelPlay       = CCLabelTTF::create("Play", FONT_STYLE, Font_Size_Default);
 
     // create the items for the menu
     itemFirstSong  = CCMenuItemLabel::create(labelFirstSong, this, menu_selector(MusicSelect::HandleFirstSongPressed));

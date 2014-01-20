@@ -35,6 +35,8 @@
 
 #define JUMPING_OBSTACLE 1			 // The obstacle is a jumping obstacle
 #define SLIDING_OBSTACLE 0			 // The obstacle is a sliding obstacle
+#define JUMP_OBSTACLE_SCALE    0.07  // scale factor of screen height to scale the jump obstacle
+#define SLIDE_OBSTACLE_SCALE   0.2   // scale factor of screen height to scale the slide obstacle
 
 #define OFFSET 500				     // The offset offscreen to spawn the obstacles
 
@@ -46,8 +48,8 @@
 
 #define NUM_OBSTACLES 225			 // The number of obstacles to create
 
-#define SLIDING_OFFSET 10			 // How much higher do we make the obstacle
-#define JUMPING_OFFSET 81			 // How much do we offset the obstacle
+#define SLIDING_OFFSET 150			 // How much higher do we make the obstacle
+#define JUMPING_OFFSET 10			 // How much do we offset the obstacle
 
 #define INVULN_PERIOD 1.0			 // How long the player is invulnerable - in seconds
 

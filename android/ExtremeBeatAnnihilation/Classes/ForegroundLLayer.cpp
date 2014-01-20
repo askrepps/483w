@@ -89,8 +89,8 @@ void ForegroundLLayer::UpdateLayer(float delta)
 	//   box set yet
 	if(m_firstUpdate)
 	{
-	    m_player->setScale(size.height * PLAYER_SCALE / playerRect.size.height);
 	    m_firstUpdate = false;
+	    m_player->setScale(size.height * PLAYER_SCALE / playerRect.size.height);
 	}
 
 	// Update the locations of each, and remove as need
@@ -147,6 +147,7 @@ void ForegroundLLayer::SpawnSlideObstacle(void)
 	Obstacle* slideObstacle = new Obstacle();
 
 	slideObstacle->InitWithPositionAndType(size.width + OFFSET, SLIDING_OBSTACLE);
+	slideObstacle->setScale(size.height * SLIDE_OBSTACLE_SCALE / slideObstacle->boundingBox().size.height);
 	m_clipNode->addChild(slideObstacle);
 	CC_SAFE_RETAIN(slideObstacle);
 	Left_Obstacles.push_back(slideObstacle);
@@ -160,6 +161,7 @@ void ForegroundLLayer::SpawnJumpObstacle(void)
 
 	m_clipNode->addChild(jumpObstacle);
 	jumpObstacle->InitWithPositionAndType(size.width + OFFSET, JUMPING_OBSTACLE);
+	jumpObstacle->setScale(size.height * JUMP_OBSTACLE_SCALE / jumpObstacle->boundingBox().size.height);
 	CC_SAFE_RETAIN(jumpObstacle);
 	Left_Obstacles.push_back(jumpObstacle);
 }

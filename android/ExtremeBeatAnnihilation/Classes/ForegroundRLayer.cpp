@@ -44,9 +44,6 @@ bool ForegroundRLayer::init()
     m_player->setPosition( ccp(layerSize.width/4 * 3, layerSize.height * PLAYER_Y_POS) );
     m_clipNode->addChild(m_player);
 
-    Jump_Y_Pos  = m_player->getPosition().y - m_player->getContentSize().height / 2 - SLIDING_OFFSET;
-    Slide_Y_Pos = m_player->getPosition().y + m_player->getContentSize().height / 2 + JUMPING_OFFSET;
-
     // mark the next call to update as the first
     m_firstUpdate = true;
 
@@ -93,8 +90,11 @@ void ForegroundRLayer::UpdateLayer(float delta)
     //   box set yet
     if(m_firstUpdate)
     {
-        m_player->setScale(size.height * PLAYER_SCALE / playerRect.size.height);
         m_firstUpdate = false;
+        m_player->setScale(size.height * PLAYER_SCALE / playerRect.size.height);
+
+        Jump_Y_Pos  = m_player->getPosition().y - playerRect.size.height / 2 - JUMPING_OFFSET;
+        Slide_Y_Pos = m_player->getPosition().y + playerRect.size.height / 2 + SLIDING_OFFSET;
     }
 
 	// Update the locations of each, and remove as need
@@ -148,8 +148,11 @@ void ForegroundRLayer::UpdateLayer(float delta)
 // Spawns a sliding obstacle
 void ForegroundRLayer::SpawnSlideObstacle(void)
 {
+    CCSize    size          = CCDirector::sharedDirector()->getWinSize();
 	Obstacle* slideObstacle = new Obstacle();
+
 	slideObstacle->InitWithPositionAndType(-OFFSET, SLIDING_OBSTACLE);
+	slideObstacle->setScale(size.height * SLIDE_OBSTACLE_SCALE / slideObstacle->boundingBox().size.height);
 	m_clipNode->addChild(slideObstacle);
 	CC_SAFE_RETAIN(slideObstacle);
 	Right_Obstacles.push_back(slideObstacle);
@@ -158,8 +161,11 @@ void ForegroundRLayer::SpawnSlideObstacle(void)
 // Spawn a jumping obstacle
 void ForegroundRLayer::SpawnJumpObstacle(void)
 {
+    CCSize    size          = CCDirector::sharedDirector()->getWinSize();
 	Obstacle* jumpObstacle = new Obstacle();
+
 	jumpObstacle->InitWithPositionAndType(-OFFSET, JUMPING_OBSTACLE);
+	jumpObstacle->setScale(size.height * JUMP_OBSTACLE_SCALE / jumpObstacle->boundingBox().size.height);
 	m_clipNode->addChild(jumpObstacle);
 	CC_SAFE_RETAIN(jumpObstacle);
 	Right_Obstacles.push_back(jumpObstacle);

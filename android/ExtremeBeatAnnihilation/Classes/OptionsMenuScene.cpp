@@ -4,6 +4,14 @@ using namespace cocos2d;
 using namespace extension;
 using namespace CocosDenshion;
 
+// externs defined in Global.h
+extern int   Font_Size_Default;
+extern bool  Prev_Was_Main_Menu;
+extern bool  Allow_Volume_Set;
+extern float Music_Volume;
+extern float SFX_Volume;
+
+//Returns a scene for from the layer
 CCScene* OptionsMenu::Scene()
 {
     CCScene*     scene = CCScene::create();
@@ -19,8 +27,9 @@ CCScene* OptionsMenu::Scene()
 bool OptionsMenu::init()
 {
     CCSize           size;
-    CCMenuItemFont*  backItem;
+    CCMenuItemLabel* backItem;
     CCMenu*          menu;
+    CCLabelTTF*      backLabel;                 // the text for the back menu item
     CCLabelTTF*      label;
     CCLabelTTF*      volumelabel;
     CCLabelTTF*      sfxlabel;
@@ -36,7 +45,8 @@ bool OptionsMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // Add a "Back" Button to go back to main menu
-    backItem = CCMenuItemFont::create("BACK", this, menu_selector(OptionsMenu::MenuGoBack));
+    backLabel = CCLabelTTF::create("Back", FONT_STYLE, Font_Size_Default);
+    backItem  = CCMenuItemLabel::create(backLabel, this, menu_selector(OptionsMenu::MenuGoBack));
     backItem->setPosition(ccp(size.width / 2, 20));
 
     // create menu
@@ -45,17 +55,17 @@ bool OptionsMenu::init()
     this->addChild(menu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("OPTIONS", "Thonburi", 34);
+    label = CCLabelTTF::create("Options", FONT_STYLE, Font_Size_Default);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
 
     // add a label that shows "Volume" next to the volume slider bar
-    volumelabel = CCLabelTTF::create("MUSIC", "Thonburi", 34);
+    volumelabel = CCLabelTTF::create("Music", FONT_STYLE, Font_Size_Default);
     volumelabel->setPosition( ccp(60, (2*size.height/3) - 20) );
     this->addChild(volumelabel, 1);
 
     // add a label that shows "SFX" next to the sfx slider bar
-    sfxlabel = CCLabelTTF::create("SFX", "Thonburi", 34);
+    sfxlabel = CCLabelTTF::create("SFX", FONT_STYLE, Font_Size_Default);
     sfxlabel->setPosition( ccp(70, (size.height/3) - 20) );
     this->addChild(sfxlabel, 1);
 
@@ -65,7 +75,7 @@ bool OptionsMenu::init()
                                                                                       CCControlEventValueChanged);
     volume->setMinimumValue(0);
     volume->setMaximumValue(100);
-    volume->setValue(50);
+    volume->setValue(Music_Volume);
     volume->setPosition( ccp(size.width / 2, (2*size.height/3) - 20));
     this->addChild(volume, 1);
 
@@ -75,9 +85,11 @@ bool OptionsMenu::init()
                                                                                  CCControlEventValueChanged);
     sfx->setMinimumValue(0);
     sfx->setMaximumValue(100);
-    sfx->setValue(50);
+    sfx->setValue(SFX_Volume);
     sfx->setPosition( ccp(size.width / 2, (size.height/3) - 20));
     this->addChild(sfx, 1);
+
+    Allow_Volume_Set = true;          // not that sliders are initialized, volume levels can change
 
     return true;
 }
@@ -87,7 +99,11 @@ bool OptionsMenu::init()
 // slider [in] - the slider that changed its value
 void OptionsMenu::HandleMusicSliderChanged(CCControlSlider* slider)
 {
-    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(slider->getValue() / VOLUME_FACTOR);
+    if (Allow_Volume_Set)            // everything's been initialized, so allow volume setting
+    {
+        Music_Volume = slider->getValue();
+        SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(Music_Volume / VOLUME_FACTOR);
+    }
 }
 
 // Update the sound effects volume whenever the value of the slider is changed
@@ -95,11 +111,26 @@ void OptionsMenu::HandleMusicSliderChanged(CCControlSlider* slider)
 // slider [in] - the slider that changed its value
 void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
 {
-    SimpleAudioEngine::sharedEngine()->setEffectsVolume(slider->getValue() / VOLUME_FACTOR);
+    if (Allow_Volume_Set)            // everything's been initialized, so allow volume setting
+    {
+        SFX_Volume = slider->getValue();
+        SimpleAudioEngine::sharedEngine()->setEffectsVolume(SFX_Volume / VOLUME_FACTOR);
+    }
 }
 
+// Changes the scene back to the Main Menu
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
-	// Go back to the main menu
-	CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
+    if (Prev_Was_Main_Menu)                      // Go back to the main menu
+    {
+        CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());
+    }
+    else                                         // Go back to pause scene
+    {
+        CCDirector::sharedDirector()->replaceScene(PauseLayer::Scene());
+    }
+
+    Allow_Volume_Set = false;    // set to false again, so volumes don't get set to default values upon
+                                 //   return to the options menu
 }

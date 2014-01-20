@@ -7,9 +7,7 @@
 
 #include "Global.h"
 
-#include "OptionsMenuScene.h"
-#include "MainMenuScene.h"
-#include "CharacterSelectScene.h"
+#include "IntroScene.h"
 
 /**
  * @brief - The cocos2d Application.

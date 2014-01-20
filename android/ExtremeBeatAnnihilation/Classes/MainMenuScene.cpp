@@ -3,8 +3,10 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-// externs defined in Global.h
+// externs defined in Global.cpp
+extern int  Font_Size_Default;
 extern bool Is_Single_Player;
+extern bool Prev_Was_Main_Menu;
 
 // Initialize the menu items, background, and overall setup of the main menu
 //
@@ -31,9 +33,14 @@ bool MainMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // create the text for the menu items
-    labelSinglePlayer = CCLabelTTF::create("Start Single Player", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", MENU_FONT_STYLE, MENU_FONT_SIZE);
-    labelOptions      = CCLabelTTF::create("Options", MENU_FONT_STYLE, MENU_FONT_SIZE);
+    labelSinglePlayer = CCLabelTTF::create("Start Single Player", FONT_STYLE, Font_Size_Default);
+    labelMultiplayer  = CCLabelTTF::create("Start Multiplayer", FONT_STYLE, Font_Size_Default);
+    labelOptions      = CCLabelTTF::create("Options", FONT_STYLE, Font_Size_Default);
+
+    // add shadows to the labels, so they will be easier to read against the background
+    labelSinglePlayer->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);
+    labelMultiplayer->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);
+    labelOptions->enableShadow(FONT_SHADOW_OFFSET, FONT_SHADOW_OPACITY, FONT_SHADOW_BLUR);
 
     // create the items for the menu
     itemSinglePlayer = CCMenuItemLabel::create(labelSinglePlayer, this, menu_selector(MainMenu::HandleSinglePlayerPressed));
@@ -49,12 +56,13 @@ bool MainMenu::init()
     menu = CCMenu::create(itemSinglePlayer, itemMultiplayer, itemOptions, NULL);
     menu->alignItemsVerticallyWithPadding(MENU_ITEM_PADDING);
     menu->setPosition(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN);
-    this->addChild(menu, 1);
+    addChild(menu, 1);
 
     // add splash screen as a sprite on the center of the screen
     background = CCSprite::create(BACKGROUND_IMAGE);
+    background->setScale(size.height / background->boundingBox().size.height);
     background->setPosition( ccp(size.width * POS_HALF_SCREEN, size.height * POS_HALF_SCREEN) );
-    this->addChild(background, 0);
+    addChild(background, 0);
 
     return true;
 }
@@ -78,6 +86,7 @@ CCScene* MainMenu::Scene()
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Is_Single_Player = true;
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
@@ -88,6 +97,7 @@ void MainMenu::HandleSinglePlayerPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
     Is_Single_Player = false;
 	CCDirector::sharedDirector()->replaceScene(CharacterSelect::Scene());
 }
@@ -97,5 +107,7 @@ void MainMenu::HandleMultiplayerPressed(CCObject* sender)
 // sender [in] - the object that sent the selected event?
 void MainMenu::HandleOptionsPressed(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/select.wav");
+    Prev_Was_Main_Menu = true;
 	CCDirector::sharedDirector()->replaceScene(OptionsMenu::Scene());
 }

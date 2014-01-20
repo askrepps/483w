@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Crash Course Gaming. All rights reserved.
 //
 
-#import "CCSprite.h"
+#import "PlayerSprite.h"
 
-@interface RightPlayer : CCSprite
+@interface RightPlayer : PlayerSprite
 
 @end

@@ -1,87 +1,95 @@
 //
-//  HelloWorldLayer.m
+//  MenuLayer.m
 //  ExtremeBeatAnnihilation
 //
-//  Created by ANDREW STEPHEN KREPPS on 9/11/13.
+//  Created by ROBERT WILLIAM CARRIER on 9/11/13.
 //  Copyright Crash Course Gaming 2013. All rights reserved.
 //
-// I added this comment line to see if I can push to the repository directly from xcode
-// Test comment from Russ
-
 
 // Import the interfaces
 #import "MenuLayer.h"
-
-// Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
+#import "BackgroundLayer.h"
+#import "SettingsLayer.h"
+#import "CharacterSelectLayer.h"
+#import "Registry.h"
+#import "SimpleAudioEngine.h"
 
-#pragma mark - HelloWorldLayer
+#pragma mark - MenuLayer
 
-// HelloWorldLayer implementation
 @implementation MenuLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
-+(CCScene *) scene
++(CCScene *)scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-	// 'layer' is an autorelease object.
-	MenuLayer *layer = [MenuLayer node];
+    BackgroundLayer *background = [BackgroundLayer node];
+	MenuLayer *menu = [MenuLayer node];
 	
-	// add layer as a child to scene
-	[scene addChild: layer];
+    [scene addChild:background z:-1];
+	[scene addChild: menu];
 	
-	// return the scene
 	return scene;
 }
 
-// on "init" you need to initialize your instance
--(id) init
+-(id)init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
-	if( (self=[super init]) ) {
-		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Extreme Beat Annihilation" fontName:@"Marker Felt" fontSize:32];
-
-		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-	
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
+	if((self=[super init]))
+    {
+        // Add buttons for starting the game and accessing options
+        CCMenuItemFont *single = [CCMenuItemFont itemWithString:@"Single Player" target:self selector:@selector(singlePressed:)];
+        CCMenuItemFont *multi = [CCMenuItemFont itemWithString:@"Multiplayer" target:self selector:@selector(multiPressed:)];
+        CCMenuItemFont *options = [CCMenuItemFont itemWithString:@"Settings" target:self selector:@selector(optionsPressed:)];
         
-        [[CCDirector sharedDirector] setDisplayFPS:NO];
-	}
+        CCMenu *startMenu = [CCMenu menuWithItems:single, multi, options, nil];
+        [startMenu alignItemsVertically];
+        [self addChild:startMenu];
+    }
+    
 	return self;
 }
 
-// on "dealloc" you need to release all your retained objects
-- (void) dealloc
+-(void)onEnterTransitionDidFinish
 {
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
+    [super onEnterTransitionDidFinish];
+    if (![Registry getIsMenuMusicPlaying])
+    {
+        NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+        NSNumber *musicValue = [preferences objectForKey:kMusic];
+        NSNumber *sfxValue = [preferences objectForKey:kSFX];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:sfxValue.floatValue];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicValue.floatValue];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ebaLoop.mp3" loop:YES];
+        [Registry setIsMenuMusicPlaying:YES];
+    }
+    
+}
+
+-(void)dealloc
+{
 	[super dealloc];
 }
 
-#pragma mark GameKit delegate
-
--(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+-(void)singlePressed:(id)sender
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
+    [Registry setIsSinglePlayer:YES];
+    [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
+    
 }
 
--(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+-(void)multiPressed:(id)sender
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
+    [Registry setIsSinglePlayer:NO];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
+    [[CCDirector sharedDirector] replaceScene:[CharacterSelectLayer scene]];
+
+}
+
+-(void)optionsPressed:(id)sender
+{
+    [[CCDirector sharedDirector] pushScene:[SettingsLayer scene]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 }
 @end

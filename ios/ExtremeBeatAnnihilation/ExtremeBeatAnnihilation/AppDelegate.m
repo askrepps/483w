@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "Registry.h"
 
 @implementation MyNavigationController
 
@@ -88,9 +89,6 @@
 	
 	director_.wantsFullScreenLayout = YES;
 	
-	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
-	
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
 	
@@ -135,6 +133,11 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+    
+    // Load volume preferences
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    [preferences registerDefaults:@{kMusic:@1}];
+    [preferences registerDefaults:@{kSFX:@1}];
 	
 	return YES;
 }
@@ -156,8 +159,13 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    if( [Registry getGameScene] != nil)
+    {
+        [[Registry getGameScene] pausePressed];
+    }
+    
 	if( [navController_ visibleViewController] == director_ )
-		[director_ stopAnimation];
+		[director_ stopAnimation]; 
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application

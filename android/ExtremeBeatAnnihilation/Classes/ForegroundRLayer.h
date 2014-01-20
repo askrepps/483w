@@ -24,7 +24,7 @@ public:
 private:
     PlayerR*           m_player;             // player sprite
     cocos2d::ClipNode* m_clipNode;			 // Clip node for obstacles
-    float              m_delta;				 // Time delta for player use
+    bool               m_firstUpdate;        // true when the next call to update is the first call
 };
 
 #endif // __FOREGROUND_R_LAYER_H__

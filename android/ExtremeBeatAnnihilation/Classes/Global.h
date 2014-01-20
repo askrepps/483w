@@ -31,7 +31,7 @@
 #define JUMP_Y_POS             0.160  // The position for the jumping obstacle
 #define SLIDE_Y_POS 		   0.340  // the position for the sliding obstacle
 
-#define PLAYER_SCALE 1.4			 // The scale for the players to use
+#define PLAYER_SCALE 0.15			 // The factor of screen height to scale players in the game scene
 
 #define JUMPING_OBSTACLE 1			 // The obstacle is a jumping obstacle
 #define SLIDING_OBSTACLE 0			 // The obstacle is a sliding obstacle

@@ -1,14 +1,14 @@
 #include "PlayerL.h"
 
 using namespace cocos2d;
-
-extern int Player_One;
-using namespace cocos2d;
 using namespace CocosDenshion;
+
+// externs defined in Global.cpp
+extern int Player_One;
+
 //Initialize the Left player sprite
 bool PlayerL::init()
 {
-
 	canJump  = true;		//initialize so the player is able to jump
 	canSlide = true;		//initialize so the player is able to slide
 	canCollide = true;		//initialize so the player will collide with things
@@ -36,7 +36,7 @@ bool PlayerL::init()
 
     switch (Player_One)
     {
-        case 1:						//Player One is Blue
+    case 1:						//Player One is Blue
     	framecache->addSpriteFramesWithFile("CharacterSprites/BlueCharacter/blue_running.plist");
     	framecache->addSpriteFramesWithFile("CharacterSprites/BlueCharacter/blue_jumping.plist");
     	framecache->addSpriteFramesWithFile("CharacterSprites/BlueCharacter/blue_sliding.plist");

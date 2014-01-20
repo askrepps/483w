@@ -41,10 +41,10 @@ bool ForegroundLLayer::init()
     // create the player and add it
     m_player = PlayerL::create();
     m_player->setPosition( ccp(layerSize.width/4, layerSize.height * PLAYER_Y_POS) );
-    m_player->setScale(PLAYER_SCALE);
     m_clipNode->addChild(m_player);
 
-    m_delta = 0.0;				//  Initialize to 0
+    // mark the next call to update as the first
+    m_firstUpdate = true;
 
     // enable screen touches to be detected
     setTouchEnabled(true);
@@ -76,44 +76,50 @@ void ForegroundLLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
     }
 }
 
+// update movement of the player and obstacles in the layer and check for collisions
+//
+// delta [in] - time since the last update
 void ForegroundLLayer::UpdateLayer(float delta)
 {
-	CCRect obstacleRect;
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	CCRect playerRect = CCRectMake(
-										m_player->getPosition().x - (m_player->getContentSize().width/2),
-										m_player->getPosition().y - (m_player->getContentSize().height/2),
-										m_player->getContentSize().width,
-										m_player->getContentSize().height
-								  );
+	CCSize size         = CCDirector::sharedDirector()->getWinSize();   // size of the screen window
+	CCRect playerRect   = m_player->boundingBox();        // bounding rectangle of player
+	CCRect obstacleRect;                                  // bounding rectangle of an obstacle
 
-	//Update the locations of each, and remove as need
+	// scale the player on the first update; has to be done here as the init doesn't have the bounding
+	//   box set yet
+	if(m_firstUpdate)
+	{
+	    m_player->setScale(size.height * PLAYER_SCALE / playerRect.size.height);
+	    m_firstUpdate = false;
+	}
+
+	// Update the locations of each, and remove as need
 	for(std::vector<Obstacle*>::size_type i = 0; i != Left_Obstacles.size(); ++i)
 	{
 		if(Left_Obstacles[i])
 		{
 			Left_Obstacles[i]->setPosition(ccp(Left_Obstacles[i]->getPosition().x - VELOCITY*delta,
-											   Left_Obstacles[i]->getPosition().y));
+											                     Left_Obstacles[i]->getPosition().y));
 		}
 
 		// Collision detection
 		if(m_player->CanCollide())
 		{
-			obstacleRect = CCRectMake(
-											Left_Obstacles[i]->getPosition().x - (Left_Obstacles[i]->getContentSize().width/2),
-											Left_Obstacles[i]->getPosition().y - (Left_Obstacles[i]->getContentSize().height/2),
-											Left_Obstacles[i]->getContentSize().width,
-											Left_Obstacles[i]->getContentSize().height
-									  );
+			obstacleRect = Left_Obstacles[i]->boundingBox();
 
 			// Collision occured, deduct points and flag as can't collide
 			if(obstacleRect.intersectsRect(playerRect))
 			{
 				m_player->Blink();
+
 				if(Is_Single_Player)
+				{
 					Player_One_Score += SINGLE_PLAYER_DEDUCTION;
+				}
 				else
+				{
 					Player_One_Score += MULTI_PLAYER_DEDUCTION;
+				}
 			}
 		}
 	}
@@ -124,7 +130,7 @@ void ForegroundLLayer::UpdateLayer(float delta)
 		{
 			if(Left_Obstacles[i]->getPosition().x > size.width + OFFSET)
 			{
-					Left_Obstacles.erase(Left_Obstacles.begin() + i);
+                Left_Obstacles.erase(Left_Obstacles.begin() + i);
 			}
 			else
 			{
@@ -132,15 +138,14 @@ void ForegroundLLayer::UpdateLayer(float delta)
 			}
 		}
 	}
-
-	// Collision detection here
 }
 
 // Spawns a sliding obstacle
 void ForegroundLLayer::SpawnSlideObstacle(void)
 {
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCSize    size          = CCDirector::sharedDirector()->getWinSize();
 	Obstacle* slideObstacle = new Obstacle();
+
 	slideObstacle->InitWithPositionAndType(size.width + OFFSET, SLIDING_OBSTACLE);
 	m_clipNode->addChild(slideObstacle);
 	CC_SAFE_RETAIN(slideObstacle);
@@ -150,8 +155,9 @@ void ForegroundLLayer::SpawnSlideObstacle(void)
 // Spawn a jumping obstacle
 void ForegroundLLayer::SpawnJumpObstacle(void)
 {
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCSize    size         = CCDirector::sharedDirector()->getWinSize();
 	Obstacle* jumpObstacle = new Obstacle();
+
 	m_clipNode->addChild(jumpObstacle);
 	jumpObstacle->InitWithPositionAndType(size.width + OFFSET, JUMPING_OBSTACLE);
 	CC_SAFE_RETAIN(jumpObstacle);

@@ -32,7 +32,22 @@
         CCLabelTTF *overLabel = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Marker Felt" fontSize:32];
         overLabel.position = ccp(size.width/2, size.height - 32);
         
-        CCLabelTTF *scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Final Score: %d", [Registry getScore]] fontName:@"Marker Felt" fontSize:32];
+        CCLabelTTF *titleLabel = [CCLabelTTF labelWithString:[Registry getMusicName] fontName:@"Marker Felt" fontSize:32];
+        titleLabel.position = ccp(size.width/2, size.height - 64);
+        
+        CCLabelTTF *scoreLabel;
+        
+        if([Registry getIsSinglePlayer])
+        {
+            NSNumber *score = [Registry getScore][0];
+            scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Final Score: %d", [score intValue]] fontName:@"Marker Felt" fontSize:32];
+        }
+        else
+        {
+            NSNumber *score1 = [Registry getScore][0];
+            NSNumber *score2 = [Registry getScore][1];
+            scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"P1: %d   P2: %d", [score1 intValue], [score2 intValue]] fontName:@"Marker Felt" fontSize:32];
+        }
         scoreLabel.position = ccp(size.width/2, size.height/2);
         
         CCMenuItemFont *playAgain = [CCMenuItemFont itemWithString:@"Play Again" target:self selector:@selector(againPressed)];
@@ -42,6 +57,7 @@
         menu.position = CGPointZero;
         
         [self addChild:overLabel];
+        [self addChild:titleLabel];
         [self addChild:scoreLabel];
         [self addChild:menu];
     }

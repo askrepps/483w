@@ -5,11 +5,13 @@ using namespace extension;
 using namespace CocosDenshion;
 
 // externs defined in Global.h
+extern int   Font_Size_Default;
 extern bool  Prev_Was_Main_Menu;
 extern bool  Allow_Volume_Set;
 extern float Music_Volume;
 extern float SFX_Volume;
 
+//Returns a scene for from the layer
 CCScene* OptionsMenu::Scene()
 {
     CCScene*     scene = CCScene::create();
@@ -25,8 +27,9 @@ CCScene* OptionsMenu::Scene()
 bool OptionsMenu::init()
 {
     CCSize           size;
-    CCMenuItemFont*  backItem;
+    CCMenuItemLabel* backItem;
     CCMenu*          menu;
+    CCLabelTTF*      backLabel;                 // the text for the back menu item
     CCLabelTTF*      label;
     CCLabelTTF*      volumelabel;
     CCLabelTTF*      sfxlabel;
@@ -42,7 +45,8 @@ bool OptionsMenu::init()
     size = CCDirector::sharedDirector()->getWinSize();
 
     // Add a "Back" Button to go back to main menu
-    backItem = CCMenuItemFont::create("BACK", this, menu_selector(OptionsMenu::MenuGoBack));
+    backLabel = CCLabelTTF::create("Back", FONT_STYLE, Font_Size_Default);
+    backItem  = CCMenuItemLabel::create(backLabel, this, menu_selector(OptionsMenu::MenuGoBack));
     backItem->setPosition(ccp(size.width / 2, 20));
 
     // create menu
@@ -51,17 +55,17 @@ bool OptionsMenu::init()
     this->addChild(menu, 1);
 
     // add a label that shows "Main Menu" on the center of the screen
-    label = CCLabelTTF::create("OPTIONS", "Thonburi", 34);
+    label = CCLabelTTF::create("Options", FONT_STYLE, Font_Size_Default);
     label->setPosition( ccp(size.width / 2, size.height - 20) );
     this->addChild(label, 1);
 
     // add a label that shows "Volume" next to the volume slider bar
-    volumelabel = CCLabelTTF::create("MUSIC", "Thonburi", 34);
+    volumelabel = CCLabelTTF::create("Music", FONT_STYLE, Font_Size_Default);
     volumelabel->setPosition( ccp(60, (2*size.height/3) - 20) );
     this->addChild(volumelabel, 1);
 
     // add a label that shows "SFX" next to the sfx slider bar
-    sfxlabel = CCLabelTTF::create("SFX", "Thonburi", 34);
+    sfxlabel = CCLabelTTF::create("SFX", FONT_STYLE, Font_Size_Default);
     sfxlabel->setPosition( ccp(70, (size.height/3) - 20) );
     this->addChild(sfxlabel, 1);
 
@@ -114,8 +118,10 @@ void OptionsMenu::HandleSfxSliderChanged(CCControlSlider* slider)
     }
 }
 
+// Changes the scene back to the Main Menu
 void OptionsMenu::MenuGoBack(CCObject* sender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("SFX/back.wav");
     if (Prev_Was_Main_Menu)                      // Go back to the main menu
     {
         CCDirector::sharedDirector()->replaceScene(MainMenu::Scene());

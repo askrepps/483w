@@ -136,7 +136,8 @@
     
     // Load volume preferences
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    [preferences registerDefaults:@{kVolume:@1}];
+    [preferences registerDefaults:@{kMusic:@1}];
+    [preferences registerDefaults:@{kSFX:@1}];
 	
 	return YES;
 }
@@ -158,8 +159,13 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    if( [Registry getGameScene] != nil)
+    {
+        [[Registry getGameScene] pausePressed];
+    }
+    
 	if( [navController_ visibleViewController] == director_ )
-		[director_ stopAnimation];
+		[director_ stopAnimation]; 
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application

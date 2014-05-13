@@ -10,33 +10,26 @@
 #import "MenuLayer.h"
 #import "MusicSelectLayer.h"
 #import "Registry.h"
+#import "SimpleAudioEngine.h"
 
 @interface CharacterSelectLayer ()
 
 @property (nonatomic, strong) NSMutableArray* characters;
 @property (nonatomic, strong) NSMutableArray* charSelections;
-@property (nonatomic, strong) CCMenu *characterMenu;
-@property (nonatomic, strong) CCMenu *navMenu;
-@property (nonatomic, strong) CCMenu *dummyMenu;
 @property NSInteger numSelected;
 
 @end
 
 @implementation CharacterSelectLayer
 
-// Helper class method that creates a Scene with the MenuLayer as the only child.
 +(CCScene *)scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-	// 'layer' is an autorelease object.
 	CharacterSelectLayer *layer = [CharacterSelectLayer node];
 	
-	// add layer as a child to scene
 	[scene addChild: layer];
 	
-	// return the scene
 	return scene;
 }
 
@@ -55,19 +48,22 @@
         self.characters = [[NSMutableArray alloc] init];
         self.charSelections = [[NSMutableArray alloc] init];
         
-
-        CCMenuItemImage *character1Unselected = [CCMenuItemImage itemWithNormalImage:@"char1.png" selectedImage:@"char1selected.png" target:self selector:@selector(CharacterPressed:)];
+        // Char 1
         
-        CCMenuItemImage *character1Selected = [CCMenuItemImage itemWithNormalImage:@"char1selected.png" selectedImage:@"char1.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character1Unselected = [CCMenuItemImage itemWithNormalImage:@"red_icon.png" selectedImage:@"red_icon_selected.png" target:self selector:@selector(CharacterPressed:)];
+        
+        CCMenuItemImage *character1Selected = [CCMenuItemImage itemWithNormalImage:@"red_icon_selected.png" selectedImage:@"red_icon.png" target:self selector:@selector(CharacterPressed:)];
         
         [_charSelections addObject:[NSNumber numberWithBool:NO]];
         
         CCMenuItemToggle *character1 = [CCMenuItemToggle itemWithTarget:self selector:@selector(CharacterPressed:) items:character1Unselected, character1Selected, nil];
         [_characters addObject:character1];
         
-        CCMenuItemImage *character2Unselected = [CCMenuItemImage itemWithNormalImage:@"char2.png" selectedImage:@"char2selected.png" target:self selector:@selector(CharacterPressed:)];
+        // Char 2
         
-        CCMenuItemImage *character2Selected = [CCMenuItemImage itemWithNormalImage:@"char2selected.png" selectedImage:@"char2.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character2Unselected = [CCMenuItemImage itemWithNormalImage:@"blue_icon.png" selectedImage:@"blue_icon_selected.png" target:self selector:@selector(CharacterPressed:)];
+        
+        CCMenuItemImage *character2Selected = [CCMenuItemImage itemWithNormalImage:@"blue_icon_selected.png" selectedImage:@"blue_icon.png" target:self selector:@selector(CharacterPressed:)];
         
         [_charSelections addObject:[NSNumber numberWithBool:NO]];
         
@@ -76,33 +72,23 @@
         
         // Char 3
         
-        CCMenuItemImage *character3Unselected = [CCMenuItemImage itemWithNormalImage:@"char3.png" selectedImage:@"char3selected.png" target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character3Unselected = [CCMenuItemImage itemWithNormalImage:@"green_icon.png" selectedImage:@"green_icon_selected.png" target:self selector:@selector(CharacterPressed:)];
         
-        CCMenuItemImage *character3Selected = [CCMenuItemImage itemWithNormalImage:@"char3selected.png" selectedImage:@"char3.png"  target:self selector:@selector(CharacterPressed:)];
+        CCMenuItemImage *character3Selected = [CCMenuItemImage itemWithNormalImage:@"green_icon_selected.png" selectedImage:@"green_icon.png"  target:self selector:@selector(CharacterPressed:)];
         
         [_charSelections addObject:[NSNumber numberWithBool:NO]];
         
         CCMenuItemToggle *character3 = [CCMenuItemToggle itemWithTarget:self selector:@selector(CharacterPressed:) items:character3Unselected, character3Selected, nil];
         [_characters addObject:character3];
-//
-//        CCMenuItemImage *character4 = [CCMenuItemImage itemWithNormalImage:@"char4.png" selectedImage:@"char4selected.png" target:self selector:@selector(CharacterPressed:)];
-//        [_unselectedChars addObject:character4];
-
-
-//
-//        CCMenuItemImage *character4Selected = [CCMenuItemImage itemWithNormalImage:@"char4selected.png" selectedImage:@"char4.png" target:self selector:@selector(CharacterPressed:)];
-//        [_selectedChars addObject:character4Selected];
         
         CCMenuItemFont *continueButton = [CCMenuItemFont itemWithString:@"Continue" target:self selector:@selector(ContinuePressed:)];
-        continueButton.position = ccp(size.width/2, 64);
+        continueButton.position = ccp(size.width/2, 68);
         
         CCMenuItemFont *back = [CCMenuItemFont itemWithString:@"Back" target:self selector:@selector(backPressed:)];
         back.position = ccp(size.width/2, 32);
-        
-//        self.characterMenu = [CCMenu menuWithItems:character1, character2, character3, character4, nil];
-        
+                
         // Check if any characters already set
-        if([Registry getCharOne] != -1 && [Registry getCharOne] != -1)
+        if([Registry getCharOne] != -1 && [Registry getCharTwo] != -1)
         {
             NSInteger indexOne = [Registry getCharOne];
             NSInteger indexTwo = [Registry getCharTwo];
@@ -116,15 +102,15 @@
             [self toggleSelections];
         }
         
-        self.characterMenu = [CCMenu menuWithItems:character1, character2, character3, nil];
-        self.characterMenu.position = ccp(size.width/2, size.height/2);
-        [self.characterMenu alignItemsHorizontallyWithPadding:size.width/3];
+        CCMenu *characterMenu = [CCMenu menuWithItems:character1, character2, character3, nil];
+        characterMenu.position = ccp(size.width/2, size.height/2);
+        [characterMenu alignItemsHorizontallyWithPadding:size.width/3];
         
-        self.navMenu = [CCMenu menuWithItems:continueButton, back, nil];
-        self.navMenu.position = CGPointZero;
+        CCMenu *navMenu = [CCMenu menuWithItems:continueButton, back, nil];
+        navMenu.position = CGPointZero;
         
-        [self addChild:self.characterMenu z:0];
-        [self addChild:self.navMenu];
+        [self addChild:characterMenu z:0];
+        [self addChild:navMenu];
 	}
     
 	return self;
@@ -137,22 +123,26 @@
 
 -(void)backPressed:(id)sender
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
+    [Registry clean];
     [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
 }
 
 -(void)CharacterPressed:(id)sender
 {
     CCMenuItemToggle *source = (CCMenuItemToggle*) sender;
-        
+    
     NSInteger index = [self.characters indexOfObject:source];
     if (source.selectedIndex == 0)
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"back.wav"];
         [self.charSelections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:NO]];
         self.numSelected--;
         [Registry removeChar:index];
     }
     else
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
         [self.charSelections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
         self.numSelected++;
         [Registry setChar:index];
@@ -180,6 +170,7 @@
 {
     if([Registry getCharOne] != -1 && [Registry getCharTwo] != -1)
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
         [[CCDirector sharedDirector] replaceScene:[MusicSelectLayer scene]];
     }
     else
@@ -188,26 +179,5 @@
         [alert show];
     }
 }
-
-/*
- -(NSInteger)countCharacters  //unused function
- {
- NSMutableArray *files = [[NSMutableArray alloc] init];
- NSArray *itemsInFolder = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:FOLDER_PATH error:NULL];
- 
- NSString *itemPath;
- BOOL isDirectory;
- for (NSString *item in itemsInFolder){
- itemPath = [NSString stringWithFormat:@"%@/%@", FOLDER_PATH, item];
- [[NSFileManager defaultManager] fileExistsAtPath:item isDirectory:&isDirectory];
- if (!isDirectory) {
- [files addObject:item];
- }
- }
- 
- return [files count];
- }*/
-
-
 
 @end

@@ -11,14 +11,14 @@
 
 #define POS_HEADER_HEIGHT    0.9                 // factor of height to position the header
 #define MENU_COLOR           ccc3(255, 255, 255) // RGB color of the menu items
-#define MENU_FONT_SIZE       50                  // size of the font for the menu items
-#define MENU_FONT_STYLE      "Arial"             // style of the font for the menu items
 #define MENU_ITEM_PADDING    20                  // padding between menu items, most likely in pixels
 
 class PauseLayer : public cocos2d::CCLayer
 {
 public:
-    virtual bool              init();
+    virtual bool init();
+    virtual void onEnter();
+
     static  cocos2d::CCScene* Scene();
 
     void HandleOptionsPressed(CCObject* sender);

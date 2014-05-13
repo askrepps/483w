@@ -3,7 +3,7 @@
     package="org.cocos2dx.extbeatanni"
     android:versionCode="1"
     android:versionName="1.0" >
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15" />
 
     <uses-feature android:glEsVersion="0x00020000" />
@@ -24,11 +24,7 @@
         </activity>
         <activity
             android:name="org.cocos2dx.extbeatanni.FileExplore"
-            android:label="@string/title_activity_file_explore"
-            android:parentActivityName="org.cocos2dx.extbeatanni.ExtremeBeatAnnihilation" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.cocos2dx.extbeatanni.ExtremeBeatAnnihilation" />
+            android:label="@string/title_activity_file_explore" >
         </activity>
     </application>
 

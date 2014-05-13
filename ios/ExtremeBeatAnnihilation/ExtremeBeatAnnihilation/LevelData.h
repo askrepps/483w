@@ -7,9 +7,18 @@
 //
 
 #import <AudioToolbox/AudioToolbox.h>
+#import <Accelerate/Accelerate.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SoundEvent.h"
 
 @interface LevelData : NSObject
+
+typedef struct
+{
+    UInt32 sample;
+    float amp;
+    float freq;
+} Peak;
 
 @property (readonly) uint numSamples;
 @property (readonly) float q1Freq;
@@ -19,7 +28,6 @@
 @property (readonly) NSInteger sampleRate;
 
 -(id) initDefault;
--(id) initWithAudioFileURL:(NSURL *)url;
--(id) initWithAudioFilePath:(NSString *)filePath;
+-(id) initWithURL:(NSURL *)url;
 
 @end

@@ -7,16 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameScene.h"
 
+#define kBuffersPerSecond 4
+#define kObstacleGap 40000
+#define kAmpThreshold 0.1
 #define kVelocity 250
-#define kLevelOffset 100
+#define kLevelOffset 110
+#define kRightCorrection 478
 #define kFireY 100
-#define kCoilY 200
+#define kCoilY 152
 #define kJumpHeight 100
 
 @interface Registry : NSObject
-FOUNDATION_EXPORT NSString *const kVolume;
-//FOUNDATION_EXPORT NSNumber *const kHighScore;
+FOUNDATION_EXPORT NSString *const kMusic;
+FOUNDATION_EXPORT NSString *const kSFX;
 
 +(void)setChar:(NSInteger)index;
 +(void)removeChar:(NSInteger)index;
@@ -29,6 +34,13 @@ FOUNDATION_EXPORT NSString *const kVolume;
 +(NSURL*)getMusicURL;
 +(void)setMusicURL:(NSURL*)URL;
 +(void)setScore:(NSInteger)score;
-+(NSInteger)getScore;
++(void)setFirstScore:(NSInteger)score1 andSecondScore:(NSInteger)score2;
++(NSArray*)getScore;
++(void)setIsMenuMusicPlaying:(BOOL)playing;
++(BOOL)getIsMenuMusicPlaying;
++(void)setIsFileFromLibrary:(BOOL)fromLibrary;
++(BOOL)getIsFileFromLibrary;
++(void)setGameScene:(GameScene *)scene;
++(GameScene *)getGameScene;
 +(void)clean;
 @end

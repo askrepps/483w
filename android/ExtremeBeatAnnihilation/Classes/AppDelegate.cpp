@@ -4,6 +4,8 @@ USING_NS_CC;
 using namespace CocosDenshion;
 
 // externs defined in Global.cpp
+extern int   Font_Size_Default;
+extern int   Font_Size_Small;
 extern bool  Allow_Volume_Set;
 extern float Music_Volume;
 extern float SFX_Volume;
@@ -30,6 +32,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     Allow_Volume_Set = false;    // initialized to false, so volumes don't get set to default values on
                                  //   init of options menu
 
+    // set the font sizes for the whole game based on the size of the screen
+    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    Font_Size_Default = size.height / 10;
+    Font_Size_Small   = size.height / 15;
+
     // start up the menu song
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MENU_MUSIC, true);
 
@@ -37,9 +44,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     //pDirector->setDisplayStats(true);
     //pDirector->setAnimationInterval(1.0 / 60);
 
-    // start up the main menu as the first scene
-    CCScene* pScene = MainMenu::Scene();
-    pDirector->runWithScene(pScene);
+    // start up the intro scene as the first scene
+    pDirector->runWithScene(IntroScene::Scene());
 
     return true;
 }
